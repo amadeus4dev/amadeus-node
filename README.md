@@ -1,6 +1,6 @@
 # Amadeus Node SDK
 
-[![Gem Version](http://img.shields.io/gem/v/amadeus-node.svg)][gem]
+[![npm version](https://badge.fury.io/js/amadeus.svg)](https://badge.fury.io/js/amadeus)
 [![Build Status](http://img.shields.io/travis/amadeus-node.svg)][travis]
 [![Contact Support](https://img.shields.io/badge/contact-support-blue.svg)][support]
 
