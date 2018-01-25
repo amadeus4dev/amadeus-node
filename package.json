@@ -1,0 +1,30 @@
+{
+  "name": "amadeus",
+  "version": "0.1.0",
+  "description": "Node library for the Amadeus travel APIs",
+  "main": "lib/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/amadeusdev/amadeus-node.git"
+  },
+  "keywords": [
+    "amadeus",
+    "travel",
+    "api",
+    "apis",
+    "hotels",
+    "flights"
+  ],
+  "author": "amadeus-developer",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/amadeusdev/amadeus-node/issues"
+  },
+  "homepage": "https://developer.amadeus.com",
+  "contributors": [
+    "cbetta"
+  ]
+}
