@@ -2,9 +2,12 @@
   "name": "amadeus",
   "version": "0.1.0",
   "description": "Node library for the Amadeus travel APIs",
-  "main": "lib/index.js",
+  "main": "lib/amadeus.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "prebuild": "eslint src",
+    "build": "babel -d lib src/ -s inline",
+    "build:watch": "watch 'npm run build' src",
+    "prepublish": "npm run build"
   },
   "repository": {
     "type": "git",
@@ -26,5 +29,11 @@
   "homepage": "https://developer.amadeus.com",
   "contributors": [
     "cbetta"
-  ]
+  ],
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
+    "eslint": "^4.16.0",
+    "watch": "^1.0.2"
+  }
 }
