@@ -1,4 +1,5 @@
-import Client from './amadeus/client';
+import Client  from './amadeus/client';
+import library from '../package.json';
 
 /**
  * The Amadeus client library for accessing the travel APIs
@@ -17,10 +18,14 @@ import Client from './amadeus/client';
  *  in the User Agent to the server.
  * @param {Object} [options.http=https] an optional Node HTTPS compatible client.
  *  Defaults to the standard Node HTTPS client.
+ *
+ * @property {Client} client A wrapper client that handles all the API calls
+ * @property {number} version The version of this API client
  */
 class Amadeus {
   constructor(options = {}) {
     this.client = new Client(options);
+    this.version = library.version;
   }
 }
 

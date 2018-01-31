@@ -5,7 +5,7 @@
   "main": "lib/amadeus.js",
   "scripts": {
     "prebuild": "npm run lint:src & npm run docs",
-    "build": "babel -d lib src/**/*.js -s inline",
+    "build": "babel -d lib src/ -s inline",
     "build:watch": "watch 'npm run build' src",
     "prepublish": "npm run build",
     "pretest": "eslint spec",
@@ -17,7 +17,8 @@
     "docs:serve": "open docs/",
     "docs:dev": "npm run docs:serve && npm run docs:watch",
     "lint:src": "eslint src",
-    "lint:docs": "documentation lint src/**"
+    "lint:docs": "documentation lint src/**",
+    "console": "node -r ./lib/amadeus.js"
   },
   "repository": {
     "type": "git",
@@ -42,10 +43,12 @@
   ],
   "devDependencies": {
     "babel-cli": "^6.26.0",
+    "babel-plugin-add-module-exports": "^0.2.1",
     "babel-preset-env": "^1.6.1",
     "documentation": "^5.3.5",
     "eslint": "^4.16.0",
     "jest": "^22.1.4",
     "watch": "^1.0.2"
-  }
+  },
+  "dependencies": {}
 }
