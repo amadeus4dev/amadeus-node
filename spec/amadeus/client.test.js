@@ -1,5 +1,5 @@
 import Client from '../../src/amadeus/client';
-import https from 'https';
+import https  from 'https';
 
 let client;
 let credentials = {

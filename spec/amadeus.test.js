@@ -1,5 +1,5 @@
 import Amadeus from '../src/amadeus';
-import Client from '../src/amadeus/client';
+import Client  from '../src/amadeus/client';
 
 let amadeus;
 let credentials = {
