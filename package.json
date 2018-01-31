@@ -4,13 +4,20 @@
   "description": "Node library for the Amadeus travel APIs",
   "main": "lib/amadeus.js",
   "scripts": {
-    "prebuild": "eslint src",
-    "build": "babel -d lib src/ -s inline",
+    "prebuild": "npm run lint:src & npm run docs",
+    "build": "babel -d lib src/**/*.js -s inline",
     "build:watch": "watch 'npm run build' src",
     "prepublish": "npm run build",
     "pretest": "eslint spec",
-    "test": "jest --coverage --collectCoverageFrom=src/**/*.js",
-    "test:watch": "watch 'npm test' src spec"
+    "test": "jest spec --coverage --collectCoverageFrom=src/**/*.js",
+    "test:watch": "watch 'npm test' src spec",
+    "predocs": "npm run lint:docs",
+    "docs": "documentation build src/** -f html -o docs",
+    "docs:watch": "watch 'npm run docs' src",
+    "docs:serve": "open docs/",
+    "docs:dev": "npm run docs:serve && npm run docs:watch",
+    "lint:src": "eslint src",
+    "lint:docs": "documentation lint src/**"
   },
   "repository": {
     "type": "git",
@@ -36,9 +43,9 @@
   "devDependencies": {
     "babel-cli": "^6.26.0",
     "babel-preset-env": "^1.6.1",
+    "documentation": "^5.3.5",
     "eslint": "^4.16.0",
     "jest": "^22.1.4",
-    "jsdoc": "^3.5.5",
     "watch": "^1.0.2"
   }
 }

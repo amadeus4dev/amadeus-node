@@ -3,3 +3,4 @@ src
 .babelrc
 .eslintrc.js
 tests
+docs
