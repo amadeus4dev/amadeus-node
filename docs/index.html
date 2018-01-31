@@ -53,23 +53,29 @@
                 
                 <div class='toggle-target display-none'>
                   
-                  <ul class='list-reset py1-ul pl1'>
-                    <li class='h5'><span>Static members</span></li>
-                    
+                  
+                    <ul class='list-reset py1-ul pl1'>
+                      <li class='h5'><span>Instance members</span></li>
+                      
                       <li><a
                         href='#validatorinitrequired'
                         class='regular pre-open'>
-                        .initRequired
+                        #initRequired
                       </a></li>
-                    
+                      
                       <li><a
                         href='#validatorinitoptional'
                         class='regular pre-open'>
-                        .initOptional
+                        #initOptional
                       </a></li>
-                    
+                      
+                      <li><a
+                        href='#validatorwarnonunrecognizedoptions'
+                        class='regular pre-open'>
+                        #warnOnUnrecognizedOptions
+                      </a></li>
+                      
                     </ul>
-                  
                   
                   
                   
@@ -155,7 +161,80 @@
   </td>
   <td class='break-word'><span>the 
 <code>client_secret</code>
- used to authenticate the API
+ used to authenticate
+the API
+</span></td>
+</tr>
+
+
+              
+                <tr>
+  <td class='break-word'><span class='code bold'>options.logger</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></code>
+  
+    (default <code>console</code>)
+  </td>
+  <td class='break-word'><span>an optional 
+<code>console</code>
+ compatible logger that
+accepts 
+<code>log</code>
+, 
+<code>error</code>
+ and 
+<code>debug</code>
+ calls. Defaults to a plain console.
+</span></td>
+</tr>
+
+
+              
+                <tr>
+  <td class='break-word'><span class='code bold'>options.hostname</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></code>
+  
+    (default <code>&#39;test&#39;</code>)
+  </td>
+  <td class='break-word'><span>the name of the host (
+<code>test</code>
+ or
+
+<code>production</code>
+) to make an API call against.
+</span></td>
+</tr>
+
+
+              
+                <tr>
+  <td class='break-word'><span class='code bold'>options.customAppId</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></code>
+  
+    (default <code>null</code>)
+  </td>
+  <td class='break-word'><span>a custom App ID to be passed in the User
+Agent to the server.
+</span></td>
+</tr>
+
+
+              
+                <tr>
+  <td class='break-word'><span class='code bold'>options.customAppVersion</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></code>
+  
+    (default <code>null</code>)
+  </td>
+  <td class='break-word'><span>a custom App version to be passed
+in the User Agent to the server.
+</span></td>
+</tr>
+
+
+              
+                <tr>
+  <td class='break-word'><span class='code bold'>options.http</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></code>
+  
+    (default <code>https</code>)
+  </td>
+  <td class='break-word'><span>an optional Node HTTPS compatible client.
+Defaults to the standard Node HTTPS client.
 </span></td>
 </tr>
 
@@ -250,7 +329,54 @@
           <span class='code bold'>clientSecret</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>)</code>
           : the 
 <code>client_secret</code>
- used to authenticate the API
+ used to authenticate
+the API
+
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <span class='code bold'>logger</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>)</code>
+          : an optional 
+<code>console</code>
+ compatible logger that
+accepts 
+<code>log</code>
+, 
+<code>error</code>
+ and 
+<code>debug</code>
+ calls.
+
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <span class='code bold'>host</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>)</code>
+          : the hostname used to make API call against.
+
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <span class='code bold'>customAppId</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>)</code>
+          : a custom App ID to be passed in the User Agent
+to the server
+
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <span class='code bold'>customAppVersion</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>)</code>
+          : a custom App version to be passed in
+the User Agent to the server
+
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <span class='code bold'>http</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>)</code>
+          : a Node HTTPS compatible client
 
           
         </div>
@@ -312,7 +438,9 @@
   
 
   
-    <div class='py1 quiet mt1 prose-big'>Static Members</div>
+
+  
+    <div class='py1 quiet mt1 prose-big'>Instance Members</div>
     <div class="clearfix">
   
     <div class='border-bottom' id='validatorinitrequired'>
@@ -331,7 +459,7 @@
 <code>null</code> it raises an <code>ArgumentError</code></p>
 
 
-  <div class='pre p1 fill-light mt0'>initRequired(key: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>, options: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>)</div>
+  <div class='pre p1 fill-light mt0'>initRequired(key: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>, options: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>): <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></div>
   
   
 
@@ -371,6 +499,14 @@
 
   
 
+  
+    
+      <div class='py1 quiet mt1 prose-big'>Returns</div>
+      <code><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></code>:
+        The object found by the key in the options.
+
+      
+    
   
 
   
@@ -412,7 +548,7 @@ in the environment variables.When it can not find it anywhere it
 defaults to the provided default option.</p>
 
 
-  <div class='pre p1 fill-light mt0'>initOptional(key: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>, options: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>, fallback: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>)</div>
+  <div class='pre p1 fill-light mt0'>initOptional(key: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>, options: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>, fallback: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>): <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></div>
   
   
 
@@ -463,6 +599,104 @@ defaults to the provided default option.</p>
   
 
   
+    
+      <div class='py1 quiet mt1 prose-big'>Returns</div>
+      <code><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></code>:
+        The object found by the key in the options, or the fallback value.
+
+      
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+      </div>
+    </div>
+  
+    <div class='border-bottom' id='validatorwarnonunrecognizedoptions'>
+      <div class="clearfix small pointer toggle-sibling">
+        <div class="py1 contain">
+            <a class='icon pin-right py1 dark-link caret-right'>▸</a>
+            <span class='code strong strong truncate'>warnOnUnrecognizedOptions(options, logger, recognizedOptions)</span>
+        </div>
+      </div>
+      <div class="clearfix display-none toggle-target">
+        <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+
+  <p>Checks a list of options for unrecognized keys and warns the user.
+This is mainly used to provide a nice experience when users make a typo
+in their arguments.</p>
+<h1></h1>
+
+
+  <div class='pre p1 fill-light mt0'>warnOnUnrecognizedOptions(options: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>, logger: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>, recognizedOptions: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>): null</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>options</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>)</code>
+	    the arguments were passed to the {@see Amadeus}
+constructor
+
+          </div>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>logger</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>)</code>
+	    the logger used to send warnings to
+
+          </div>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>recognizedOptions</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>)</code>
+	    a whitelist of recognized options
+
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+    
+      <div class='py1 quiet mt1 prose-big'>Returns</div>
+      <code>null</code>:
+        
+
+      
+    
+  
 
   
 
@@ -479,8 +713,6 @@ defaults to the provided default option.</p>
     </div>
   
 </div>
-
-  
 
   
 
