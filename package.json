@@ -45,10 +45,13 @@
     "babel-cli": "^6.26.0",
     "babel-plugin-add-module-exports": "^0.2.1",
     "babel-preset-env": "^1.6.1",
+    "bluebird": "^3.5.1",
     "documentation": "^5.3.5",
     "eslint": "^4.16.0",
     "jest": "^22.1.4",
     "watch": "^1.0.2"
   },
-  "dependencies": {}
+  "dependencies": {
+    "qs": "^6.5.1"
+  }
 }

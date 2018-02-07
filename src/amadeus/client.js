@@ -1,22 +1,6 @@
-import https     from 'https';
-
-import Validator from './client/validator';
-const validator = new Validator();
-
-const HOSTS = {
-  'test'       : 'https://test.api.amadeus.com',
-  'production' : 'https://production.api.amadeus.com'
-};
-
-const RECOGNIZED_OPTIONS = [
-  'clientId',
-  'clientSecret',
-  'logger',
-  'hostname',
-  'customAppId',
-  'customAppVersion',
-  'http'
-];
+import Validator   from './client/validator';
+import Request     from './client/request';
+import AccessToken from './client/access_token';
 
 /**
  * The actual HTTP client for accessing the travel APIs
@@ -35,38 +19,31 @@ const RECOGNIZED_OPTIONS = [
  */
 class Client {
   constructor(options = {}) {
-    this.initializeClientCredentials(options);
-    this.initializeLogger(options);
-    this.initializeHost(options);
-    this.initializeCustomApp(options);
-    this.initializeHttp(options);
+    new Validator().validateAndInitialize(this, options);
+    this.accessToken = new AccessToken(this);
+  }
 
-    validator.warnOnUnrecognizedOptions(options, this.logger, RECOGNIZED_OPTIONS);
+  get(path, params = {}) {
+    return this.accessToken.bearerToken().then((bearerToken) => {
+      return this.request('GET', path, params, bearerToken);
+    });
+  }
+
+  post(path, params = {}) {
+    return this.accessToken.bearerToken().then((bearerToken) => {
+      return this.request('POST', path, params, bearerToken);
+    });
+  }
+
+  unauthenticatedPost(path, params = {}) {
+    return this.request('POST', path, params);
   }
 
   // PRIVATE
 
-  initializeClientCredentials(options) {
-    this.clientId = validator.initRequired('clientId', options);
-    this.clientSecret = validator.initRequired('clientSecret', options);
-  }
-
-  initializeLogger(options) {
-    this.logger = validator.initOptional('logger', options, console);
-  }
-
-  initializeHost(options) {
-    let hostname = validator.initOptional('hostname', options, 'test');
-    this.host = validator.initOptional('host', options, HOSTS[hostname]);
-  }
-
-  initializeCustomApp(options) {
-    this.customAppId = validator.initOptional('customAppId', options);
-    this.customAppVersion = validator.initOptional('customAppVersion', options);
-  }
-
-  initializeHttp(options) {
-    this.http = validator.initOptional('http', options, https);
+  request(verb, path, params, bearerToken = null) {
+    let request = new Request(this, verb, path, params, bearerToken);
+    return request.call();
   }
 }
 
