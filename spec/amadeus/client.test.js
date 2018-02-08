@@ -78,6 +78,15 @@ describe('Client', () => {
         // ensure Client.call() was called with the right parameters
         expect(call).toHaveBeenCalledWith('GET', path, params, 'token');
       });
+
+      it('should work without params', () => {
+        let call = client.call = jest.fn();
+        client.accessToken = { bearerToken: () => {
+          return { then: resolve => resolve('token') };
+        }};
+        client.get(path);
+        expect(call).toHaveBeenCalledWith('GET', path, {}, 'token');
+      });
     });
 
     describe('.post', () => {
@@ -93,6 +102,15 @@ describe('Client', () => {
         // ensure Client.call() was called with the right parameters
         expect(call).toHaveBeenCalledWith('POST', path, params, 'token');
       });
+
+      it('should work without params', () => {
+        let call = client.call = jest.fn();
+        client.accessToken = { bearerToken: () => {
+          return { then: resolve => resolve('token') };
+        }};
+        client.post(path);
+        expect(call).toHaveBeenCalledWith('POST', path, {}, 'token');
+      });
     });
 
     describe('.unauthenticatedPost', () => {
@@ -103,6 +121,15 @@ describe('Client', () => {
         client.unauthenticatedPost(path, { baz: 'qux' });
         // ensure the call() method was called with the right params
         expect(call).toHaveBeenCalledWith('POST', path, params);
+      });
+
+      it('should work without params', () => {
+        let call = client.call = jest.fn();
+        client.accessToken = { bearerToken: () => {
+          return { then: resolve => resolve('token') };
+        }};
+        client.unauthenticatedPost(path);
+        expect(call).toHaveBeenCalledWith('POST', path, {});
       });
     });
 
@@ -119,9 +146,9 @@ describe('Client', () => {
         // make the call
         client.call(verb, path, params);
         // ensure Request was initialized with the right params
-        expect(Request).toHaveBeenCalledWith(client, verb, path, params, null);
+        expect(Request).toHaveBeenCalledWith(verb, path, params, null);
         // ensure the call() method was called
-        expect(call).toHaveBeenCalled();
+        expect(call).toHaveBeenCalledWith(client);
       });
     });
 
