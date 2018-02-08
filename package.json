@@ -12,7 +12,7 @@
     "test": "jest spec --coverage --collectCoverageFrom=src/**/*.js",
     "test:watch": "watch 'npm test' src spec",
     "predocs": "npm run lint:docs",
-    "docs": "documentation build src/** -f html -o docs",
+    "docs": "documentation build src/** -f html -o docs -a undefined -a public",
     "docs:watch": "watch 'npm run docs' src",
     "docs:serve": "open docs/",
     "docs:dev": "npm run docs:serve && npm run docs:watch",

@@ -3,12 +3,12 @@ import Validator from '../../../src/amadeus/client/validator';
 const validator = new Validator();
 
 describe('Validator', () => {
-  test('exports the functions', () => {
+  it('should exports the functions', () => {
     expect(validator).not.toBe(null);
   });
 
   describe('.initRequired', () => {
-    test('return the expected values', () => {
+    it('should return the expected values', () => {
       let options = {
         'test1' : '1'
       };
@@ -18,7 +18,7 @@ describe('Validator', () => {
       process.env.AMADEUS_TEST2 = undefined;
     });
 
-    test('throw error if key not found', () => {
+    it('should throw error if key not found', () => {
       expect(() => {
         validator.initRequired('test3', {});
       }).toThrowError();
@@ -26,7 +26,7 @@ describe('Validator', () => {
   });
 
   describe('.initOptional', () => {
-    test('return the expected values', () => {
+    it('should return the expected values', () => {
       let options = {
         'test1' : '1'
       };
@@ -40,7 +40,7 @@ describe('Validator', () => {
   });
 
   describe('.warnOnUnrecognizedOptions', () => {
-    test('return null if all keys are recognised', () => {
+    it('should return null if all keys are recognised', () => {
       let options = { 'clientId' : '123' };
       let recognizedOptions = ['clientId'];
       let warn = jest.fn();
@@ -49,7 +49,7 @@ describe('Validator', () => {
       expect(warn).not.toHaveBeenCalled();
     });
 
-    test('log a warning if the key was not recognized', () => {
+    it('should log a warning if the key was not recognized', () => {
       let options = { 'clientId' : '123' };
       let recognizedOptions = [];
       let warn = jest.fn();

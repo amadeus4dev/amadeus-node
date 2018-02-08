@@ -68,7 +68,7 @@ class Request {
         'Accept' : 'application/json'
       }
     };
-    
+
     if (this.bearerToken) {
       options['headers']['Authorization'] = `Bearer ${this.bearerToken}`;
     }

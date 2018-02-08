@@ -1,30 +1,29 @@
-import Client  from './amadeus/client';
+import Client      from './amadeus/client';
 import library from '../package.json';
 
 /**
  * The Amadeus client library for accessing the travel APIs
  *
- * @param {Object} options a list of options
- * @param {string} options.clientId the `client_id` used to authenticate the API
- * @param {string} options.clientSecret the `client_secret` used to authenticate
+ * @param {Object} params
+ * @param {string} params.clientId the API key used to authenticate the API
+ * @param {string} params.clientSecret the API secret used to authenticate
  *  the API
- * @param {Object} [options.logger=console] an optional `console` compatible logger that
- *  accepts `log`, `error` and `debug` calls. Defaults to a plain console.
- * @param {string} [options.hostname='test'] the name of the host (`test` or
- *   `production`) to make an API call against.
- * @param {string} [options.customAppId=null] a custom App ID to be passed in the User
- *  Agent to the server.
- * @param {string} [options.customAppVersion=null] a custom App version to be passed
- *  in the User Agent to the server.
- * @param {Object} [options.http=https] an optional Node HTTPS compatible client.
- *  Defaults to the standard Node HTTPS client.
+ * @param {Object} [params.logger=console] a `console`-compatible logger that
+ *  accepts `log`, `error` and `debug` calls.
+ * @param {string} [params.hostname='production'] the name of the server API
+ * calls are made to (`production` or `test`)
+ * @param {string} [params.customAppId=null] a custom App ID to be passed in
+ * the User Agent to the server.
+ * @param {string} [params.customAppVersion=null] a custom App Version number to
+ * be passed in the User Agent to the server.
+ * @param {Object} [params.http=https] an optional Node/HTTPS-compatible client
  *
- * @property {Client} client A wrapper client that handles all the API calls
+ * @property {Client} client The client for making authenticated HTTP calls
  * @property {number} version The version of this API client
  */
 class Amadeus {
-  constructor(options = {}) {
-    this.client = new Client(options);
+  constructor(params = {}) {
+    this.client = new Client(params);
     this.version = library.version;
   }
 }
