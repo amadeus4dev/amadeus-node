@@ -36,18 +36,8 @@
                 
                 <li><a
                   href='#client'
-                  class="">
-                  Client
-                  
-                </a>
-                
-                </li>
-              
-                
-                <li><a
-                  href='#validator'
                   class=" toggle-sibling">
-                  Validator
+                  Client
                   <span class='icon'>▸</span>
                 </a>
                 
@@ -58,9 +48,15 @@
                       <li class='h5'><span>Instance members</span></li>
                       
                       <li><a
-                        href='#validatorvalidateandinitialize'
+                        href='#clientget'
                         class='regular pre-open'>
-                        #validateAndInitialize
+                        #get
+                      </a></li>
+                      
+                      <li><a
+                        href='#clientpost'
+                        class='regular pre-open'>
+                        #post
                       </a></li>
                       
                     </ul>
@@ -97,7 +93,7 @@
   <p>The Amadeus client library for accessing the travel APIs</p>
 
 
-  <div class='pre p1 fill-light mt0'>new Amadeus(options: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>)</div>
+  <div class='pre p1 fill-light mt0'>new Amadeus(params: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>)</div>
   
   
 
@@ -114,10 +110,9 @@
       
         <div class='space-bottom0'>
           <div>
-            <span class='code bold'>options</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>
+            <span class='code bold'>params</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>
             = <code>{}</code>)</code>
-	    a list of options
-
+	    
           </div>
           
           <table class='mt1 mb2 fixed-table h5 col-12'>
@@ -134,22 +129,18 @@
             <tbody class='mt1'>
               
                 <tr>
-  <td class='break-word'><span class='code bold'>options.clientId</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></code>
+  <td class='break-word'><span class='code bold'>params.clientId</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></code>
   </td>
-  <td class='break-word'><span>the 
-<code>client_id</code>
- used to authenticate the API
+  <td class='break-word'><span>the API key used to authenticate the API
 </span></td>
 </tr>
 
 
               
                 <tr>
-  <td class='break-word'><span class='code bold'>options.clientSecret</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></code>
+  <td class='break-word'><span class='code bold'>params.clientSecret</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></code>
   </td>
-  <td class='break-word'><span>the 
-<code>client_secret</code>
- used to authenticate
+  <td class='break-word'><span>the API secret used to authenticate
 the API
 </span></td>
 </tr>
@@ -157,72 +148,71 @@ the API
 
               
                 <tr>
-  <td class='break-word'><span class='code bold'>options.logger</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></code>
+  <td class='break-word'><span class='code bold'>params.logger</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></code>
   
     (default <code>console</code>)
   </td>
-  <td class='break-word'><span>an optional 
+  <td class='break-word'><span>a 
 <code>console</code>
- compatible logger that
+-compatible logger that
 accepts 
 <code>log</code>
 , 
 <code>error</code>
  and 
 <code>debug</code>
- calls. Defaults to a plain console.
+ calls.
 </span></td>
 </tr>
 
 
               
                 <tr>
-  <td class='break-word'><span class='code bold'>options.hostname</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></code>
+  <td class='break-word'><span class='code bold'>params.hostname</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></code>
   
-    (default <code>&#39;test&#39;</code>)
+    (default <code>&#39;production&#39;</code>)
   </td>
-  <td class='break-word'><span>the name of the host (
-<code>test</code>
- or
-
+  <td class='break-word'><span>the name of the server API
+calls are made to (
 <code>production</code>
-) to make an API call against.
+ or 
+<code>test</code>
+)
 </span></td>
 </tr>
 
 
               
                 <tr>
-  <td class='break-word'><span class='code bold'>options.customAppId</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></code>
+  <td class='break-word'><span class='code bold'>params.customAppId</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></code>
   
     (default <code>null</code>)
   </td>
-  <td class='break-word'><span>a custom App ID to be passed in the User
-Agent to the server.
+  <td class='break-word'><span>a custom App ID to be passed in
+the User Agent to the server.
 </span></td>
 </tr>
 
 
               
                 <tr>
-  <td class='break-word'><span class='code bold'>options.customAppVersion</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></code>
+  <td class='break-word'><span class='code bold'>params.customAppVersion</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></code>
   
     (default <code>null</code>)
   </td>
-  <td class='break-word'><span>a custom App version to be passed
-in the User Agent to the server.
+  <td class='break-word'><span>a custom App Version number to
+be passed in the User Agent to the server.
 </span></td>
 </tr>
 
 
               
                 <tr>
-  <td class='break-word'><span class='code bold'>options.http</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></code>
+  <td class='break-word'><span class='code bold'>params.http</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></code>
   
     (default <code>https</code>)
   </td>
-  <td class='break-word'><span>an optional Node HTTPS compatible client.
-Defaults to the standard Node HTTPS client.
+  <td class='break-word'><span>an optional Node/HTTPS-compatible client
 </span></td>
 </tr>
 
@@ -242,7 +232,7 @@ Defaults to the standard Node HTTPS client.
       
         <div class='space-bottom0'>
           <span class='code bold'>client</span> <code class='quiet'>(<a href="#client">Client</a>)</code>
-          : A wrapper client that handles all the API calls
+          : The client for making authenticated HTTP calls
 
           
         </div>
@@ -286,7 +276,7 @@ Defaults to the standard Node HTTPS client.
   </div>
   
 
-  <p>The actual HTTP client for accessing the travel APIs</p>
+  <p>A client allowing to make generic authenticated HTTP calls</p>
 
 
   <div class='pre p1 fill-light mt0'>new Client(options: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>)</div>
@@ -325,18 +315,14 @@ Defaults to the standard Node HTTPS client.
       
         <div class='space-bottom0'>
           <span class='code bold'>clientId</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>)</code>
-          : the 
-<code>client_id</code>
- used to authenticate the API
+          : the API key used to authenticate the API
 
           
         </div>
       
         <div class='space-bottom0'>
           <span class='code bold'>clientSecret</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>)</code>
-          : the 
-<code>client_secret</code>
- used to authenticate
+          : the API secret used to authenticate
 the API
 
           
@@ -344,46 +330,40 @@ the API
       
         <div class='space-bottom0'>
           <span class='code bold'>logger</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>)</code>
-          : an optional 
+          : the 
 <code>console</code>
- compatible logger that
-accepts 
-<code>log</code>
-, 
-<code>error</code>
- and 
-<code>debug</code>
- calls.
+-compatible logger used to debug calls
 
           
         </div>
       
         <div class='space-bottom0'>
           <span class='code bold'>host</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>)</code>
-          : the hostname used to make API call against.
+          : the hostname of the server API calls are made to
 
           
         </div>
       
         <div class='space-bottom0'>
           <span class='code bold'>customAppId</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>)</code>
-          : a custom App ID to be passed in the User Agent
-to the server
+          : the custom App ID to be passed in the User
+Agent to the server
 
           
         </div>
       
         <div class='space-bottom0'>
           <span class='code bold'>customAppVersion</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>)</code>
-          : a custom App version to be passed in
-the User Agent to the server
+          : the custom App Version number to be
+passed in the User Agent to the server
 
           
         </div>
       
         <div class='space-bottom0'>
           <span class='code bold'>http</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>)</code>
-          : a Node HTTPS compatible client
+          : the Node/HTTPS-compatible client used to make
+requests
 
           
         </div>
@@ -400,61 +380,14 @@ the User Agent to the server
   
 
   
-
-  
-</section>
-
-          
-        
-          
-            <section class='p2 mb2 clearfix bg-white minishadow'>
-
-  
-  <div class='clearfix'>
-    
-    <h3 class='fl m0' id='validator'>
-      Validator
-    </h3>
-    
-    
-  </div>
-  
-
-  <p>Helper class for validating parameters</p>
-
-
-  <div class='pre p1 fill-light mt0'>new Validator()</div>
-  
-  
-
-  
-  
-  
-  
-  
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
     <div class='py1 quiet mt1 prose-big'>Instance Members</div>
     <div class="clearfix">
   
-    <div class='border-bottom' id='validatorvalidateandinitialize'>
+    <div class='border-bottom' id='clientget'>
       <div class="clearfix small pointer toggle-sibling">
         <div class="py1 contain">
             <a class='icon pin-right py1 dark-link caret-right'>▸</a>
-            <span class='code strong strong truncate'>validateAndInitialize(client, options)</span>
+            <span class='code strong strong truncate'>get(path, params)</span>
         </div>
       </div>
       <div class="clearfix display-none toggle-target">
@@ -462,11 +395,10 @@ the User Agent to the server
 
   
 
-  <p>Initialise the client's default value, ensuring the required values are
-present</p>
+  <p>Make an authenticated GET API call</p>
 
 
-  <div class='pre p1 fill-light mt0'>validateAndInitialize(client: <a href="#client">Client</a>, options: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>)</div>
+  <div class='pre p1 fill-light mt0'>get(path: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>, params: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>): <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a>&#x3C;<a href="https://developer.mozilla.org/docs/Web/Guide/HTML/HTML5">Response</a>, ResponseError></div>
   
   
 
@@ -483,8 +415,8 @@ present</p>
       
         <div class='space-bottom0'>
           <div>
-            <span class='code bold'>client</span> <code class='quiet'>(<a href="#client">Client</a>)</code>
-	    the client object to set the defaults for
+            <span class='code bold'>path</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>)</code>
+	    the full path to call
 
           </div>
           
@@ -492,9 +424,9 @@ present</p>
       
         <div class='space-bottom0'>
           <div>
-            <span class='code bold'>options</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>)</code>
-	    the associative array of options passed to the
-client on initialization
+            <span class='code bold'>params</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>
+            = <code>{}</code>)</code>
+	    the query string parameters
 
           </div>
           
@@ -505,6 +437,92 @@ client on initialization
 
   
 
+  
+    
+      <div class='py1 quiet mt1 prose-big'>Returns</div>
+      <code><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a>&#x3C;<a href="https://developer.mozilla.org/docs/Web/Guide/HTML/HTML5">Response</a>, ResponseError></code>:
+        a Bluebird Promise
+
+      
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+      </div>
+    </div>
+  
+    <div class='border-bottom' id='clientpost'>
+      <div class="clearfix small pointer toggle-sibling">
+        <div class="py1 contain">
+            <a class='icon pin-right py1 dark-link caret-right'>▸</a>
+            <span class='code strong strong truncate'>post(path, params)</span>
+        </div>
+      </div>
+      <div class="clearfix display-none toggle-target">
+        <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+
+  <p>Make an authenticated POST API call</p>
+
+
+  <div class='pre p1 fill-light mt0'>post(path: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>, params: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>): <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a>&#x3C;<a href="https://developer.mozilla.org/docs/Web/Guide/HTML/HTML5">Response</a>, ResponseError></div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>path</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>)</code>
+	    the full path to call
+
+          </div>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>params</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>
+            = <code>{}</code>)</code>
+	    the POST parameters
+
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+    
+      <div class='py1 quiet mt1 prose-big'>Returns</div>
+      <code><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a>&#x3C;<a href="https://developer.mozilla.org/docs/Web/Guide/HTML/HTML5">Response</a>, ResponseError></code>:
+        a Bluebird Promise
+
+      
+    
   
 
   

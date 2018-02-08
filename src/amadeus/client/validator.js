@@ -17,6 +17,7 @@ const RECOGNIZED_OPTIONS = [
 
 /**
  * Helper class for validating parameters
+ * @protected
  */
 class Validator {
 
@@ -35,7 +36,7 @@ class Validator {
     this.initializeCustomApp(client, options);
     this.initializeHttp(client, options);
 
-    this.warnOnUnrecognizedOptions(options, client, RECOGNIZED_OPTIONS);
+    this.warnOnUnrecognizedOptions(options, client.logger, RECOGNIZED_OPTIONS);
   }
 
   // PRIVATE
@@ -50,7 +51,7 @@ class Validator {
   }
 
   initializeHost(client, options) {
-    let hostname = this.initOptional('hostname', options, 'test');
+    let hostname = this.initOptional('hostname', options, 'production');
     client.host = this.initOptional('host', options, HOSTS[hostname]);
   }
 
