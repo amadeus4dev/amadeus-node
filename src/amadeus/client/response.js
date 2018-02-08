@@ -27,7 +27,6 @@ class Response {
 
   // PROTECTED
 
-
   /**
    * Add a chunk received from the API to the body
    *
@@ -74,7 +73,7 @@ class Response {
    * Tests if the content is seemingly JSON
    *
    * @return {boolean}
-   * @protected
+   * @private
    */
   isJson() {
     return JSON_CONTENT_TYPES.includes(this.contentType);
