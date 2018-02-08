@@ -2,8 +2,7 @@ import EventEmitter from 'events';
 import Promise      from 'bluebird';
 import qs           from 'qs';
 
-import ResponseHandler from './handlers/response_handler';
-import ErrorHandler    from './handlers/error_handler';
+import ResponseHandler from './response_handler';
 
 /**
  * A Request object, building the call before passing it to the standard library
@@ -54,8 +53,10 @@ class Request {
     let options = this.options(client, process);
     let http_request = client.http.request(options);
 
-    http_request.on('response', new ResponseHandler(this, emitter));
-    http_request.on('error',    new ErrorHandler(this, emitter));
+    let responseHandler = new ResponseHandler(this, emitter);
+
+    http_request.on('response', responseHandler.onResponse.bind(responseHandler));
+    http_request.on('error',    responseHandler.onError.bind(responseHandler));
 
     http_request.write(this.body());
     http_request.end();

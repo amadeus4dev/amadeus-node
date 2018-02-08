@@ -67,6 +67,26 @@
                 
                 </li>
               
+                
+                <li><a
+                  href='#responseerror'
+                  class="">
+                  ResponseError
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#response'
+                  class="">
+                  Response
+                  
+                </a>
+                
+                </li>
+              
             </ul>
           </div>
           <div class='mt1 h6 quiet'>
@@ -426,7 +446,7 @@ authenticated using your API credentials:</p>
 <pre class='hljs'>amadeus.client.get(<span class="hljs-string">'/v2/foo/bar'</span>, { <span class="hljs-attr">some</span>: <span class="hljs-string">'data'</span> });</pre>
 
 
-  <div class='pre p1 fill-light mt0'>get(path: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>, params: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>): <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a>&#x3C;<a href="https://developer.mozilla.org/docs/Web/Guide/HTML/HTML5">Response</a>, ResponseError></div>
+  <div class='pre p1 fill-light mt0'>get(path: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>, params: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>): <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a>&#x3C;<a href="#response">Response</a>, <a href="#responseerror">ResponseError</a>></div>
   
   
 
@@ -468,7 +488,7 @@ authenticated using your API credentials:</p>
   
     
       <div class='py1 quiet mt1 prose-big'>Returns</div>
-      <code><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a>&#x3C;<a href="https://developer.mozilla.org/docs/Web/Guide/HTML/HTML5">Response</a>, ResponseError></code>:
+      <code><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a>&#x3C;<a href="#response">Response</a>, <a href="#responseerror">ResponseError</a>></code>:
         a Bluebird Promise
 
       
@@ -509,7 +529,7 @@ authenticated using your API credentials:</p>
 <pre class='hljs'>amadeus.client.post(<span class="hljs-string">'/v2/foo/bar'</span>, { <span class="hljs-attr">some</span>: <span class="hljs-string">'data'</span> });</pre>
 
 
-  <div class='pre p1 fill-light mt0'>post(path: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>, params: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>): <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a>&#x3C;<a href="https://developer.mozilla.org/docs/Web/Guide/HTML/HTML5">Response</a>, ResponseError></div>
+  <div class='pre p1 fill-light mt0'>post(path: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>, params: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>): <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a>&#x3C;<a href="#response">Response</a>, <a href="#responseerror">ResponseError</a>></div>
   
   
 
@@ -551,7 +571,7 @@ authenticated using your API credentials:</p>
   
     
       <div class='py1 quiet mt1 prose-big'>Returns</div>
-      <code><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a>&#x3C;<a href="https://developer.mozilla.org/docs/Web/Guide/HTML/HTML5">Response</a>, ResponseError></code>:
+      <code><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a>&#x3C;<a href="#response">Response</a>, <a href="#responseerror">ResponseError</a>></code>:
         a Bluebird Promise
 
       
@@ -573,6 +593,239 @@ authenticated using your API credentials:</p>
     </div>
   
 </div>
+
+  
+
+  
+</section>
+
+          
+        
+          
+            <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='responseerror'>
+      ResponseError
+    </h3>
+    
+    
+  </div>
+  
+
+  <p>The error that is passed to the Promise when the API call fails.</p>
+
+
+  <div class='pre p1 fill-light mt0'>new ResponseError(response: <a href="#response">Response</a>)</div>
+  
+  
+    <p>
+      Extends
+      
+        <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Error">Error</a>
+      
+    </p>
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>response</span> <code class='quiet'>(<a href="#response">Response</a>)</code>
+	    the 
+<a href="#response">Response</a>
+ object containing the raw
+http response and the 
+<a href="https://developer.mozilla.org/Add-ons/SDK/High-Level_APIs/request">Request</a>
+ instance that made the API call.
+
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Properties</div>
+    <div>
+      
+        <div class='space-bottom0'>
+          <span class='code bold'>response</span> <code class='quiet'>(<a href="#response">Response</a>)</code>
+          : the 
+<a href="#response">Response</a>
+ object containing the raw
+http response and the 
+<a href="https://developer.mozilla.org/Add-ons/SDK/High-Level_APIs/request">Request</a>
+ instance that made the API call.
+
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <span class='code bold'>code</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>)</code>
+          : a unique code for this type of error. Options include
+
+<code>NetworkError</code>
+, 
+<code>ParserError</code>
+, 
+<code>ClientError</code>
+, 
+<code>ServerError</code>
+,
+
+<code>AuthenticationError</code>
+, 
+<code>NotFoundError</code>
+ and 
+<code>UnknownError</code>
+
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <span class='code bold'>description</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>)</code>
+          : a short description of the error, extracted
+from the  
+<a href="#response">Response</a>
+'s parsed data
+
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+            <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='response'>
+      Response
+    </h3>
+    
+    
+  </div>
+  
+
+  <p>The response object returned for every API call.</p>
+
+
+  <div class='pre p1 fill-light mt0'>new Response(http_response: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>, request: <a href="https://developer.mozilla.org/Add-ons/SDK/High-Level_APIs/request">Request</a>)</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>http_response</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>)</code>
+	    the response object returned from the Node/HTTP
+request
+
+          </div>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>request</span> <code class='quiet'>(<a href="https://developer.mozilla.org/Add-ons/SDK/High-Level_APIs/request">Request</a>)</code>
+	    the request object used to make this API call
+
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Properties</div>
+    <div>
+      
+        <div class='space-bottom0'>
+          <span class='code bold'>statusCode</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>)</code>
+          : the HTTP status code for the response, if any
+
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <span class='code bold'>body</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>)</code>
+          : the raw body received from the API
+
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <span class='code bold'>data</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>)</code>
+          : the parsed JSON received from the API
+
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <span class='code bold'>parsed</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a>)</code>
+          : wether the raw body has been parsed into JSON
+
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <span class='code bold'>request</span> <code class='quiet'>(<a href="https://developer.mozilla.org/Add-ons/SDK/High-Level_APIs/request">Request</a>)</code>
+          : the request object used to make this API call
+
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+
+  
+
+  
 
   
 
