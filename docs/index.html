@@ -90,7 +90,17 @@
   </div>
   
 
-  <p>The Amadeus client library for accessing the travel APIs</p>
+  <p>The Amadeus client library for accessing the travel APIs.</p>
+<p>Initialize using your credentials:</p>
+<pre class='hljs'><span class="hljs-keyword">var</span> Amadeus = <span class="hljs-built_in">require</span>(<span class="hljs-string">'amadeus'</span>);
+<span class="hljs-keyword">var</span> amadeus = <span class="hljs-keyword">new</span> Amadeus({
+    <span class="hljs-attr">clientId</span>:    <span class="hljs-string">'YOUR_CLIENT_ID'</span>,
+    <span class="hljs-attr">clientSecret</span>: <span class="hljs-string">'YOUR_CLIENT_SECRET'</span>
+});</pre>
+<p>Alternatively, initialize the library using
+the environment variables <code>AMADEUS_CLIENT_ID</code>
+and <code>AMADEUS_CLIENT_SECRET</code></p>
+<pre class='hljs'><span class="hljs-keyword">var</span> amadeus = <span class="hljs-keyword">new</span> Amadeus();</pre>
 
 
   <div class='pre p1 fill-light mt0'>new Amadeus(params: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>)</div>
@@ -213,6 +223,7 @@ be passed in the User Agent to the server.
     (default <code>https</code>)
   </td>
   <td class='break-word'><span>an optional Node/HTTPS-compatible client
+that accepts a 'request()' call with an array of options.
 </span></td>
 </tr>
 
@@ -276,7 +287,12 @@ be passed in the User Agent to the server.
   </div>
   
 
-  <p>A client allowing to make generic authenticated HTTP calls</p>
+  <p>A helper module for making generic API calls. It is used by
+every namespaced API method.</p>
+<p>It can be accessed through the amadeus object directly, or inderectly through
+any of its namespaced methods.</p>
+<pre class='hljs'>amadeus.client.get(path, params) <span class="hljs-comment">//direct</span>
+amadeus.amadeus.reference_data.urls.checkin_links.get(params) <span class="hljs-comment">//indirect</span></pre>
 
 
   <div class='pre p1 fill-light mt0'>new Client(options: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>)</div>
@@ -368,6 +384,13 @@ requests
           
         </div>
       
+        <div class='space-bottom0'>
+          <span class='code bold'>version</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>)</code>
+          : The version of this API client
+
+          
+        </div>
+      
     </div>
   
 
@@ -395,7 +418,12 @@ requests
 
   
 
-  <p>Make an authenticated GET API call</p>
+  <p>A helper module for making generic GET requests calls. It is used by
+every namespaced API GET method.</p>
+<pre class='hljs'>amadeus.foo.bar.get({ <span class="hljs-attr">some</span>: <span class="hljs-string">'data'</span> });</pre>
+<p>It can be used to make any generic API call that is automatically
+authenticated using your API credentials:</p>
+<pre class='hljs'>amadeus.client.get(<span class="hljs-string">'/v2/foo/bar'</span>, { <span class="hljs-attr">some</span>: <span class="hljs-string">'data'</span> });</pre>
 
 
   <div class='pre p1 fill-light mt0'>get(path: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>, params: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>): <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a>&#x3C;<a href="https://developer.mozilla.org/docs/Web/Guide/HTML/HTML5">Response</a>, ResponseError></div>
@@ -473,7 +501,12 @@ requests
 
   
 
-  <p>Make an authenticated POST API call</p>
+  <p>A helper module for making generic POST requests calls. It is used by
+every namespaced API POST method.</p>
+<pre class='hljs'>amadeus.foo.bar.post({ <span class="hljs-attr">some</span>: <span class="hljs-string">'data'</span> });</pre>
+<p>It can be used to make any generic API call that is automatically
+authenticated using your API credentials:</p>
+<pre class='hljs'>amadeus.client.post(<span class="hljs-string">'/v2/foo/bar'</span>, { <span class="hljs-attr">some</span>: <span class="hljs-string">'data'</span> });</pre>
 
 
   <div class='pre p1 fill-light mt0'>post(path: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>, params: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>): <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a>&#x3C;<a href="https://developer.mozilla.org/docs/Web/Guide/HTML/HTML5">Response</a>, ResponseError></div>

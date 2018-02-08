@@ -1,8 +1,25 @@
 import Client      from './amadeus/client';
-import library from '../package.json';
 
 /**
- * The Amadeus client library for accessing the travel APIs
+ * The Amadeus client library for accessing the travel APIs.
+ *
+ * Initialize using your credentials:
+ *
+ * ```js
+ * var Amadeus = require('amadeus');
+ * var amadeus = new Amadeus({
+ *     clientId:    'YOUR_CLIENT_ID',
+ *     clientSecret: 'YOUR_CLIENT_SECRET'
+ * });
+ * ```
+ *
+ * Alternatively, initialize the library using
+ * the environment variables `AMADEUS_CLIENT_ID`
+ * and `AMADEUS_CLIENT_SECRET`
+ *
+ * ```js
+ * var amadeus = new Amadeus();
+ * ```
  *
  * @param {Object} params
  * @param {string} params.clientId the API key used to authenticate the API
@@ -17,6 +34,7 @@ import library from '../package.json';
  * @param {string} [params.customAppVersion=null] a custom App Version number to
  * be passed in the User Agent to the server.
  * @param {Object} [params.http=https] an optional Node/HTTPS-compatible client
+ *  that accepts a 'request()' call with an array of options.
  *
  * @property {Client} client The client for making authenticated HTTP calls
  * @property {number} version The version of this API client
@@ -24,7 +42,7 @@ import library from '../package.json';
 class Amadeus {
   constructor(params = {}) {
     this.client = new Client(params);
-    this.version = library.version;
+    this.version = this.client.version;
   }
 }
 
