@@ -7,7 +7,7 @@
  * @property {Response} response the {@link Response} object containing the raw
  *  http response and the {@link Request} instance that made the API call.
  * @property {string} code a unique code for this type of error. Options include
- *  `NetworkError`, `ParserError`, `ClientError`, `ServerError`,
+ *  `NetworkError`, `ParserError`, `ResponseError`, `ServerError`,
  *  `AuthenticationError`, `NotFoundError` and `UnknownError`
  * @property {string} description a short description of the error, extracted
  *  from the  {@link Response}'s parsed data

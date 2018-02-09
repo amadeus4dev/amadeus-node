@@ -1,12 +1,16 @@
 import Client from '../../src/amadeus/client';
 import https  from 'https';
 
+import EventEmitter from 'events';
+import Promise from 'bluebird';
+
 let client;
 let credentials = {
   clientId: '123',
   clientSecret: '234'
 };
 
+let verb = 'GET';
 let path = '/foo/bar';
 let params = { baz: 'qux' };
 
@@ -135,23 +139,72 @@ describe('Client', () => {
 
     describe('.call', () => {
       it('should create a new request and call it', () => {
-        // make a POST call
-        let verb = 'POST';
-        // mock the Request.call() method
-        let call = jest.fn();
-        // mock the entire Request object on the client
-        let Request = client.Request = jest.fn().mockImplementation(() => {
-          return { call: call };
-        });
-        // make the call
+        client.unauthenticatedPost = jest.fn(() => Promise.resolve('data'));
+        client.execute = jest.fn();
+        let request = jest.mock();
+        client.buildRequest = jest.fn(() => { return request; });
+        client.buildPromise = jest.fn();
         client.call(verb, path, params);
-        // ensure Request was initialized with the right params
-        expect(Request).toHaveBeenCalledWith(verb, path, params, null);
-        // ensure the call() method was called
-        expect(call).toHaveBeenCalledWith(client);
+        expect(client.buildPromise).toHaveBeenCalledWith(expect.any(EventEmitter));
+        expect(client.buildRequest).toHaveBeenCalledWith(verb, path, params, null);
+        expect(client.execute).toHaveBeenCalledWith(request, expect.any(EventEmitter));
+      });
+    });
+
+    describe('.execute', () => {
+      it('should make a request and bind the handlers', () => {
+        let emitter = new EventEmitter();
+        let request = client.buildRequest('GET', '/foo/bar', {});
+
+        let http_request = {
+          on: jest.fn(),
+          write: jest.fn(),
+          end: jest.fn()
+        };
+
+        client.http.request = jest.fn().mockImplementation(() => {
+          return http_request;
+        });
+
+        client.execute(request, emitter);
+
+        expect(client.http.request).toHaveBeenCalledWith(expect.any(Object));
+        expect(http_request.on).toHaveBeenCalledTimes(2);
+        expect(http_request.on).toHaveBeenCalledWith('response', expect.any(Function));
+        expect(http_request.on).toHaveBeenCalledWith('error', expect.any(Function));
+        expect(http_request.write).toHaveBeenCalledWith('');
+        expect(http_request.end).toHaveBeenCalled();
       });
     });
 
 
+    describe('.buildPromise', () => {
+      it('should return a new promise with the emitter bound to resolve/reject', () => {
+        let onFn = jest.fn();
+        let emitter = { on: onFn };
+
+        client.buildPromise(emitter);
+
+        expect(onFn).toHaveBeenCalledTimes(2);
+        expect(onFn).toHaveBeenCalledWith('resolve', expect.any(Function));
+        expect(onFn).toHaveBeenCalledWith('reject', expect.any(Function));
+      });
+
+      it('should listen to the emitter on resolve', () => {
+        let emitter = new EventEmitter();
+        let promise = client.buildPromise(emitter);
+
+        emitter.emit('resolve', 'success');
+        expect(promise).resolves.toBe('success');
+      });
+
+      it('should listen to the emitter on reject', () => {
+        let emitter = new EventEmitter();
+        let promise = client.buildPromise(emitter);
+
+        emitter.emit('reject', 'error');
+        expect(promise).rejects.toBe('error');
+      });
+    });
   });
 });
