@@ -25,6 +25,18 @@ class Listener {
     this.emitter = emitter;
   }
 
+  // PROTECTED
+
+
+  /**
+   * Listens to various events on the http_response object, listening for data,
+   * connections closing for bad reasons, and the end of the response.
+   *
+   * Used by the Client when making an API call.
+   *
+   * @param  {Object} http_response a Node http response object
+   * @protected
+   */
   onResponse(http_response) {
     let response = new Response(http_response, this.request);
 
@@ -34,23 +46,53 @@ class Listener {
     http_response.on('error', this.onNetworkError(response).bind(this));
   }
 
+  /**
+   * Listens to a network error when making an API call.
+   *
+   * Used by the Client when making an API call.
+   *
+   * @param  {Object} http_response a Node http response object
+   * @protected
+   */
+
   onError(http_response) {
     let response = new Response(http_response, this.request);
     this.onNetworkError(response)();
   }
 
+  // PRIVATE
+
+
+  /**
+   * When the connection ends, check if the response can be parsed or not and
+   * act accordingly.
+   *
+   * @param  {Response} response
+   */
   onEnd(response) {
     return () => {
       response.parse();
-      if (response.success()) { return this.onSuccess(response); }
-      else { return this.onFail(response);  }
+      if (response.success()) { this.onSuccess(response); }
+      else { this.onFail(response);  }
     };
   }
 
+  /**
+   * When the response was successful, resolve the promise and return the
+   * response object
+   *
+   * @param  {Response} response
+   */
   onSuccess(response) {
     this.emitter.emit('resolve', response);
   }
 
+  /**
+   * When the connection was not successful, determine the reason and resolve
+   * the promise accordingly.
+   *
+   * @param  {Response} response
+   */
   onFail(response) {
     let Error;
     if (response.statusCode >= 500) {
@@ -71,6 +113,12 @@ class Listener {
     this.emitter.emit('reject', error);
   }
 
+  /**
+   * When the connection ran into a network error, reject the promise with a
+   * NetworkError.
+   *
+   * @param  {Response} response
+   */
   onNetworkError(response) {
     return () => {
       response.parse();

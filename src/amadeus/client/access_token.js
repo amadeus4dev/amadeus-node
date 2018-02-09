@@ -6,7 +6,8 @@ const TOKEN_BUFFER = 10;
 
 /**
   * A helper library to create and maintain the OAuth2 AccessTokens between
-  * requests
+  * requests. Keeps track of the expiry time and automatically tries to fetch
+  * a new token if needed.
   *
   * @property {string} accessToken the cached current access token (bearer)
   * @property {number} expiresAt the aproximate time this token expires at
@@ -18,12 +19,15 @@ class AccessToken {
     this.expiresAt;
   }
 
+  // PROTECTED
 
   /**
-   * Fetches or returns a cached bearer token.
+   * Fetches or returns a cached bearer token. Used by the Client to get a
+   * token before making an API call.
    *
    * @param  {Client} client the Amadeus Client to make an API call with
    * @return {Promise.<Response,ResponseError>} a Bluebird Promise
+   * @protected
    */
   bearerToken(client) {
     let emitter = new EventEmitter();
