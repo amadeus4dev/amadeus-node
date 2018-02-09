@@ -2,11 +2,11 @@
  * A namespaced client for the
  * `/v2/reference-data/locations/airports` endpoints
  *
- * Access via the +Amadeus+ object
+ * Access via the {@link Amadeus} object
  *
  * ```js
  * let amadeus = new Amadeus();
- * amadeus.reference_data.locations.airports
+ * amadeus.reference_data.locations.airports;
  * ```
  *
  * @param {Client} client

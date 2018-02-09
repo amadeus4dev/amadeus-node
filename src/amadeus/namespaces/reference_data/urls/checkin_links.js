@@ -2,11 +2,11 @@
  * A namespaced client for the
  * `/v2/reference-data/urls/checkin-links` endpoints
  *
- * Access via the +Amadeus+ object
+ * Access via the {@link Amadeus} object
  *
  * ```js
  * let amadeus = new Amadeus();
- * amadeus.reference_data.urls.checkin_links
+ * amadeus.reference_data.urls.checkin_links;
  * ```
  *
  * @param {Client} client

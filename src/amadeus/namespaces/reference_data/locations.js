@@ -4,11 +4,11 @@ import Airports from './locations/airports';
  * A namespaced client for the
  * `/v2/reference-data/locations` endpoints
  *
- * Access via the +Amadeus+ object
+ * Access via the {@link Amadeus} object
  *
  * ```js
  * let amadeus = new Amadeus();
- * amadeus.reference_data.locations
+ * amadeus.reference_data.locations;
  * ```
  *
  * @param {Client} client
