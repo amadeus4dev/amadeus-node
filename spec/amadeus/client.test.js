@@ -1,15 +1,22 @@
 import Client from '../../src/amadeus/client';
 import https  from 'https';
 
+import EventEmitter from 'events';
+import Promise from 'bluebird';
+
 let client;
 let credentials = {
   clientId: '123',
   clientSecret: '234'
 };
 
+let verb = 'GET';
+let path = '/foo/bar';
+let params = { baz: 'qux' };
+
 describe('Client', () => {
-  test('exports an Client object', () => {
-    expect(Client).not.toBe(null);
+  it('should exports an Client object', () => {
+    expect(Client).toBeDefined();
   });
 
   describe('.instance', () => {
@@ -17,49 +24,187 @@ describe('Client', () => {
       client = new Client(credentials);
     });
 
-    test('exports an Client object', () => {
+    it('should export an Client object', () => {
       expect(client).toBeInstanceOf(Client);
     });
 
-    test('should thrown an error without required credentials', () => {
+    it('should throw an error without required credentials', () => {
       expect(() => { new Client(); }).toThrow();
     });
 
-    test('should initialize all default values', () => {
+    it('should initialize all default values', () => {
       expect(client.clientId).toBe('123');
       expect(client.clientSecret).toBe('234');
       expect(client.logger).toBe(console);
-      expect(client.host).toBe('https://test.api.amadeus.com');
+      expect(client.host).toBe('production.api.amadeus.com');
       expect(client.customAppId).toBe(null);
       expect(client.customAppVersion).toBe(null);
       expect(client.http).toBe(https);
     });
 
-    test('should allow for setting a custom logger', () => {
+    it('should allow for setting a custom logger', () => {
       let logger = jest.fn();
       let options = { 'clientId' : '123', 'clientSecret' : '234', 'logger' : logger };
       let client = new Client(options);
       expect(client.logger).toBe(logger);
     });
 
-    test('should allow for setting a different hostname', () => {
-      let options = { 'clientId' : '123', 'clientSecret' : '234', 'hostname' : 'production' };
+    it('should allow for setting a different hostname', () => {
+      let options = { 'clientId' : '123', 'clientSecret' : '234', 'hostname' : 'test' };
       let client = new Client(options);
-      expect(client.host).toBe('https://production.api.amadeus.com');
+      expect(client.host).toBe('test.api.amadeus.com');
     });
 
-    test('should allow for setting a custom App ID and Version', () => {
+    it('should allow for setting a custom App ID and Version', () => {
       let options = { 'clientId' : '123', 'clientSecret' : '234', 'customAppId' : 'cli', 'customAppVersion' : '1.0.0' };
       let client = new Client(options);
       expect(client.customAppId).toBe('cli');
       expect(client.customAppVersion).toBe('1.0.0');
     });
 
-    test('should allow for setting a custom http client', () => {
+    it('should allow for setting a custom http client', () => {
       let http = jest.fn();
       let options = { 'clientId' : '123', 'clientSecret' : '234', 'http' : http };
       let client = new Client(options);
       expect(client.http).toBe(http);
+    });
+
+    describe('.get', () => {
+      it('should create a new request and call it', () => {
+        // mock the Client.call() method
+        let call = client.call = jest.fn();
+        // replace the AccessToken instance to mock a new Bearer Token
+        client.accessToken = { bearerToken: () => {
+          return { then: resolve => resolve('token') };
+        }};
+        // make an authenticated POST call
+        client.get(path, params);
+        // ensure Client.call() was called with the right parameters
+        expect(call).toHaveBeenCalledWith('GET', path, params, 'token');
+      });
+
+      it('should work without params', () => {
+        let call = client.call = jest.fn();
+        client.accessToken = { bearerToken: () => {
+          return { then: resolve => resolve('token') };
+        }};
+        client.get(path);
+        expect(call).toHaveBeenCalledWith('GET', path, {}, 'token');
+      });
+    });
+
+    describe('.post', () => {
+      it('should create a new request and call it', () => {
+        // mock the Client.call() method
+        let call = client.call = jest.fn();
+        // replace the AccessToken instance to mock a new Bearer Token
+        client.accessToken = { bearerToken: () => {
+          return { then: resolve => resolve('token') };
+        }};
+        // make an authenticated POST call
+        client.post(path, params);
+        // ensure Client.call() was called with the right parameters
+        expect(call).toHaveBeenCalledWith('POST', path, params, 'token');
+      });
+
+      it('should work without params', () => {
+        let call = client.call = jest.fn();
+        client.accessToken = { bearerToken: () => {
+          return { then: resolve => resolve('token') };
+        }};
+        client.post(path);
+        expect(call).toHaveBeenCalledWith('POST', path, {}, 'token');
+      });
+    });
+
+    describe('.unauthenticatedPost', () => {
+      it('should create a new request and call it', () => {
+        // mock the Client.call() method
+        let call = client.call = jest.fn();
+        // make an unauthenticated POST
+        client.unauthenticatedPost(path, { baz: 'qux' });
+        // ensure the call() method was called with the right params
+        expect(call).toHaveBeenCalledWith('POST', path, params);
+      });
+
+      it('should work without params', () => {
+        let call = client.call = jest.fn();
+        client.accessToken = { bearerToken: () => {
+          return { then: resolve => resolve('token') };
+        }};
+        client.unauthenticatedPost(path);
+        expect(call).toHaveBeenCalledWith('POST', path, {});
+      });
+    });
+
+    describe('.call', () => {
+      it('should create a new request and call it', () => {
+        client.unauthenticatedPost = jest.fn(() => Promise.resolve('data'));
+        client.execute = jest.fn();
+        let request = jest.mock();
+        client.buildRequest = jest.fn(() => { return request; });
+        client.buildPromise = jest.fn();
+        client.call(verb, path, params);
+        expect(client.buildPromise).toHaveBeenCalledWith(expect.any(EventEmitter));
+        expect(client.buildRequest).toHaveBeenCalledWith(verb, path, params, null);
+        expect(client.execute).toHaveBeenCalledWith(request, expect.any(EventEmitter));
+      });
+    });
+
+    describe('.execute', () => {
+      it('should make a request and bind the handlers', () => {
+        let emitter = new EventEmitter();
+        let request = client.buildRequest('GET', '/foo/bar', {});
+
+        let http_request = {
+          on: jest.fn(),
+          write: jest.fn(),
+          end: jest.fn()
+        };
+
+        client.http.request = jest.fn().mockImplementation(() => {
+          return http_request;
+        });
+
+        client.execute(request, emitter);
+
+        expect(client.http.request).toHaveBeenCalledWith(expect.any(Object));
+        expect(http_request.on).toHaveBeenCalledTimes(2);
+        expect(http_request.on).toHaveBeenCalledWith('response', expect.any(Function));
+        expect(http_request.on).toHaveBeenCalledWith('error', expect.any(Function));
+        expect(http_request.write).toHaveBeenCalledWith('');
+        expect(http_request.end).toHaveBeenCalled();
+      });
+    });
+
+
+    describe('.buildPromise', () => {
+      it('should return a new promise with the emitter bound to resolve/reject', () => {
+        let onFn = jest.fn();
+        let emitter = { on: onFn };
+
+        client.buildPromise(emitter);
+
+        expect(onFn).toHaveBeenCalledTimes(2);
+        expect(onFn).toHaveBeenCalledWith('resolve', expect.any(Function));
+        expect(onFn).toHaveBeenCalledWith('reject', expect.any(Function));
+      });
+
+      it('should listen to the emitter on resolve', () => {
+        let emitter = new EventEmitter();
+        let promise = client.buildPromise(emitter);
+
+        emitter.emit('resolve', 'success');
+        expect(promise).resolves.toBe('success');
+      });
+
+      it('should listen to the emitter on reject', () => {
+        let emitter = new EventEmitter();
+        let promise = client.buildPromise(emitter);
+
+        emitter.emit('reject', 'error');
+        expect(promise).rejects.toBe('error');
+      });
     });
   });
 });

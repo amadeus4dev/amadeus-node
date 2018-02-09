@@ -8,7 +8,7 @@ let credentials = {
 };
 
 describe('Amadeus', () => {
-  test('exports an Amadeus object', () => {
+  it('should export an Amadeus object', () => {
     expect(Amadeus).not.toBe(null);
   });
 
@@ -17,14 +17,15 @@ describe('Amadeus', () => {
       amadeus = new Amadeus(credentials);
     });
 
-    test('exports an Amadeus object', () => {
+    it('should initialize an Amadeus instance', () => {
       expect(amadeus).toBeInstanceOf(Amadeus);
     });
 
-    test('throw an error', () => {
+    it('should throw an error', () => {
       expect(() => { new Amadeus(); }).toThrowError();
     });
-    test('exports an Client object', () => {
+
+    it('should have an client property', () => {
       expect(amadeus.client).toBeInstanceOf(Client);
     });
   });

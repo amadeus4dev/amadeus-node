@@ -1,72 +1,177 @@
-import https     from 'https';
+import EventEmitter from 'events';
+import Promise      from 'bluebird';
 
-import Validator from './client/validator';
-const validator = new Validator();
+import AccessToken from './client/access_token';
+import Listener    from './client/listener';
+import Request     from './client/request';
+import Validator   from './client/validator';
 
-const HOSTS = {
-  'test'       : 'https://test.api.amadeus.com',
-  'production' : 'https://production.api.amadeus.com'
-};
-
-const RECOGNIZED_OPTIONS = [
-  'clientId',
-  'clientSecret',
-  'logger',
-  'hostname',
-  'customAppId',
-  'customAppVersion',
-  'http'
-];
+import pkg         from '../../package.json';
 
 /**
- * The actual HTTP client for accessing the travel APIs
- * @param  {Object} options a list of options. See {@link Amadeus} .
- * @property {string} clientId the `client_id` used to authenticate the API
- * @property {string} clientSecret the `client_secret` used to authenticate
+ * A convenient wrapper around the API, allowing for generic, authenticated and
+ * unauthenticated API calls without having to manage the serialization,
+ * desrialization, and authentication.
+ *
+ * Generally you do not need to use this object directly. Instead it is used
+ * indirectly by the various namespaced methods for every API call.
+ *
+ * For example, the following are the semantically the same.
+ *
+ * ```js
+ * amadeus.client.get('/v1/reference-data/urls/checkin-links', params);
+ * amadeus.amadeus.reference_data.urls.checkin_links.get(params);
+ * ```
+ *
+ * @param {Object} options a list of options. See {@link Amadeus} .
+ * @property {string} clientId the API key used to authenticate the API
+ * @property {string} clientSecret the API secret used to authenticate
  *  the API
- * @property {Object} logger an optional `console` compatible logger that
- *  accepts `log`, `error` and `debug` calls.
- * @property {string} host the hostname used to make API call against.
- * @property {string} customAppId a custom App ID to be passed in the User Agent
- *  to the server
- * @property {string} customAppVersion a custom App version to be passed in
- *  the User Agent to the server
- * @property {Object} http a Node HTTPS compatible client
+ * @property {Object} logger the `console`-compatible logger used to debug calls
+ * @property {string} host the hostname of the server API calls are made to
+ * @property {string} customAppId the custom App ID to be passed in the User
+ *  Agent to the server
+ * @property {string} customAppVersion the custom App Version number to be
+ *  passed in the User Agent to the server
+ * @property {Object} http the Node/HTTPS-compatible client used to make
+ *  requests
+ * @property {number} version The version of this API client
  */
 class Client {
   constructor(options = {}) {
-    this.initializeClientCredentials(options);
-    this.initializeLogger(options);
-    this.initializeHost(options);
-    this.initializeCustomApp(options);
-    this.initializeHttp(options);
+    new Validator().validateAndInitialize(this, options);
+    this.accessToken = new AccessToken(this);
+    this.version = pkg.version;
+  }
 
-    validator.warnOnUnrecognizedOptions(options, this.logger, RECOGNIZED_OPTIONS);
+  /**
+   * Make an authenticated GET API call.
+   *
+   * ```js
+   * amadeus.client.get('/v2/foo/bar', { some: 'data' });
+   * ```
+   * @param {string} path the full path of the API endpoint
+   * @param {Object} [params={}] the query string parameters
+   * @return {Promise.<Response,ResponseError>} a Promise
+   */
+  get(path, params = {}) {
+    return this.accessToken.bearerToken(this).then((bearerToken) => {
+      return this.call('GET', path, params, bearerToken);
+    });
+  }
+
+  /**
+   * Make an authenticated POST API call.
+   *
+   * ```js
+   * amadeus.client.post('/v2/foo/bar', { some: 'data' });
+   * ```
+   * @param {string} path the full path of the API endpoint
+   * @param {Object} [params={}] the POST parameters
+   * @return {Promise.<Response,ResponseError>} a Promise
+   */
+  post(path, params = {}) {
+    return this.accessToken.bearerToken(this).then((bearerToken) => {
+      return this.call('POST', path, params, bearerToken);
+    });
+  }
+
+  // PROTECTED
+
+  /**
+   * Make an unauthenticated POST API call.
+   *
+   * This call is used to get an AccessToken for making authenticated calls.
+   *
+   * @param {string} path the full path of the API endpoint
+   * @param {Object} [params={}] the query string parameters
+   * @return {Promise.<Response,ResponseError>} a Promise
+   * @protected
+   */
+  unauthenticatedPost(path, params = {}) {
+    return this.call('POST', path, params);
   }
 
   // PRIVATE
 
-  initializeClientCredentials(options) {
-    this.clientId = validator.initRequired('clientId', options);
-    this.clientSecret = validator.initRequired('clientSecret', options);
+  /**
+   * Make any kind of API call.
+   *
+   * Used by the .get, .post, and .unauthenticated methods to make API calls.
+   *
+   * Sets up a new Promise and then excutes the API call, triggering the Promise
+   * to be called when the API call fails or succeeds.
+   *
+   * @param {string} verb the HTTP method, for example `GET` or `POST`
+   * @param {string} path the full path of the API endpoint
+   * @param {Object} params the parameters to pass in the query or body
+   * @param {string} [bearerToken=null] the BearerToken as generated by the
+   *  AccessToken class
+   * @return {Promise.<Response,ResponseError>} a Promise
+   * @private
+   */
+  call(verb, path, params, bearerToken = null) {
+    let request = this.buildRequest(verb, path, params, bearerToken);
+    let emitter = new EventEmitter();
+    let promise = this.buildPromise(emitter);
+
+    this.execute(request, emitter);
+    return promise;
   }
 
-  initializeLogger(options) {
-    this.logger = validator.initOptional('logger', options, console);
+  /**
+   * Actually executes the API call.
+   *
+   * @param {Request} request the request to execute
+   * @param {EventEmitter} emitter the event emitter to notify of changes
+   * @private
+   */
+  execute(request, emitter) {
+    let http_request = this.http.request(request.options());
+    let listener = new Listener(request, emitter);
+    http_request.on('response', listener.onResponse.bind(listener));
+    http_request.on('error',    listener.onError.bind(listener));
+    http_request.write(request.body());
+    http_request.end();
   }
 
-  initializeHost(options) {
-    let hostname = validator.initOptional('hostname', options, 'test');
-    this.host = validator.initOptional('host', options, HOSTS[hostname]);
+  /**
+   * Builds a Request object to be used in the API call
+   *
+   * @param {string} verb the HTTP method, for example `GET` or `POST`
+   * @param {string} path the full path of the API endpoint
+   * @param {Object} params the parameters to pass in the query or body
+   * @param {string} [bearerToken=null] the BearerToken as generated by the
+   *  AccessToken class
+   * @return {Request}
+   * @private
+   */
+  buildRequest(verb, path, params, bearerToken) {
+    return new Request({
+      host: this.host,
+      verb: verb,
+      path: path,
+      params: params,
+      bearerToken: bearerToken,
+      clientVersion: this.version,
+      nodeVersion: process.version,
+      appId: this.customAppId,
+      appVersion: this.customAppVersion
+    });
   }
 
-  initializeCustomApp(options) {
-    this.customAppId = validator.initOptional('customAppId', options);
-    this.customAppVersion = validator.initOptional('customAppVersion', options);
-  }
-
-  initializeHttp(options) {
-    this.http = validator.initOptional('http', options, https);
+  /**
+   * Builds a Bluebird Promise to be returned to the API user
+   *
+   * @param  {type} emitter the event emitter to notify of changes
+   * @return {Promise} a Bluebird promise
+   * @private
+   */
+  buildPromise(emitter) {
+    return new Promise((resolve, reject) => {
+      emitter.on('resolve', response => resolve(response));
+      emitter.on('reject', error => reject(error));
+    });
   }
 }
 
