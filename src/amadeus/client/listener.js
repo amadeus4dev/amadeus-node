@@ -11,7 +11,15 @@ import {
 } from './errors';
 
 
-class ResponseHandler {
+/**
+ * Listen to changes in the HTTP request and build Response/ResponseError
+ * objects accordingly.
+ *
+ * @param {Request} request the request object used to make the call
+ * @param {EventEmitter} emitter a Node event emitter
+ * @protected
+ */
+class Listener {
   constructor(request, emitter) {
     this.request = request;
     this.emitter = emitter;
@@ -72,4 +80,4 @@ class ResponseHandler {
   }
 }
 
-export default ResponseHandler;
+export default Listener;

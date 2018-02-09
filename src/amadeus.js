@@ -1,4 +1,4 @@
-import Client      from './amadeus/client';
+import Client from './amadeus/client';
 
 /**
  * The Amadeus client library for accessing the travel APIs.

@@ -1,4 +1,4 @@
-import ResponseHandler  from '../../../src/amadeus/client/response_handler';
+import Listener         from '../../../src/amadeus/client/listener';
 import Response         from '../../../src/amadeus/client/response';
 import EventEmitter     from 'events';
 
@@ -6,16 +6,16 @@ let handler;
 let request;
 let emitter;
 
-describe('ResponseHandler', () => {
+describe('Listener', () => {
   it('should exports the module', () => {
-    expect(ResponseHandler).toBeDefined();
+    expect(Listener).toBeDefined();
   });
 
   describe('.instance', () => {
     beforeEach(() => {
       emitter = new EventEmitter();
       request = 'request';
-      handler = new ResponseHandler(request, emitter);
+      handler = new Listener(request, emitter);
     });
 
     it('should initialize the params', () => {

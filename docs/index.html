@@ -79,6 +79,16 @@
               
                 
                 <li><a
+                  href='#request'
+                  class="">
+                  Request
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
                   href='#response'
                   class="">
                   Response
@@ -307,12 +317,14 @@ that accepts a 'request()' call with an array of options.
   </div>
   
 
-  <p>A helper module for making generic API calls. It is used by
-every namespaced API method.</p>
-<p>It can be accessed through the amadeus object directly, or inderectly through
-any of its namespaced methods.</p>
-<pre class='hljs'>amadeus.client.get(path, params) <span class="hljs-comment">//direct</span>
-amadeus.amadeus.reference_data.urls.checkin_links.get(params) <span class="hljs-comment">//indirect</span></pre>
+  <p>A convenient wrapper around the API, allowing for generic, authenticated and
+unauthenticated API calls without having to manage the serialization,
+desrialization, and authentication.</p>
+<p>Generally you do not need to use this object directly. Instead it is used
+indirectly by the various namespaced methods for every API call.</p>
+<p>For example, the following are the semantically the same.</p>
+<pre class='hljs'>amadeus.client.get(<span class="hljs-string">'/v1/reference-data/urls/checkin-links'</span>, params);
+amadeus.amadeus.reference_data.urls.checkin_links.get(params);</pre>
 
 
   <div class='pre p1 fill-light mt0'>new Client(options: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>)</div>
@@ -438,11 +450,7 @@ requests
 
   
 
-  <p>A helper module for making generic GET requests calls. It is used by
-every namespaced API GET method.</p>
-<pre class='hljs'>amadeus.foo.bar.get({ <span class="hljs-attr">some</span>: <span class="hljs-string">'data'</span> });</pre>
-<p>It can be used to make any generic API call that is automatically
-authenticated using your API credentials:</p>
+  <p>Make an authenticated GET API call.</p>
 <pre class='hljs'>amadeus.client.get(<span class="hljs-string">'/v2/foo/bar'</span>, { <span class="hljs-attr">some</span>: <span class="hljs-string">'data'</span> });</pre>
 
 
@@ -464,7 +472,7 @@ authenticated using your API credentials:</p>
         <div class='space-bottom0'>
           <div>
             <span class='code bold'>path</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>)</code>
-	    the full path to call
+	    the full path of the API endpoint
 
           </div>
           
@@ -489,7 +497,7 @@ authenticated using your API credentials:</p>
     
       <div class='py1 quiet mt1 prose-big'>Returns</div>
       <code><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a>&#x3C;<a href="#response">Response</a>, <a href="#responseerror">ResponseError</a>></code>:
-        a Bluebird Promise
+        a Promise
 
       
     
@@ -521,11 +529,7 @@ authenticated using your API credentials:</p>
 
   
 
-  <p>A helper module for making generic POST requests calls. It is used by
-every namespaced API POST method.</p>
-<pre class='hljs'>amadeus.foo.bar.post({ <span class="hljs-attr">some</span>: <span class="hljs-string">'data'</span> });</pre>
-<p>It can be used to make any generic API call that is automatically
-authenticated using your API credentials:</p>
+  <p>Make an authenticated POST API call.</p>
 <pre class='hljs'>amadeus.client.post(<span class="hljs-string">'/v2/foo/bar'</span>, { <span class="hljs-attr">some</span>: <span class="hljs-string">'data'</span> });</pre>
 
 
@@ -547,7 +551,7 @@ authenticated using your API credentials:</p>
         <div class='space-bottom0'>
           <div>
             <span class='code bold'>path</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>)</code>
-	    the full path to call
+	    the full path of the API endpoint
 
           </div>
           
@@ -572,7 +576,7 @@ authenticated using your API credentials:</p>
     
       <div class='py1 quiet mt1 prose-big'>Returns</div>
       <code><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a>&#x3C;<a href="#response">Response</a>, <a href="#responseerror">ResponseError</a>></code>:
-        a Bluebird Promise
+        a Promise
 
       
     
@@ -647,7 +651,7 @@ authenticated using your API credentials:</p>
 <a href="#response">Response</a>
  object containing the raw
 http response and the 
-<a href="https://developer.mozilla.org/Add-ons/SDK/High-Level_APIs/request">Request</a>
+<a href="#request">Request</a>
  instance that made the API call.
 
           </div>
@@ -667,7 +671,7 @@ http response and the
 <a href="#response">Response</a>
  object containing the raw
 http response and the 
-<a href="https://developer.mozilla.org/Add-ons/SDK/High-Level_APIs/request">Request</a>
+<a href="#request">Request</a>
  instance that made the API call.
 
           
@@ -729,6 +733,160 @@ from the
   
   <div class='clearfix'>
     
+    <h3 class='fl m0' id='request'>
+      Request
+    </h3>
+    
+    
+  </div>
+  
+
+  <p>A Request object containing all the compiled information about this request.</p>
+
+
+  <div class='pre p1 fill-light mt0'>new Request(options: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>)</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>options</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>
+            = <code>{}</code>)</code>
+	    
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Properties</div>
+    <div>
+      
+        <div class='space-bottom0'>
+          <span class='code bold'>host</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>)</code>
+          : the host used for this API call
+
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <span class='code bold'>port</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>)</code>
+          : the port for this API call. Standard set to 443.
+
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <span class='code bold'>verb</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>)</code>
+          : the HTTP method, for example 
+<code>GET</code>
+ or 
+<code>POST</code>
+
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <span class='code bold'>path</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>)</code>
+          : the full path of the API endpoint
+
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <span class='code bold'>params</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>)</code>
+          : the parameters to pass in the query or body
+
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <span class='code bold'>queryPath</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>)</code>
+          : the path and query string used for the API call
+
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <span class='code bold'>bearerToken</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>)</code>
+          : the authentication token
+
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <span class='code bold'>clientVersion</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>)</code>
+          : the version of the Amadeus library
+
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <span class='code bold'>nodeVersion</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>)</code>
+          : the version of Node used
+
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <span class='code bold'>appId</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>)</code>
+          : the custom ID of the application using this library
+
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <span class='code bold'>appVersion</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>)</code>
+          : the custom version of the application
+using this library
+
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <span class='code bold'>headers</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>)</code>
+          : the request headers
+
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+            <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
     <h3 class='fl m0' id='response'>
       Response
     </h3>
@@ -740,7 +898,7 @@ from the
   <p>The response object returned for every API call.</p>
 
 
-  <div class='pre p1 fill-light mt0'>new Response(http_response: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>, request: <a href="https://developer.mozilla.org/Add-ons/SDK/High-Level_APIs/request">Request</a>)</div>
+  <div class='pre p1 fill-light mt0'>new Response(http_response: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>, request: <a href="#request">Request</a>)</div>
   
   
 
@@ -767,7 +925,7 @@ request
       
         <div class='space-bottom0'>
           <div>
-            <span class='code bold'>request</span> <code class='quiet'>(<a href="https://developer.mozilla.org/Add-ons/SDK/High-Level_APIs/request">Request</a>)</code>
+            <span class='code bold'>request</span> <code class='quiet'>(<a href="#request">Request</a>)</code>
 	    the request object used to make this API call
 
           </div>
@@ -810,7 +968,7 @@ request
         </div>
       
         <div class='space-bottom0'>
-          <span class='code bold'>request</span> <code class='quiet'>(<a href="https://developer.mozilla.org/Add-ons/SDK/High-Level_APIs/request">Request</a>)</code>
+          <span class='code bold'>request</span> <code class='quiet'>(<a href="#request">Request</a>)</code>
           : the request object used to make this API call
 
           

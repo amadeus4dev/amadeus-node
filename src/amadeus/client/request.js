@@ -1,94 +1,91 @@
-import EventEmitter from 'events';
-import Promise      from 'bluebird';
-import qs           from 'qs';
-
-import ResponseHandler from './response_handler';
+import qs from 'qs';
 
 /**
- * A Request object, building the call before passing it to the standard library
+ * A Request object containing all the compiled information about this request.
  *
+ * @property {string} host the host used for this API call
+ * @property {number} port the port for this API call. Standard set to 443.
  * @property {string} verb the HTTP method, for example `GET` or `POST`
- * @property {string} path the full path to call
+ * @property {string} path the full path of the API endpoint
  * @property {Object} params the parameters to pass in the query or body
- * @param {string} bearerToken a full BearerToken
+ * @property {string} queryPath the path and query string used for the API call
+ * @property {string} bearerToken the authentication token
+ * @property {string} clientVersion the version of the Amadeus library
+ * @property {string} nodeVersion the version of Node used
+ * @property {string} appId the custom ID of the application using this library
+ * @property {string} appVersion the custom version of the application
+ *  using this library
+ * @property {Object} headers the request headers
  *
- * @param {string} verb the HTTP method, for example `GET` or `POST`
- * @param {string} path the full path to call
- * @param {Object} params the parameters to pass in the query or body
- * @param {string} bearerToken a full BearerToken
- * @protected
+ * @param {Object} options
  */
 class Request {
-  constructor(verb, path, params, bearerToken) {
-    this.verb = verb;
-    this.path = path;
-    this.params = params;
-    this.bearerToken = bearerToken;
+  constructor(options) {
+    this.host           = options.host;
+    this.port           = 443;
+    this.verb           = options.verb;
+    this.path           = options.path;
+    this.params         = options.params;
+    this.queryPath      = this.fullQueryPath();
+    this.bearerToken    = options.bearerToken;
+    this.clientVersion  = options.clientVersion;
+    this.nodeVersion    = options.nodeVersion;
+    this.appId          = options.appId;
+    this.appVersion     = options.appVersion;
+    this.headers        = {
+      'User-Agent' : this.userAgent(),
+      'Accept' : 'application/json'
+    };
+  }
+
+  // PROTECTED
+
+  /**
+   * Compiles the options for the HTTP request.
+   *
+   * Used by Client.execute when executing this request against the server.
+   *
+   * @return {Object} an associative array of options to be passed into the
+   *  Client.execute function
+   * @protected
+   */
+  options() {
+    let options = {
+      'host' : this.host,
+      'port' : this.port,
+      'path' : this.queryPath,
+      'method' : this.verb,
+      'headers' : this.headers
+    };
+
+    this.addAuthorizationHeader(options);
+    this.addContentTypeHeader(options);
+    return options;
   }
 
   /**
-   * Make the actual API call
+   * Creats the body for the API cal, serializing the params if the verb is POST.
    *
-   * @param  {Client} client the Amadeus Client to make an API call with
-   * @return {Promise.<Response,ResponseError>} a Bluebird Promise
+   * @return {string} the serialized params
+   * @protected
    */
-  call(client) {
-    let emitter = new EventEmitter();
-    let promise = this.promise(emitter);
-    this.request(client, emitter);
-    return promise;
+  body() {
+    if (this.verb !== 'POST') { return ''; }
+    else { return qs.stringify(this.params); }
   }
 
   // PRIVATE
 
   /**
-   * Make the request to the API
-   *
-   * @param  {Client} client the Amadeus Client to make an API call with
-   * @param  {type} emitter the EventEmitter used to notify the Promise of
-   *  any changes
-   * @private
-   */
-  request(client, emitter) {
-    let options = this.options(client, process);
-    let http_request = client.http.request(options);
-
-    let responseHandler = new ResponseHandler(this, emitter);
-
-    http_request.on('response', responseHandler.onResponse.bind(responseHandler));
-    http_request.on('error',    responseHandler.onError.bind(responseHandler));
-
-    http_request.write(this.body());
-    http_request.end();
-  }
-
-  /**
-   * Builds a Bluebird promise to be returned to the API user
-   *
-   * @param  {type} emitter the EventEmitter used to notify the Promise of changes
-   * @return {Promise} a Bluebird promise
-   * @private
-   */
-  promise(emitter) {
-    return new Promise((resolve, reject) => {
-      emitter.on('resolve', response => resolve(response));
-      emitter.on('reject', error => reject(error));
-    });
-  }
-
-  /**
    * Build up the custom User Agent
    *
-   * @param  {Client} client the Amadeus Client to make an API call with
-   * @param  {Object} env
-   * @param  {string} [env.version] the version of Node
    * @return {string} a user agent in the format "library/version language/version app/version"
    * @private
    */
-  userAgent(client, env) {
-    let userAgent = `amadeus-node/${client.version} node/${env.version}`;
-    if (!client.customAppId) { return userAgent; }
-    return `${userAgent} ${client.customAppId}/${client.customAppVersion}`;
+  userAgent() {
+    let userAgent = `amadeus-node/${this.clientVersion} node/${this.nodeVersion}`;
+    if (!this.appId) { return userAgent; }
+    return `${userAgent} ${this.appId}/${this.appVersion}`;
   }
 
   /**
@@ -98,45 +95,9 @@ class Request {
    * @return {string} the path and params combined into one string.
    * @private
    */
-  queryPath() {
+  fullQueryPath() {
     if (this.verb === 'POST') { return this.path; }
     else { return `${this.path}?${qs.stringify(this.params)}`; }
-  }
-
-  /**
-   * Creats the body for the API cal, serializing the params if the verb is POST.
-   *
-   * @return {string} the serialized params
-   * @private
-   */
-  body() {
-    if (this.verb !== 'POST') { return ''; }
-    else { return qs.stringify(this.params); }
-  }
-
-  /**
-   * Compiles the options for the HTTP request.
-   *
-   * @param  {Client} client the Amadeus Client to make an API call with
-   * @return {Object} an associative array of options to be passed into the
-   *  HTTPS.request() function
-   * @private
-   */
-  options(client, env) {
-    let options = {
-      'host' : client.host,
-      'port' : 443,
-      'path' : this.queryPath(),
-      'method' : this.verb,
-      'headers' : {
-        'User-Agent' : this.userAgent(client, env),
-        'Accept' : 'application/json'
-      }
-    };
-
-    this.addAuthorizationHeader(options);
-    this.addContentTypeHeader(options);
-    return options;
   }
 
   /**
