@@ -36,7 +36,7 @@ describe('Client', () => {
       expect(client.clientId).toBe('123');
       expect(client.clientSecret).toBe('234');
       expect(client.logger).toBe(console);
-      expect(client.host).toBe('production.api.amadeus.com');
+      expect(client.host).toBe('test.api.amadeus.com');
       expect(client.customAppId).toBe(null);
       expect(client.customAppVersion).toBe(null);
       expect(client.http).toBe(https);

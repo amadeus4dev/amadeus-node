@@ -24,6 +24,7 @@ describe('Response', () => {
       expect(response.statusCode).toBe(200);
       expect(response.request).toEqual(request);
       expect(response.body).toEqual('');
+      expect(response.result).toEqual(null);
       expect(response.data).toEqual(null);
       expect(response.parsed).toBeFalsy();
     });
@@ -39,16 +40,18 @@ describe('Response', () => {
 
     describe('.parse', () => {
       it('should parse the body if json', () => {
-        response.addChunk('{ "a" : "b"}');
+        response.addChunk('{ "data" : "b"}');
         response.parse();
         expect(response.parsed).toBeTruthy();
-        expect(response.data).toEqual({ a: 'b' });
+        expect(response.result).toEqual({ data: 'b' });
+        expect(response.data).toEqual('b');
       });
 
       it('should not parse if not json', () => {
         response.contentType = 'plain/text';
         response.parse();
         expect(response.parsed).toBeFalsy();
+        expect(response.result).toBeNull();
         expect(response.data).toBeNull();
       });
 
@@ -56,6 +59,7 @@ describe('Response', () => {
         response.addChunk('{ "a" : ');
         response.parse();
         expect(response.parsed).toBeFalsy();
+        expect(response.result).toBeNull();
         expect(response.data).toBeNull();
       });
     });

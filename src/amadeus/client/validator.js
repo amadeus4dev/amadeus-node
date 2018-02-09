@@ -51,7 +51,7 @@ class Validator {
   }
 
   initializeHost(client, options) {
-    let hostname = this.initOptional('hostname', options, 'production');
+    let hostname = this.initOptional('hostname', options, 'test');
     client.host = this.initOptional('host', options, HOSTS[hostname]);
   }
 
@@ -79,7 +79,7 @@ class Validator {
 
   warnOnUnrecognizedOptions(options, logger, recognizedOptions) {
     Object.keys(options).forEach((key) => {
-      if (!recognizedOptions.includes(key)) {
+      if (recognizedOptions.indexOf(key) === -1) {
         logger.warn('amadeus/client/validator.js', `Unrecognized option: ${key}`);
       }
     });

@@ -9,7 +9,8 @@ let JSON_CONTENT_TYPES = ['application/json', 'application/vnd.amadeus+json'];
  *
  * @property {number} statusCode the HTTP status code for the response, if any
  * @property {string} body the raw body received from the API
- * @property {Object} data the parsed JSON received from the API
+ * @property {Object} result the parsed JSON received from the API
+ * @property {Object} data the data attribute taken from the result
  * @property {boolean} parsed wether the raw body has been parsed into JSON
  * @property {Request} request the request object used to make this API call
  *
@@ -21,6 +22,7 @@ class Response {
     this.statusCode  = http_response.statusCode;
     this.request     = request;
     this.body        = '';
+    this.result      = null;
     this.data        = null;
     this.parsed      = false;
   }
@@ -45,7 +47,8 @@ class Response {
   parse() {
     try {
       if (this.isJson()) {
-        this.data = JSON.parse(this.body);
+        this.result = JSON.parse(this.body);
+        this.data = this.result.data;
         this.parsed = true;
       } else {
         this.parsed = false;
@@ -76,7 +79,7 @@ class Response {
    * @private
    */
   isJson() {
-    return JSON_CONTENT_TYPES.includes(this.contentType);
+    return (JSON_CONTENT_TYPES.indexOf(this.contentType) !== -1);
   }
 }
 
