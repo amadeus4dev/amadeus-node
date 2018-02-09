@@ -1,4 +1,7 @@
-import Client from './amadeus/client';
+import Client        from './amadeus/client';
+import ReferenceData from './amadeus/namespaces/reference_data';
+// import Shopping      from './amadeus/namespaces/shopping';
+// import Travel        from './amadeus/namespaces/travel';
 
 /**
  * The Amadeus client library for accessing the travel APIs.
@@ -43,6 +46,10 @@ class Amadeus {
   constructor(params = {}) {
     this.client = new Client(params);
     this.version = this.client.version;
+
+    this.reference_data = new ReferenceData(this.client);
+    // this.shopping       = new Shopping(this.client);
+    // this.travel         = new Travel(this.client);
   }
 }
 
