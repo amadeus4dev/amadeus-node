@@ -1,6 +1,6 @@
 import Client        from './amadeus/client';
 import ReferenceData from './amadeus/namespaces/reference_data';
-// import Shopping      from './amadeus/namespaces/shopping';
+import Shopping      from './amadeus/namespaces/shopping';
 import Travel        from './amadeus/namespaces/travel';
 
 /**
@@ -47,8 +47,8 @@ class Amadeus {
     this.client = new Client(params);
     this.version = this.client.version;
 
-    this.reference_data = new ReferenceData(this.client);
-    // this.shopping       = new Shopping(this.client);
+    this.referenceData  = new ReferenceData(this.client);
+    this.shopping       = new Shopping(this.client);
     this.travel         = new Travel(this.client);
   }
 }

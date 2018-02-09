@@ -8,7 +8,7 @@ import CheckinLinks from './urls/checkin_links';
  *
  * ```js
  * let amadeus = new Amadeus();
- * amadeus.reference_data.urls;
+ * amadeus.referenceData.urls;
  * ```
  *
  * @param {Client} client
@@ -18,7 +18,7 @@ import CheckinLinks from './urls/checkin_links';
 class Urls {
   constructor(client) {
     this.client = client;
-    this.checkin_links = new CheckinLinks(client);
+    this.checkinLinks = new CheckinLinks(client);
   }
 }
 

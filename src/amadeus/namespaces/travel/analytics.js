@@ -19,8 +19,8 @@ import FareSearches from './analytics/fare_searches';
 class Analytics {
   constructor(client) {
     this.client        = client;
-    this.air_traffics  = new AirTraffics(client);
-    this.fare_searches = new FareSearches(client);
+    this.airTraffics  = new AirTraffics(client);
+    this.fareSearches = new FareSearches(client);
   }
 }
 

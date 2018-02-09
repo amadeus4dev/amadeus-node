@@ -6,7 +6,7 @@
  *
  * ```js
  * let amadeus = new Amadeus();
- * amadeus.travel.analytics.air_traffics;
+ * amadeus.travel.analytics.airTraffics;
  * ```
  *
  * @param {Client} client
@@ -29,7 +29,7 @@ class AirTraffics {
    * Find the air traffic from LHR in January 2011
    *
    * ```js
-   * amadeus.travel.analytics.air_traffics.get({
+   * amadeus.travel.analytics.airTraffics.get({
    *   origin: 'LHR',
    *   period: '2011-01'
    * });

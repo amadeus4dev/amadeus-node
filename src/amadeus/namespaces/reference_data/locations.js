@@ -8,7 +8,7 @@ import Airports from './locations/airports';
  *
  * ```js
  * let amadeus = new Amadeus();
- * amadeus.reference_data.locations;
+ * amadeus.referenceData.locations;
  * ```
  *
  * @param {Client} client
@@ -32,7 +32,7 @@ class Locations {
    * Find any location starting with 'lon'
    *
    * ```js
-   * amadeus.reference_data.location.get({
+   * amadeus.referenceData.location.get({
    *   keyword: 'lon',
    *   subType: 'AIRPORT,CITY'
    * });

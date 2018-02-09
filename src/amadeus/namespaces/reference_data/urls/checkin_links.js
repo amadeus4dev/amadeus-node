@@ -6,7 +6,7 @@
  *
  * ```js
  * let amadeus = new Amadeus();
- * amadeus.reference_data.urls.checkin_links;
+ * amadeus.referenceData.urls.checkinLinks;
  * ```
  *
  * @param {Client} client
@@ -28,7 +28,7 @@ class CheckinLinks {
    * Find a the checkin links for Branson AirExpress
    *
    * ```js
-   * amadeus.reference_data.urls.checkin_links.get({
+   * amadeus.referenceData.urls.checkinLinks.get({
    *   airline: '1X'
    * });
    * ```

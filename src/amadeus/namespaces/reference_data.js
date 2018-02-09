@@ -9,7 +9,7 @@ import Locations from './reference_data/locations';
  *
  * ```js
  * let amadeus = new Amadeus();
- * amadeus.reference_data.urls;
+ * amadeus.referenceData.urls;
  * ```
  *
  * @param {Client} client
