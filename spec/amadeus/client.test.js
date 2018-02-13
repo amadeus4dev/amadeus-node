@@ -2,7 +2,6 @@ import Client from '../../src/amadeus/client';
 import https  from 'https';
 
 import EventEmitter from 'events';
-import Promise from 'bluebird';
 
 let client;
 let credentials = {
@@ -72,7 +71,7 @@ describe('Client', () => {
     describe('.get', () => {
       it('should create a new request and call it', () => {
         // mock the Client.call() method
-        let call = client.call = jest.fn();
+        let call = client.unauthenticatedCall = jest.fn();
         // replace the AccessToken instance to mock a new Bearer Token
         client.accessToken = { bearerToken: () => {
           return { then: resolve => resolve('token') };
@@ -84,7 +83,7 @@ describe('Client', () => {
       });
 
       it('should work without params', () => {
-        let call = client.call = jest.fn();
+        let call = client.unauthenticatedCall = jest.fn();
         client.accessToken = { bearerToken: () => {
           return { then: resolve => resolve('token') };
         }};
@@ -96,7 +95,7 @@ describe('Client', () => {
     describe('.post', () => {
       it('should create a new request and call it', () => {
         // mock the Client.call() method
-        let call = client.call = jest.fn();
+        let call = client.unauthenticatedCall = jest.fn();
         // replace the AccessToken instance to mock a new Bearer Token
         client.accessToken = { bearerToken: () => {
           return { then: resolve => resolve('token') };
@@ -108,7 +107,7 @@ describe('Client', () => {
       });
 
       it('should work without params', () => {
-        let call = client.call = jest.fn();
+        let call = client.unauthenticatedCall = jest.fn();
         client.accessToken = { bearerToken: () => {
           return { then: resolve => resolve('token') };
         }};
@@ -117,34 +116,14 @@ describe('Client', () => {
       });
     });
 
-    describe('.unauthenticatedPost', () => {
-      it('should create a new request and call it', () => {
-        // mock the Client.call() method
-        let call = client.call = jest.fn();
-        // make an unauthenticated POST
-        client.unauthenticatedPost(path, { baz: 'qux' });
-        // ensure the call() method was called with the right params
-        expect(call).toHaveBeenCalledWith('POST', path, params);
-      });
-
-      it('should work without params', () => {
-        let call = client.call = jest.fn();
-        client.accessToken = { bearerToken: () => {
-          return { then: resolve => resolve('token') };
-        }};
-        client.unauthenticatedPost(path);
-        expect(call).toHaveBeenCalledWith('POST', path, {});
-      });
-    });
-
     describe('.call', () => {
       it('should create a new request and call it', () => {
-        client.unauthenticatedPost = jest.fn(() => Promise.resolve('data'));
+        client.accessToken.bearerToken = jest.fn(() => Promise.resolve('data'));
         client.execute = jest.fn();
         let request = jest.mock();
         client.buildRequest = jest.fn(() => { return request; });
         client.buildPromise = jest.fn();
-        client.call(verb, path, params);
+        client.unauthenticatedCall(verb, path, params);
         expect(client.buildPromise).toHaveBeenCalledWith(expect.any(EventEmitter));
         expect(client.buildRequest).toHaveBeenCalledWith(verb, path, params, null);
         expect(client.execute).toHaveBeenCalledWith(request, expect.any(EventEmitter));

@@ -18,10 +18,10 @@ describe('Request', () => {
 
     describe('.bearerToken', () => {
       it('should make a new API call if no token has been loaded before', () => {
-        client.unauthenticatedPost = jest.fn(() => Promise.resolve({ data: { access_token: 'token' } }));
+        client.unauthenticatedCall = jest.fn(() => Promise.resolve({ result: { access_token: 'token' } }));
         expect.assertions(2);
         expect(accessToken.bearerToken(client)).resolves.toEqual('token');
-        expect(client.unauthenticatedPost).toHaveBeenCalledWith('/v1/security/oauth2/token', {
+        expect(client.unauthenticatedCall).toHaveBeenCalledWith('POST', '/v1/security/oauth2/token', {
           'grant_type' : 'client_credentials',
           'client_id' : client.clientId,
           'client_secret' : client.clientSecret
@@ -29,34 +29,34 @@ describe('Request', () => {
       });
 
       it('should bubble errors', () => {
-        client.unauthenticatedPost = jest.fn(() => Promise.reject('error'));
+        client.unauthenticatedCall = jest.fn(() => Promise.reject('error'));
 
         expect.assertions(2);
 
         expect(accessToken.bearerToken(client)).rejects.toEqual('error');
-        expect(client.unauthenticatedPost).toHaveBeenCalled();
+        expect(client.unauthenticatedCall).toHaveBeenCalled();
       });
 
       it('should return a cached token if it still valid', () => {
         accessToken.expiresAt = Date.now()+100;
         accessToken.accessToken = 'old_token';
 
-        client.unauthenticatedPost = jest.fn();
+        client.unauthenticatedCall = jest.fn();
 
         expect.assertions(1);
-        expect(client.unauthenticatedPost).not.toHaveBeenCalled();
+        expect(client.unauthenticatedCall).not.toHaveBeenCalled();
       });
 
       it('should make a new API call the old token expired', () => {
         accessToken.expiresAt = Date.now();
         accessToken.accessToken = 'old_token';
 
-        client.unauthenticatedPost = jest.fn(() => Promise.resolve({ data: { access_token: 'token' } }));
+        client.unauthenticatedCall = jest.fn(() => Promise.resolve({ result: { access_token: 'token' } }));
 
         expect.assertions(2);
 
         expect(accessToken.bearerToken(client)).resolves.toEqual('token');
-        expect(client.unauthenticatedPost).toHaveBeenCalledWith('/v1/security/oauth2/token', {
+        expect(client.unauthenticatedCall).toHaveBeenCalledWith('POST', '/v1/security/oauth2/token', {
           'grant_type' : 'client_credentials',
           'client_id' : client.clientId,
           'client_secret' : client.clientSecret

@@ -31,8 +31,9 @@ class AccessToken {
    */
   bearerToken(client) {
     let emitter = new EventEmitter();
+    let promise = this.promise(emitter);
     this.emitOrLoadAccessToken(client, emitter);
-    return this.promise(emitter);
+    return promise;
   }
 
   // PRIVATE
@@ -86,7 +87,7 @@ class AccessToken {
    * @private
    */
   loadAccessToken(client, emitter) {
-    client.unauthenticatedPost('/v1/security/oauth2/token', {
+    client.unauthenticatedCall('POST', '/v1/security/oauth2/token', {
       'grant_type' : 'client_credentials',
       'client_id' : client.clientId,
       'client_secret' : client.clientSecret
@@ -105,8 +106,8 @@ class AccessToken {
    * @private
    */
   storeAccessToken(response) {
-    this.accessToken = response.data['access_token'];
-    this.expiresAt = Date.now() + response.data['expires_in'];
+    this.accessToken = response.result['access_token'];
+    this.expiresAt = Date.now() + response.result['expires_in'];
   }
 }
 

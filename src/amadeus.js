@@ -1,4 +1,6 @@
 import Client        from './amadeus/client';
+import pager         from './amadeus/client/pagination';
+
 import ReferenceData from './amadeus/namespaces/reference_data';
 import Shopping      from './amadeus/namespaces/shopping';
 import Travel        from './amadeus/namespaces/travel';
@@ -50,6 +52,11 @@ class Amadeus {
     this.referenceData  = new ReferenceData(this.client);
     this.shopping       = new Shopping(this.client);
     this.travel         = new Travel(this.client);
+
+    this.previous = pager(this.client, 'previous');
+    this.next     = pager(this.client, 'next');
+    this.first    = pager(this.client, 'first');
+    this.last     = pager(this.client, 'last');
   }
 }
 

@@ -144,13 +144,14 @@ amadeus.referenceData.locations.get({
   keyword: 'LON',
   subType: 'AIRPORT,CITY'
 }).then(function(response){
-  return response.next();
+  console.log(response.data); // first page
+  return amadeus.next(response);
 }).then(function(nextReponse){
-  // etc
+  console.log(nextReponse.data); // second page
 });
 ```
 
-If a page is not available, the response will return `null`.
+If a page is not available, the response will resolve to `null`.
 
 ## Logging & Debugging
 

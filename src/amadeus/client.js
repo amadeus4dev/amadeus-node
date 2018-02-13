@@ -55,9 +55,7 @@ class Client {
    * @return {Promise.<Response,ResponseError>} a Promise
    */
   get(path, params = {}) {
-    return this.accessToken.bearerToken(this).then((bearerToken) => {
-      return this.call('GET', path, params, bearerToken);
-    });
+    return this.call('GET', path, params);
   }
 
   /**
@@ -71,25 +69,27 @@ class Client {
    * @return {Promise.<Response,ResponseError>} a Promise
    */
   post(path, params = {}) {
-    return this.accessToken.bearerToken(this).then((bearerToken) => {
-      return this.call('POST', path, params, bearerToken);
-    });
+    return this.call('POST', path, params);
   }
 
   // PROTECTED
 
   /**
-   * Make an unauthenticated POST API call.
+   * Make an authenticated API call.
    *
-   * This call is used to get an AccessToken for making authenticated calls.
-   *
+   * ```js
+   * amadeus.client.call('GET', '/v2/foo/bar', { some: 'data' });
+   * ```
+   * @param {string} verb the HTTP method, for example `GET` or `POST`
    * @param {string} path the full path of the API endpoint
-   * @param {Object} [params={}] the query string parameters
+   * @param {Object} [params={}] the POST parameters
    * @return {Promise.<Response,ResponseError>} a Promise
    * @protected
    */
-  unauthenticatedPost(path, params = {}) {
-    return this.call('POST', path, params);
+  call(verb, path, params = {}) {
+    return this.accessToken.bearerToken(this).then((bearerToken) => {
+      return this.unauthenticatedCall(verb, path, params, bearerToken);
+    });
   }
 
   // PRIVATE
@@ -97,7 +97,7 @@ class Client {
   /**
    * Make any kind of API call.
    *
-   * Used by the .get, .post, and .unauthenticated methods to make API calls.
+   * Used by the .get, .post methods to make API calls.
    *
    * Sets up a new Promise and then excutes the API call, triggering the Promise
    * to be called when the API call fails or succeeds.
@@ -110,7 +110,7 @@ class Client {
    * @return {Promise.<Response,ResponseError>} a Promise
    * @private
    */
-  call(verb, path, params, bearerToken = null) {
+  unauthenticatedCall(verb, path, params, bearerToken = null) {
     let request = this.buildRequest(verb, path, params, bearerToken);
     let emitter = new EventEmitter();
     let promise = this.buildPromise(emitter);
