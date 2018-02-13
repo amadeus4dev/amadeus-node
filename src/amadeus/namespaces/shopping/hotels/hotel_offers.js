@@ -1,6 +1,6 @@
 /**
  * A namespaced client for the
- * `/v1/shopping/hotel-offers` endpoints
+ * `/v1/shopping/hotels/:hotel_id/hotel-offers` endpoints
  *
  * Access via the {@link Amadeus} object
  *
@@ -12,7 +12,7 @@
  * @param {Client} client
  * @param {number} hotelId
  */
-class HotelOffers {
+class HotelHotelOffers {
   constructor(client, hotelId) {
     this.client  = client;
     this.hotelId = hotelId;
@@ -35,4 +35,4 @@ class HotelOffers {
   }
 }
 
-export default HotelOffers;
+export default HotelHotelOffers;

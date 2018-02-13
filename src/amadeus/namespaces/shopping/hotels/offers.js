@@ -1,6 +1,6 @@
 /**
  * A namespaced client for the
- * `/v1/shopping/hotel-offers` endpoints
+ * `/v1/shopping/hotel:hotel_id/offers/:offer_id` endpoints
  *
  * Access via the {@link Amadeus} object
  *

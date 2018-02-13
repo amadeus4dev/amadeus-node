@@ -3,7 +3,7 @@ import HotelsOffers from './hotels/hotel_offers';
 
 /**
  * A namespaced client for the
- * `/v1/shopping/hotels` endpoints
+ * `/v1/shopping/hotels/:hotel_id` endpoints
  *
  * Access via the {@link Amadeus} object
  *
