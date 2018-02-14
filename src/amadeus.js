@@ -142,4 +142,23 @@ class Amadeus {
   last(response)     { return this.pagination.page('last', response); }
 }
 
+
+/**
+ * A handy list of location types, to be used in the locations API:
+ *
+ * ```js
+ * amadeus.referenceData.location.get({
+ *   keyword: 'lon',
+ *   subType: Amadeus.location.any
+ * });
+ * ```
+ *
+ * Currently available are the types `.airport`, `.city`, and `.any`
+ */
+Amadeus.location = {
+  airport: 'AIRPORT',
+  city: 'CITY',
+  any: 'AIRPORT,CITY'
+};
+
 export default Amadeus;

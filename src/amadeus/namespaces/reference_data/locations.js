@@ -34,7 +34,7 @@ class Locations {
    * ```js
    * amadeus.referenceData.location.get({
    *   keyword: 'lon',
-   *   subType: 'AIRPORT,CITY'
+   *   subType: Amadeus.location.any
    * });
    * ```
    */
