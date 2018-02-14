@@ -154,7 +154,7 @@ class Client {
       params: params,
       bearerToken: bearerToken,
       clientVersion: this.version,
-      nodeVersion: process.version,
+      languageVersion: process.version,
       appId: this.customAppId,
       appVersion: this.customAppVersion
     });

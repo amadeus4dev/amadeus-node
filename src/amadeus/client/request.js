@@ -11,7 +11,7 @@ import qs from 'qs';
  * @property {string} queryPath the path and query string used for the API call
  * @property {string} bearerToken the authentication token
  * @property {string} clientVersion the version of the Amadeus library
- * @property {string} nodeVersion the version of Node used
+ * @property {string} languageVersion the version of Node used
  * @property {string} appId the custom ID of the application using this library
  * @property {string} appVersion the custom version of the application
  *  using this library
@@ -21,18 +21,18 @@ import qs from 'qs';
  */
 class Request {
   constructor(options) {
-    this.host           = options.host;
-    this.port           = 443;
-    this.verb           = options.verb;
-    this.path           = options.path;
-    this.params         = options.params;
-    this.queryPath      = this.fullQueryPath();
-    this.bearerToken    = options.bearerToken;
-    this.clientVersion  = options.clientVersion;
-    this.nodeVersion    = options.nodeVersion;
-    this.appId          = options.appId;
-    this.appVersion     = options.appVersion;
-    this.headers        = {
+    this.host            = options.host;
+    this.port            = 443;
+    this.verb            = options.verb;
+    this.path            = options.path;
+    this.params          = options.params;
+    this.queryPath       = this.fullQueryPath();
+    this.bearerToken     = options.bearerToken;
+    this.clientVersion   = options.clientVersion;
+    this.languageVersion = options.languageVersion;
+    this.appId           = options.appId;
+    this.appVersion      = options.appVersion;
+    this.headers         = {
       'User-Agent' : this.userAgent(),
       'Accept' : 'application/json'
     };
@@ -83,7 +83,7 @@ class Request {
    * @private
    */
   userAgent() {
-    let userAgent = `amadeus-node/${this.clientVersion} node/${this.nodeVersion}`;
+    let userAgent = `amadeus-node/${this.clientVersion} node/${this.languageVersion}`;
     if (!this.appId) { return userAgent; }
     return `${userAgent} ${this.appId}/${this.appVersion}`;
   }

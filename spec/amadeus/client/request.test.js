@@ -6,7 +6,7 @@ let path = '/foo/bar';
 let params = { foo: 'bar' };
 let bearerToken = 'token';
 let clientVersion = '1.2.3';
-let nodeVersion = '2.3.4';
+let languageVersion = '2.3.4';
 let appId = 'amadeus-cli';
 let appVersion = '3.4.5';
 
@@ -26,7 +26,7 @@ describe('Request', () => {
         params: params,
         bearerToken: bearerToken,
         clientVersion: clientVersion,
-        nodeVersion: nodeVersion,
+        languageVersion: languageVersion,
         appId: appId,
         appVersion: appVersion
       });
@@ -39,7 +39,7 @@ describe('Request', () => {
       expect(request.queryPath).toBe('/foo/bar?foo=bar');
       expect(request.bearerToken).toBe(bearerToken);
       expect(request.clientVersion).toBe(clientVersion);
-      expect(request.nodeVersion).toBe(nodeVersion);
+      expect(request.languageVersion).toBe(languageVersion);
       expect(request.appId).toBe(appId);
       expect(request.appVersion).toBe(appVersion);
       expect(request.headers).toEqual({
