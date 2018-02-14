@@ -9,6 +9,7 @@ const RECOGNIZED_OPTIONS = [
   'clientId',
   'clientSecret',
   'logger',
+  'debug',
   'hostname',
   'customAppId',
   'customAppVersion',
@@ -48,6 +49,7 @@ class Validator {
 
   initializeLogger(client, options) {
     client.logger = this.initOptional('logger', options, console);
+    client.debug  = this.initOptional('debug', options, false);
   }
 
   initializeHost(client, options) {

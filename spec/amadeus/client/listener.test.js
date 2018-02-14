@@ -5,6 +5,7 @@ import EventEmitter     from 'events';
 let handler;
 let request;
 let emitter;
+let client;
 
 describe('Listener', () => {
   it('should exports the module', () => {
@@ -15,7 +16,10 @@ describe('Listener', () => {
     beforeEach(() => {
       emitter = new EventEmitter();
       request = 'request';
-      handler = new Listener(request, emitter);
+      client  = {
+        debug: false
+      };
+      handler = new Listener(request, emitter, client);
     });
 
     it('should initialize the params', () => {

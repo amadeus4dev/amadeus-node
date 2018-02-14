@@ -39,6 +39,7 @@ describe('Client', () => {
       expect(client.customAppId).toBe(null);
       expect(client.customAppVersion).toBe(null);
       expect(client.http).toBe(https);
+      expect(client.debug).toBe(false);
     });
 
     it('should allow for setting a custom logger', () => {
@@ -46,6 +47,12 @@ describe('Client', () => {
       let options = { 'clientId' : '123', 'clientSecret' : '234', 'logger' : logger };
       let client = new Client(options);
       expect(client.logger).toBe(logger);
+    });
+
+    it('should allow for setting debug mode', () => {
+      let options = { 'clientId' : '123', 'clientSecret' : '234', 'debug' : true };
+      let client = new Client(options);
+      expect(client.debug).toBe(true);
     });
 
     it('should allow for setting a different hostname', () => {

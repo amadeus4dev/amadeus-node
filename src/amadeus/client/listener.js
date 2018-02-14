@@ -17,12 +17,14 @@ import {
  *
  * @param {Request} request the request object used to make the call
  * @param {EventEmitter} emitter a Node event emitter
+ * @param {Client} client the client instance to log results to
  * @protected
  */
 class Listener {
-  constructor(request, emitter) {
+  constructor(request, emitter, client) {
     this.request = request;
     this.emitter = emitter;
+    this.client  = client;
   }
 
   // PROTECTED
@@ -72,6 +74,7 @@ class Listener {
   onEnd(response) {
     return () => {
       response.parse();
+      this.log(response);
       if (response.success()) { this.onSuccess(response); }
       else { this.onFail(response);  }
     };
@@ -122,9 +125,21 @@ class Listener {
   onNetworkError(response) {
     return () => {
       response.parse();
+      this.log(response);
       let error = new NetworkError(response);
       this.emitter.emit('reject', error);
     };
+  }
+
+  /**
+   * Logs the response, when in debug mode
+   *
+   * @param  {Response} response the response object to log
+   * @private
+   */
+  log(response) {
+    /* istanbul ignore next */
+    if (this.client.debug) { this.client.logger.warn(response); }
   }
 }
 

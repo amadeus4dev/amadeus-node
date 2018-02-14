@@ -40,6 +40,7 @@ import Travel        from './amadeus/namespaces/travel';
  * be passed in the User Agent to the server.
  * @param {Object} [params.http=https] an optional Node/HTTPS-compatible client
  *  that accepts a 'request()' call with an array of options.
+ * @param {boolean} [params.debug=false] if this client is running in debug mode
  *
  * @property {Client} client The client for making authenticated HTTP calls
  * @property {number} version The version of this API client

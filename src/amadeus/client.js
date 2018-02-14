@@ -35,6 +35,7 @@ import pkg         from '../../package.json';
  *  passed in the User Agent to the server
  * @property {Object} http the Node/HTTPS-compatible client used to make
  *  requests
+ * @property {boolean} debug if this client is running in debug mode
  * @property {number} version The version of this API client
  */
 class Client {
@@ -112,6 +113,7 @@ class Client {
    */
   unauthenticatedRequest(verb, path, params, bearerToken = null) {
     let request = this.buildRequest(verb, path, params, bearerToken);
+    this.log(request);
     let emitter = new EventEmitter();
     let promise = this.buildPromise(emitter);
 
@@ -128,7 +130,7 @@ class Client {
    */
   execute(request, emitter) {
     let http_request = this.http.request(request.options());
-    let listener = new Listener(request, emitter);
+    let listener = new Listener(request, emitter, this);
     http_request.on('response', listener.onResponse.bind(listener));
     http_request.on('error',    listener.onError.bind(listener));
     http_request.write(request.body());
@@ -172,6 +174,18 @@ class Client {
       emitter.on('resolve', response => resolve(response));
       emitter.on('reject', error => reject(error));
     });
+  }
+
+
+  /**
+   * Logs the request, when in debug mode
+   *
+   * @param  {Request} request the request object to log
+   * @private
+   */
+  log(request) {
+    /* istanbul ignore next */
+    if(this.debug) { this.logger.warn(request); }
   }
 }
 
