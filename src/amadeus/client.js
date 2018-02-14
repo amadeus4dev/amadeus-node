@@ -55,7 +55,7 @@ class Client {
    * @return {Promise.<Response,ResponseError>} a Promise
    */
   get(path, params = {}) {
-    return this.call('GET', path, params);
+    return this.request('GET', path, params);
   }
 
   /**
@@ -69,7 +69,7 @@ class Client {
    * @return {Promise.<Response,ResponseError>} a Promise
    */
   post(path, params = {}) {
-    return this.call('POST', path, params);
+    return this.request('POST', path, params);
   }
 
   // PROTECTED
@@ -86,16 +86,16 @@ class Client {
    * @return {Promise.<Response,ResponseError>} a Promise
    * @protected
    */
-  call(verb, path, params = {}) {
+  request(verb, path, params = {}) {
     return this.accessToken.bearerToken(this).then((bearerToken) => {
-      return this.unauthenticatedCall(verb, path, params, bearerToken);
+      return this.unauthenticatedRequest(verb, path, params, bearerToken);
     });
   }
 
   // PRIVATE
 
   /**
-   * Make any kind of API call.
+   * Make any kind of API call, authenticated or not
    *
    * Used by the .get, .post methods to make API calls.
    *
@@ -110,7 +110,7 @@ class Client {
    * @return {Promise.<Response,ResponseError>} a Promise
    * @private
    */
-  unauthenticatedCall(verb, path, params, bearerToken = null) {
+  unauthenticatedRequest(verb, path, params, bearerToken = null) {
     let request = this.buildRequest(verb, path, params, bearerToken);
     let emitter = new EventEmitter();
     let promise = this.buildPromise(emitter);

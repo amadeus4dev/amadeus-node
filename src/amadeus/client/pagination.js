@@ -46,7 +46,7 @@ class Pagination {
     params['page'] = params['page'] || {};
     params['page']['offset'] = pageNumber;
 
-    return this.client.call(
+    return this.client.request(
       request.verb,
       request.path,
       params

@@ -30,9 +30,9 @@ describe('Pagination', () => {
           }
         };
 
-        client.call = jest.fn();
+        client.request = jest.fn();
         pagination.page('next', response);
-        expect(client.call).toHaveBeenCalledWith('GET', '/foo/bar', { page: { offset: '2' } });
+        expect(client.request).toHaveBeenCalledWith('GET', '/foo/bar', { page: { offset: '2' } });
       });
 
       it('should resolve to null if no pagination headers were found', () => {

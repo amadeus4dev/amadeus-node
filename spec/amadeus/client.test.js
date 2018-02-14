@@ -71,7 +71,7 @@ describe('Client', () => {
     describe('.get', () => {
       it('should create a new request and call it', () => {
         // mock the Client.call() method
-        let call = client.unauthenticatedCall = jest.fn();
+        let call = client.unauthenticatedRequest = jest.fn();
         // replace the AccessToken instance to mock a new Bearer Token
         client.accessToken = { bearerToken: () => {
           return { then: resolve => resolve('token') };
@@ -83,7 +83,7 @@ describe('Client', () => {
       });
 
       it('should work without params', () => {
-        let call = client.unauthenticatedCall = jest.fn();
+        let call = client.unauthenticatedRequest = jest.fn();
         client.accessToken = { bearerToken: () => {
           return { then: resolve => resolve('token') };
         }};
@@ -95,7 +95,7 @@ describe('Client', () => {
     describe('.post', () => {
       it('should create a new request and call it', () => {
         // mock the Client.call() method
-        let call = client.unauthenticatedCall = jest.fn();
+        let call = client.unauthenticatedRequest = jest.fn();
         // replace the AccessToken instance to mock a new Bearer Token
         client.accessToken = { bearerToken: () => {
           return { then: resolve => resolve('token') };
@@ -107,7 +107,7 @@ describe('Client', () => {
       });
 
       it('should work without params', () => {
-        let call = client.unauthenticatedCall = jest.fn();
+        let call = client.unauthenticatedRequest = jest.fn();
         client.accessToken = { bearerToken: () => {
           return { then: resolve => resolve('token') };
         }};
@@ -116,14 +116,14 @@ describe('Client', () => {
       });
     });
 
-    describe('.call', () => {
+    describe('.unauthenticatedRequest', () => {
       it('should create a new request and call it', () => {
         client.accessToken.bearerToken = jest.fn(() => Promise.resolve('data'));
         client.execute = jest.fn();
         let request = jest.mock();
         client.buildRequest = jest.fn(() => { return request; });
         client.buildPromise = jest.fn();
-        client.unauthenticatedCall(verb, path, params);
+        client.unauthenticatedRequest(verb, path, params);
         expect(client.buildPromise).toHaveBeenCalledWith(expect.any(EventEmitter));
         expect(client.buildRequest).toHaveBeenCalledWith(verb, path, params, null);
         expect(client.execute).toHaveBeenCalledWith(request, expect.any(EventEmitter));

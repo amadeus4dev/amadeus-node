@@ -87,7 +87,7 @@ class AccessToken {
    * @private
    */
   loadAccessToken(client, emitter) {
-    client.unauthenticatedCall('POST', '/v1/security/oauth2/token', {
+    client.unauthenticatedRequest('POST', '/v1/security/oauth2/token', {
       'grant_type' : 'client_credentials',
       'client_id' : client.clientId,
       'client_secret' : client.clientSecret
