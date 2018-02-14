@@ -33,32 +33,5 @@ describe('Errors', () => {
       expect(new NetworkError(response).code).toBe('NetworkError');
       expect(new AuthenticationError(response).code).toBe('AuthenticationError');
     });
-
-    it('should extract a detail descriptions', () => {
-      let response = new Response({});
-      response.parsed = true;
-      response.data = { errors: [{ detail: 'detail' }] };
-      expect(new ServerError(response).description).toBe('detail');
-    });
-
-    it('should extract a error_descriptions', () => {
-      let response = new Response({});
-      response.parsed = true;
-      response.data = { error_description: 'error_description' };
-      expect(new ServerError(response).description).toBe('error_description');
-    });
-
-    it('should have no description when there the data does not have the right data', () => {
-      let response = new Response({});
-      response.parsed = true;
-      response.data = {};
-      expect(new ServerError(response).description).toBeUndefined();
-    });
-
-    it('should have no description when there is no data', () => {
-      let response = new Response({});
-      response.parsed = false;
-      expect(new ServerError(response).description).toBeUndefined();
-    });
   });
 });

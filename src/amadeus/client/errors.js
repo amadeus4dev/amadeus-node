@@ -9,7 +9,6 @@
  * @property {string} code a unique code for this type of error. Options include
  *  `NetworkError`, `ParserError`, `ResponseError`, `ServerError`,
  *  `AuthenticationError`, `NotFoundError` and `UnknownError`
- * @property {string} description a short description of the error, extracted
  *  from the  {@link Response}'s parsed data
  */
 export class ResponseError extends Error {
@@ -17,10 +16,6 @@ export class ResponseError extends Error {
     super();
     Error.captureStackTrace(this, ResponseError);
     this.response = response;
-
-    if (!response.parsed || !response.data) { return; }
-    if (response.data.errors) { this.description = response.data.errors[0].detail; }
-    if (response.data.error_description) { this.description = response.data.error_description; }
   }
 }
 

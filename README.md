@@ -37,9 +37,10 @@ amadeus.referenceData.urls.checkinLinks.get({
   //=> https://www.onex.com/manage/check-in
 }).catch(function(responseError){
   console.log(responseError.code);
-  //=> AuthenticationError
 });
 ```
+
+__Next__: [Learn more about checkin links](https://developer.amadeus.com/docs/node/get_started/checkin_links) with our Node SDK.
 
 ## Initialization
 
