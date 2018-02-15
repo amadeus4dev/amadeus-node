@@ -174,6 +174,7 @@ var amadeus = new Amadeus({
   clientSecret: '...',
   debug: true
 });
+```
 
 ## License
 
