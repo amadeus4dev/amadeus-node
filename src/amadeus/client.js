@@ -1,5 +1,6 @@
 import EventEmitter from 'events';
 import Promise      from 'bluebird';
+import util         from 'util';
 
 import AccessToken from './client/access_token';
 import Listener    from './client/listener';
@@ -29,11 +30,13 @@ import pkg         from '../../package.json';
  *  the API
  * @property {Object} logger the `console`-compatible logger used to debug calls
  * @property {string} host the hostname of the server API calls are made to
+ * @property {number} port the port the server API calls are made to
+ * @property {boolean} ssl wether an SSL request is made to the server
  * @property {string} customAppId the custom App ID to be passed in the User
  *  Agent to the server
  * @property {string} customAppVersion the custom App Version number to be
  *  passed in the User Agent to the server
- * @property {Object} http the Node/HTTPS-compatible client used to make
+ * @property {Object} http the Node/HTTP(S)-compatible client used to make
  *  requests
  * @property {boolean} debug if this client is running in debug mode
  * @property {number} version The version of this API client
@@ -158,7 +161,9 @@ class Client {
       clientVersion: this.version,
       languageVersion: process.version,
       appId: this.customAppId,
-      appVersion: this.customAppVersion
+      appVersion: this.customAppVersion,
+      port: this.port,
+      ssl: this.ssl
     });
   }
 
@@ -185,7 +190,7 @@ class Client {
    */
   log(request) {
     /* istanbul ignore next */
-    if(this.debug) { this.logger.warn(request); }
+    if(this.debug) { this.logger.warn(util.inspect(request, false, null)); }
   }
 }
 

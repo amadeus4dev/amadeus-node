@@ -5,6 +5,8 @@ import qs from 'qs';
  *
  * @property {string} host the host used for this API call
  * @property {number} port the port for this API call. Standard set to 443.
+ * @property {boolean} ssl wether this API call uses SSL
+ * @property {string} scheme the scheme inferred from the SSL state
  * @property {string} verb the HTTP method, for example `GET` or `POST`
  * @property {string} path the full path of the API endpoint
  * @property {Object} params the parameters to pass in the query or body
@@ -22,20 +24,24 @@ import qs from 'qs';
 class Request {
   constructor(options) {
     this.host            = options.host;
-    this.port            = 443;
+    this.port            = options.port;
+    this.ssl             = options.ssl;
+    this.scheme          = this.ssl ? 'https' : 'http';
     this.verb            = options.verb;
     this.path            = options.path;
     this.params          = options.params;
     this.queryPath       = this.fullQueryPath();
     this.bearerToken     = options.bearerToken;
     this.clientVersion   = options.clientVersion;
-    this.languageVersion = options.languageVersion;
+    this.languageVersion = options.languageVersion.replace('v', '');
     this.appId           = options.appId;
     this.appVersion      = options.appVersion;
     this.headers         = {
       'User-Agent' : this.userAgent(),
       'Accept' : 'application/json'
     };
+    this.addAuthorizationHeader();
+    this.addContentTypeHeader();
   }
 
   // PROTECTED
@@ -53,13 +59,11 @@ class Request {
     let options = {
       'host' : this.host,
       'port' : this.port,
+      'protocol' : `${this.scheme}:`,
       'path' : this.queryPath,
       'method' : this.verb,
       'headers' : this.headers
     };
-
-    this.addAuthorizationHeader(options);
-    this.addContentTypeHeader(options);
     return options;
   }
 
@@ -103,23 +107,21 @@ class Request {
   /**
    * Adds an Authorization header if the BearerToken is present
    *
-   * @param  {Object} options an associative array to add the header to
    * @private
    */
-  addAuthorizationHeader(options) {
+  addAuthorizationHeader() {
     if (!this.bearerToken) { return; }
-    options['headers']['Authorization'] = `Bearer ${this.bearerToken}`;
+    this.headers['Authorization'] = `Bearer ${this.bearerToken}`;
   }
 
   /**
    * Adds an Content-Type header if the HTTP method equals POST
    *
-   * @param  {Object} options an associative array to add the header to
    * @private
    */
-  addContentTypeHeader(options) {
+  addContentTypeHeader() {
     if (this.verb !== 'POST') { return; }
-    options['headers']['Content-Type'] = 'application/x-www-form-urlencoded';
+    this.headers['Content-Type'] = 'application/x-www-form-urlencoded';
   }
 }
 

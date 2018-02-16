@@ -11,10 +11,8 @@
  *  `AuthenticationError`, `NotFoundError` and `UnknownError`
  *  from the  {@link Response}'s parsed data
  */
-export class ResponseError extends Error {
+export class ResponseError {
   constructor(response) {
-    super();
-    Error.captureStackTrace(this, ResponseError);
     this.response = response;
   }
 }

@@ -27,6 +27,9 @@ module.exports = {
     ],
     "no-console": [
       "warn"
+    ],
+    "no-trailing-spaces": [
+      "error"
     ]
   }
 };

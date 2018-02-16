@@ -1,4 +1,5 @@
 import https     from 'https';
+import http      from 'http';
 
 const HOSTS = {
   'test'       : 'test.api.amadeus.com',
@@ -11,9 +12,12 @@ const RECOGNIZED_OPTIONS = [
   'logger',
   'debug',
   'hostname',
+  'host',
   'customAppId',
   'customAppVersion',
-  'http'
+  'http',
+  'ssl',
+  'port'
 ];
 
 /**
@@ -55,6 +59,8 @@ class Validator {
   initializeHost(client, options) {
     let hostname = this.initOptional('hostname', options, 'test');
     client.host = this.initOptional('host', options, HOSTS[hostname]);
+    client.port = this.initOptional('port', options, 443);
+    client.ssl  = this.initOptional('ssl', options, true);
   }
 
   initializeCustomApp(client, options) {
@@ -63,7 +69,8 @@ class Validator {
   }
 
   initializeHttp(client, options) {
-    client.http = this.initOptional('http', options, https);
+    let network = client.ssl ? https : http;
+    client.http = this.initOptional('http', options, network);
   }
 
   initRequired(key, options) {
@@ -73,10 +80,12 @@ class Validator {
   }
 
   initOptional(key, options, fallback = null) {
-    return options[key] ||
-          options[key.to_s] ||
-          process.env[`AMADEUS_${key.toUpperCase()}`] ||
-          fallback;
+    let value = options[key];
+    let envKey = `AMADEUS_${key.toUpperCase()}`;
+    if (value == undefined) { value = options[key]; }
+    if (value == undefined) { value = process.env[envKey]; }
+    if (value == undefined) { value = fallback; }
+    return value;
   }
 
   warnOnUnrecognizedOptions(options, logger, recognizedOptions) {

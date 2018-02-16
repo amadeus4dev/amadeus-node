@@ -33,12 +33,16 @@ import Travel        from './amadeus/namespaces/travel';
  * @param {Object} [params.logger=console] a `console`-compatible logger that
  *  accepts `log`, `error` and `debug` calls.
  * @param {string} [params.hostname='production'] the name of the server API
- * calls are made to (`production` or `test`)
+ *  calls are made to (`production` or `test`)
+ * @param {string} [params.host] the full domain or IP for a server to make the
+ *  API clal to. Only use this if you don't want to use the provided servers
+ * @param {boolean} [params.ssl=true] wether to use SSL for this API call
+ * @param {number} [params.port=443] the port to make the API call to
  * @param {string} [params.customAppId=null] a custom App ID to be passed in
  * the User Agent to the server.
  * @param {string} [params.customAppVersion=null] a custom App Version number to
  * be passed in the User Agent to the server.
- * @param {Object} [params.http=https] an optional Node/HTTPS-compatible client
+ * @param {Object} [params.http=https] an optional Node/HTTP(S)-compatible client
  *  that accepts a 'request()' call with an array of options.
  * @param {boolean} [params.debug=false] if this client is running in debug mode
  *

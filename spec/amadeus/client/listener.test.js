@@ -1,6 +1,7 @@
-import Listener         from '../../../src/amadeus/client/listener';
-import Response         from '../../../src/amadeus/client/response';
-import EventEmitter     from 'events';
+import Listener          from '../../../src/amadeus/client/listener';
+import Response          from '../../../src/amadeus/client/response';
+import { ResponseError } from '../../../src/amadeus/client/errors';
+import EventEmitter      from 'events';
 
 let handler;
 let request;
@@ -136,7 +137,7 @@ describe('Listener', () => {
 
         handler.onNetworkError(response)();
         expect(response.parse).toHaveBeenCalled();
-        expect(handler.emitter.emit).toHaveBeenCalledWith('reject', expect.any(Error));
+        expect(handler.emitter.emit).toHaveBeenCalledWith('reject', expect.any(ResponseError));
       });
     });
   });
