@@ -39,7 +39,7 @@ describe('Client', () => {
       expect(client.customAppId).toBe(null);
       expect(client.customAppVersion).toBe(null);
       expect(client.http).toBe(https);
-      expect(client.debug).toBe(false);
+      expect(client.logLevel).toBe('warn');
     });
 
     it('should allow for setting a custom logger', () => {
@@ -50,9 +50,9 @@ describe('Client', () => {
     });
 
     it('should allow for setting debug mode', () => {
-      let options = { 'clientId' : '123', 'clientSecret' : '234', 'debug' : true };
+      let options = { 'clientId' : '123', 'clientSecret' : '234', 'logLevel' : 'debug' };
       let client = new Client(options);
-      expect(client.debug).toBe(true);
+      expect(client.logLevel).toBe('debug');
     });
 
     it('should allow for setting a different hostname', () => {
@@ -190,6 +190,35 @@ describe('Client', () => {
 
         emitter.emit('reject', 'error');
         expect(promise).rejects.toBe('error');
+      });
+    });
+
+    describe('.debug', () => {
+      it('should be true if the log level is debug', () => {
+        client.logLevel = 'debug';
+        expect(client.debug()).toBeTruthy();
+      });
+
+      it('should be false if the log level is not debug', () => {
+        client.logLevel = 'warn';
+        expect(client.debug()).toBeFalsy();
+      });
+    });
+
+    describe('.warn', () => {
+      it('should be true if the log level is debug', () => {
+        client.logLevel = 'debug';
+        expect(client.warn()).toBeTruthy();
+      });
+
+      it('should be true if the log level is warn', () => {
+        client.logLevel = 'warn';
+        expect(client.warn()).toBeTruthy();
+      });
+
+      it('should be false if the log level is not debug or warn', () => {
+        client.logLevel = 'silent';
+        expect(client.warn()).toBeFalsy();
       });
     });
   });

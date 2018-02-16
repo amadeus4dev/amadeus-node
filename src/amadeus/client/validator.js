@@ -10,7 +10,7 @@ const RECOGNIZED_OPTIONS = [
   'clientId',
   'clientSecret',
   'logger',
-  'debug',
+  'logLevel',
   'hostname',
   'host',
   'customAppId',
@@ -41,7 +41,7 @@ class Validator {
     this.initializeCustomApp(client, options);
     this.initializeHttp(client, options);
 
-    this.warnOnUnrecognizedOptions(options, client.logger, RECOGNIZED_OPTIONS);
+    this.warnOnUnrecognizedOptions(options, client, RECOGNIZED_OPTIONS);
   }
 
   // PRIVATE
@@ -52,15 +52,15 @@ class Validator {
   }
 
   initializeLogger(client, options) {
-    client.logger = this.initOptional('logger', options, console);
-    client.debug  = this.initOptional('debug', options, false);
+    client.logger    = this.initOptional('logger', options, console);
+    client.logLevel = this.initOptional('logLevel', options, 'warn');
   }
 
   initializeHost(client, options) {
     let hostname = this.initOptional('hostname', options, 'test');
-    client.host = this.initOptional('host', options, HOSTS[hostname]);
-    client.port = this.initOptional('port', options, 443);
-    client.ssl  = this.initOptional('ssl', options, true);
+    client.host  = this.initOptional('host', options, HOSTS[hostname]);
+    client.port  = this.initOptional('port', options, 443);
+    client.ssl   = this.initOptional('ssl', options, true);
   }
 
   initializeCustomApp(client, options) {
@@ -88,10 +88,10 @@ class Validator {
     return value;
   }
 
-  warnOnUnrecognizedOptions(options, logger, recognizedOptions) {
+  warnOnUnrecognizedOptions(options, client, recognizedOptions) {
     Object.keys(options).forEach((key) => {
-      if (recognizedOptions.indexOf(key) === -1) {
-        logger.warn('amadeus/client/validator.js', `Unrecognized option: ${key}`);
+      if (recognizedOptions.indexOf(key) === -1 && client.warn()) {
+        client.logger.log(`Unrecognized option: ${key}`);
       }
     });
     return null;

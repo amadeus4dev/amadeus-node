@@ -43,19 +43,23 @@ describe('Validator', () => {
     it('should return null if all keys are recognised', () => {
       let options = { 'clientId' : '123' };
       let recognizedOptions = ['clientId'];
-      let warn = jest.fn();
-      let logger = { 'warn' : warn };
-      expect(validator.warnOnUnrecognizedOptions(options, logger, recognizedOptions)).toBe(null);
-      expect(warn).not.toHaveBeenCalled();
+      let client = {
+        'logger' : { 'log' : jest.fn() },
+        'warn' : () => { return true; }
+      };
+      expect(validator.warnOnUnrecognizedOptions(options, client, recognizedOptions)).toBe(null);
+      expect(client.logger.log).not.toHaveBeenCalled();
     });
 
     it('should log a warning if the key was not recognized', () => {
       let options = { 'clientId' : '123' };
       let recognizedOptions = [];
-      let warn = jest.fn();
-      let logger = { 'warn' : warn };
-      expect(validator.warnOnUnrecognizedOptions(options, logger, recognizedOptions)).toBe(null);
-      expect(warn).toHaveBeenCalledWith('amadeus/client/validator.js', 'Unrecognized option: clientId');
+      let client = {
+        'logger' : { 'log' : jest.fn() },
+        'warn' : () => { return true; }
+      };
+      expect(validator.warnOnUnrecognizedOptions(options, client, recognizedOptions)).toBe(null);
+      expect(client.logger.log).toHaveBeenCalledWith('Unrecognized option: clientId');
     });
   });
 });

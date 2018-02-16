@@ -33,5 +33,19 @@ describe('Errors', () => {
       expect(new NetworkError(response).code).toBe('NetworkError');
       expect(new AuthenticationError(response).code).toBe('AuthenticationError');
     });
+
+    it('should extract a description for multiple errors', () => {
+      let response = new Response({});
+      response.result = { errors: ['errors'] };
+      response.parsed = true;
+      expect(new ServerError(response).description).toEqual(['errors']);
+    });
+
+    it('should extract a description for multiple errors', () => {
+      let response = new Response({});
+      response.result = { 'errors_description' : 'exists' };
+      response.parsed = true;
+      expect(new ServerError(response).description).toEqual({ 'errors_description' : 'exists' });
+    });
   });
 });

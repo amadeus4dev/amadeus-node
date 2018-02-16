@@ -166,13 +166,13 @@ var amadeus = new Amadeus({
 });
 ```
 
-Additionally, to enable more verbose logging, you can set the appropriate level on your own logger, though the easiest way would be to enable debugging via a parameter on initialization, or using the `AMADEUS_DEBUG` environment variable.
+Additionally, to enable more verbose logging, you can set the appropriate level on your own logger, though the easiest way would be to enable debugging via a parameter on initialization, or using the `AMADEUS_LOG_LEVEL` environment variable. The available options are `warn` (default), `debug`, and `silent`.
 
 ```js
 var amadeus = new Amadeus({
   clientId: '...',
   clientSecret: '...',
-  debug: true
+  logLevel: 'debug'
 });
 ```
 

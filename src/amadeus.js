@@ -32,6 +32,8 @@ import Travel        from './amadeus/namespaces/travel';
  *  the API
  * @param {Object} [params.logger=console] a `console`-compatible logger that
  *  accepts `log`, `error` and `debug` calls.
+ * @param {string} [params.logLevel='warn'] the log level for the client,
+ *  available options are `debug`, `warn`, and `silent`
  * @param {string} [params.hostname='production'] the name of the server API
  *  calls are made to (`production` or `test`)
  * @param {string} [params.host] the full domain or IP for a server to make the
@@ -44,7 +46,6 @@ import Travel        from './amadeus/namespaces/travel';
  * be passed in the User Agent to the server.
  * @param {Object} [params.http=https] an optional Node/HTTP(S)-compatible client
  *  that accepts a 'request()' call with an array of options.
- * @param {boolean} [params.debug=false] if this client is running in debug mode
  *
  * @property {Client} client The client for making authenticated HTTP calls
  * @property {number} version The version of this API client

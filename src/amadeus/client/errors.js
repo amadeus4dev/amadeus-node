@@ -14,8 +14,24 @@
 export class ResponseError {
   constructor(response) {
     this.response = response;
+    this.determineDescription();
+  }
+
+  // PRIVATE
+
+  determineDescription() {
+    if (!this.response || !this.response.parsed) {
+      this.description = null;
+      return;
+    }
+    let result = this.response.result;
+    if (result && result.errors) { this.description = result.errors; }
+    else if (result) { this.description = result; }
+    return;
   }
 }
+
+
 
 // Protected
 

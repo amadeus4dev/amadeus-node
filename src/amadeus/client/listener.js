@@ -1,4 +1,5 @@
 import Response from './response';
+import util     from 'util';
 
 import {
   ServerError,
@@ -74,7 +75,6 @@ class Listener {
   onEnd(response) {
     return () => {
       response.parse();
-      this.log(response);
       if (response.success()) { this.onSuccess(response); }
       else { this.onFail(response);  }
     };
@@ -87,6 +87,7 @@ class Listener {
    * @param  {Response} response
    */
   onSuccess(response) {
+    this.log(response);
     this.emitter.emit('resolve', response);
   }
 
@@ -113,6 +114,7 @@ class Listener {
     }
 
     let error = new Error(response);
+    this.log(response, error);
     this.emitter.emit('reject', error);
   }
 
@@ -125,8 +127,8 @@ class Listener {
   onNetworkError(response) {
     return () => {
       response.parse();
-      this.log(response);
       let error = new NetworkError(response);
+      this.log(response, error);
       this.emitter.emit('reject', error);
     };
   }
@@ -137,9 +139,15 @@ class Listener {
    * @param  {Response} response the response object to log
    * @private
    */
-  log(response) {
-    /* istanbul ignore next */
-    if (this.client.debug) { this.client.logger.warn(response); }
+  log(response, error) {
+    if (this.client.debug()) {
+      /* istanbul ignore next */
+      this.client.logger.log(util.inspect(response, false, null));
+    }
+    if (!this.client.debug() && this.client.warn() && error) {
+      /* istanbul ignore next */
+      this.client.logger.log(error.code, error.description);
+    }
   }
 }
 

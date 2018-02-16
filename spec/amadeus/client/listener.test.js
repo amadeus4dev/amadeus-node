@@ -18,7 +18,8 @@ describe('Listener', () => {
       emitter = new EventEmitter();
       request = 'request';
       client  = {
-        debug: false
+        warn: () => { return false; },
+        debug: () => { return false; }
       };
       handler = new Listener(request, emitter, client);
     });

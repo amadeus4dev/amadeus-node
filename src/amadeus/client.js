@@ -29,6 +29,8 @@ import pkg         from '../../package.json';
  * @property {string} clientSecret the API secret used to authenticate
  *  the API
  * @property {Object} logger the `console`-compatible logger used to debug calls
+ * @property {string} logLevel the log level for the client, available options
+ *  are `debug`, `warn`, and `silent`
  * @property {string} host the hostname of the server API calls are made to
  * @property {number} port the port the server API calls are made to
  * @property {boolean} ssl wether an SSL request is made to the server
@@ -38,7 +40,6 @@ import pkg         from '../../package.json';
  *  passed in the User Agent to the server
  * @property {Object} http the Node/HTTP(S)-compatible client used to make
  *  requests
- * @property {boolean} debug if this client is running in debug mode
  * @property {number} version The version of this API client
  */
 class Client {
@@ -190,7 +191,25 @@ class Client {
    */
   log(request) {
     /* istanbul ignore next */
-    if(this.debug) { this.logger.warn(util.inspect(request, false, null)); }
+    if(this.debug()) { this.logger.log(util.inspect(request, false, null)); }
+  }
+
+  /**
+   * Determines if this client is in debug mode
+   *
+   * @return {boolean}
+   */
+  debug() {
+    return this.logLevel == 'debug';
+  }
+
+  /**
+   * Determines if this client is in warn or debug mode
+   *
+   * @return {boolean}
+   */
+  warn() {
+    return this.logLevel == 'warn' || this.debug();
   }
 }
 
