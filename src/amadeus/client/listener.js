@@ -146,7 +146,7 @@ class Listener {
     }
     if (!this.client.debug() && this.client.warn() && error) {
       /* istanbul ignore next */
-      this.client.logger.log(error.code, error.description);
+      this.client.logger.log('Amadeus', error.code, error.description);
     }
   }
 }
