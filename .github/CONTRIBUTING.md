@@ -43,6 +43,10 @@ You can then simply include it as if pulling the library from NPM.
 var Amadeus = require('amadeus');
 ```
 
+### Releasing
+
+To release, make sure to update the version number, submit all your changes, tag the release in Git, and run `npm publish`. This will be replaced in the future by a deploy through Travis CI.
+
 ## How to contribute to the Amadeus Node Client Library
 
 #### **Did you find a bug?**
