@@ -1,3 +1,48 @@
+## Development and Testing
+
+To run the project locally, clone the repository and install the dependencies.
+
+```
+git clone https://github.com/amadeusdev/amadeus-node.git
+cd amadeus-node
+npm install
+```
+
+### Running tests
+
+To run tests, simply run `npm test` or `npm run test:watch` to keep watching the source for changes and test accordingly.
+
+We are trying to keep 100% coverage, so keep an eye on the `coverage` folder for an overview of the coverage.
+
+### Building the source
+
+To build the source, run `npm run build` or `npm run build watch` to keep watching the source for changes and build accordingly.
+
+### Using a library locally
+
+To use a library locally as a dependency, simply import or require the `lib/amadeus.js`.
+
+```js
+var Amadeus = require('./lib/amadeus');
+```
+
+To install your local build into a different project using NPM, first install this library globally, then link it to a new project.
+
+```sh
+cd amadeus-node
+npm install
+npm install -g ./
+cd ../your-node-project
+npm link amadeus
+npm install
+```
+
+You can then simply include it as if pulling the library from NPM.
+
+```js
+var Amadeus = require('amadeus');
+```
+
 ## How to contribute to the Amadeus Node Client Library
 
 #### **Did you find a bug?**
@@ -25,14 +70,3 @@
 #### **Do you have questions about the source code?**
 
 * Ask any question about how to use the library by [raising a new issue](https://github.com/amadeusdev/amadeus-node/issues/new).
-
-#### **Do you want to contribute to the documentation?**
-
-Excellent, to get start developing this library ensure you have Node 2.2+ installed and clone the repository.
-
-Then, you should be able to run the tests.
-
-```sh
-bundle install # ensure all gems are installed
-bundle rake #run all tests
-```
