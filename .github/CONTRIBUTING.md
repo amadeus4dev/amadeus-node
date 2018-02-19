@@ -3,57 +3,43 @@
 To run the project locally, clone the repository and install the dependencies.
 
 ```
-git clone https://github.com/amadeusdev/amadeus-node.git
-cd amadeus-node
-npm install
+git clone https://github.com/amadeusdev/amadeus-ruby.git
+cd amadeus-ruby
+bundle
 ```
 
 ### Running tests
 
-To run tests, simply run `npm test` or `npm run test:watch` to keep watching the source for changes and test accordingly.
+To run tests, simply run `rake` or `guard` to keep watching the source for changes and test accordingly.
 
 We are trying to keep 100% coverage, so keep an eye on the `coverage` folder for an overview of the coverage.
 
-### Building the source
-
-To build the source, run `npm run build` or `npm run build watch` to keep watching the source for changes and build accordingly.
-
 ### Using a library locally
 
-To use a library locally as a dependency, simply import or require the `lib/amadeus.js`.
+To use a library locally as a dependency, simply link to this library in your project by path:
 
-```js
-var Amadeus = require('./lib/amadeus');
+```ruby
+gem 'amadeus', path: '../path/to/clone'
 ```
 
-To install your local build into a different project using NPM, first install this library globally, then link it to a new project.
+To install quickly get playing with your code we have added a console that automatically includes the gem into the gem path.
 
 ```sh
-cd amadeus-node
-npm install
-npm install -g ./
-cd ../your-node-project
-npm link amadeus
-npm install
-```
-
-You can then simply include it as if pulling the library from NPM.
-
-```js
-var Amadeus = require('amadeus');
+rake console
+> amadeus = Amadeus::Client.new
 ```
 
 ### Releasing
 
-To release, make sure to update the version number, submit all your changes, tag the release in Git, and run `npm publish`. This will be replaced in the future by a deploy through Travis CI.
+To release, make sure to update the version number, submit all your changes, and run `rake release`. This will be replaced in the future by a deploy through Travis CI.
 
-## How to contribute to the Amadeus Node Client Library
+## How to contribute to the Amadeus Ruby Gem
 
 #### **Did you find a bug?**
 
-* **Ensure the bug was not already reported** by searching on GitHub under [Issues](https://github.com/amadeusdev/amadeus-node/issues).
+* **Ensure the bug was not already reported** by searching on GitHub under [Issues](https://github.com/amadeusdev/amadeus-ruby/issues).
 
-* If you're unable to find an open issue addressing the problem, [open a new one](https://github.com/amadeusdev/amadeus-node/issues/new). Be sure to include a **title and clear description**, as much relevant information as possible, and a **code sample** or an **executable test case** demonstrating the expected behavior that is not occurring.
+* If you're unable to find an open issue addressing the problem, [open a new one](https://github.com/amadeusdev/amadeus-ruby/issues/new). Be sure to include a **title and clear description**, as much relevant information as possible, and a **code sample** or an **executable test case** demonstrating the expected behavior that is not occurring.
 
 #### **Did you write a patch that fixes a bug?**
 
@@ -63,7 +49,7 @@ To release, make sure to update the version number, submit all your changes, tag
 
 #### **Do you intend to add a new feature or change an existing one?**
 
-* Suggest your change [in a new issue](https://github.com/amadeusdev/amadeus-node/issues/new) and start writing code.
+* Suggest your change [in a new issue](https://github.com/amadeusdev/amadeus-ruby/issues/new) and start writing code.
 
 * Make sure your new code does not break any tests and include new tests.
 
@@ -73,4 +59,15 @@ To release, make sure to update the version number, submit all your changes, tag
 
 #### **Do you have questions about the source code?**
 
-* Ask any question about how to use the library by [raising a new issue](https://github.com/amadeusdev/amadeus-node/issues/new).
+* Ask any question about how to use the library by [raising a new issue](https://github.com/amadeusdev/amadeus-ruby/issues/new).
+
+#### **Do you want to contribute to the documentation?**
+
+Excellent, to get start developing this library ensure you have Ruby 2.2+ installed and clone the repository.
+
+Then, you should be able to run the tests.
+
+```sh
+bundle install # ensure all gems are installed
+guard # watches for changes and runs all tests and updates docs
+```
