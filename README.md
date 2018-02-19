@@ -178,7 +178,7 @@ var amadeus = new Amadeus({
 
 ## Development & Contributing
 
-Want to contribute? Read our [Contributors Guide](./github/CONTRIBUTING.md) for guidance on installing and running this code in a development environment.
+Want to contribute? Read our [Contributors Guide](.github/CONTRIBUTING.md) for guidance on installing and running this code in a development environment.
 
 ## License
 
