@@ -1,7 +1,7 @@
 # Amadeus Node SDK
 
 [![Module Version](https://badge.fury.io/js/amadeus.svg)](npmjs)
-[![Build Status](http://img.shields.io/travis/twilio/twilio-ruby.svg)][travis]
+[![Build Status](http://img.shields.io/travis/amadeus4dev/amadeus-node.svg)][travis]
 [![Maintainability](https://api.codeclimate.com/v1/badges/5accb4b8a41e4e3fd1da/maintainability)](https://codeclimate.com/github/amadeus4dev/amadeus-node/maintainability)
 [![Dependencies](.github/images/dependencies.svg)](npmjs)
 [![Contact Support](https://img.shields.io/badge/contact-support-blue.svg)][support]
@@ -191,5 +191,5 @@ This library is released under the [MIT License](LICENSE).
 Our [developer support team](https://developer.amadeus.com/developers) is here to help you. You can find us on [Twitter](#), [StackOverflow](#), and [email](#).
 
 [npmjs]: https://www.npmjs.com/package/amadeus
-[travis]: http://travis-ci.org/twilio/twilio-ruby
+[travis]: http://travis-ci.org/amadeus4dev/amadeus-node
 [support]: http://developer.amadeus.com/support
