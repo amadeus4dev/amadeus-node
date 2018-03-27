@@ -86,7 +86,7 @@ Amadeus has a large set of APIs, and our documentation is here to get you starte
 
 Alternatively, head over to our [Reference](https://developer.amadeus.com/docs/node/reference) documentation for in-depth information about every SDK method, it's arguments and return types.
 
-Additionally, this SDK has extensive documentation of itself available on [GitHub](https://workbetta.github.io/amadeus-node/).
+Additionally, this SDK has extensive documentation of itself available on [GitHub](https://amadeus4dev.github.io/amadeus-node/).
 
 ## Making API calls
 
