@@ -98,24 +98,33 @@ class Listener {
    * @param  {Response} response
    */
   onFail(response) {
-    let Error;
-    if (response.statusCode >= 500) {
-      Error = ServerError;
-    } else if (response.statusCode == 401) {
-      Error = AuthenticationError;
-    } else if (response.statusCode == 404) {
-      Error = NotFoundError;
-    } else if (response.statusCode >= 400) {
-      Error = ClientError;
-    } else if (!response.parsed) {
-      Error = ParserError;
-    } else {
-      Error = UnknownError;
-    }
-
+    let Error = this.errorFor(response);
     let error = new Error(response);
     this.log(response, error);
     this.emitter.emit('reject', error);
+  }
+
+
+  /**
+   * Find the right error for the given response.
+   *
+   * @param {Response} reponse
+   * @returns {ResponseError}
+   */
+  errorFor(response) {
+    if (response.statusCode >= 500) {
+      return ServerError;
+    } else if (response.statusCode == 401) {
+      return AuthenticationError;
+    } else if (response.statusCode == 404) {
+      return NotFoundError;
+    } else if (response.statusCode >= 400) {
+      return ClientError;
+    } else if (!response.parsed) {
+      return ParserError;
+    } else {
+      return UnknownError;
+    }
   }
 
   /**
