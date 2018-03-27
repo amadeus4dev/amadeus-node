@@ -112,12 +112,14 @@ class Listener {
    * @returns {ResponseError}
    */
   errorFor({statusCode, parsed}) {
-    return statusCode >= 500 ? ServerError
-      : statusCode == 401 ? AuthenticationError
-        : statusCode == 404 ? NotFoundError
-          : statusCode >= 400 ? ClientError
-            : !parsed ? ParserError
-              : UnknownError;
+    let error = null;
+    if (statusCode >= 500) { error = ServerError; }
+    else if (statusCode == 401) { error = AuthenticationError; }
+    else if (statusCode == 404) { error = NotFoundError; }
+    else if (statusCode >= 400) { error = ClientError; }
+    else if (!parsed) { error = ParserError; }
+    else { error = UnknownError; }
+    return error;
   }
 
   /**
