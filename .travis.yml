@@ -15,6 +15,7 @@ matrix:
   fast_finish: true
   allow_failures:
   - node_js: lts/*
+before_deploy: npm run docs
 deploy:
   - provider: pages
     local-dir: docs
