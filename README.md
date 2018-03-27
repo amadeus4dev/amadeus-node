@@ -15,7 +15,7 @@ For more details see the [Node documentation](https://developer.amadeus.com/docs
 This module has been tested using Node 6 and higher, though it should work with Node 4 and 5 as well. You can install install it using Yarn or NPM.
 
 ```sh
-npm install amadeus --save
+npm install amadeus@beta --save
 ```
 
 __Next__: [Get Started with the Node SDK.](https://developer.amadeus.com/docs/node/get_started/initialize)

@@ -25,9 +25,9 @@ deploy:
     on:
       branch: master
       node: 8.9.4
-#   provider: npm
-#   email: developer@amadeus.com
-#   api_key:
-#     secure: [insert npm api key]
-#   on:
-#     tags: true
+  - provider: npm
+    email: developer@amadeus.com
+    api_key: $NPM_API_KEY
+    tag: beta
+    on:
+      tags: true
