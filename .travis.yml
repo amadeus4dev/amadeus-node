@@ -3,10 +3,10 @@ cache:
   directories:
     - "node_modules"
 node_js:
-  - lts/*
   - 6
   - 7
   - 8
+  - 8.9.4 # explicit branch used for deploying docs
 branches:
   only:
     - master
@@ -14,7 +14,7 @@ branches:
 matrix:
   fast_finish: true
   allow_failures:
-  - node_js: lts/*
+  - node_js: 8.9.4
 before_deploy: npm run docs
 deploy:
   - provider: pages
@@ -24,6 +24,7 @@ deploy:
     keep-history: true
     on:
       branch: master
+      node: 8.9.4
 #   provider: npm
 #   email: developer@amadeus.com
 #   api_key:
