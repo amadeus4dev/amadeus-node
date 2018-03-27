@@ -111,20 +111,13 @@ class Listener {
    * @param {Response} reponse
    * @returns {ResponseError}
    */
-  errorFor(response) {
-    if (response.statusCode >= 500) {
-      return ServerError;
-    } else if (response.statusCode == 401) {
-      return AuthenticationError;
-    } else if (response.statusCode == 404) {
-      return NotFoundError;
-    } else if (response.statusCode >= 400) {
-      return ClientError;
-    } else if (!response.parsed) {
-      return ParserError;
-    } else {
-      return UnknownError;
-    }
+  errorFor({statusCode, parsed}) {
+    return statusCode >= 500 ? ServerError
+      : statusCode == 401 ? AuthenticationError
+        : statusCode == 404 ? NotFoundError
+          : statusCode >= 400 ? ClientError
+            : !parsed ? ParserError
+              : UnknownError;
   }
 
   /**
