@@ -1,7 +1,7 @@
 # Amadeus Node SDK
 
 [![Module Version](https://badge.fury.io/js/amadeus.svg)](npmjs)
-[![Build Status](http://img.shields.io/travis/amadeus4dev/amadeus-node.svg?branch=master)][travis]
+[![Build Status](https://img.shields.io/travis/amadeus4dev/amadeus-node/master.svg)][travis]
 [![Maintainability](https://api.codeclimate.com/v1/badges/5accb4b8a41e4e3fd1da/maintainability)](https://codeclimate.com/github/amadeus4dev/amadeus-node/maintainability)
 [![Dependencies](.github/images/dependencies.svg)](npmjs)
 [![Contact Support](https://img.shields.io/badge/contact-support-blue.svg)][support]
