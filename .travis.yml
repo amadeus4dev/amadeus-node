@@ -4,8 +4,8 @@ cache:
     - "node_modules"
 node_js:
   - 6
-  - 7.10.0 # explicit branch used for deploying docs
-  - 8
+  - 7
+  - 8.10.0 # explicit branch used for deploying docs
   - 9
 branches:
   only:
@@ -20,11 +20,11 @@ deploy:
     keep-history: true
     on:
       branch: master
-      node: 7.10.0
+      node: 8.10.0
   - provider: npm
     email: developer@amadeus.com
     api_key: $NPM_API_KEY
     tag: beta
     on:
       tags: true
-      node: 7.10.0
+      node: 8.10.0
