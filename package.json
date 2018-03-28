@@ -23,7 +23,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/amadeusdev/amadeus-node.git"
+    "url": "git+https://github.com/amadeus4dev/amadeus-node.git"
   },
   "keywords": [
     "amadeus",
@@ -36,7 +36,7 @@
   "author": "amadeus-developer",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/amadeusdev/amadeus-node/issues"
+    "url": "https://github.com/amadeus4dev/amadeus-node/issues"
   },
   "homepage": "https://developer.amadeus.com",
   "contributors": [
