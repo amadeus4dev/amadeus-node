@@ -29,12 +29,12 @@ class Offer {
    * Search for hotel offers for hotel with ID 123
    *
    * ```js
-   * amadeus.hotels(123).offers(234).get();
+   * amadeus.hotel('SMPARCOL').offer('AC7D4DA2C322A73AF0824318A4965DA2805A3FC2').get();
    * ```
    */
   get(params = {}) {
     return this.client.get(
-      `/v1/shopping/hotel/${this.hotelId}/offers/${this.offerId}`, params
+      `/v1/shopping/hotels/${this.hotelId}/offers/${this.offerId}`, params
     );
   }
 }

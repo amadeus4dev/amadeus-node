@@ -131,14 +131,14 @@ describe('Namespaces', () => {
       amadeus.client.get = jest.fn();
       amadeus.shopping.hotel(123).hotelOffers.get();
       expect(amadeus.client.get)
-        .toHaveBeenCalledWith('/v1/shopping/hotel/123/hotel-offers', {});
+        .toHaveBeenCalledWith('/v1/shopping/hotels/123/hotel-offers', {});
     });
 
     it('.amadeus.shopping.hotel(123).offer(234).get', () => {
       amadeus.client.get = jest.fn();
       amadeus.shopping.hotel(123).offer(234).get();
       expect(amadeus.client.get)
-        .toHaveBeenCalledWith('/v1/shopping/hotel/123/offers/234', {});
+        .toHaveBeenCalledWith('/v1/shopping/hotels/123/offers/234', {});
     });
   });
 });
