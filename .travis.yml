@@ -11,9 +11,7 @@ branches:
   only:
     - master
     - /^v[0-9]/
-before_deploy:
-  - npm install 
-  - npm run docs
+before_deploy: npm run docs
 deploy:
   - provider: pages
     local-dir: docs
@@ -27,6 +25,7 @@ deploy:
     email: developer@amadeus.com
     api_key: $NPM_API_KEY
     tag: beta
+    skip-cleanup: true
     on:
       tags: true
       node: 8.10.0
