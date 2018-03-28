@@ -98,12 +98,12 @@ For example, `GET /v2/reference-data/urls/checkin-links?airline=1X` would be:
 amadeus.referenceData.urls.checkinLinks.get({ airline: '1X' });
 ```
 
-Similarly, to select a resource by ID, you can pass in the ID to the path.
+Similarly, to select a resource by ID, you can pass in the ID to the **singular** path.
 
-For example,  `GET /v1/shopping/hotel/123/hotel-offers` would be:
+For example,  `GET /v1/shopping/hotel/123/offers/234` would be:
 
 ```js
-amadeus.shopping.hotels(123).hotelOffers.get(...);
+amadeus.shopping.hotel(123).offer(234).get(...);
 ```
 
 You can make any arbitrary API call as well directly with the `.client.get` method:

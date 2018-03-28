@@ -19,6 +19,7 @@ describe('Namespaces', () => {
       expect(amadeus.referenceData).toBeDefined();
       expect(amadeus.referenceData.urls).toBeDefined();
       expect(amadeus.referenceData.urls.checkinLinks).toBeDefined();
+      expect(amadeus.referenceData.location).toBeDefined();
       expect(amadeus.referenceData.locations).toBeDefined();
       expect(amadeus.referenceData.locations.airports).toBeDefined();
 
@@ -33,13 +34,14 @@ describe('Namespaces', () => {
       expect(amadeus.shopping.flightOffers).toBeDefined();
 
       expect(amadeus.shopping.hotelOffers).toBeDefined();
-      expect(amadeus.shopping.hotels).toBeDefined();
-      expect(amadeus.shopping.hotels(123).offers).toBeDefined();
-      expect(amadeus.shopping.hotels(123).hotelOffers).toBeDefined();
+      expect(amadeus.shopping.hotel).toBeDefined();
+      expect(amadeus.shopping.hotel(123).offer).toBeDefined();
+      expect(amadeus.shopping.hotel(123).hotelOffers).toBeDefined();
     });
 
     it('should define all expected .get methods', () => {
       expect(amadeus.referenceData.urls.checkinLinks.get).toBeDefined();
+      expect(amadeus.referenceData.location('ALHR').get).toBeDefined();
       expect(amadeus.referenceData.locations.get).toBeDefined();
       expect(amadeus.referenceData.locations.airports.get).toBeDefined();
 
@@ -51,8 +53,8 @@ describe('Namespaces', () => {
       expect(amadeus.shopping.flightOffers.get).toBeDefined();
 
       expect(amadeus.shopping.hotelOffers.get).toBeDefined();
-      expect(amadeus.shopping.hotels(123).hotelOffers.get).toBeDefined();
-      expect(amadeus.shopping.hotels(123).offers(234).get).toBeDefined();
+      expect(amadeus.shopping.hotel(123).hotelOffers.get).toBeDefined();
+      expect(amadeus.shopping.hotel(123).offer(234).get).toBeDefined();
     });
 
     it('.amadeus.referenceData.urls.checkinLinks.get', () => {
@@ -62,14 +64,21 @@ describe('Namespaces', () => {
         .toHaveBeenCalledWith('/v2/reference-data/urls/checkin-links', {});
     });
 
-    it('.amadeus.referenceData.urls.checkinLinks.get', () => {
+    it('.amadeus.referenceData.location().get', () => {
+      amadeus.client.get = jest.fn();
+      amadeus.referenceData.location('ALHR').get();
+      expect(amadeus.client.get)
+        .toHaveBeenCalledWith('/v1/reference-data/locations/ALHR', {});
+    });
+
+    it('.amadeus.referenceData.locations.get', () => {
       amadeus.client.get = jest.fn();
       amadeus.referenceData.locations.get();
       expect(amadeus.client.get)
         .toHaveBeenCalledWith('/v1/reference-data/locations', {});
     });
 
-    it('.amadeus.referenceData.urls.checkinLinks.get', () => {
+    it('.amadeus.referenceData.locations.airports.get', () => {
       amadeus.client.get = jest.fn();
       amadeus.referenceData.locations.airports.get();
       expect(amadeus.client.get)
@@ -118,16 +127,16 @@ describe('Namespaces', () => {
         .toHaveBeenCalledWith('/v1/shopping/hotel-offers', {});
     });
 
-    it('.amadeus.shopping.hotels(123).hotelOffers.get', () => {
+    it('.amadeus.shopping.hotel(123).hotelOffers.get', () => {
       amadeus.client.get = jest.fn();
-      amadeus.shopping.hotels(123).hotelOffers.get();
+      amadeus.shopping.hotel(123).hotelOffers.get();
       expect(amadeus.client.get)
         .toHaveBeenCalledWith('/v1/shopping/hotel/123/hotel-offers', {});
     });
 
-    it('.amadeus.shopping.hotels(123).offers(234).get', () => {
+    it('.amadeus.shopping.hotel(123).offer(234).get', () => {
       amadeus.client.get = jest.fn();
-      amadeus.shopping.hotels(123).offers(234).get();
+      amadeus.shopping.hotel(123).offer(234).get();
       expect(amadeus.client.get)
         .toHaveBeenCalledWith('/v1/shopping/hotel/123/offers/234', {});
     });

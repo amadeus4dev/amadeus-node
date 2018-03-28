@@ -1,5 +1,5 @@
-import Offers       from './hotels/offers';
-import HotelsOffers from './hotels/hotel_offers';
+import Offer        from './hotel/offer';
+import HotelsOffers from './hotel/hotel_offers';
 
 /**
  * A namespaced client for the
@@ -9,13 +9,13 @@ import HotelsOffers from './hotels/hotel_offers';
  *
  * ```js
  * let amadeus = new Amadeus();
- * amadeus.shopping.hotels(123);
+ * amadeus.shopping.hotel(123);
  * ```
  *
  * @param {Client} client
  * @param {number} hotelId
  */
-class Hotels {
+class Hotel {
   constructor(client, hotelId) {
     this.client = client;
     this.hotelId = hotelId;
@@ -24,15 +24,15 @@ class Hotels {
   }
 
   /**
-   * Loads a namespaced path for a specific hotel offers with a specific hotel
+   * Loads a namespaced path for a specific hotel offer with a specific hotel
    * ID and offer ID.
    *
-   * @param  {number} [offerId=nil]  The ID of the hotel to search for
-   * @return {Offers}
+   * @param  {number} [offerId]  The ID of the hotel to search for
+   * @return {Offer}
    **/
-  offers(offerId) {
-    return new Offers(this.client, this.hotelId, offerId);
+  offer(offerId) {
+    return new Offer(this.client, this.hotelId, offerId);
   }
 }
 
-export default Hotels;
+export default Hotel;

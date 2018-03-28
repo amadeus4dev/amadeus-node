@@ -2,7 +2,7 @@ import FlightDestinations from './shopping/flight_destinations';
 import FlightOffers       from './shopping/flight_offers';
 import FlightDates        from './shopping/flight_dates';
 import HotelOffers        from './shopping/hotel_offers';
-import Hotels             from './shopping/hotels';
+import Hotel              from './shopping/hotel';
 
 /**
  * A namespaced client for the
@@ -34,11 +34,11 @@ class Shopping {
   /**
    * Loads a namespaced path for a specific hotel with a specific hotel ID
    *
-   * @param  {number} [hotelId=nil]  The ID of the hotel to search for
-   * @return {Hotels}
+   * @param  {number} [hotelId]  The ID of the hotel to search for
+   * @return {Hotel}
    **/
-  hotels(hotelId) {
-    return new Hotels(this.client, hotelId);
+  hotel(hotelId) {
+    return new Hotel(this.client, hotelId);
   }
 }
 
