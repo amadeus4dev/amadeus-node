@@ -38,7 +38,7 @@ class Request {
     this.appVersion      = options.appVersion;
     this.headers         = {
       'User-Agent' : this.userAgent(),
-      'Accept' : 'application/json'
+      'Accept' : 'application/json, application/vnd.amadeus+json'
     };
     this.addAuthorizationHeader();
     this.addContentTypeHeader();

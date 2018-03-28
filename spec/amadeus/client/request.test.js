@@ -47,7 +47,7 @@ describe('Request', () => {
       expect(request.appId).toBe(appId);
       expect(request.appVersion).toBe(appVersion);
       expect(request.headers).toEqual({
-        'Accept': 'application/json',
+        'Accept': 'application/json, application/vnd.amadeus+json',
         'User-Agent': 'amadeus-node/1.2.3 node/2.3.4 amadeus-cli/3.4.5',
         'Authorization': 'Bearer token'
       });
@@ -148,7 +148,7 @@ describe('Request', () => {
           path: '/foo/bar?foo=bar',
           protocol: 'https:',
           headers: {
-            Accept: 'application/json',
+            Accept: 'application/json, application/vnd.amadeus+json',
             Authorization: 'Bearer token',
             'User-Agent': 'amadeus-node/1.2.3 node/2.3.4 amadeus-cli/3.4.5',
           }
