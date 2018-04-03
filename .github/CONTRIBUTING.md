@@ -45,7 +45,16 @@ var Amadeus = require('amadeus');
 
 ### Releasing
 
-To release, make sure to update the version number, submit all your changes, tag the release in Git, and run `npm publish`. This will be replaced in the future by a deploy through Travis CI.
+To make a new release, follow the following steps:
+
+- [ ] Update the version in `package.json` using semver rules
+- [ ] Update the `CHANGELOG.md` with the new version
+- [ ] Push all changes and ensure all tests pass on Travis
+- [ ] Tag your release in git using `git --tag vX.X.X`
+- [ ] Push the new tag `git push --tags`
+- [ ] Update the [Releases](https://github.com/amadeus4dev/amadeus-node/releases) tab on GitHub with a new release for the tag, copying the description from the `CHANGELOG.md`
+
+Travis will bow build the package and release it to NPM.
 
 ## How to contribute to the Amadeus Node Client Library
 
@@ -74,3 +83,15 @@ To release, make sure to update the version number, submit all your changes, tag
 #### **Do you have questions about the source code?**
 
 * Ask any question about how to use the library by [raising a new issue](https://github.com/amadeusdev/amadeus-node/issues/new).
+
+
+#### **Do you want to contribute to the documentation?**
+
+Excellent, to get start developing this library ensure you have Node 6+ installed and clone the repository.
+
+Then, you should be able to run the tests.
+
+```sh
+npm install # ensure all dependencies are installed
+npm run docs:dev # watches for changes and updates docs
+```
