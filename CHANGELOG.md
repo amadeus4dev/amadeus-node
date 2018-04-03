@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.0.0-beta4 - 2018-04-03
+
+Updates hostname for production server
+
 ## 1.0.0-beta3 - 2018-03-28
 
 Add support for Amadeus's specific `Accept` request header.

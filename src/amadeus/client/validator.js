@@ -3,7 +3,7 @@ import http      from 'http';
 
 const HOSTS = {
   'test'       : 'test.api.amadeus.com',
-  'production' : 'production.api.amadeus.com'
+  'production' : 'api.amadeus.com'
 };
 
 const RECOGNIZED_OPTIONS = [
