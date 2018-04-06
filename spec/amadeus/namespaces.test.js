@@ -89,7 +89,7 @@ describe('Namespaces', () => {
       amadeus.client.get = jest.fn();
       amadeus.travel.analytics.airTraffics.get();
       expect(amadeus.client.get)
-        .toHaveBeenCalledWith('/v1/travel/analytics/air-traffics', {});
+        .toHaveBeenCalledWith('/v1/travel/analytics/air-traffic/traveled', {});
     });
 
     it('.amadeus.travel.analytics.fareSearches.get', () => {
