@@ -8,7 +8,7 @@
 
 Amadeus provides a set of APIs for the travel industry. Flights, Hotels, Locations and more.
 
-For more details see the [Node documentation](https://developer.amadeus.com/docs/node) on [Amadeus.com](https://developer.amadeus.com).
+For more details see the [Node documentation](https://amadeus4dev.github.io/amadeus-node/) on [Amadeus.com](https://developer.amadeus.com).
 
 ## Installation
 
@@ -18,11 +18,9 @@ This module has been tested using Node 6 and higher, though it should work with 
 npm install amadeus@beta --save
 ```
 
-__Next__: [Get Started with the Node SDK.](https://developer.amadeus.com/docs/node/get_started/initialize)
-
 ## Getting Started
 
-To send make your first API call you will need to [register for an Amadeus Developer Account](https://developer.amadeus.com/register) and [set up your first application](https://dashboard.developer.amadeus.com/applications).
+To make your first API call you will need to [register for an Amadeus Developer Account](https://developer.amadeus.com/register) and [set up your first application](https://dashboard.developer.amadeus.com/applications).
 
 ```js
 var Amadeus = require('amadeus');
@@ -41,8 +39,6 @@ amadeus.referenceData.urls.checkinLinks.get({
   console.log(responseError.code);
 });
 ```
-
-__Next__: [Learn more about checkin links](https://developer.amadeus.com/docs/node/get_started/checkin_links) with our Node SDK.
 
 ## Initialization
 
@@ -71,8 +67,6 @@ var amadeus = new Amadeus({
   hostname: 'production'
 });
 ```
-
-__Next__: [Learn more about our initializing the Node SDK](https://developer.amadeus.com/docs/node/get_started_initialize) in our documentation.
 
 ## Documentation
 
@@ -188,7 +182,7 @@ This library is released under the [MIT License](LICENSE).
 
 ## Help
 
-Our [developer support team](https://developer.amadeus.com/developers) is here to help you. You can find us on [Twitter](#), [StackOverflow](#), and [email](#).
+Our [developer support team](https://developer.amadeus.com/support) is here to help you. You can find us on [Twitter](#), [StackOverflow](#), and [email](mailto:developers@amadeus.com).
 
 [npmjs]: https://www.npmjs.com/package/amadeus
 [travis]: http://travis-ci.org/amadeus4dev/amadeus-node
