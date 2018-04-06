@@ -31,8 +31,6 @@ export class ResponseError {
   }
 }
 
-
-
 // Protected
 
 export class NetworkError extends ResponseError {

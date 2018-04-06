@@ -53,7 +53,7 @@ class Validator {
 
   initializeLogger(client, options) {
     client.logger    = this.initOptional('logger', options, console);
-    client.logLevel = this.initOptional('logLevel', options, 'warn');
+    client.logLevel = this.initOptional('logLevel', options, 'silent');
   }
 
   initializeHost(client, options) {

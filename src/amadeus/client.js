@@ -30,7 +30,7 @@ import pkg         from '../../package.json';
  *  the API
  * @property {Object} logger the `console`-compatible logger used to debug calls
  * @property {string} logLevel the log level for the client, available options
- *  are `debug`, `warn`, and `silent`
+ *  are `debug`, `warn`, and `silent`. Defaults to 'silent'
  * @property {string} host the hostname of the server API calls are made to
  * @property {number} port the port the server API calls are made to
  * @property {boolean} ssl wether an SSL request is made to the server

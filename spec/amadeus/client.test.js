@@ -39,7 +39,7 @@ describe('Client', () => {
       expect(client.customAppId).toBe(null);
       expect(client.customAppVersion).toBe(null);
       expect(client.http).toBe(https);
-      expect(client.logLevel).toBe('warn');
+      expect(client.logLevel).toBe('silent');
     });
 
     it('should allow for setting a custom logger', () => {
