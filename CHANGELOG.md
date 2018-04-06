@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.0.0-beta6 - 2018-04-06
+
+Remove node shrinkwrap
+
+## 1.0.0-beta5 - 2018-04-06
+
+Set default log level to silent
+
 ## 1.0.0-beta4 - 2018-04-03
 
 Updates hostname for production server
