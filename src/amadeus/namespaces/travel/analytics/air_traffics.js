@@ -36,7 +36,7 @@ class AirTraffics {
    * ```
    */
   get(params = {}) {
-    return this.client.get('/v1/travel/analytics/air-traffics', params);
+    return this.client.get('/v1/travel/analytics/air-traffic/traveled', params);
   }
 }
 
