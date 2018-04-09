@@ -8,7 +8,7 @@
 
 Amadeus provides a set of APIs for the travel industry. Flights, Hotels, Locations and more.
 
-For more details see the [Node documentation](https://developer.amadeus.com/docs/node) on [Amadeus.com](https://developer.amadeus.com).
+For more details see the [Node documentation](https://amadeus4dev.github.io/amadeus-node/) on [Amadeus.com](https://developers.amadeus.com).
 
 ## Installation
 
@@ -18,11 +18,9 @@ This module has been tested using Node 6 and higher, though it should work with 
 npm install amadeus@beta --save
 ```
 
-__Next__: [Get Started with the Node SDK.](https://developer.amadeus.com/docs/node/get_started/initialize)
-
 ## Getting Started
 
-To send make your first API call you will need to [register for an Amadeus Developer Account](https://developer.amadeus.com/register) and [set up your first application](https://dashboard.developer.amadeus.com/applications).
+To make your first API call you will need to [register for an Amadeus Developer Account](https://developers.amadeus.com/register) and [set up your first application](https://dashboard.developers.amadeus.com/applications).
 
 ```js
 var Amadeus = require('amadeus');
@@ -42,8 +40,6 @@ amadeus.referenceData.urls.checkinLinks.get({
 });
 ```
 
-__Next__: [Learn more about checkin links](https://developer.amadeus.com/docs/node/get_started/checkin_links) with our Node SDK.
-
 ## Initialization
 
 The client can be initialized directly.
@@ -62,7 +58,7 @@ Alternatively it can be initialized without any parameters if the environment va
 var amadeus = amadeus = new Amadeus();
 ```
 
-Your credentials can be found on the [Amadeus dashboard](https://dashboard.developer.amadeus.com/client_ids). [Sign up](https://developer.amadeus.com/register) for an account today.
+Your credentials can be found on the [Amadeus dashboard](https://dashboard.developers.amadeus.com/client_ids). [Sign up](https://developers.amadeus.com/register) for an account today.
 
 By default the environment for the SDK is the `test` environment. To switch to a production (paid-for) environment please switch the hostname as follows:
 
@@ -72,19 +68,17 @@ var amadeus = new Amadeus({
 });
 ```
 
-__Next__: [Learn more about our initializing the Node SDK](https://developer.amadeus.com/docs/node/get_started_initialize) in our documentation.
-
 ## Documentation
 
 Amadeus has a large set of APIs, and our documentation is here to get you started today.
 
-* [Get Started](https://developer.amadeus.com/docs/node/get_started) documentation
-  * [Initialize the SDK](https://developer.amadeus.com/docs/node/get_started/initialize)
-  * [Find an Airport](https://developer.amadeus.com/docs/node/get_started/find_an_airport)
-  * [Book a Flight](https://developer.amadeus.com/docs/node/get_started/book_a_flight)
-  * [Get Flight Inspiration](https://developer.amadeus.com/docs/node/get_started/get_flight_inspiration)
+* [Get Started](https://amadeus4dev.github.io/amadeus-node/) documentation
+  * [Initialize the SDK](https://amadeus4dev.github.io/amadeus-node/)
+  * [Find an Airport](https://amadeus4dev.github.io/amadeus-node/#airports)
+  * [Find a Flight](https://amadeus4dev.github.io/amadeus-node/#flightoffers)
+  * [Get Flight Inspiration](https://amadeus4dev.github.io/amadeus-node/#flightoffers)
 
-Alternatively, head over to our [Reference](https://developer.amadeus.com/docs/node/reference) documentation for in-depth information about every SDK method, it's arguments and return types.
+Alternatively, head over to our [Reference](https://amadeus4dev.github.io/amadeus-node/) documentation for in-depth information about every SDK method, it's arguments and return types.
 
 Additionally, this SDK has extensive documentation of itself available on [GitHub](https://amadeus4dev.github.io/amadeus-node/).
 
@@ -188,8 +182,8 @@ This library is released under the [MIT License](LICENSE).
 
 ## Help
 
-Our [developer support team](https://developer.amadeus.com/developers) is here to help you. You can find us on [Twitter](#), [StackOverflow](#), and [email](#).
+Our [developer support team](https://developers.amadeus.com/support) is here to help you. You can find us on [Twitter](#), [StackOverflow](#), and [email](mailto:developers@amadeus.com).
 
 [npmjs]: https://www.npmjs.com/package/amadeus
 [travis]: http://travis-ci.org/amadeus4dev/amadeus-node
-[support]: http://developer.amadeus.com/support
+[support]: http://developers.amadeus.com/support
