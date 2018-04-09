@@ -75,7 +75,7 @@ Amadeus has a large set of APIs, and our documentation is here to get you starte
 * [Get Started](https://amadeus4dev.github.io/amadeus-node/) documentation
   * [Initialize the SDK](https://amadeus4dev.github.io/amadeus-node/)
   * [Find an Airport](https://amadeus4dev.github.io/amadeus-node/#airports)
-  * [Book a FLight](https://amadeus4dev.github.io/amadeus-node/#flightoffers)
+  * [Find a Flight](https://amadeus4dev.github.io/amadeus-node/#flightoffers)
   * [Get Flight Inspiration](https://amadeus4dev.github.io/amadeus-node/#flightoffers)
 
 Alternatively, head over to our [Reference](https://amadeus4dev.github.io/amadeus-node/) documentation for in-depth information about every SDK method, it's arguments and return types.
