@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.0.0-beta7 - 2018-04-19
+
+Fix most traveled destination API
+
 ## 1.0.0-beta6 - 2018-04-06
 
 Remove node shrinkwrap
