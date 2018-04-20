@@ -18,7 +18,7 @@ This module has been tested using Node 6 and higher, though it should work with
 Node 4 and 5 as well. You can install install it using Yarn or NPM.
 
 ```sh
-npm install amadeus@beta --save
+npm install amadeus --save
 ```
 
 ## Getting Started
@@ -182,6 +182,77 @@ var amadeus = new Amadeus({
   clientSecret: '...',
   logLevel: 'debug'
 });
+```
+
+## List of supported endpoints
+
+```js
+// Airpot and City Search
+// Find all the cities and airportes starting by 'LON'
+amadeus.referenceData.locations.get({
+  keyword : 'LON',
+  subType : Amadeus.location.any
+})
+
+// Get a specific city or airport based on its id
+amadeus.referenceData.location('ALHR').get()
+
+// Aiport Nearest Relevant Airport
+amadeus.referenceData.locations.airports.get({
+   longitude : 49.000,
+   latitude  : 2.55
+})
+
+// Flight Cheapest Date Search
+amadeus.shopping.flightDates.get({
+   origin : 'NCE',
+   destination : 'PAR',
+   duration : 1
+})
+
+// Flight Checkin Links
+amadeus.referenceData.urls.checkinLinks.get({
+  airline : 'LH'
+})
+
+// Flight Inspiration Search
+amadeus.shopping.flightDestinations.get({
+  origin : 'MAD',
+  maxPrice : 200
+})
+
+// Flight Low-fare Search
+  amadeus.shopping.flightOffers.get({
+  origin : 'MAD',
+  destination : 'OPO',
+  departureDate : '2017-04-20'
+})
+
+// Flight Most Searched Destinations
+amadeus.travel.analytics.fareSearches.get({
+    origin : 'NCE',
+    souirceCountry : 'FR',
+    period : '2017-08'
+})
+
+// Flight Most Traveled Destinations
+amadeus.travel.analytics.airTraffic.traveled.get({
+    origin : 'NCE',
+    period : '2017-08'
+})
+
+// Hotel Search API
+
+// List of Hotels by City Code
+amadeus.shopping.hotelOffers.get({
+  cityCode : 'PAR'
+})
+
+// Get list of offers for a specific Hotel
+amadeus.shopping.hotel('SMPARCOL').hotelOffers.get()
+
+// Confirm the availability of a specific offer for a specific Hotel
+amadeus.shopping.hotel('SMPARCOL').offer('4BA070BA10485322FA2C7E78C7852E').get()
 ```
 
 ## Development & Contributing
