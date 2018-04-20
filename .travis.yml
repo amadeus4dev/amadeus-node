@@ -24,7 +24,7 @@ deploy:
   - provider: npm
     email: developer@amadeus.com
     api_key: $NPM_API_KEY
-    tag: latest
+    tag: beta
     skip-cleanup: true
     on:
       tags: true
