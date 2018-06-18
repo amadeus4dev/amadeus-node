@@ -230,10 +230,10 @@ amadeus.shopping.flightDestinations.get({
 
 // Flight Most Searched Destinations
 amadeus.travel.analytics.fareSearches.get({
-    origin : 'NCE',
-    souirceCountry : 'FR',
+    origin : 'NYC',
+    sourceCountry : 'US',
     period : '2017-08'
-})
+}) 
 
 // Flight Most Traveled Destinations
 amadeus.travel.analytics.airTraffic.traveled.get({
