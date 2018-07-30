@@ -247,6 +247,13 @@ amadeus.travel.analytics.airTraffic.booked.get({
     period : '2016-05'
 })
 
+// Flight Busiest Traveling Period
+amadeus.travel.analytics.airTraffic.busiestPeriod.get({
+    cityCode: 'PAR',
+    period: '2017',
+    direction: Amadeus.direction.arriving
+})
+
 // Hotel Search API
 
 // List of Hotels by City Code

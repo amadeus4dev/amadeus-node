@@ -167,4 +167,23 @@ Amadeus.location = {
   any: 'AIRPORT,CITY'
 };
 
+/**
+ * A handy list of direction types, to be used in the Flight Busiest Period API:
+ *
+ * ```js
+ * amadeus.travel.analytics.airTraffic.busiestPeriod.get({
+ *   cityCode: 'par',
+ *   perdiod: 2015,
+ *   direction: Amadeus.direction.arriving
+ * });
+ * ```
+ *
+ * Currently available are the types `.arriving` and `.departing`
+ */
+
+Amadeus.direction = {
+  arriving: 'ARRIVING',
+  departing: 'DEPARTING'
+};
+
 export default Amadeus;
