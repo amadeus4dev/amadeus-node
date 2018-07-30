@@ -215,6 +215,11 @@ amadeus.referenceData.urls.checkinLinks.get({
   airline : 'LH'
 })
 
+// Airline Code Lookup
+amadeus.referenceData.airlines.get({
+  IATACode : 'LH'
+})
+
 // Flight Inspiration Search
 amadeus.shopping.flightDestinations.get({
   origin : 'MAD',
