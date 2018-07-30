@@ -241,6 +241,12 @@ amadeus.travel.analytics.airTraffic.traveled.get({
     period : '2017-08'
 })
 
+// Flight Most Booked Destinations
+amadeus.travel.analytics.airTraffic.booked.get({
+    origin : 'LON',
+    period : '2016-05'
+})
+
 // Hotel Search API
 
 // List of Hotels by City Code
