@@ -61,7 +61,7 @@ Alternatively it can be initialized without any parameters if the environment
 variables `AMADEUS_CLIENT_ID` and `AMADEUS_CLIENT_SECRET` are present.
 
 ```js
-var amadeus = amadeus = new Amadeus();
+var amadeus = new Amadeus();
 ```
 
 Your credentials can be found on the [Amadeus
