@@ -61,7 +61,7 @@ Alternatively it can be initialized without any parameters if the environment
 variables `AMADEUS_CLIENT_ID` and `AMADEUS_CLIENT_SECRET` are present.
 
 ```js
-var amadeus = amadeus = new Amadeus();
+var amadeus = new Amadeus();
 ```
 
 Your credentials can be found on the [Amadeus
@@ -215,6 +215,11 @@ amadeus.referenceData.urls.checkinLinks.get({
   airline : 'LH'
 })
 
+// Airline Code Lookup
+amadeus.referenceData.airlines.get({
+  IATACode : 'LH'
+})
+
 // Flight Inspiration Search
 amadeus.shopping.flightDestinations.get({
   origin : 'MAD',
@@ -239,6 +244,19 @@ amadeus.travel.analytics.fareSearches.get({
 amadeus.travel.analytics.airTraffic.traveled.get({
     origin : 'NCE',
     period : '2017-08'
+})
+
+// Flight Most Booked Destinations
+amadeus.travel.analytics.airTraffic.booked.get({
+    origin : 'LON',
+    period : '2016-05'
+})
+
+// Flight Busiest Traveling Period
+amadeus.travel.analytics.airTraffic.busiestPeriod.get({
+    cityCode: 'PAR',
+    period: '2017',
+    direction: Amadeus.direction.arriving
 })
 
 // Hotel Search API

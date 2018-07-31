@@ -1,6 +1,7 @@
 import Urls      from './reference_data/urls';
 import Locations from './reference_data/locations';
 import Location  from './reference_data/location';
+import Airlines  from './reference_data/airlines';
 
 /**
  * A namespaced client for the
@@ -22,6 +23,7 @@ class ReferenceData {
     this.client    = client;
     this.urls      = new Urls(client);
     this.locations = new Locations(client);
+    this.airlines  = new Airlines(client);
   }
 
   /**

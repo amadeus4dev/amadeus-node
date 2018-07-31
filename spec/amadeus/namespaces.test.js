@@ -22,11 +22,14 @@ describe('Namespaces', () => {
       expect(amadeus.referenceData.location).toBeDefined();
       expect(amadeus.referenceData.locations).toBeDefined();
       expect(amadeus.referenceData.locations.airports).toBeDefined();
+      expect(amadeus.referenceData.airlines).toBeDefined();
 
       expect(amadeus.travel).toBeDefined();
       expect(amadeus.travel.analytics).toBeDefined();
       expect(amadeus.travel.analytics.airTraffic).toBeDefined();
       expect(amadeus.travel.analytics.airTraffic.traveled).toBeDefined();
+      expect(amadeus.travel.analytics.airTraffic.booked).toBeDefined();
+      expect(amadeus.travel.analytics.airTraffic.busiestPeriod).toBeDefined();
       expect(amadeus.travel.analytics.fareSearches).toBeDefined();
 
       expect(amadeus.shopping).toBeDefined();
@@ -45,8 +48,11 @@ describe('Namespaces', () => {
       expect(amadeus.referenceData.location('ALHR').get).toBeDefined();
       expect(amadeus.referenceData.locations.get).toBeDefined();
       expect(amadeus.referenceData.locations.airports.get).toBeDefined();
+      expect(amadeus.referenceData.airlines.get).toBeDefined();
 
       expect(amadeus.travel.analytics.airTraffic.traveled.get).toBeDefined();
+      expect(amadeus.travel.analytics.airTraffic.booked.get).toBeDefined();
+      expect(amadeus.travel.analytics.airTraffic.busiestPeriod.get).toBeDefined();
       expect(amadeus.travel.analytics.fareSearches.get).toBeDefined();
 
       expect(amadeus.shopping.flightDates.get).toBeDefined();
@@ -86,11 +92,32 @@ describe('Namespaces', () => {
         .toHaveBeenCalledWith('/v1/reference-data/locations/airports', {});
     });
 
+    it('.amadeus.referenceData.airlines.get', () => {
+      amadeus.client.get = jest.fn();
+      amadeus.referenceData.airlines.get();
+      expect(amadeus.client.get)
+        .toHaveBeenCalledWith('/v1/reference-data/airlines', {});
+    });
+
     it('.amadeus.travel.analytics.airTraffic.traveled.get', () => {
       amadeus.client.get = jest.fn();
       amadeus.travel.analytics.airTraffic.traveled.get();
       expect(amadeus.client.get)
         .toHaveBeenCalledWith('/v1/travel/analytics/air-traffic/traveled', {});
+    });
+
+    it('.amadeus.travel.analytics.airTraffic.booked.get', () => {
+      amadeus.client.get = jest.fn();
+      amadeus.travel.analytics.airTraffic.booked.get();
+      expect(amadeus.client.get)
+        .toHaveBeenCalledWith('/v1/travel/analytics/air-traffic/booked', {});
+    });
+
+    it('.amadeus.travel.analytics.airTraffic.busiestPeriod.get', () => {
+      amadeus.client.get = jest.fn();
+      amadeus.travel.analytics.airTraffic.busiestPeriod.get();
+      expect(amadeus.client.get)
+        .toHaveBeenCalledWith('/v1/travel/analytics/air-traffic/busiest-period', {});
     });
 
     it('.amadeus.travel.analytics.fareSearches.get', () => {
