@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.1.0 - 2018-08-01
+
+Release 1.1.0.
+
+- Support of 3 new endpoints
+
 ## 1.0.1 - 2018-04-19
 
 Remove Beta tag
