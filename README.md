@@ -205,9 +205,8 @@ amadeus.referenceData.locations.airports.get({
 
 // Flight Cheapest Date Search
 amadeus.shopping.flightDates.get({
-   origin : 'NCE',
-   destination : 'PAR',
-   duration : 1
+   origin : 'NYC',
+   destination : 'MAD'
 })
 
 // Flight Checkin Links
@@ -222,21 +221,20 @@ amadeus.referenceData.airlines.get({
 
 // Flight Inspiration Search
 amadeus.shopping.flightDestinations.get({
-  origin : 'MAD',
-  maxPrice : 200
+  origin : 'MAD'
 })
 
 // Flight Low-fare Search
   amadeus.shopping.flightOffers.get({
-  origin : 'MAD',
-  destination : 'OPO',
-  departureDate : '2017-04-20'
+  origin : 'NYC',
+  destination : 'MAD',
+  departureDate : '2019-08-01'
 })
 
 // Flight Most Searched Destinations
 amadeus.travel.analytics.fareSearches.get({
-    origin : 'NYC',
-    sourceCountry : 'US',
+    origin : 'NCE',
+    sourceCountry : 'FR',
     period : '2017-08'
 }) 
 
