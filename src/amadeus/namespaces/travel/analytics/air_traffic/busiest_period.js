@@ -26,12 +26,13 @@ class BusiestPeriod{
    *   YYYY-MM format
    * @return {Promise.<Response,ResponseError>} a Promise
    *
-   * Find the air traffic from LHR in January 2011
+   * Find the air traffic for travelers arriving in Paris in 2017
    *
    * ```js
    * amadeus.travel.analytics.AirTraffic.BusiestPeriod.get({
-   *   origin: 'LHR',
-   *   period: '2011-01'
+   *   cityCode: 'PAR',
+   *   period: '2017',
+   *   direction: Amadeus.direction.arriving
    * });
    * ```
    */

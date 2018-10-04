@@ -27,13 +27,13 @@ class FlightOffers {
    * @param {string} params.departureDate The departure date for the flight
    * @return {Promise.<Response,ResponseError>} a Promise
    *
-   * Find the cheapest destination from London Heathrow
+   * Find the cheapest flights from New-York to Madrid for Summer 2019
    *
    * ```js
    * amadeus.shopping.flightOffers.get({
-   *   origin: 'LHR',
-   *   destination: 'LAX',
-   *   departureDate: '2017-12-24'
+   *   origin: 'NYC',
+   *   destination: 'MAD',
+   *   departureDate: '2019-08-01'
    * });
    * ```
    */

@@ -24,11 +24,11 @@ class FlightDestinations {
    *   will depart. BOS, for example.
    * @return {Promise.<Response,ResponseError>} a Promise
    *
-   * Find the cheapest destination from London to Paris for Xmas
+   * Find the cheapest destination from Madrid
    *
    * ```js
    * amadeus.shopping.flightDestinations.get({
-   *   origin: 'LHR'
+   *   origin: 'MAD'
    * });
    * ```
    */

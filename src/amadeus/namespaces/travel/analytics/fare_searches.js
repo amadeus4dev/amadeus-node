@@ -34,12 +34,13 @@ class FareSearches {
    *   dates are not supported.
    * @return {Promise.<Response,ResponseError>} a Promise
    *
-   * Find the air traffic from LHR in January 2011
+   * Find the air traffic from Nice in August 2017 for the French market
    *
    * ```js
    * amadeus.travel.analytics.fareSearches.get({
-   *   origin: 'LHR',
-   *   period: '2011-01'
+   *   origin: 'NCE',
+   *   sourceCountry : 'FR',
+   *   period: '2017-08'
    * });
    * ```
    */

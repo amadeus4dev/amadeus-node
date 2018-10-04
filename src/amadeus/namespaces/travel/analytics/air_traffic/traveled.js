@@ -17,7 +17,7 @@ class Traveled{
   }
 
   /**
-   * Returns a list of air traffic reports.
+   * Returns a list of air traffic reports based on the number of people traveling.
    *
    * @param {Object} params
    * @param {string} params.origin IATA code of the origin city - e.g. BOS for
@@ -26,12 +26,12 @@ class Traveled{
    *   YYYY-MM format
    * @return {Promise.<Response,ResponseError>} a Promise
    *
-   * Find the air traffic from LHR in January 2011
+   * Find the air traffic from Nice in August 2017
    *
    * ```js
    * amadeus.travel.analytics.AirTraffic.Traveled.get({
-   *   origin: 'LHR',
-   *   period: '2011-01'
+   *   origin: 'NCE',
+   *   period: '2017-08'
    * });
    * ```
    */

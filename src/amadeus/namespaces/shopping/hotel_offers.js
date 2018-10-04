@@ -17,7 +17,7 @@ class HotelOffers {
   }
 
   /**
-   * Find the cheapest flight dates from an origin to a destination.
+   * Find the list of hotels for a dedicated city.
    *
    * @param {Object} params
    * @param {string} params.cityCode City IATA code
@@ -29,11 +29,11 @@ class HotelOffers {
    *   codes to request. Example: RTPAR001
    * @return {Promise.<Response,ResponseError>} a Promise
    *
-   * Search for hotels in London
+   * Search for hotels in Paris
    *
    * ```js
    * amadeus.shopping.hotelOffers.get({
-   *   origin: 'LHR'
+   *   cityCode: 'PAR'
    * })
    * ```
    */

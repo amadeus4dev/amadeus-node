@@ -25,11 +25,11 @@ class CheckinLinks {
    * @param {string} [params.language="en-GB"] the locale for the links
    * @return {Promise.<Response,ResponseError>} a Promise
    *
-   * Find a the checkin links for Branson AirExpress
+   * Find a the checkin links for Air France
    *
    * ```js
    * amadeus.referenceData.urls.checkinLinks.get({
-   *   airline: '1X'
+   *   airline: 'AF'
    * });
    * ```
    */

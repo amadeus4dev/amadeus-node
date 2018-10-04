@@ -26,12 +26,12 @@ class FlightDates {
    *   traveler is going. PAR, for example
    * @return {Promise.<Response,ResponseError>} a Promise
    *
-   * Find the cheapest flight from London Heathrow to Paris
+   * Find the cheapest flight dates from New-York to Madrid
    *
    * ```js
    * amadeus.shopping.flightDates.get({
-   *   origin: 'LHR',
-   *   destination: 'PAR'
+   *   origin: 'NYC',
+   *   destination: 'MAD'
    * });
    * ```
    */
