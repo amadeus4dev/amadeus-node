@@ -31,15 +31,14 @@ application](https://developers.amadeus.com/my-apps).
 var Amadeus = require('amadeus');
 
 var amadeus = new Amadeus({
-  clientId: '[YOUR_CLIENT_ID]',
-  clientSecret: '[YOUR_CLIENT_SECRET]'
+  clientId: 'REPLACE_BY_YOUR_API_KEY',
+  clientSecret: 'REPLACE_BY_YOUR_API_SECRET'
 });
 
 amadeus.referenceData.urls.checkinLinks.get({
-  airline: '1X'
+  airline: 'BA'
 }).then(function(response){
   console.log(response.data[0].href);
-  //=> https://www.onex.com/manage/check-in
 }).catch(function(responseError){
   console.log(responseError.code);
 });
@@ -52,8 +51,8 @@ The client can be initialized directly.
 ```js
 // Initialize using parameters
 var amadeus = new Amadeus({
-  clientId: '...',
-  clientSecret: '...'
+  clientId: 'REPLACE_BY_YOUR_API_KEY',
+  clientSecret: 'REPLACE_BY_YOUR_API_SECRET'
 });
 ```
 
@@ -95,10 +94,10 @@ in-depth information about every SDK method, it's arguments and return types.
 
 This library conveniently maps every API path to a similar path.
 
-For example, `GET /v2/reference-data/urls/checkin-links?airline=1X` would be:
+For example, `GET /v2/reference-data/urls/checkin-links?airline=BA` would be:
 
 ```js
-amadeus.referenceData.urls.checkinLinks.get({ airline: '1X' });
+amadeus.referenceData.urls.checkinLinks.get({ airline: 'BA' });
 ```
 
 Similarly, to select a resource by ID, you can pass in the ID to the **singular** path.
@@ -112,7 +111,7 @@ amadeus.shopping.hotel(123).offer(234).get(...);
 You can make any arbitrary API call as well directly with the `.client.get` method:
 
 ```js
-amadeus.client.get('/v2/reference-data/urls/checkin-links', { airline: '1X' });
+amadeus.client.get('/v2/reference-data/urls/checkin-links', { airline: 'BA' });
 ```
 
 ## Promises
@@ -128,7 +127,7 @@ containing the (parsed or unparsed) response, the request, and an error code.
 
 ```js
 amadeus.referenceData.urls.checkinLinks.get({
-  airline: '1X'
+  airline: 'BA'
 }).then(function(response){
   console.log(response.body);   //=> The raw body
   console.log(response.result); //=> The fully parsed result
@@ -152,8 +151,8 @@ amadeus.referenceData.locations.get({
 }).then(function(response){
   console.log(response.data); // first page
   return amadeus.next(response);
-}).then(function(nextReponse){
-  console.log(nextReponse.data); // second page
+}).then(function(nextResponse){
+  console.log(nextResponse.data); // second page
 });
 ```
 
@@ -165,8 +164,8 @@ The SDK makes it easy to add your own logger compatible with the default `consol
 
 ```js
 var amadeus = new Amadeus({
-  clientId: '...',
-  clientSecret: '...',
+  clientId: 'REPLACE_BY_YOUR_API_KEY',
+  clientSecret: 'REPLACE_BY_YOUR_API_SECRET',
   logger: new MyConsole()
 });
 ```
@@ -178,8 +177,8 @@ variable. The available options are `silent` (default), `warn`, and `debug`.
 
 ```js
 var amadeus = new Amadeus({
-  clientId: '...',
-  clientSecret: '...',
+  clientId: 'REPLACE_BY_YOUR_API_KEY',
+  clientSecret: 'REPLACE_BY_YOUR_API_SECRET',
   logLevel: 'debug'
 });
 ```
@@ -187,41 +186,15 @@ var amadeus = new Amadeus({
 ## List of supported endpoints
 
 ```js
-// Airpot and City Search
-// Find all the cities and airportes starting by 'LON'
-amadeus.referenceData.locations.get({
-  keyword : 'LON',
-  subType : Amadeus.location.any
-})
-
-// Get a specific city or airport based on its id
-amadeus.referenceData.location('ALHR').get()
-
-// Aiport Nearest Relevant Airport
-amadeus.referenceData.locations.airports.get({
-   longitude : 49.000,
-   latitude  : 2.55
+// Flight Inspiration Search
+amadeus.shopping.flightDestinations.get({
+  origin : 'MAD'
 })
 
 // Flight Cheapest Date Search
 amadeus.shopping.flightDates.get({
-   origin : 'NYC',
-   destination : 'MAD'
-})
-
-// Flight Checkin Links
-amadeus.referenceData.urls.checkinLinks.get({
-  airline : 'LH'
-})
-
-// Airline Code Lookup
-amadeus.referenceData.airlines.get({
-  IATACode : 'LH'
-})
-
-// Flight Inspiration Search
-amadeus.shopping.flightDestinations.get({
-  origin : 'MAD'
+  origin : 'NYC',
+  destination : 'MAD'
 })
 
 // Flight Low-fare Search
@@ -231,44 +204,67 @@ amadeus.shopping.flightDestinations.get({
   departureDate : '2019-08-01'
 })
 
+// Flight Checkin Links
+amadeus.referenceData.urls.checkinLinks.get({
+  airline : 'BA'
+})
+
+// Airline Code Lookup
+amadeus.referenceData.airlines.get({
+  IATACode : 'U2'
+})
+
+// Airports and City Search (autocomplete)
+// Find all the cities and airports starting by 'LON'
+amadeus.referenceData.locations.get({
+  keyword : 'LON',
+  subType : Amadeus.location.any
+})
+
+// Get a specific city or airport based on its id
+amadeus.referenceData.location('ALHR').get()
+
+// Airport Nearest Relevant Airport
+amadeus.referenceData.locations.airports.get({
+  longitude : 49.000,
+  latitude  : 2.55
+})
+
 // Flight Most Searched Destinations
 amadeus.travel.analytics.fareSearches.get({
-    origin : 'NCE',
-    sourceCountry : 'FR',
-    period : '2017-08'
-}) 
-
-// Flight Most Traveled Destinations
-amadeus.travel.analytics.airTraffic.traveled.get({
-    origin : 'NCE',
+    origin : 'MAD',
+    sourceCountry : 'SP',
     period : '2017-08'
 })
 
 // Flight Most Booked Destinations
 amadeus.travel.analytics.airTraffic.booked.get({
-    origin : 'LON',
-    period : '2016-05'
+    origin : 'MAD',
+    period : '2017-08'
+})
+
+// Flight Most Traveled Destinations
+amadeus.travel.analytics.airTraffic.traveled.get({
+    origin : 'MAD',
+    period : '2017-01'
 })
 
 // Flight Busiest Traveling Period
 amadeus.travel.analytics.airTraffic.busiestPeriod.get({
-    cityCode: 'PAR',
+    cityCode: 'MAD',
     period: '2017',
     direction: Amadeus.direction.arriving
 })
 
 // Hotel Search API
-
-// List of Hotels by City Code
+// Get list of hotels by city code
 amadeus.shopping.hotelOffers.get({
-  cityCode : 'PAR'
+  cityCode : 'MAD'
 })
-
-// Get list of offers for a specific Hotel
+// Get list of offers for a specific hotel
 amadeus.shopping.hotel('SMPARCOL').hotelOffers.get()
-
-// Confirm the availability of a specific offer for a specific Hotel
-amadeus.shopping.hotel('SMPARCOL').offer('4BA070BA10485322FA2C7E78C7852E').get()
+// Confirm the availability of a specific offer for a specific hotel
+amadeus.shopping.hotel('SMPARCOL').offer('4BA070CE929E135B3268A9F2D0C51E9D4A6CF318BA10485322FA2C7E78C7852E').get()
 ```
 
 ## Development & Contributing
