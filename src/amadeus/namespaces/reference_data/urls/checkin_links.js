@@ -21,7 +21,7 @@ class CheckinLinks {
    * language of your choice
    *
    * @param {Object} params
-   * @param {string} params.airline airline ID - required
+   * @param {string} params.airlineCode airline ID - required
    * @param {string} [params.language="en-GB"] the locale for the links
    * @return {Promise.<Response,ResponseError>} a Promise
    *
@@ -29,7 +29,7 @@ class CheckinLinks {
    *
    * ```js
    * amadeus.referenceData.urls.checkinLinks.get({
-   *   airline: 'AF'
+   *   airlineCode: 'AF'
    * });
    * ```
    */

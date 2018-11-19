@@ -20,18 +20,18 @@ class Booked{
    * Returns a list of air traffic reports based on the number of bookings.
    *
    * @param {Object} params
-   * @param {string} params.origin IATA code of the origin city - e.g. BOS for
-   *   Boston - required
-   * @param {string} params.query period when consumers are travelling in
+   * @param {string} params.originCityCode IATA code of the origin city - e.g. MAD for
+   *   Madrid - required
+   * @param {string} params.period period when consumers are travelling in
    *   YYYY-MM format
    * @return {Promise.<Response,ResponseError>} a Promise
    *
-   * Find the air traffic from London in May 2016
+   * Where were people flying to from Madrid in the August 2017?
    *
    * ```js
    * amadeus.travel.analytics.AirTraffic.Booked.get({
-   *   origin: 'LON',
-   *   period: '2016-05'
+   *   originCityCode: 'MAD',
+   *   period: '2017-08'
    * });
    * ```
    */
