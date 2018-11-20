@@ -20,17 +20,19 @@ class BusiestPeriod{
    * Returns a list of air traffic reports.
    *
    * @param {Object} params
-   * @param {string} params.origin IATA code of the origin city - e.g. BOS for
-   *   Boston - required
-   * @param {string} params.query period when consumers are travelling in
+   * @param {string} params.cityCode IATA code of the origin city - e.g. MAD for
+   *   Madrid - required
+   * @param {string} params.period period when consumers are travelling in
+   *   YYYY-MM format
+   * @param {string} params.direction to select between arrivals and departures (default: arrivals)
    *   YYYY-MM format
    * @return {Promise.<Response,ResponseError>} a Promise
    *
-   * Find the air traffic for travelers arriving in Paris in 2017
+   * What were the busiest months for Madrid in 2017?
    *
    * ```js
    * amadeus.travel.analytics.AirTraffic.BusiestPeriod.get({
-   *   cityCode: 'PAR',
+   *   cityCode: 'MAD',
    *   period: '2017',
    *   direction: Amadeus.direction.arriving
    * });

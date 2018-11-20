@@ -20,15 +20,14 @@ class Airlines{
    * Returns the airline name and code.
    *
    * @param {Object} params
-   * @param {string} params.IATACode Code of the airline following IATA standard.
-   * @param {string} params.ICAOCode Code of the airline following ICAO standard.
+   * @param {string} params.airlineCodes Code of the airline following IATA or ICAO standard.
    * @return {Promise.<Response,ResponseError>} a Promise
    *
    * Find to which airlines belongs IATA Code BA
    *
    * ```js
    * amadeus.referenceData.airlines.get({
-   *   IATACode : 'BA'
+   *   airlineCodes : 'BA'
    * });
    * ```
    */

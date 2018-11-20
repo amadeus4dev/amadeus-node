@@ -36,7 +36,7 @@ var amadeus = new Amadeus({
 });
 
 amadeus.referenceData.urls.checkinLinks.get({
-  airline: 'BA'
+  airlineCode: 'BA'
 }).then(function(response){
   console.log(response.data[0].href);
 }).catch(function(responseError){
@@ -97,7 +97,7 @@ This library conveniently maps every API path to a similar path.
 For example, `GET /v2/reference-data/urls/checkin-links?airline=BA` would be:
 
 ```js
-amadeus.referenceData.urls.checkinLinks.get({ airline: 'BA' });
+amadeus.referenceData.urls.checkinLinks.get({ airlineCode: 'BA' });
 ```
 
 Similarly, to select a resource by ID, you can pass in the ID to the **singular** path.
@@ -111,7 +111,7 @@ amadeus.shopping.hotel(123).offer(234).get(...);
 You can make any arbitrary API call as well directly with the `.client.get` method:
 
 ```js
-amadeus.client.get('/v2/reference-data/urls/checkin-links', { airline: 'BA' });
+amadeus.client.get('/v2/reference-data/urls/checkin-links', { airlineCode: 'BA' });
 ```
 
 ## Promises
@@ -127,7 +127,7 @@ containing the (parsed or unparsed) response, the request, and an error code.
 
 ```js
 amadeus.referenceData.urls.checkinLinks.get({
-  airline: 'BA'
+  airlineCode: 'BA'
 }).then(function(response){
   console.log(response.body);   //=> The raw body
   console.log(response.result); //=> The fully parsed result
@@ -206,12 +206,12 @@ amadeus.shopping.flightDates.get({
 
 // Flight Checkin Links
 amadeus.referenceData.urls.checkinLinks.get({
-  airline : 'BA'
+  airlineCode : 'BA'
 })
 
 // Airline Code Lookup
 amadeus.referenceData.airlines.get({
-  IATACode : 'U2'
+  airlineCodes : 'U2'
 })
 
 // Airports and City Search (autocomplete)
@@ -231,21 +231,29 @@ amadeus.referenceData.locations.airports.get({
 })
 
 // Flight Most Searched Destinations
-amadeus.travel.analytics.fareSearches.get({
-    origin : 'MAD',
-    sourceCountry : 'SP',
-    period : '2017-08'
+// Which were the most searched flight destinations from Madrid in August 2017?
+amadeus.travel.analytics.airTraffic.searched.get({
+    originCityCode : 'MAD',
+    searchPeriod : '2017-08',
+    marketCountryCode : 'ES'
+})
+// How many people in Spain searched for a trip from Madrid to New-York in September 2017?
+amadeus.travel.analytics.airTraffic.searchedByDestination.get({
+    originCityCode : 'MAD',
+    destinationCityCode : 'NYC',
+    searchPeriod : '2017-08',
+    marketCountryCode : 'ES'
 })
 
 // Flight Most Booked Destinations
 amadeus.travel.analytics.airTraffic.booked.get({
-    origin : 'MAD',
+    originCityCode : 'MAD',
     period : '2017-08'
 })
 
 // Flight Most Traveled Destinations
 amadeus.travel.analytics.airTraffic.traveled.get({
-    origin : 'MAD',
+    originCityCode : 'MAD',
     period : '2017-01'
 })
 

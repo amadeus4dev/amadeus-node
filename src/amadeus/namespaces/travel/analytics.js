@@ -1,5 +1,4 @@
 import AirTraffic  from './analytics/air_traffic';
-import FareSearches from './analytics/fare_searches';
 
 /**
  * A namespaced client for the
@@ -20,7 +19,6 @@ class Analytics {
   constructor(client) {
     this.client        = client;
     this.airTraffic    = new AirTraffic(client);
-    this.fareSearches  = new FareSearches(client);
   }
 }
 
