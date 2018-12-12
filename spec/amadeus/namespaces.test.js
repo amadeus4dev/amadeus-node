@@ -40,9 +40,8 @@ describe('Namespaces', () => {
       expect(amadeus.shopping.flightOffers).toBeDefined();
 
       expect(amadeus.shopping.hotelOffers).toBeDefined();
-      expect(amadeus.shopping.hotel).toBeDefined();
-      expect(amadeus.shopping.hotel(123).offer).toBeDefined();
-      expect(amadeus.shopping.hotel(123).hotelOffers).toBeDefined();
+      expect(amadeus.shopping.hotelOffersByHotel).toBeDefined();
+      expect(amadeus.shopping.hotelOffer).toBeDefined();
     });
 
     it('should define all expected .get methods', () => {
@@ -63,8 +62,8 @@ describe('Namespaces', () => {
       expect(amadeus.shopping.flightOffers.get).toBeDefined();
 
       expect(amadeus.shopping.hotelOffers.get).toBeDefined();
-      expect(amadeus.shopping.hotel(123).hotelOffers.get).toBeDefined();
-      expect(amadeus.shopping.hotel(123).offer(234).get).toBeDefined();
+      expect(amadeus.shopping.hotelOffersByHotel.get).toBeDefined();
+      expect(amadeus.shopping.hotelOffer('XXX').get).toBeDefined();
     });
 
     it('.amadeus.referenceData.urls.checkinLinks.get', () => {
@@ -162,21 +161,21 @@ describe('Namespaces', () => {
       amadeus.client.get = jest.fn();
       amadeus.shopping.hotelOffers.get();
       expect(amadeus.client.get)
-        .toHaveBeenCalledWith('/v1/shopping/hotel-offers', {});
+        .toHaveBeenCalledWith('/v2/shopping/hotel-offers', {});
     });
 
-    it('.amadeus.shopping.hotel(123).hotelOffers.get', () => {
+    it('.amadeus.shopping.hotelOffersByHotel.get', () => {
       amadeus.client.get = jest.fn();
-      amadeus.shopping.hotel(123).hotelOffers.get();
+      amadeus.shopping.hotelOffersByHotel.get();
       expect(amadeus.client.get)
-        .toHaveBeenCalledWith('/v1/shopping/hotels/123/hotel-offers', {});
+        .toHaveBeenCalledWith('/v2/shopping/hotel-offers/by-hotel', {});
     });
 
-    it('.amadeus.shopping.hotel(123).offer(234).get', () => {
+    it('.amadeus.shopping.hotelOffer().get', () => {
       amadeus.client.get = jest.fn();
-      amadeus.shopping.hotel(123).offer(234).get();
+      amadeus.shopping.hotelOffer('XXX').get();
       expect(amadeus.client.get)
-        .toHaveBeenCalledWith('/v1/shopping/hotels/123/offers/234', {});
+        .toHaveBeenCalledWith('/v2/shopping/hotel-offers/XXX', {});
     });
   });
 });

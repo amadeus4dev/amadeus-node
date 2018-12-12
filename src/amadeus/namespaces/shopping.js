@@ -2,7 +2,9 @@ import FlightDestinations from './shopping/flight_destinations';
 import FlightOffers       from './shopping/flight_offers';
 import FlightDates        from './shopping/flight_dates';
 import HotelOffers        from './shopping/hotel_offers';
-import Hotel              from './shopping/hotel';
+import HotelOffersByHotel from './shopping/hotel_offers_by_hotel';
+import HotelOffer         from './shopping/hotel_offer';
+
 
 /**
  * A namespaced client for the
@@ -20,6 +22,8 @@ import Hotel              from './shopping/hotel';
  * @property {FlightOffers} flight_offers
  * @property {FlightDates} flight_dates
  * @property {HotelOffers} hotel_offers
+ * @property {HotelOffer} hotel_offer
+ * @property {HotelOffersByHotel} hotel_offers_by_hotel
  */
 class Shopping {
   constructor(client) {
@@ -28,17 +32,18 @@ class Shopping {
     this.flightOffers       = new FlightOffers(client);
     this.flightDates        = new FlightDates(client);
     this.hotelOffers        = new HotelOffers(client);
+    this.hotelOffersByHotel = new HotelOffersByHotel(client);
   }
 
 
   /**
-   * Loads a namespaced path for a specific hotel with a specific hotel ID
+   * Loads a namespaced path for a specific offer ID
    *
-   * @param  {number} [hotelId]  The ID of the hotel to search for
-   * @return {Hotel}
+   * @param  {string} [offerId]  The ID of the offer for a dedicated hotel
+   * @return {HotelOffer}
    **/
-  hotel(hotelId) {
-    return new Hotel(this.client, hotelId);
+  hotelOffer(offerId) {
+    return new HotelOffer(this.client, offerId);
   }
 }
 
