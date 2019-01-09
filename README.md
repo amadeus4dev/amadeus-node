@@ -224,10 +224,10 @@ amadeus.referenceData.locations.get({
 // Get a specific city or airport based on its id
 amadeus.referenceData.location('ALHR').get()
 
-// Airport Nearest Relevant Airport
+// Airport Nearest Relevant Airport (for London)
 amadeus.referenceData.locations.airports.get({
-  longitude : 49.000,
-  latitude  : 2.55
+  longitude : 0.1278,
+  latitude  : 51.5074
 })
 
 // Flight Most Searched Destinations
