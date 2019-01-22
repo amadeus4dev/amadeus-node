@@ -94,7 +94,7 @@ in-depth information about every SDK method, it's arguments and return types.
 
 This library conveniently maps every API path to a similar path.
 
-For example, `GET /v2/reference-data/urls/checkin-links?airline=BA` would be:
+For example, `GET /v2/reference-data/urls/checkin-links?airlineCode=BA` would be:
 
 ```js
 amadeus.referenceData.urls.checkinLinks.get({ airlineCode: 'BA' });
@@ -102,10 +102,10 @@ amadeus.referenceData.urls.checkinLinks.get({ airlineCode: 'BA' });
 
 Similarly, to select a resource by ID, you can pass in the ID to the **singular** path.
 
-For example,  `GET /v1/shopping/hotel/123/offers/234` would be:
+For example,  `GET /v1/shopping/hotelOffer/123/` would be:
 
 ```js
-amadeus.shopping.hotel(123).offer(234).get(...);
+amadeus.shopping.hotelOffer('123').get(...);
 ```
 
 You can make any arbitrary API call as well directly with the `.client.get` method:
@@ -270,9 +270,11 @@ amadeus.shopping.hotelOffers.get({
   cityCode : 'MAD'
 })
 // Get list of offers for a specific hotel
-amadeus.shopping.hotel('SMPARCOL').hotelOffers.get()
-// Confirm the availability of a specific offer for a specific hotel
-amadeus.shopping.hotel('SMPARCOL').offer('4BA070CE929E135B3268A9F2D0C51E9D4A6CF318BA10485322FA2C7E78C7852E').get()
+amadeus.shopping.hotelOffersByHotel.get({
+  hotelId : 'XKPARC12'
+})
+// Confirm the availability of a specific offer id 
+amadeus.shopping.hotelOffer('XXX').get()
 ```
 
 ## Development & Contributing
