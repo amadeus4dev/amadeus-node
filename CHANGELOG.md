@@ -10,10 +10,10 @@ Find Hotels
 ### Find Hotels - 1st endpoint
 * The parameter `hotels` has been renamed to `hotelIds`
 ### View Hotel Rooms - 2nd endpoint
-* Update from `amadeus.shopping.hotel('IALONCHO').hotel_offers.get` to `amadeus.shopping.hotel_offers_by_hotel.get(hotelId: 'IALONCHO')`
-* Now get all images in ‘View Hotels Rooms’ endpoint using the view parameter as               `FULL_ALL_IMAGES`
+* Update from `amadeus.shopping.hotel('IALONCHO').hotelOffers.get()` to `amadeus.shopping.hotelOffersByHotel.get({hotelId : 'IALONCHO'})`
+* Now get all images in ‘View Hotels Rooms’ endpoint using the view parameter as `FULL_ALL_IMAGES`
 ### View Room Details - 3rd endpoint
-* Updated from `amadeus.shopping.hotel('IALONCHO').offer('XXX').get` to `amadeus.shopping.hotel_offer('XXX').get`
+* Updated from `amadeus.shopping.hotel('IALONCHO').offer('XXX').get()` to `amadeus.shopping.hotelOffer('XXX').get()`
 * Image category added under Media in the response
 * Hotel distance added in the response
 * Response now refers to the common HotelOffer object model
