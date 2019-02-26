@@ -193,8 +193,8 @@ amadeus.shopping.flightDestinations.get({
 
 // Flight Cheapest Date Search
 amadeus.shopping.flightDates.get({
-  origin : 'NYC',
-  destination : 'MAD'
+  origin : 'MAD',
+  destination : 'MUC'
 })
 
 // Flight Low-fare Search
