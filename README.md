@@ -275,6 +275,21 @@ amadeus.shopping.hotelOffersByHotel.get({
 })
 // Confirm the availability of a specific offer id 
 amadeus.shopping.hotelOffer('XXX').get()
+
+// Points of Interest
+// What are the popular places in Barcelona (based a geo location and a radius)
+amadeus.referenceData.locations.pointsOfInterest.get({
+    latitude : 41.397158,
+    longitude : 2.160873
+})
+ 
+// What are the popular places in Barcelona? (based on a square)
+amadeus.referenceData.locations.pointsOfInterest.bySquare.get({
+    north: 41.397158,
+    west: 2.160873,
+    south: 41.394582,
+    east: 2.177181
+})
 ```
 
 ## Development & Contributing
