@@ -1,4 +1,13 @@
 # Changelog
+
+## 3.1.0 - 2019-04-08
+
+## Points of interest API
+
+New version of the Node SDK to support a new endpoint:
+
+* [Points of Interest](https://developers.amadeus.com/self-service/category/210/api-doc/55/api-docs-and-example/10014)
+
 ## 3.0.0 - 2019-01-22
 
 ## Hotel Search v2 has been deployed (Hotel Search v1 is now deprecated)

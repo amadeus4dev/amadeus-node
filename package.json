@@ -1,6 +1,6 @@
 {
   "name": "amadeus",
-  "version": "3.0.0",
+  "version": "3.1.0",
   "description": "Node library for the Amadeus travel APIs",
   "main": "lib/amadeus.js",
   "scripts": {
@@ -44,7 +44,8 @@
   "homepage": "https://developer.amadeus.com",
   "contributors": [
     "cbetta",
-    "Anthony Roux"
+    "Anthony Roux",
+    "Alvaro Navarro"
   ],
   "devDependencies": {
     "babel-cli": "^6.26.0",
