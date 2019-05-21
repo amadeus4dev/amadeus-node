@@ -107,7 +107,7 @@ class AccessToken {
    */
   storeAccessToken(response) {
     this.accessToken = response.result['access_token'];
-    this.expiresAt = Date.now() + response.result['expires_in'];
+    this.expiresAt = Date.now() + (response.result['expires_in'] * 1000);
   }
 }
 
