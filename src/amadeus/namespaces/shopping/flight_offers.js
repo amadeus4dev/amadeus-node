@@ -1,3 +1,5 @@
+import FlightChoicePrediction from './flight_offers/flight_choice_prediction.js';
+
 /**
  * A namespaced client for the
  * `/v1/shopping/flight-offers` endpoints
@@ -14,6 +16,7 @@
 class FlightOffers {
   constructor(client) {
     this.client = client;
+    this.prediction = new FlightChoicePrediction(client);
   }
 
   /**
