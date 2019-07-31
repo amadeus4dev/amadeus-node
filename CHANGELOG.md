@@ -1,5 +1,14 @@
 # Changelog
 
+## 3.2.0 - 2019-07-31
+
+## Hotel Ratings API
+
+New version of the Node SDK to support a new endpoint:
+
+* [Hotel Ratings](https://developers.amadeus.com/self-service/category/hotel/api-doc/hotel-ratings/api-reference)
+
+
 ## 3.1.0 - 2019-04-08
 
 ## Points of interest API

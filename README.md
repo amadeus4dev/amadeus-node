@@ -290,6 +290,12 @@ amadeus.referenceData.locations.pointsOfInterest.bySquare.get({
     south: 41.394582,
     east: 2.177181
 })
+
+// Hotel Ratings
+// Get Sentiment Analysis of reviews about Holiday Inn Paris Notre Dame.
+amadeus.eReputation.hotelSentiments.get({
+    hotelIds: 'XKPARC12'
+})
 ```
 
 ## Development & Contributing
