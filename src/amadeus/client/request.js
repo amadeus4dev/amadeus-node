@@ -75,7 +75,12 @@ class Request {
    */
   body() {
     if (this.verb !== 'POST') { return ''; }
-    else { return qs.stringify(this.params); }
+    else {
+      if (!this.bearerToken) {
+        return qs.stringify(this.params);
+      }
+      return this.params;
+    }
   }
 
   // PRIVATE
@@ -120,8 +125,10 @@ class Request {
    * @private
    */
   addContentTypeHeader() {
-    if (this.verb !== 'POST') { return; }
-    this.headers['Content-Type'] = 'application/x-www-form-urlencoded';
+    if (this.verb === 'POST' && !this.bearerToken) {
+      this.headers['Content-Type'] = 'application/x-www-form-urlencoded';
+    }
+    return;
   }
 }
 
