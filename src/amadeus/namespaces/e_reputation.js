@@ -2,7 +2,7 @@ import HotelSentiments    from './e_reputation/hotel_sentiments';
 
 /**
  * A namespaced client for the
- * `/v1/e-reputation` endpoints
+ * `/v2/e-reputation` endpoints
  *
  * Access via the {@link Amadeus} object
  *
