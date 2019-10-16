@@ -127,6 +127,8 @@ class Request {
   addContentTypeHeader() {
     if (this.verb === 'POST' && !this.bearerToken) {
       this.headers['Content-Type'] = 'application/x-www-form-urlencoded';
+    } else {
+      this.headers['Content-Type'] = 'application/vnd.amadeus+json';
     }
     return;
   }
