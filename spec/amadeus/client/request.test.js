@@ -49,7 +49,8 @@ describe('Request', () => {
       expect(request.headers).toEqual({
         'Accept': 'application/json, application/vnd.amadeus+json',
         'User-Agent': 'amadeus-node/1.2.3 node/2.3.4 amadeus-cli/3.4.5',
-        'Authorization': 'Bearer token'
+        'Authorization': 'Bearer token',
+        'Content-Type': 'application/vnd.amadeus+json'
       });
     });
 
@@ -158,6 +159,7 @@ describe('Request', () => {
             Accept: 'application/json, application/vnd.amadeus+json',
             Authorization: 'Bearer token',
             'User-Agent': 'amadeus-node/1.2.3 node/2.3.4 amadeus-cli/3.4.5',
+            'Content-Type': 'application/vnd.amadeus+json'
           }
         });
       });
@@ -192,7 +194,7 @@ describe('Request', () => {
         request.verb = 'GET';
         request.headers = {};
         request.addContentTypeHeader();
-        expect(request.headers['Content-Type']).toBeUndefined();
+        expect(request.headers['Content-Type']).toBe('application/vnd.amadeus+json');
       });
     });
   });

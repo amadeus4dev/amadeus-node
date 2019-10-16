@@ -7,9 +7,9 @@
  * ```js
  * let amadeus = new Amadeus();
  * amadeus.shopping.flightOffers.prediction.post(
- *     amadeus.shopping.flightOffers.get({ origin: 'NYC,
+ *     amadeus.shopping.flightOffers.get({ origin: 'NYC',
  *                                         destination: 'MAD',
- *                                         departureDate: '2019-08-01'
+ *                                         departureDate: '2020-04-01'
  *                                       }).body
  *      );
  * ```

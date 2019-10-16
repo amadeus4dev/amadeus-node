@@ -36,7 +36,7 @@ class FlightOffers {
    * amadeus.shopping.flightOffers.get({
    *   origin: 'NYC',
    *   destination: 'MAD',
-   *   departureDate: '2019-08-01'
+   *   departureDate: '2020-04-01'
    * });
    * ```
    */
