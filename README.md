@@ -201,8 +201,23 @@ amadeus.shopping.flightDates.get({
   amadeus.shopping.flightOffers.get({
   origin : 'NYC',
   destination : 'MAD',
-  departureDate : '2019-08-01'
+  departureDate : '2019-12-01'
 })
+
+// Flight Choice Prediction
+amadeus.shopping.flightOffers.get({
+       origin: 'MAD',
+       destination: 'NYC',
+       departureDate: '2019-12-01'
+}).then(function(response){
+    return amadeus.shopping.flightOffers.prediction.post(
+      JSON.stringify(response.result)
+    );
+}).then(function(response){
+    console.log(response.data);
+}).catch(function(responseError){
+    console.log(responseError);
+});
 
 // Flight Checkin Links
 amadeus.referenceData.urls.checkinLinks.get({
