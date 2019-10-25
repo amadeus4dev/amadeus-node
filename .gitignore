@@ -3,3 +3,4 @@ lib
 coverage
 test.js
 docs
+.vscode/

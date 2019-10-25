@@ -41,6 +41,7 @@ describe('Namespaces', () => {
       expect(amadeus.shopping.flightDates).toBeDefined();
       expect(amadeus.shopping.flightDestinations).toBeDefined();
       expect(amadeus.shopping.flightOffers).toBeDefined();
+      expect(amadeus.shopping.flightOffers.prediction).toBeDefined();
 
       expect(amadeus.shopping.hotelOffers).toBeDefined();
       expect(amadeus.shopping.hotelOffersByHotel).toBeDefined();
@@ -75,6 +76,10 @@ describe('Namespaces', () => {
       expect(amadeus.shopping.hotelOffer('XXX').get).toBeDefined();
 
       expect(amadeus.eReputation.hotelSentiments.get).toBeDefined();
+    });
+
+    it('should define all expected .post methods', () => {
+      expect(amadeus.shopping.flightOffers.prediction.post).toBeDefined();
     });
 
     it('.amadeus.referenceData.urls.checkinLinks.get', () => {
@@ -180,6 +185,13 @@ describe('Namespaces', () => {
       amadeus.shopping.flightOffers.get();
       expect(amadeus.client.get)
         .toHaveBeenCalledWith('/v1/shopping/flight-offers', {});
+    });
+
+    it('.amadeus.shopping.flightOffers.prediction.post', () => {
+      amadeus.client.post = jest.fn();
+      amadeus.shopping.flightOffers.prediction.post();
+      expect(amadeus.client.post)
+        .toHaveBeenCalledWith('/v1/shopping/flight-offers/prediction', {});
     });
 
     it('.amadeus.shopping.hotelOffers.get', () => {

@@ -114,6 +114,11 @@ You can make any arbitrary API call as well directly with the `.client.get` meth
 amadeus.client.get('/v2/reference-data/urls/checkin-links', { airlineCode: 'BA' });
 ```
 
+Or with a `POST` using `.client.post` method:
+```js
+amadeus.client.post('/v1/shopping/flight-offers/pricing', JSON.stringify({ data }));
+```
+
 ## Promises
 
 Every API call returns a `Promise` that either resolves or rejects. Every
@@ -201,8 +206,23 @@ amadeus.shopping.flightDates.get({
   amadeus.shopping.flightOffers.get({
   origin : 'NYC',
   destination : 'MAD',
-  departureDate : '2019-08-01'
+  departureDate : '2020-04-01'
 })
+
+// Flight Choice Prediction
+amadeus.shopping.flightOffers.get({
+       origin: 'MAD',
+       destination: 'NYC',
+       departureDate: '2020-04-01'
+}).then(function(response){
+    return amadeus.shopping.flightOffers.prediction.post(
+      JSON.stringify(response.result)
+    );
+}).then(function(response){
+    console.log(response.data);
+}).catch(function(responseError){
+    console.log(responseError);
+});
 
 // Flight Checkin Links
 amadeus.referenceData.urls.checkinLinks.get({
@@ -273,7 +293,7 @@ amadeus.shopping.hotelOffers.get({
 amadeus.shopping.hotelOffersByHotel.get({
   hotelId : 'XKPARC12'
 })
-// Confirm the availability of a specific offer id 
+// Confirm the availability of a specific offer id
 amadeus.shopping.hotelOffer('XXX').get()
 
 // Points of Interest
@@ -282,7 +302,7 @@ amadeus.referenceData.locations.pointsOfInterest.get({
     latitude : 41.397158,
     longitude : 2.160873
 })
- 
+
 // What are the popular places in Barcelona? (based on a square)
 amadeus.referenceData.locations.pointsOfInterest.bySquare.get({
     north: 41.397158,
