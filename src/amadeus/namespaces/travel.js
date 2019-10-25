@@ -1,4 +1,5 @@
 import Analytics from './travel/analytics';
+import Predictions from './travel/predictions';
 
 /**
  * A namespaced client for the
@@ -19,6 +20,7 @@ class Travel {
   constructor(client) {
     this.client    = client;
     this.analytics = new Analytics(client);
+    this.predictions = new Predictions(client);
   }
 }
 
