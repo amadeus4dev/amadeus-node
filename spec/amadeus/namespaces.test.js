@@ -34,7 +34,8 @@ describe('Namespaces', () => {
       expect(amadeus.travel.analytics.airTraffic.searchedByDestination).toBeDefined();
       expect(amadeus.travel.analytics.airTraffic.booked).toBeDefined();
       expect(amadeus.travel.analytics.airTraffic.busiestPeriod).toBeDefined();
-
+      expect(amadeus.travel.predictions).toBeDefined();
+      expect(amadeus.travel.predictions.tripPurpose).toBeDefined();
 
       expect(amadeus.shopping).toBeDefined();
       expect(amadeus.shopping.flightDates).toBeDefined();
@@ -64,6 +65,7 @@ describe('Namespaces', () => {
       expect(amadeus.travel.analytics.airTraffic.traveled.get).toBeDefined();
       expect(amadeus.travel.analytics.airTraffic.booked.get).toBeDefined();
       expect(amadeus.travel.analytics.airTraffic.busiestPeriod.get).toBeDefined();
+      expect(amadeus.travel.predictions.tripPurpose.get).toBeDefined();
 
       expect(amadeus.shopping.flightDates.get).toBeDefined();
       expect(amadeus.shopping.flightDestinations.get).toBeDefined();
@@ -218,6 +220,13 @@ describe('Namespaces', () => {
       amadeus.eReputation.hotelSentiments.get();
       expect(amadeus.client.get)
         .toHaveBeenCalledWith('/v2/e-reputation/hotel-sentiments', {});
+    });
+
+    it('.amadeus.travel.predictions.tripPurpose.get', () => {
+      amadeus.client.get = jest.fn();
+      amadeus.travel.predictions.tripPurpose.get();
+      expect(amadeus.client.get)
+        .toHaveBeenCalledWith('/v1/travel/predictions/trip-purpose', {});
     });
   });
 });
