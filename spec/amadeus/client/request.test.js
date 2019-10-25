@@ -49,7 +49,8 @@ describe('Request', () => {
       expect(request.headers).toEqual({
         'Accept': 'application/json, application/vnd.amadeus+json',
         'User-Agent': 'amadeus-node/1.2.3 node/2.3.4 amadeus-cli/3.4.5',
-        'Authorization': 'Bearer token'
+        'Authorization': 'Bearer token',
+        'Content-Type': 'application/vnd.amadeus+json'
       });
     });
 
@@ -104,38 +105,45 @@ describe('Request', () => {
     });
 
     describe('.body', () => {
+
       it('should return an empty string in case of a non-POST call', () => {
         request.verb = 'GET';
         expect(request.body()).toEqual('');
       });
 
-      it('should return the serialized params', () => {
+      it('should return a serialized body if token is not present', () => {
         request.verb = 'POST';
-        expect(request.body()).toBe('foo=bar');
+        request.bearerToken = undefined;
+        expect(request.body()).toEqual('foo=bar');
+      });
+
+      it('should return the params', () => {
+        request.verb = 'POST';
+        expect(request.body()).toStrictEqual({'foo': 'bar'});
       });
 
       it('should accept nested objects', () => {
         request.verb = 'POST';
         request.params = { foo: { bar: 'baz' }};
-        expect(request.body()).toBe('foo%5Bbar%5D=baz');
+        expect(request.body()).toStrictEqual({'foo': { 'bar' : 'baz'}});
       });
 
       it('should accept empty params', () => {
         request.verb = 'POST';
         request.params = {};
-        expect(request.body()).toBe('');
+        expect(request.body()).toStrictEqual({});
       });
 
       it('should accept null params', () => {
         request.verb = 'POST';
         request.params = null;
-        expect(request.body()).toBe('');
+        expect(request.body()).toBe(null);
       });
 
       it('should accept undefined params', () => {
         request.verb = 'POST';
         request.params = undefined;
-        expect(request.body()).toBe('');
+        expect(request.body()).toBe(undefined);
       });
     });
 
@@ -151,6 +159,7 @@ describe('Request', () => {
             Accept: 'application/json, application/vnd.amadeus+json',
             Authorization: 'Bearer token',
             'User-Agent': 'amadeus-node/1.2.3 node/2.3.4 amadeus-cli/3.4.5',
+            'Content-Type': 'application/vnd.amadeus+json'
           }
         });
       });
@@ -173,9 +182,10 @@ describe('Request', () => {
     });
 
     describe('.addContentTypeHeader', () => {
-      it('should add the Content-Type header if the verb is POST', () => {
+      it('should add the x-www-form-urlencoded header if the token is not present', () => {
         request.verb = 'POST';
         request.headers = {};
+        request.bearerToken = undefined;
         request.addContentTypeHeader();
         expect(request.headers['Content-Type']).toBe('application/x-www-form-urlencoded');
       });
@@ -184,7 +194,7 @@ describe('Request', () => {
         request.verb = 'GET';
         request.headers = {};
         request.addContentTypeHeader();
-        expect(request.headers['Content-Type']).toBeUndefined();
+        expect(request.headers['Content-Type']).toBe('application/vnd.amadeus+json');
       });
     });
   });
