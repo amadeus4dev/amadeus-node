@@ -316,6 +316,15 @@ amadeus.referenceData.locations.pointsOfInterest.bySquare.get({
 amadeus.eReputation.hotelSentiments.get({
     hotelIds: 'XKPARC12'
 })
+
+// Trip Purpose Prediction
+// Forecast traveler purpose, Business or Leisure, together with the probability in the context of search & shopping.
+amadeus.travel.predictions.tripPurpose.get({
+    originLocationCode: 'NYC',
+    destinationLocationCode: 'MAD',
+    departureDate: '2020-08-01',
+    returnDate: '2020-08-12'
+})
 ```
 
 ## Development & Contributing
