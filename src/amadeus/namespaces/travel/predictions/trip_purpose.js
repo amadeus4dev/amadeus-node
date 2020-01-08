@@ -26,7 +26,7 @@ class TripPurpose {
    * @param {string} params.returnDate the date on which the traveler will depart from the destination to return to the origin. Dates are specified in the ISO 8601 YYYY-MM-DD format, e.g. 2018-02-28
    * @return {Promise.<Response,ResponseError>} a Promise
    *
-   * Forecast traveler purpose for a NYC-MAD round-trip between 2020-08-01 & 2020-06-11.
+   * Forecast traveler purpose for a NYC-MAD round-trip between 2020-08-01 & 2020-08-12.
    *
    * ```js
    * amadeus.travel.predictions.tripPurpose.get({

@@ -30,13 +30,13 @@ class FlightOffers {
    * @param {string} params.departureDate The departure date for the flight
    * @return {Promise.<Response,ResponseError>} a Promise
    *
-   * Find the cheapest flights from New-York to Madrid for Summer 2019
+   * Find the cheapest flights from New-York to Madrid for Summer 2020
    *
    * ```js
    * amadeus.shopping.flightOffers.get({
    *   origin: 'NYC',
    *   destination: 'MAD',
-   *   departureDate: '2020-04-01'
+   *   departureDate: '2020-08-01'
    * });
    * ```
    */
