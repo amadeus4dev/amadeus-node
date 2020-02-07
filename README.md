@@ -325,6 +325,12 @@ amadeus.travel.predictions.tripPurpose.get({
     departureDate: '2020-08-01',
     returnDate: '2020-08-12'
 })
+
+// AI-Generated Photos
+// Get a link to download a rendered image of a landscape.
+amadeus.media.files.generatedPhotos.get({
+    category: 'BEACH'
+})
 ```
 
 ## Development & Contributing

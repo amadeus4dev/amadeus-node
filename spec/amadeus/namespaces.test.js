@@ -49,6 +49,10 @@ describe('Namespaces', () => {
 
       expect(amadeus.eReputation).toBeDefined();
       expect(amadeus.eReputation.hotelSentiments).toBeDefined();
+
+      expect(amadeus.media).toBeDefined();
+      expect(amadeus.media.files).toBeDefined();
+      expect(amadeus.media.files.generatedPhotos).toBeDefined();
     });
 
     it('should define all expected .get methods', () => {
@@ -76,6 +80,8 @@ describe('Namespaces', () => {
       expect(amadeus.shopping.hotelOffer('XXX').get).toBeDefined();
 
       expect(amadeus.eReputation.hotelSentiments.get).toBeDefined();
+
+      expect(amadeus.media.files.generatedPhotos.get).toBeDefined();
     });
 
     it('should define all expected .post methods', () => {
@@ -227,6 +233,13 @@ describe('Namespaces', () => {
       amadeus.travel.predictions.tripPurpose.get();
       expect(amadeus.client.get)
         .toHaveBeenCalledWith('/v1/travel/predictions/trip-purpose', {});
+    });
+
+    it('.amadeus.media.files.generatedPhotos.get', () => {
+      amadeus.client.get = jest.fn();
+      amadeus.media.files.generatedPhotos.get();
+      expect(amadeus.client.get)
+        .toHaveBeenCalledWith('/v2/media/files/generated-photos', {});
     });
   });
 });

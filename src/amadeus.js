@@ -5,6 +5,7 @@ import ReferenceData from './amadeus/namespaces/reference_data';
 import Shopping      from './amadeus/namespaces/shopping';
 import Travel        from './amadeus/namespaces/travel';
 import EReputation   from './amadeus/namespaces/e_reputation';
+import Media        from './amadeus/namespaces/media';
 
 /**
  * The Amadeus client library for accessing the travel APIs.
@@ -60,6 +61,7 @@ class Amadeus {
     this.shopping       = new Shopping(this.client);
     this.travel         = new Travel(this.client);
     this.eReputation    = new EReputation(this.client);
+    this.media         = new Media(this.client);
     this.pagination = new Pagination(this.client);
   }
 
