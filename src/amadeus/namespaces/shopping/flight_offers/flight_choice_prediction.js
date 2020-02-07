@@ -9,7 +9,7 @@
  * amadeus.shopping.flightOffers.prediction.post(
  *     amadeus.shopping.flightOffers.get({ origin: 'NYC',
  *                                         destination: 'MAD',
- *                                         departureDate: '2020-04-01'
+ *                                         departureDate: '2020-08-01'
  *                                       }).body
  *      );
  * ```
