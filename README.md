@@ -325,6 +325,21 @@ amadeus.travel.predictions.tripPurpose.get({
     departureDate: '2020-08-01',
     returnDate: '2020-08-12'
 })
+
+// Flight Delay Prediction
+// This machine learning API is based on a prediction model that takes the input of the user - time, carrier, airport and aircraft information; and predict the segment where the flight is likely to lay.
+amadeus.travel.predictions.flightDelay.get({
+    originLocationCode: 'BRU',
+    destinationLocationCode: 'FRA',
+    departureDate: '2020-01-14',
+    departureTime: '11:05:00',
+    arrivalDate: '2020-01-14',
+    arrivalTime: '12:10:00',
+    aircraftCode: '32A',
+    carrierCode: 'LH',
+    flightNumber: '1009',
+    duration: 'PT1H05M'
+})
 ```
 
 ## Development & Contributing
