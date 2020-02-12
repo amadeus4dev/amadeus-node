@@ -325,6 +325,13 @@ amadeus.travel.predictions.tripPurpose.get({
     departureDate: '2020-08-01',
     returnDate: '2020-08-12'
 })
+
+// Airport On-time Performance
+// Get the percentage of on-time flight departures from JFK
+amadeus.airport.predictions.onTime.get({
+    airportCode: 'JFK',
+    date: '2020-08-01'
+})
 ```
 
 ## Development & Contributing
