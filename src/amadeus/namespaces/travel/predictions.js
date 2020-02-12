@@ -13,7 +13,7 @@ import FlightDelay from './predictions/flight_delay';
  * ```
  *
  * @param {Client} client
- * @property {tripPurpose} trip_purpose
+ * @property {TripPurpose} tripPurpose
  * @property {FlightDelay} flightDelay
  */
 class Predictions {
