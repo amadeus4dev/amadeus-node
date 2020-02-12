@@ -206,14 +206,14 @@ amadeus.shopping.flightDates.get({
   amadeus.shopping.flightOffers.get({
   origin : 'NYC',
   destination : 'MAD',
-  departureDate : '2020-04-01'
+  departureDate : '2020-08-01'
 })
 
 // Flight Choice Prediction
 amadeus.shopping.flightOffers.get({
        origin: 'MAD',
        destination: 'NYC',
-       departureDate: '2020-04-01'
+       departureDate: '2020-08-01'
 }).then(function(response){
     return amadeus.shopping.flightOffers.prediction.post(
       JSON.stringify(response.result)
