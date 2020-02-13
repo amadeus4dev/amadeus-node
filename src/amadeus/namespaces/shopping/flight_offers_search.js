@@ -24,7 +24,7 @@ class FlightOffersSearch {
    * @param {string} params.destinationLocationCode city/airport IATA code to which the traveler is going, e.g. PAR for Paris
    * @param {string} params.departureDate the date on which the traveler will depart
    * from the origin to go to the destination. Dates are specified in the ISO 8601 YYYY-MM-DD format, e.g. 2017-12-25
-   * @param {integer} params.adults the number of adult travelers (age 12 or older on date of departure)
+   * @param {string} params.adults the number of adult travelers (age 12 or older on date of departure)
    * @return {Promise.<Response,ResponseError>} a Promise
    *
    * Get cheapest flight recommendations and prices for SYD-BKK on 2020-08-01 for 2 adults
@@ -34,7 +34,7 @@ class FlightOffersSearch {
    *    originLocationCode: 'SYD',
    *    destinationLocationCode: 'BKK',
    *    departureDate: '2020-08-01',
-   *    adults: 2
+   *    adults: '2'
    * });
    * ```
    */
@@ -52,7 +52,7 @@ class FlightOffersSearch {
    * To do a customized search with given options.
    *
    * ```js
-   * amadeus.shopping.flightOffers.post ({
+   * amadeus.shopping.flightOffersSearch.post (JSON.stringify({
         "currencyCode": "USD",
         "originDestinations": [
           {
@@ -114,12 +114,12 @@ class FlightOffersSearch {
             }
           }
         }
-      });
+      }))
     * ```
     */
-   post(params = {}) {
-     return this.client.post('/v2/shopping/flight-offers', params);
-   }
+  post(params = {}) {
+    return this.client.post('/v2/shopping/flight-offers', params);
+  }
 }
 
 export default FlightOffersSearch;

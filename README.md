@@ -210,11 +210,11 @@ amadeus.shopping.flightDates.get({
 })
 
 // Flight Offers Search
-  amadeus.shopping.flightOffersSearch.get({
+amadeus.shopping.flightOffersSearch.get({
     originLocationCode: 'SYD',
     destinationLocationCode: 'BKK',
     departureDate: '2020-08-01',
-    adults: 2
+    adults: '2'
 })
 
 // Flight Choice Prediction
