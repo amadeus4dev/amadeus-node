@@ -6,6 +6,7 @@ import Shopping      from './amadeus/namespaces/shopping';
 import Booking       from './amadeus/namespaces/booking';
 import Travel        from './amadeus/namespaces/travel';
 import EReputation   from './amadeus/namespaces/e_reputation';
+import Airport        from './amadeus/namespaces/airport';
 
 /**
  * The Amadeus client library for accessing the travel APIs.
@@ -62,6 +63,7 @@ class Amadeus {
     this.booking       = new Booking(this.client);
     this.travel         = new Travel(this.client);
     this.eReputation    = new EReputation(this.client);
+    this.airport        = new Airport(this.client);
     this.pagination = new Pagination(this.client);
   }
 
