@@ -224,6 +224,54 @@ amadeus.shopping.flightOffers.get({
     console.log(responseError);
 });
 
+// Flight Create Orders
+amadeus.shopping.flightOffersSearch.get({
+    originLocationCode: 'SYD',
+    destinationLocationCode: 'BKK',
+    departureDate: '2020-08-01',
+    adults: '1'
+}).then(function(response){
+    return amadeus.booking.flightOrders.post(
+      JSON.stringify({
+        "type": "flight-order",
+        "flight-offers": response.data[0],
+        "travelers": [{
+          "id": "1",
+          "dateOfBirth": "1982-01-16",
+          "name": {
+            "firstName": "JORGE",
+            "lastName": "GONZALES"
+          },
+          "gender": "MALE",
+          "contact": {
+            "emailAddress": "jorge.gonzales833@telefonica.es",
+            "phones": [
+              {
+                "deviceType": "MOBILE",
+                "countryCallingCode": "34",
+                "number": "480080076"
+              }
+            ]
+          },
+          "documents": [
+            {
+              "documentType": "PASSPORT",
+              "birthPlace": "Madrid",
+              "issuanceLocation": "Madrid",
+              "issuanceDate": "2015-04-14",
+              "number": "00000000",
+              "expiryDate": "2025-04-14",
+              "issuanceCountry": "ES",
+              "validityCountry": "ES",
+              "nationality": "ES",
+              "holder": true
+            }
+          ]
+        }]
+      })
+    );
+});
+
 // Flight Checkin Links
 amadeus.referenceData.urls.checkinLinks.get({
   airlineCode : 'BA'

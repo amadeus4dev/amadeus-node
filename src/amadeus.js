@@ -3,6 +3,7 @@ import Pagination    from './amadeus/client/pagination';
 
 import ReferenceData from './amadeus/namespaces/reference_data';
 import Shopping      from './amadeus/namespaces/shopping';
+import Booking       from './amadeus/namespaces/booking';
 import Travel        from './amadeus/namespaces/travel';
 import EReputation   from './amadeus/namespaces/e_reputation';
 
@@ -58,6 +59,7 @@ class Amadeus {
 
     this.referenceData  = new ReferenceData(this.client);
     this.shopping       = new Shopping(this.client);
+    this.booking       = new Booking(this.client);
     this.travel         = new Travel(this.client);
     this.eReputation    = new EReputation(this.client);
     this.pagination = new Pagination(this.client);
