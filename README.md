@@ -209,6 +209,14 @@ amadeus.shopping.flightDates.get({
   departureDate : '2020-04-01'
 })
 
+// Flight Offers Search
+  amadeus.shopping.flightOffersSearch.get({
+    originLocationCode: 'SYD',
+    destinationLocationCode: 'BKK',
+    departureDate: '2020-08-01',
+    adults: 2
+})
+
 // Flight Choice Prediction
 amadeus.shopping.flightOffers.get({
        origin: 'MAD',
