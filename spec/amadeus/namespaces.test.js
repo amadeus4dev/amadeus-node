@@ -36,6 +36,7 @@ describe('Namespaces', () => {
       expect(amadeus.travel.analytics.airTraffic.busiestPeriod).toBeDefined();
       expect(amadeus.travel.predictions).toBeDefined();
       expect(amadeus.travel.predictions.tripPurpose).toBeDefined();
+      expect(amadeus.travel.predictions.flightDelay).toBeDefined();
 
       expect(amadeus.shopping).toBeDefined();
       expect(amadeus.shopping.flightDates).toBeDefined();
@@ -70,6 +71,7 @@ describe('Namespaces', () => {
       expect(amadeus.travel.analytics.airTraffic.booked.get).toBeDefined();
       expect(amadeus.travel.analytics.airTraffic.busiestPeriod.get).toBeDefined();
       expect(amadeus.travel.predictions.tripPurpose.get).toBeDefined();
+      expect(amadeus.travel.predictions.flightDelay.get).toBeDefined();
 
       expect(amadeus.shopping.flightDates.get).toBeDefined();
       expect(amadeus.shopping.flightDestinations.get).toBeDefined();
@@ -234,6 +236,12 @@ describe('Namespaces', () => {
       expect(amadeus.client.get)
         .toHaveBeenCalledWith('/v1/travel/predictions/trip-purpose', {});
     });
+
+    it('.amadeus.travel.predictions.flightDelay.get', () => {
+      amadeus.client.get = jest.fn();
+      amadeus.travel.predictions.flightDelay.get();
+      expect(amadeus.client.get)
+        .toHaveBeenCalledWith('/v1/travel/predictions/flight-delay', {});
 
     it('.amadeus.airport.predictions.onTime.get', () => {
       amadeus.client.get = jest.fn();

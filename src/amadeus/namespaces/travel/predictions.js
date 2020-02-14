@@ -1,4 +1,5 @@
 import TripPurpose from './predictions/trip_purpose';
+import FlightDelay from './predictions/flight_delay';
 
 /**
  * A namespaced client for the
@@ -12,12 +13,14 @@ import TripPurpose from './predictions/trip_purpose';
  * ```
  *
  * @param {Client} client
- * @property {tripPurpose} trip_purpose
+ * @property {TripPurpose} tripPurpose
+ * @property {FlightDelay} flightDelay
  */
 class Predictions {
   constructor(client) {
     this.client = client;
     this.tripPurpose = new TripPurpose(client);
+    this.flightDelay = new FlightDelay(client);
   }
 }
 
