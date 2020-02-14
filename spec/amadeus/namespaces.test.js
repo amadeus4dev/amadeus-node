@@ -242,6 +242,7 @@ describe('Namespaces', () => {
       amadeus.travel.predictions.flightDelay.get();
       expect(amadeus.client.get)
         .toHaveBeenCalledWith('/v1/travel/predictions/flight-delay', {});
+    });
 
     it('.amadeus.airport.predictions.onTime.get', () => {
       amadeus.client.get = jest.fn();
