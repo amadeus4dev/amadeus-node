@@ -36,6 +36,7 @@ describe('Namespaces', () => {
       expect(amadeus.travel.analytics.airTraffic.busiestPeriod).toBeDefined();
       expect(amadeus.travel.predictions).toBeDefined();
       expect(amadeus.travel.predictions.tripPurpose).toBeDefined();
+      expect(amadeus.travel.predictions.flightDelay).toBeDefined();
 
       expect(amadeus.shopping).toBeDefined();
       expect(amadeus.shopping.flightDates).toBeDefined();
@@ -53,6 +54,11 @@ describe('Namespaces', () => {
       expect(amadeus.media).toBeDefined();
       expect(amadeus.media.files).toBeDefined();
       expect(amadeus.media.files.generatedPhotos).toBeDefined();
+
+      expect(amadeus.airport).toBeDefined();
+      expect(amadeus.airport.predictions).toBeDefined();
+      expect(amadeus.airport.predictions.onTime).toBeDefined();
+      
     });
 
     it('should define all expected .get methods', () => {
@@ -70,6 +76,7 @@ describe('Namespaces', () => {
       expect(amadeus.travel.analytics.airTraffic.booked.get).toBeDefined();
       expect(amadeus.travel.analytics.airTraffic.busiestPeriod.get).toBeDefined();
       expect(amadeus.travel.predictions.tripPurpose.get).toBeDefined();
+      expect(amadeus.travel.predictions.flightDelay.get).toBeDefined();
 
       expect(amadeus.shopping.flightDates.get).toBeDefined();
       expect(amadeus.shopping.flightDestinations.get).toBeDefined();
@@ -82,6 +89,8 @@ describe('Namespaces', () => {
       expect(amadeus.eReputation.hotelSentiments.get).toBeDefined();
 
       expect(amadeus.media.files.generatedPhotos.get).toBeDefined();
+      
+      expect(amadeus.airport.predictions.onTime.get).toBeDefined();
     });
 
     it('should define all expected .post methods', () => {
@@ -240,6 +249,20 @@ describe('Namespaces', () => {
       amadeus.media.files.generatedPhotos.get();
       expect(amadeus.client.get)
         .toHaveBeenCalledWith('/v2/media/files/generated-photos', {});
+    });
+    
+    it('.amadeus.travel.predictions.flightDelay.get', () => {
+      amadeus.client.get = jest.fn();
+      amadeus.travel.predictions.flightDelay.get();
+      expect(amadeus.client.get)
+        .toHaveBeenCalledWith('/v1/travel/predictions/flight-delay', {});
+    });
+
+    it('.amadeus.airport.predictions.onTime.get', () => {
+      amadeus.client.get = jest.fn();
+      amadeus.airport.predictions.onTime.get();
+      expect(amadeus.client.get)
+        .toHaveBeenCalledWith('/v1/airport/predictions/on-time', {});
     });
   });
 });

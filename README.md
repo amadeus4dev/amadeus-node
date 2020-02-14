@@ -206,14 +206,14 @@ amadeus.shopping.flightDates.get({
   amadeus.shopping.flightOffers.get({
   origin : 'NYC',
   destination : 'MAD',
-  departureDate : '2020-04-01'
+  departureDate : '2020-08-01'
 })
 
 // Flight Choice Prediction
 amadeus.shopping.flightOffers.get({
        origin: 'MAD',
        destination: 'NYC',
-       departureDate: '2020-04-01'
+       departureDate: '2020-08-01'
 }).then(function(response){
     return amadeus.shopping.flightOffers.prediction.post(
       JSON.stringify(response.result)
@@ -330,6 +330,29 @@ amadeus.travel.predictions.tripPurpose.get({
 // Get a link to download a rendered image of a landscape.
 amadeus.media.files.generatedPhotos.get({
     category: 'BEACH'
+})
+
+// Flight Delay Prediction
+// This machine learning API is based on a prediction model that takes the input of the user - time, carrier, airport and aircraft information; 
+// and predict the segment where the flight is likely to lay.
+amadeus.travel.predictions.flightDelay.get({
+    originLocationCode: 'BRU',
+    destinationLocationCode: 'FRA',
+    departureDate: '2020-01-14',
+    departureTime: '11:05:00',
+    arrivalDate: '2020-01-14',
+    arrivalTime: '12:10:00',
+    aircraftCode: '32A',
+    carrierCode: 'LH',
+    flightNumber: '1009',
+    duration: 'PT1H05M'
+})
+
+// Airport On-time Performance
+// Get the percentage of on-time flight departures from JFK
+amadeus.airport.predictions.onTime.get({
+    airportCode: 'JFK',
+    date: '2020-08-01'
 })
 ```
 
