@@ -14,6 +14,7 @@ import Predictions from './travel/predictions';
  *
  * @param {Client} client
  * @property {Analytics} analytics
+ * @property {Predictions} predictions
  * @protected
  */
 class Travel {
