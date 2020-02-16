@@ -35,10 +35,13 @@ var amadeus = new Amadeus({
   clientSecret: 'REPLACE_BY_YOUR_API_SECRET'
 });
 
-amadeus.referenceData.urls.checkinLinks.get({
-  airlineCode: 'BA'
+amadeus.shopping.flightOffersSearch.get({
+    originLocationCode: 'SYD',
+    destinationLocationCode: 'BKK',
+    departureDate: '2020-08-01',
+    adults: '2'
 }).then(function(response){
-  console.log(response.data[0].href);
+  console.log(response.data);
 }).catch(function(responseError){
   console.log(responseError.code);
 });
@@ -200,13 +203,6 @@ amadeus.shopping.flightDestinations.get({
 amadeus.shopping.flightDates.get({
   origin : 'MAD',
   destination : 'MUC'
-})
-
-// Flight Low-fare Search
-  amadeus.shopping.flightOffers.get({
-  origin : 'NYC',
-  destination : 'MAD',
-  departureDate : '2020-08-01'
 })
 
 // Flight Offers Search
