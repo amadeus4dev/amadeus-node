@@ -35,16 +35,19 @@ var amadeus = new Amadeus({
   clientSecret: 'REPLACE_BY_YOUR_API_SECRET'
 });
 
-amadeus.shopping.flightOffersSearch.get({
+amadeus.shopping.flightOffersSearch
+  .get({
     originLocationCode: 'SYD',
     destinationLocationCode: 'BKK',
     departureDate: '2020-08-01',
     adults: '2'
-}).then(function(response){
-  console.log(response.data);
-}).catch(function(responseError){
-  console.log(responseError.code);
-});
+  })
+  .then(function(response) {
+    console.log(response.data);
+  })
+  .catch(function(responseError) {
+    console.log(responseError.code);
+  });
 ```
 
 ## Initialization
@@ -86,12 +89,11 @@ started today. Head over to our
 [Reference](https://amadeus4dev.github.io/amadeus-node/) documentation for
 in-depth information about every SDK method, it's arguments and return types.
 
-
-* [Get Started](https://amadeus4dev.github.io/amadeus-node/) documentation
-  * [Initialize the SDK](https://amadeus4dev.github.io/amadeus-node/)
-  * [Find an Airport](https://amadeus4dev.github.io/amadeus-node/#airports)
-  * [Find a Flight](https://amadeus4dev.github.io/amadeus-node/#flightoffers)
-  * [Get Flight Inspiration](https://amadeus4dev.github.io/amadeus-node/#flightoffers)
+- [Get Started](https://amadeus4dev.github.io/amadeus-node/) documentation
+  - [Initialize the SDK](https://amadeus4dev.github.io/amadeus-node/)
+  - [Find an Airport](https://amadeus4dev.github.io/amadeus-node/#airports)
+  - [Find a Flight](https://amadeus4dev.github.io/amadeus-node/#flightoffers)
+  - [Get Flight Inspiration](https://amadeus4dev.github.io/amadeus-node/#flightoffers)
 
 ## Making API calls
 
@@ -105,7 +107,7 @@ amadeus.referenceData.urls.checkinLinks.get({ airlineCode: 'BA' });
 
 Similarly, to select a resource by ID, you can pass in the ID to the **singular** path.
 
-For example,  `GET /v1/shopping/hotelOffer/123/` would be:
+For example, `GET /v1/shopping/hotelOffer/123/` would be:
 
 ```js
 amadeus.shopping.hotelOffer('123').get(...);
@@ -114,12 +116,18 @@ amadeus.shopping.hotelOffer('123').get(...);
 You can make any arbitrary API call as well directly with the `.client.get` method:
 
 ```js
-amadeus.client.get('/v2/reference-data/urls/checkin-links', { airlineCode: 'BA' });
+amadeus.client.get('/v2/reference-data/urls/checkin-links', {
+  airlineCode: 'BA'
+});
 ```
 
 Or with a `POST` using `.client.post` method:
+
 ```js
-amadeus.client.post('/v1/shopping/flight-offers/pricing', JSON.stringify({ data }));
+amadeus.client.post(
+  '/v1/shopping/flight-offers/pricing',
+  JSON.stringify({ data })
+);
 ```
 
 ## Promises
@@ -134,17 +142,20 @@ For a failed API call it returns a `ResponseError`
 containing the (parsed or unparsed) response, the request, and an error code.
 
 ```js
-amadeus.referenceData.urls.checkinLinks.get({
-  airlineCode: 'BA'
-}).then(function(response){
-  console.log(response.body);   //=> The raw body
-  console.log(response.result); //=> The fully parsed result
-  console.log(response.data);   //=> The data attribute taken from the result
-}).catch(function(error){
-  console.log(error.response); //=> The response object with (un)parsed data
-  console.log(error.response.request); //=> The details of the request made
-  console.log(error.code); //=> A unique error code to identify the type of error
-});
+amadeus.referenceData.urls.checkinLinks
+  .get({
+    airlineCode: 'BA'
+  })
+  .then(function(response) {
+    console.log(response.body); //=> The raw body
+    console.log(response.result); //=> The fully parsed result
+    console.log(response.data); //=> The data attribute taken from the result
+  })
+  .catch(function(error) {
+    console.log(error.response); //=> The response object with (un)parsed data
+    console.log(error.response.request); //=> The details of the request made
+    console.log(error.code); //=> A unique error code to identify the type of error
+  });
 ```
 
 ## Pagination
@@ -153,15 +164,18 @@ If an API endpoint supports pagination, the other pages are available under the
 `.next`, `.previous`, `.last` and `.first` methods.
 
 ```js
-amadeus.referenceData.locations.get({
-  keyword: 'LON',
-  subType: 'AIRPORT,CITY'
-}).then(function(response){
-  console.log(response.data); // first page
-  return amadeus.next(response);
-}).then(function(nextResponse){
-  console.log(nextResponse.data); // second page
-});
+amadeus.referenceData.locations
+  .get({
+    keyword: 'LON',
+    subType: 'AIRPORT,CITY'
+  })
+  .then(function(response) {
+    console.log(response.data); // first page
+    return amadeus.next(response);
+  })
+  .then(function(nextResponse) {
+    console.log(nextResponse.data); // second page
+  });
 ```
 
 If a page is not available, the response will resolve to `null`.
@@ -337,7 +351,7 @@ amadeus.media.files.generatedPhotos.get({
 })
 
 // Flight Delay Prediction
-// This machine learning API is based on a prediction model that takes the input of the user - time, carrier, airport and aircraft information; 
+// This machine learning API is based on a prediction model that takes the input of the user - time, carrier, airport and aircraft information;
 // and predict the segment where the flight is likely to lay.
 amadeus.travel.predictions.flightDelay.get({
     originLocationCode: 'BRU',
@@ -358,6 +372,475 @@ amadeus.airport.predictions.onTime.get({
     airportCode: 'JFK',
     date: '2020-08-01'
 })
+
+// Book a flight / create flight order
+// The Flight Create Orders is an API to book flights and ancillary services proposed by the airlines
+// like additional checked bags or seats with  extra-legroom. It returns flight order unique ID and details.
+amadeus.booking.flightCreateOrder.post({
+  {
+    "data": {
+      "type": "flight-order",
+      "flightOffers": [
+        {
+          "type": "flight-offer",
+          "id": "1",
+          "source": "GDS",
+          "instantTicketingRequired": false,
+          "nonHomogeneous": false,
+          "paymentCardRequired": false,
+          "lastTicketingDate": "2020-03-01",
+          "itineraries": [
+            {
+              "segments": [
+                {
+                  "departure": {
+                    "iataCode": "GIG",
+                    "terminal": "2",
+                    "at": "2020-03-01T21:05:00"
+                  },
+                  "arrival": {
+                    "iataCode": "CDG",
+                    "terminal": "2E",
+                    "at": "2020-03-02T12:20:00"
+                  },
+                  "carrierCode": "KL",
+                  "number": "2410",
+                  "aircraft": {
+                    "code": "772"
+                  },
+                  "operating": {
+                    "carrierCode": "AF"
+                  },
+                  "duration": "PT11H15M",
+                  "id": "40",
+                  "numberOfStops": 0
+                },
+                {
+                  "departure": {
+                    "iataCode": "CDG",
+                    "terminal": "2F",
+                    "at": "2020-03-02T14:30:00"
+                  },
+                  "arrival": {
+                    "iataCode": "AMS",
+                    "at": "2020-03-02T15:45:00"
+                  },
+                  "carrierCode": "KL",
+                  "number": "1234",
+                  "aircraft": {
+                    "code": "73H"
+                  },
+                  "operating": {
+                    "carrierCode": "KL"
+                  },
+                  "duration": "PT1H15M",
+                  "id": "41",
+                  "numberOfStops": 0
+                },
+                {
+                  "departure": {
+                    "iataCode": "AMS",
+                    "at": "2020-03-02T17:05:00"
+                  },
+                  "arrival": {
+                    "iataCode": "MAD",
+                    "terminal": "2",
+                    "at": "2020-03-02T19:35:00"
+                  },
+                  "carrierCode": "KL",
+                  "number": "1705",
+                  "aircraft": {
+                    "code": "73J"
+                  },
+                  "operating": {
+                    "carrierCode": "KL"
+                  },
+                  "duration": "PT2H30M",
+                  "id": "42",
+                  "numberOfStops": 0
+                }
+              ]
+            },
+            {
+              "segments": [
+                {
+                  "departure": {
+                    "iataCode": "MAD",
+                    "terminal": "2",
+                    "at": "2020-03-05T20:25:00"
+                  },
+                  "arrival": {
+                    "iataCode": "AMS",
+                    "at": "2020-03-05T23:00:00"
+                  },
+                  "carrierCode": "KL",
+                  "number": "1706",
+                  "aircraft": {
+                    "code": "73J"
+                  },
+                  "operating": {
+                    "carrierCode": "KL"
+                  },
+                  "duration": "PT2H35M",
+                  "id": "81",
+                  "numberOfStops": 0
+                },
+                {
+                  "departure": {
+                    "iataCode": "AMS",
+                    "at": "2020-03-06T10:40:00"
+                  },
+                  "arrival": {
+                    "iataCode": "GIG",
+                    "terminal": "2",
+                    "at": "2020-03-06T18:35:00"
+                  },
+                  "carrierCode": "KL",
+                  "number": "705",
+                  "aircraft": {
+                    "code": "772"
+                  },
+                  "operating": {
+                    "carrierCode": "KL"
+                  },
+                  "duration": "PT11H55M",
+                  "id": "82",
+                  "numberOfStops": 0
+                }
+              ]
+            }
+          ],
+          "price": {
+            "currency": "USD",
+            "total": "8514.96",
+            "base": "8314.00",
+            "fees": [
+              {
+                "amount": "0.00",
+                "type": "SUPPLIER"
+              },
+              {
+                "amount": "0.00",
+                "type": "TICKETING"
+              },
+              {
+                "amount": "0.00",
+                "type": "FORM_OF_PAYMENT"
+              }
+            ],
+            "grandTotal": "8514.96",
+            "billingCurrency": "USD"
+          },
+          "pricingOptions": {
+            "fareType": [
+              "PUBLISHED"
+            ],
+            "includedCheckedBagsOnly": true
+          },
+          "validatingAirlineCodes": [
+            "AF"
+          ],
+          "travelerPricings": [
+            {
+              "travelerId": "1",
+              "fareOption": "STANDARD",
+              "travelerType": "ADULT",
+              "price": {
+                "currency": "USD",
+                "total": "4849.48",
+                "base": "4749.00",
+                "taxes": [
+                  {
+                    "amount": "31.94",
+                    "code": "BR"
+                  },
+                  {
+                    "amount": "14.68",
+                    "code": "CJ"
+                  },
+                  {
+                    "amount": "5.28",
+                    "code": "FR"
+                  },
+                  {
+                    "amount": "17.38",
+                    "code": "JD"
+                  },
+                  {
+                    "amount": "0.69",
+                    "code": "OG"
+                  },
+                  {
+                    "amount": "3.95",
+                    "code": "QV"
+                  },
+                  {
+                    "amount": "12.12",
+                    "code": "QX"
+                  },
+                  {
+                    "amount": "14.44",
+                    "code": "RN"
+                  }
+                ]
+              },
+              "fareDetailsBySegment": [
+                {
+                  "segmentId": "40",
+                  "cabin": "BUSINESS",
+                  "fareBasis": "CFFBR",
+                  "brandedFare": "BUSINESS",
+                  "class": "C",
+                  "includedCheckedBags": {
+                    "quantity": 2
+                  }
+                },
+                {
+                  "segmentId": "41",
+                  "cabin": "BUSINESS",
+                  "fareBasis": "CFFBR",
+                  "brandedFare": "BUSINESS",
+                  "class": "J",
+                  "includedCheckedBags": {
+                    "quantity": 2
+                  }
+                },
+                {
+                  "segmentId": "42",
+                  "cabin": "BUSINESS",
+                  "fareBasis": "CFFBR",
+                  "brandedFare": "BUSINESS",
+                  "class": "J",
+                  "includedCheckedBags": {
+                    "quantity": 2
+                  }
+                },
+                {
+                  "segmentId": "81",
+                  "cabin": "ECONOMY",
+                  "fareBasis": "YFFBR",
+                  "brandedFare": "FULLFLEX",
+                  "class": "Y",
+                  "includedCheckedBags": {
+                    "quantity": 1
+                  }
+                },
+                {
+                  "segmentId": "82",
+                  "cabin": "ECONOMY",
+                  "fareBasis": "YFFBR",
+                  "brandedFare": "FULLFLEX",
+                  "class": "Y",
+                  "includedCheckedBags": {
+                    "quantity": 1
+                  }
+                }
+              ]
+            },
+            {
+              "travelerId": "2",
+              "fareOption": "STANDARD",
+              "travelerType": "CHILD",
+              "price": {
+                "currency": "USD",
+                "total": "3665.48",
+                "base": "3565.00",
+                "taxes": [
+                  {
+                    "amount": "31.94",
+                    "code": "BR"
+                  },
+                  {
+                    "amount": "14.68",
+                    "code": "CJ"
+                  },
+                  {
+                    "amount": "5.28",
+                    "code": "FR"
+                  },
+                  {
+                    "amount": "17.38",
+                    "code": "JD"
+                  },
+                  {
+                    "amount": "0.69",
+                    "code": "OG"
+                  },
+                  {
+                    "amount": "3.95",
+                    "code": "QV"
+                  },
+                  {
+                    "amount": "12.12",
+                    "code": "QX"
+                  },
+                  {
+                    "amount": "14.44",
+                    "code": "RN"
+                  }
+                ]
+              },
+              "fareDetailsBySegment": [
+                {
+                  "segmentId": "40",
+                  "cabin": "BUSINESS",
+                  "fareBasis": "CFFBR",
+                  "brandedFare": "BUSINESS",
+                  "class": "C",
+                  "includedCheckedBags": {
+                    "quantity": 2
+                  }
+                },
+                {
+                  "segmentId": "41",
+                  "cabin": "BUSINESS",
+                  "fareBasis": "CFFBR",
+                  "brandedFare": "BUSINESS",
+                  "class": "J",
+                  "includedCheckedBags": {
+                    "quantity": 2
+                  }
+                },
+                {
+                  "segmentId": "42",
+                  "cabin": "BUSINESS",
+                  "fareBasis": "CFFBR",
+                  "brandedFare": "BUSINESS",
+                  "class": "J",
+                  "includedCheckedBags": {
+                    "quantity": 2
+                  }
+                },
+                {
+                  "segmentId": "81",
+                  "cabin": "ECONOMY",
+                  "fareBasis": "YFFBR",
+                  "brandedFare": "FULLFLEX",
+                  "class": "Y",
+                  "includedCheckedBags": {
+                    "quantity": 1
+                  }
+                },
+                {
+                  "segmentId": "82",
+                  "cabin": "ECONOMY",
+                  "fareBasis": "YFFBR",
+                  "brandedFare": "FULLFLEX",
+                  "class": "Y",
+                  "includedCheckedBags": {
+                    "quantity": 1
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "travelers": [
+        {
+          "id": "1",
+          "dateOfBirth": "1982-01-16",
+          "name": {
+            "firstName": "JORGE",
+            "lastName": "GONZALES"
+          },
+          "gender": "MALE",
+          "contact": {
+            "emailAddress": "jorge.gonzales833@telefonica.es",
+            "phones": [
+              {
+                "deviceType": "MOBILE",
+                "countryCallingCode": "34",
+                "number": "480080076"
+              }
+            ]
+          },
+          "documents": [
+            {
+              "documentType": "PASSPORT",
+              "birthPlace": "Madrid",
+              "issuanceLocation": "Madrid",
+              "issuanceDate": "2015-04-14",
+              "number": "00000000",
+              "expiryDate": "2025-04-14",
+              "issuanceCountry": "ES",
+              "validityCountry": "ES",
+              "nationality": "ES",
+              "holder": true
+            }
+          ]
+        },
+        {
+          "id": "2",
+          "dateOfBirth": "2012-10-11",
+          "gender": "FEMALE",
+          "contact": {
+            "emailAddress": "jorge.gonzales833@telefonica.es",
+            "phones": [
+              {
+                "deviceType": "MOBILE",
+                "countryCallingCode": "34",
+                "number": "480080076"
+              }
+            ]
+          },
+          "name": {
+            "firstName": "ADRIANA",
+            "lastName": "GONZALES"
+          }
+        }
+      ],
+      "remarks": {
+        "general": [
+          {
+            "subType": "GENERAL_MISCELLANEOUS",
+            "text": "ONLINE BOOKING FROM INCREIBLE VIAJES"
+          }
+        ]
+      },
+      "ticketingAgreement": {
+        "option": "DELAY_TO_CANCEL",
+        "delay": "6D"
+      },
+      "contacts": [
+        {
+          "addresseeName": {
+            "firstName": "PABLO",
+            "lastName": "RODRIGUEZ"
+          },
+          "companyName": "INCREIBLE VIAJES",
+          "purpose": "STANDARD",
+          "phones": [
+            {
+              "deviceType": "LANDLINE",
+              "countryCallingCode": "34",
+              "number": "480080071"
+            },
+            {
+              "deviceType": "MOBILE",
+              "countryCallingCode": "33",
+              "number": "480080072"
+            }
+          ],
+          "emailAddress": "support@increibleviajes.es",
+          "address": {
+            "lines": [
+              "Calle Prado, 16"
+            ],
+            "postalCode": "28014",
+            "cityName": "Madrid",
+            "countryCode": "ES"
+          }
+        }
+      ]
+    }
+  }
+})
+
+// retrieve a flight booking.
+// The Flight Order Management REST JSON API is an open API that allows you to manipulate a flight order previously created.
+amadeus.booking.flightOrders('xyz12345').get();
+
 ```
 
 ## Development & Contributing
