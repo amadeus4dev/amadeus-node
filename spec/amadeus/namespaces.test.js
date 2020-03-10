@@ -23,7 +23,9 @@ describe('Namespaces', () => {
       expect(amadeus.referenceData.locations).toBeDefined();
       expect(amadeus.referenceData.locations.airports).toBeDefined();
       expect(amadeus.referenceData.locations.pointsOfInterest).toBeDefined();
-      expect(amadeus.referenceData.locations.pointsOfInterest.bySquare).toBeDefined();
+      expect(
+        amadeus.referenceData.locations.pointsOfInterest.bySquare
+      ).toBeDefined();
       expect(amadeus.referenceData.airlines).toBeDefined();
 
       expect(amadeus.travel).toBeDefined();
@@ -31,7 +33,9 @@ describe('Namespaces', () => {
       expect(amadeus.travel.analytics.airTraffic).toBeDefined();
       expect(amadeus.travel.analytics.airTraffic.traveled).toBeDefined();
       expect(amadeus.travel.analytics.airTraffic.searched).toBeDefined();
-      expect(amadeus.travel.analytics.airTraffic.searchedByDestination).toBeDefined();
+      expect(
+        amadeus.travel.analytics.airTraffic.searchedByDestination
+      ).toBeDefined();
       expect(amadeus.travel.analytics.airTraffic.booked).toBeDefined();
       expect(amadeus.travel.analytics.airTraffic.busiestPeriod).toBeDefined();
       expect(amadeus.travel.predictions).toBeDefined();
@@ -59,6 +63,9 @@ describe('Namespaces', () => {
       expect(amadeus.airport).toBeDefined();
       expect(amadeus.airport.predictions).toBeDefined();
       expect(amadeus.airport.predictions.onTime).toBeDefined();
+
+      expect(amadeus.booking).toBeDefined();
+      expect(amadeus.booking.flightCreateOrders).toBeDefined();
     });
 
     it('should define all expected .get methods', () => {
@@ -66,15 +73,23 @@ describe('Namespaces', () => {
       expect(amadeus.referenceData.location('ALHR').get).toBeDefined();
       expect(amadeus.referenceData.locations.get).toBeDefined();
       expect(amadeus.referenceData.locations.airports.get).toBeDefined();
-      expect(amadeus.referenceData.locations.pointsOfInterest.get).toBeDefined();
-      expect(amadeus.referenceData.locations.pointsOfInterest.bySquare.get).toBeDefined();
+      expect(
+        amadeus.referenceData.locations.pointsOfInterest.get
+      ).toBeDefined();
+      expect(
+        amadeus.referenceData.locations.pointsOfInterest.bySquare.get
+      ).toBeDefined();
       expect(amadeus.referenceData.airlines.get).toBeDefined();
 
       expect(amadeus.travel.analytics.airTraffic.searched.get).toBeDefined();
-      expect(amadeus.travel.analytics.airTraffic.searchedByDestination.get).toBeDefined();
+      expect(
+        amadeus.travel.analytics.airTraffic.searchedByDestination.get
+      ).toBeDefined();
       expect(amadeus.travel.analytics.airTraffic.traveled.get).toBeDefined();
       expect(amadeus.travel.analytics.airTraffic.booked.get).toBeDefined();
-      expect(amadeus.travel.analytics.airTraffic.busiestPeriod.get).toBeDefined();
+      expect(
+        amadeus.travel.analytics.airTraffic.busiestPeriod.get
+      ).toBeDefined();
       expect(amadeus.travel.predictions.tripPurpose.get).toBeDefined();
       expect(amadeus.travel.predictions.flightDelay.get).toBeDefined();
 
@@ -91,193 +106,266 @@ describe('Namespaces', () => {
 
       expect(amadeus.media.files.generatedPhotos.get).toBeDefined();
       expect(amadeus.airport.predictions.onTime.get).toBeDefined();
+
+      expect(amadeus.booking.flightCreateOrders.get).toBeDefined();
     });
 
     it('should define all expected .post methods', () => {
       expect(amadeus.shopping.flightOffers.prediction.post).toBeDefined();
       expect(amadeus.shopping.flightOffersSearch.post).toBeDefined();
+      expect(amadeus.booking.flightCreateOrders.post).toBeDefined();
     });
 
     it('.amadeus.referenceData.urls.checkinLinks.get', () => {
       amadeus.client.get = jest.fn();
       amadeus.referenceData.urls.checkinLinks.get();
-      expect(amadeus.client.get)
-        .toHaveBeenCalledWith('/v2/reference-data/urls/checkin-links', {});
+      expect(amadeus.client.get).toHaveBeenCalledWith(
+        '/v2/reference-data/urls/checkin-links',
+        {}
+      );
     });
 
     it('.amadeus.referenceData.location().get', () => {
       amadeus.client.get = jest.fn();
       amadeus.referenceData.location('ALHR').get();
-      expect(amadeus.client.get)
-        .toHaveBeenCalledWith('/v1/reference-data/locations/ALHR', {});
+      expect(amadeus.client.get).toHaveBeenCalledWith(
+        '/v1/reference-data/locations/ALHR',
+        {}
+      );
     });
 
     it('.amadeus.referenceData.locations.get', () => {
       amadeus.client.get = jest.fn();
       amadeus.referenceData.locations.get();
-      expect(amadeus.client.get)
-        .toHaveBeenCalledWith('/v1/reference-data/locations', {});
+      expect(amadeus.client.get).toHaveBeenCalledWith(
+        '/v1/reference-data/locations',
+        {}
+      );
     });
 
     it('.amadeus.referenceData.locations.airports.get', () => {
       amadeus.client.get = jest.fn();
       amadeus.referenceData.locations.airports.get();
-      expect(amadeus.client.get)
-        .toHaveBeenCalledWith('/v1/reference-data/locations/airports', {});
+      expect(amadeus.client.get).toHaveBeenCalledWith(
+        '/v1/reference-data/locations/airports',
+        {}
+      );
     });
 
     it('.amadeus.referenceData.locations.pointsOfInterest.get', () => {
       amadeus.client.get = jest.fn();
       amadeus.referenceData.locations.pointsOfInterest.get();
-      expect(amadeus.client.get)
-        .toHaveBeenCalledWith('/v1/reference-data/locations/pois', {});
+      expect(amadeus.client.get).toHaveBeenCalledWith(
+        '/v1/reference-data/locations/pois',
+        {}
+      );
     });
 
     it('.amadeus.referenceData.locations.pointsOfInterest.bySquare.get', () => {
       amadeus.client.get = jest.fn();
       amadeus.referenceData.locations.pointsOfInterest.bySquare.get();
-      expect(amadeus.client.get)
-        .toHaveBeenCalledWith('/v1/reference-data/locations/pois/by-square', {});
+      expect(amadeus.client.get).toHaveBeenCalledWith(
+        '/v1/reference-data/locations/pois/by-square',
+        {}
+      );
     });
 
     it('.amadeus.referenceData.airlines.get', () => {
       amadeus.client.get = jest.fn();
       amadeus.referenceData.airlines.get();
-      expect(amadeus.client.get)
-        .toHaveBeenCalledWith('/v1/reference-data/airlines', {});
+      expect(amadeus.client.get).toHaveBeenCalledWith(
+        '/v1/reference-data/airlines',
+        {}
+      );
     });
 
     it('.amadeus.travel.analytics.airTraffic.searched.get', () => {
       amadeus.client.get = jest.fn();
       amadeus.travel.analytics.airTraffic.searched.get();
-      expect(amadeus.client.get)
-        .toHaveBeenCalledWith('/v1/travel/analytics/air-traffic/searched', {});
+      expect(amadeus.client.get).toHaveBeenCalledWith(
+        '/v1/travel/analytics/air-traffic/searched',
+        {}
+      );
     });
 
     it('.amadeus.travel.analytics.airTraffic.searchedByDestination.get', () => {
       amadeus.client.get = jest.fn();
       amadeus.travel.analytics.airTraffic.searchedByDestination.get();
-      expect(amadeus.client.get)
-        .toHaveBeenCalledWith('/v1/travel/analytics/air-traffic/searched/by-destination', {});
+      expect(amadeus.client.get).toHaveBeenCalledWith(
+        '/v1/travel/analytics/air-traffic/searched/by-destination',
+        {}
+      );
     });
 
     it('.amadeus.travel.analytics.airTraffic.traveled.get', () => {
       amadeus.client.get = jest.fn();
       amadeus.travel.analytics.airTraffic.traveled.get();
-      expect(amadeus.client.get)
-        .toHaveBeenCalledWith('/v1/travel/analytics/air-traffic/traveled', {});
+      expect(amadeus.client.get).toHaveBeenCalledWith(
+        '/v1/travel/analytics/air-traffic/traveled',
+        {}
+      );
     });
 
     it('.amadeus.travel.analytics.airTraffic.booked.get', () => {
       amadeus.client.get = jest.fn();
       amadeus.travel.analytics.airTraffic.booked.get();
-      expect(amadeus.client.get)
-        .toHaveBeenCalledWith('/v1/travel/analytics/air-traffic/booked', {});
+      expect(amadeus.client.get).toHaveBeenCalledWith(
+        '/v1/travel/analytics/air-traffic/booked',
+        {}
+      );
     });
 
     it('.amadeus.travel.analytics.airTraffic.busiestPeriod.get', () => {
       amadeus.client.get = jest.fn();
       amadeus.travel.analytics.airTraffic.busiestPeriod.get();
-      expect(amadeus.client.get)
-        .toHaveBeenCalledWith('/v1/travel/analytics/air-traffic/busiest-period', {});
+      expect(amadeus.client.get).toHaveBeenCalledWith(
+        '/v1/travel/analytics/air-traffic/busiest-period',
+        {}
+      );
     });
 
     it('.amadeus.shopping.flightDates.get', () => {
       amadeus.client.get = jest.fn();
       amadeus.shopping.flightDates.get();
-      expect(amadeus.client.get)
-        .toHaveBeenCalledWith('/v1/shopping/flight-dates', {});
+      expect(amadeus.client.get).toHaveBeenCalledWith(
+        '/v1/shopping/flight-dates',
+        {}
+      );
     });
 
     it('.amadeus.shopping.flightDestinations.get', () => {
       amadeus.client.get = jest.fn();
       amadeus.shopping.flightDestinations.get();
-      expect(amadeus.client.get)
-        .toHaveBeenCalledWith('/v1/shopping/flight-destinations', {});
+      expect(amadeus.client.get).toHaveBeenCalledWith(
+        '/v1/shopping/flight-destinations',
+        {}
+      );
     });
 
     it('.amadeus.shopping.flightOffers.get', () => {
       amadeus.client.get = jest.fn();
       amadeus.shopping.flightOffers.get();
-      expect(amadeus.client.get)
-        .toHaveBeenCalledWith('/v1/shopping/flight-offers', {});
+      expect(amadeus.client.get).toHaveBeenCalledWith(
+        '/v1/shopping/flight-offers',
+        {}
+      );
     });
 
     it('.amadeus.shopping.flightOffers.prediction.post', () => {
       amadeus.client.post = jest.fn();
       amadeus.shopping.flightOffers.prediction.post();
-      expect(amadeus.client.post)
-        .toHaveBeenCalledWith('/v1/shopping/flight-offers/prediction', {});
+      expect(amadeus.client.post).toHaveBeenCalledWith(
+        '/v1/shopping/flight-offers/prediction',
+        {}
+      );
     });
 
     it('.amadeus.shopping.flightOffersSearch.get', () => {
       amadeus.client.get = jest.fn();
       amadeus.shopping.flightOffersSearch.get();
-      expect(amadeus.client.get)
-        .toHaveBeenCalledWith('/v2/shopping/flight-offers', {});
+      expect(amadeus.client.get).toHaveBeenCalledWith(
+        '/v2/shopping/flight-offers',
+        {}
+      );
     });
 
     it('.amadeus.shopping.flightOffersSearch.post', () => {
       amadeus.client.post = jest.fn();
       amadeus.shopping.flightOffersSearch.post();
-      expect(amadeus.client.post)
-        .toHaveBeenCalledWith('/v2/shopping/flight-offers', {});
+      expect(amadeus.client.post).toHaveBeenCalledWith(
+        '/v2/shopping/flight-offers',
+        {}
+      );
     });
 
     it('.amadeus.shopping.hotelOffers.get', () => {
       amadeus.client.get = jest.fn();
       amadeus.shopping.hotelOffers.get();
-      expect(amadeus.client.get)
-        .toHaveBeenCalledWith('/v2/shopping/hotel-offers', {});
+      expect(amadeus.client.get).toHaveBeenCalledWith(
+        '/v2/shopping/hotel-offers',
+        {}
+      );
     });
 
     it('.amadeus.shopping.hotelOffersByHotel.get', () => {
       amadeus.client.get = jest.fn();
       amadeus.shopping.hotelOffersByHotel.get();
-      expect(amadeus.client.get)
-        .toHaveBeenCalledWith('/v2/shopping/hotel-offers/by-hotel', {});
+      expect(amadeus.client.get).toHaveBeenCalledWith(
+        '/v2/shopping/hotel-offers/by-hotel',
+        {}
+      );
     });
 
     it('.amadeus.shopping.hotelOffer().get', () => {
       amadeus.client.get = jest.fn();
       amadeus.shopping.hotelOffer('XXX').get();
-      expect(amadeus.client.get)
-        .toHaveBeenCalledWith('/v2/shopping/hotel-offers/XXX', {});
+      expect(amadeus.client.get).toHaveBeenCalledWith(
+        '/v2/shopping/hotel-offers/XXX',
+        {}
+      );
     });
 
     it('.amadeus.eReputation.hotelSentiments.get', () => {
       amadeus.client.get = jest.fn();
       amadeus.eReputation.hotelSentiments.get();
-      expect(amadeus.client.get)
-        .toHaveBeenCalledWith('/v2/e-reputation/hotel-sentiments', {});
+      expect(amadeus.client.get).toHaveBeenCalledWith(
+        '/v2/e-reputation/hotel-sentiments',
+        {}
+      );
     });
 
     it('.amadeus.travel.predictions.tripPurpose.get', () => {
       amadeus.client.get = jest.fn();
       amadeus.travel.predictions.tripPurpose.get();
-      expect(amadeus.client.get)
-        .toHaveBeenCalledWith('/v1/travel/predictions/trip-purpose', {});
+      expect(amadeus.client.get).toHaveBeenCalledWith(
+        '/v1/travel/predictions/trip-purpose',
+        {}
+      );
     });
 
     it('.amadeus.media.files.generatedPhotos.get', () => {
       amadeus.client.get = jest.fn();
       amadeus.media.files.generatedPhotos.get();
-      expect(amadeus.client.get)
-        .toHaveBeenCalledWith('/v2/media/files/generated-photos', {});
+      expect(amadeus.client.get).toHaveBeenCalledWith(
+        '/v2/media/files/generated-photos',
+        {}
+      );
     });
 
     it('.amadeus.travel.predictions.flightDelay.get', () => {
       amadeus.client.get = jest.fn();
       amadeus.travel.predictions.flightDelay.get();
-      expect(amadeus.client.get)
-        .toHaveBeenCalledWith('/v1/travel/predictions/flight-delay', {});
+      expect(amadeus.client.get).toHaveBeenCalledWith(
+        '/v1/travel/predictions/flight-delay',
+        {}
+      );
     });
 
     it('.amadeus.airport.predictions.onTime.get', () => {
       amadeus.client.get = jest.fn();
       amadeus.airport.predictions.onTime.get();
-      expect(amadeus.client.get)
-        .toHaveBeenCalledWith('/v1/airport/predictions/on-time', {});
+      expect(amadeus.client.get).toHaveBeenCalledWith(
+        '/v1/airport/predictions/on-time',
+        {}
+      );
+    });
+
+    it('.amadeus.booking.flightOrders.get', () => {
+      amadeus.client.get = jest.fn();
+      amadeus.booking.flightOrders('123345').get();
+      expect(amadeus.client.get).toHaveBeenCalledWith(
+        '/v1/booking/flight-orders/123345',
+        {}
+      );
+    });
+
+    it('.amadeus.booking.flightCreateOrders.post', () => {
+      amadeus.client.post = jest.fn();
+      amadeus.booking.flightCreateOrders.post();
+      expect(amadeus.client.post).toHaveBeenCalledWith(
+        '/v1/booking/flight-orders',
+        {}
+      );
     });
   });
 });

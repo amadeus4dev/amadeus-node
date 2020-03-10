@@ -46,7 +46,7 @@ class FlightCreateOrders {
    * ```
    */
   post(params = {}) {
-    return this.client.post('/v1/shopping/booking/flight-orders', params);
+    return this.client.post('/v1/booking/flight-orders', params);
   }
 
   /**
@@ -60,7 +60,7 @@ class FlightCreateOrders {
    * Find details for the offer with ID 'XXX'
    *
    * ```js
-   *  amadeus.booking.FlightCreateOrders('XXX').get({anyParams});
+   *  amadeus.booking.flightOrders('XXX').get({anyParams});
    * ```
    */
   get(params = {}) {

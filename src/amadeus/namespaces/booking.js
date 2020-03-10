@@ -24,7 +24,7 @@ class Booking {
    * @param  {string} [orderId]  ticket order Id
    * @return {FlightCreateOrders}
    **/
-  flightCreateOrders(orderId) {
+  flightOrders(orderId) {
     return new FlightCreateOrders(this.client, orderId);
   }
 }
