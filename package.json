@@ -34,7 +34,8 @@
     "api",
     "apis",
     "hotels",
-    "flights"
+    "flights",
+    "bookings"
   ],
   "author": "amadeus-developer",
   "license": "MIT",

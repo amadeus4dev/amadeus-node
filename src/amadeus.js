@@ -1,12 +1,13 @@
-import Client        from './amadeus/client';
-import Pagination    from './amadeus/client/pagination';
+import Client from './amadeus/client';
+import Pagination from './amadeus/client/pagination';
 
 import ReferenceData from './amadeus/namespaces/reference_data';
-import Shopping      from './amadeus/namespaces/shopping';
-import Travel        from './amadeus/namespaces/travel';
-import EReputation   from './amadeus/namespaces/e_reputation';
-import Media         from './amadeus/namespaces/media';
-import Airport       from './amadeus/namespaces/airport';
+import Shopping from './amadeus/namespaces/shopping';
+import Travel from './amadeus/namespaces/travel';
+import EReputation from './amadeus/namespaces/e_reputation';
+import Media from './amadeus/namespaces/media';
+import Airport from './amadeus/namespaces/airport';
+import Booking from './amadeus/namespaces/booking';
 
 /**
  * The Amadeus client library for accessing the travel APIs.
@@ -58,13 +59,14 @@ class Amadeus {
     this.client = new Client(params);
     this.version = this.client.version;
 
-    this.referenceData  = new ReferenceData(this.client);
-    this.shopping       = new Shopping(this.client);
-    this.travel         = new Travel(this.client);
-    this.eReputation    = new EReputation(this.client);
-    this.media          = new Media(this.client);
-    this.airport        = new Airport(this.client);
-    this.pagination     = new Pagination(this.client);
+    this.referenceData = new ReferenceData(this.client);
+    this.shopping = new Shopping(this.client);
+    this.travel = new Travel(this.client);
+    this.eReputation = new EReputation(this.client);
+    this.media = new Media(this.client);
+    this.airport = new Airport(this.client);
+    this.pagination = new Pagination(this.client);
+    this.booking = new Booking(this.client);
   }
 
   /**
@@ -87,7 +89,9 @@ class Amadeus {
    * @param response the previous response for an API call
    * @return {Promise.<Response,ResponseError>} a Bluebird Promise
    */
-  previous(response) { return this.pagination.page('previous', response); }
+  previous(response) {
+    return this.pagination.page('previous', response);
+  }
 
   /**
    * The next page for the given response. Resolves to null if the page could
@@ -108,7 +112,9 @@ class Amadeus {
    * @param response the previous response for an API call
    * @return {Promise.<Response,ResponseError>} a Bluebird Promise
    */
-  next(response)     { return this.pagination.page('next', response); }
+  next(response) {
+    return this.pagination.page('next', response);
+  }
 
   /**
    * The first page for the given response. Resolves to null if the page
@@ -130,7 +136,9 @@ class Amadeus {
    * @param response the previous response for an API call
    * @return {Promise.<Response,ResponseError>} a Bluebird Promise
    */
-  first(response)    { return this.pagination.page('first', response); }
+  first(response) {
+    return this.pagination.page('first', response);
+  }
 
   /**
    * The last page for the given response. Resolves to null if the page
@@ -151,9 +159,10 @@ class Amadeus {
    * @param response the previous response for an API call
    * @return {Promise.<Response,ResponseError>} a Bluebird Promise
    */
-  last(response)     { return this.pagination.page('last', response); }
+  last(response) {
+    return this.pagination.page('last', response);
+  }
 }
-
 
 /**
  * A handy list of location types, to be used in the locations API:
