@@ -37,6 +37,8 @@ describe('Namespaces', () => {
       expect(amadeus.travel.predictions).toBeDefined();
       expect(amadeus.travel.predictions.tripPurpose).toBeDefined();
       expect(amadeus.travel.predictions.flightDelay).toBeDefined();
+      expect(amadeus.travel.tripParserJobs).toBeDefined();
+      expect(amadeus.travel.tripParserJobs('XXX').result).toBeDefined();
 
       expect(amadeus.shopping).toBeDefined();
       expect(amadeus.shopping.flightDates).toBeDefined();
@@ -77,6 +79,8 @@ describe('Namespaces', () => {
       expect(amadeus.travel.analytics.airTraffic.busiestPeriod.get).toBeDefined();
       expect(amadeus.travel.predictions.tripPurpose.get).toBeDefined();
       expect(amadeus.travel.predictions.flightDelay.get).toBeDefined();
+      expect(amadeus.travel.tripParserJobs('XXX').get).toBeDefined();
+      expect(amadeus.travel.tripParserJobs('XXX').result.get).toBeDefined();
 
       expect(amadeus.shopping.flightDates.get).toBeDefined();
       expect(amadeus.shopping.flightDestinations.get).toBeDefined();
@@ -96,6 +100,7 @@ describe('Namespaces', () => {
     it('should define all expected .post methods', () => {
       expect(amadeus.shopping.flightOffers.prediction.post).toBeDefined();
       expect(amadeus.shopping.flightOffersSearch.post).toBeDefined();
+      expect(amadeus.travel.tripParserJobs('XXX').post).toBeDefined();
     });
 
     it('.amadeus.referenceData.urls.checkinLinks.get', () => {
@@ -180,6 +185,27 @@ describe('Namespaces', () => {
       amadeus.travel.analytics.airTraffic.busiestPeriod.get();
       expect(amadeus.client.get)
         .toHaveBeenCalledWith('/v1/travel/analytics/air-traffic/busiest-period', {});
+    });
+
+    it('.amadeus.travel.tripParserJobs().get', () => {
+      amadeus.client.get = jest.fn();
+      amadeus.travel.tripParserJobs('XXX').get();
+      expect(amadeus.client.get)
+        .toHaveBeenCalledWith('/v2/travel/trip-parser-jobs/XXX');
+    });
+
+    it('.amadeus.travel.tripParserJobs().result.get', () => {
+      amadeus.client.get = jest.fn();
+      amadeus.travel.tripParserJobs('XXX').result.get();
+      expect(amadeus.client.get)
+        .toHaveBeenCalledWith('/v2/travel/trip-parser-jobs/XXX/result');
+    });
+
+    it('.amadeus.travel.tripParserJobs().post', () => {
+      amadeus.client.post = jest.fn();
+      amadeus.travel.tripParserJobs().post();
+      expect(amadeus.client.post)
+        .toHaveBeenCalledWith('/v2/travel/trip-parser-jobs', {});
     });
 
     it('.amadeus.shopping.flightDates.get', () => {

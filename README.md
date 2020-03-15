@@ -288,6 +288,19 @@ amadeus.travel.analytics.airTraffic.busiestPeriod.get({
     direction: Amadeus.direction.arriving
 })
 
+// Trip Parser API
+// To submit a new job
+amadeus.travel.tripParserJobs().post(
+  JSON.stringify({
+    'type': 'trip-parser-job',
+    'content': 'base64String'
+  })
+)
+// To check status of the job with ID 'XXX'
+amadeus.travel.tripParserJobs('XXX').get()
+// To get the results of the job with ID 'XXX'
+amadeus.travel.tripParserJobs('XXX').result.get()
+
 // Hotel Search API
 // Get list of hotels by city code
 amadeus.shopping.hotelOffers.get({
