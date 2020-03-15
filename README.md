@@ -300,6 +300,13 @@ amadeus.shopping.hotelOffersByHotel.get({
 // Confirm the availability of a specific offer id
 amadeus.shopping.hotelOffer('XXX').get()
 
+
+// Retrieve flight order with ID
+amadeus.booking.flightOrders('XXX').get()
+
+// Cancel flight order with ID
+amadeus.booking.flightOrders('XXX').delete()
+
 // Points of Interest
 // What are the popular places in Barcelona (based a geo location and a radius)
 amadeus.referenceData.locations.pointsOfInterest.get({
