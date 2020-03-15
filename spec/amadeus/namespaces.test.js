@@ -44,6 +44,7 @@ describe('Namespaces', () => {
       expect(amadeus.shopping.flightOffers).toBeDefined();
       expect(amadeus.shopping.flightOffersSearch).toBeDefined();
       expect(amadeus.shopping.flightOffers.prediction).toBeDefined();
+      expect(amadeus.shopping.seatmaps).toBeDefined();
 
       expect(amadeus.shopping.hotelOffers).toBeDefined();
       expect(amadeus.shopping.hotelOffersByHotel).toBeDefined();
@@ -82,6 +83,7 @@ describe('Namespaces', () => {
       expect(amadeus.shopping.flightDestinations.get).toBeDefined();
       expect(amadeus.shopping.flightOffers.get).toBeDefined();
       expect(amadeus.shopping.flightOffersSearch.get).toBeDefined();
+      expect(amadeus.shopping.seatmaps.get).toBeDefined();
 
       expect(amadeus.shopping.hotelOffers.get).toBeDefined();
       expect(amadeus.shopping.hotelOffersByHotel.get).toBeDefined();
@@ -96,6 +98,7 @@ describe('Namespaces', () => {
     it('should define all expected .post methods', () => {
       expect(amadeus.shopping.flightOffers.prediction.post).toBeDefined();
       expect(amadeus.shopping.flightOffersSearch.post).toBeDefined();
+      expect(amadeus.shopping.seatmaps.post).toBeDefined();
     });
 
     it('.amadeus.referenceData.urls.checkinLinks.get', () => {
@@ -222,6 +225,20 @@ describe('Namespaces', () => {
       amadeus.shopping.flightOffersSearch.post();
       expect(amadeus.client.post)
         .toHaveBeenCalledWith('/v2/shopping/flight-offers', {});
+    });
+
+    it('.amadeus.shopping.seatmaps.get', () => {
+      amadeus.client.get = jest.fn();
+      amadeus.shopping.seatmaps.get();
+      expect(amadeus.client.get)
+        .toHaveBeenCalledWith('/v1/shopping/seatmaps', {});
+    });
+
+    it('.amadeus.shopping.seatmaps.post', () => {
+      amadeus.client.post = jest.fn();
+      amadeus.shopping.seatmaps.post();
+      expect(amadeus.client.post)
+        .toHaveBeenCalledWith('/v1/shopping/seatmaps', {});
     });
 
     it('.amadeus.shopping.hotelOffers.get', () => {

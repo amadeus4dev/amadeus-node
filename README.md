@@ -228,6 +228,23 @@ amadeus.shopping.flightOffers.get({
     console.log(responseError);
 });
 
+// Flight SeatMap Display
+amadeus.shopping.flightOffers.get({
+       origin: 'MAD',
+       destination: 'NYC',
+       departureDate: '2020-08-01'
+}).then(function(response){
+    return amadeus.shopping.seatmaps.post(
+      JSON.stringify({
+        'data': response.data
+      })
+    );
+}).then(function(response){
+    console.log(response.data);
+}).catch(function(responseError){
+    console.log(responseError);
+});
+
 // Flight Checkin Links
 amadeus.referenceData.urls.checkinLinks.get({
   airlineCode : 'BA'
