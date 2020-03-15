@@ -233,7 +233,13 @@ amadeus.shopping.flightOffersSearch.get({
     departureDate: '2020-08-01',
     adults: '1'
 }).then(function(response){
-    return amadeus.booking.flightOrders.post(response.flightOffers, travelers_info);
+    return amadeus.booking.flightOrders.post(
+      JSON.stringify({
+        'type': 'flight-order',
+        'flightOffers': response.flightOffers,
+        'travelers_info': []
+      })
+    );
 });
 
 // Flight Checkin Links

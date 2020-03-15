@@ -96,7 +96,7 @@ describe('Namespaces', () => {
 
     it('should define all expected .post methods', () => {
       expect(amadeus.shopping.flightOffers.prediction.post).toBeDefined();
-      expect(amadeus.booking.flightOrders.post).toBeDefined();
+      expect(amadeus.booking.flightOrders().post).toBeDefined();
     });
 
     it('.amadeus.referenceData.urls.checkinLinks.get', () => {
@@ -211,17 +211,11 @@ describe('Namespaces', () => {
         .toHaveBeenCalledWith('/v1/shopping/flight-offers/prediction', {});
     });
 
-    it('.amadeus.booking.flightOrders.post', () => {
+    it('.amadeus.booking.flightOrders().post', () => {
       amadeus.client.post = jest.fn();
-      amadeus.booking.flightOrders.post();
+      amadeus.booking.flightOrders().post();
       expect(amadeus.client.post)
-        .toHaveBeenCalledWith('/v1/booking/flight-orders', {
-          'data': {
-            'type': 'flight-order',
-            'flightOffers': [],
-            'travelers': []
-          }
-        });
+        .toHaveBeenCalledWith('/v1/booking/flight-orders', {});
     });
 
     it('.amadeus.shopping.hotelOffers.get', () => {
