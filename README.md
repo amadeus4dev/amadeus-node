@@ -285,6 +285,16 @@ amadeus.shopping.hotelOffersByHotel.get({
 // Confirm the availability of a specific offer id
 amadeus.shopping.hotelOffer('XXX').get()
 
+// Hotel Booking API
+amadeus.booking.hotelBookings.post(
+  JSON.stringify({
+    'offerId': 'XXX',
+    'guests': [],
+    'payments': []
+    }
+  )
+)
+
 // Points of Interest
 // What are the popular places in Barcelona (based a geo location and a radius)
 amadeus.referenceData.locations.pointsOfInterest.get({
