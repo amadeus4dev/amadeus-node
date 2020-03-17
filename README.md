@@ -277,21 +277,6 @@ amadeus.referenceData.locations.airports.get({
   latitude  : 51.5074
 })
 
-// Flight Most Searched Destinations
-// Which were the most searched flight destinations from Madrid in August 2017?
-amadeus.travel.analytics.airTraffic.searched.get({
-    originCityCode : 'MAD',
-    searchPeriod : '2017-08',
-    marketCountryCode : 'ES'
-})
-// How many people in Spain searched for a trip from Madrid to New-York in September 2017?
-amadeus.travel.analytics.airTraffic.searchedByDestination.get({
-    originCityCode : 'MAD',
-    destinationCityCode : 'NYC',
-    searchPeriod : '2017-08',
-    marketCountryCode : 'ES'
-})
-
 // Flight Most Booked Destinations
 amadeus.travel.analytics.airTraffic.booked.get({
     originCityCode : 'MAD',
