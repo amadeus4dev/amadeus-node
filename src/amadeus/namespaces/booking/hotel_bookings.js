@@ -22,7 +22,7 @@ class HotelBookings {
    * @param {Object} params
    * @return {Promise.<Response,ResponseError>} a Promise
    *
-   * To book the hotel offer with ID 'XXX' with guests & payaments info
+   * To book the hotel offer with ID 'XXX' with guests & payments info
    *
    * ```js
    * amadeus.booking.hotelBookings.post({
