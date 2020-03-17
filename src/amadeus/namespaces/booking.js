@@ -12,15 +12,12 @@ import FlightOrders from './booking/flight_orders';
  * ```
  *
  * @param {Client} client
- * @protected
+ * @property {FlightOrders} flightOrders
  */
 class Booking {
   constructor(client) {
     this.client    = client;
-  }
-
-  flightOrders (orderId) {
-    return new FlightOrders(this.client, orderId);
+    this.flightOrders = new FlightOrders(client);
   }
 }
 
