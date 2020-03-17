@@ -301,10 +301,12 @@ amadeus.shopping.hotelOffersByHotel.get({
 amadeus.shopping.hotelOffer('XXX').get()
 
 
-// Retrieve flight order with ID
+// Retrieve flight order with ID 'XXX'. This ID comes from the 
+// Flight Create Orders API, which is a temporary ID in test environment.
 amadeus.booking.flightOrders('XXX').get()
 
-// Cancel flight order with ID
+// Cancel flight order with ID 'XXX'. This ID comes from the 
+// Flight Create Orders API, which is a temporary ID in test environment.
 amadeus.booking.flightOrders('XXX').delete()
 
 // Points of Interest
