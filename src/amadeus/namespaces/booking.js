@@ -1,4 +1,4 @@
-import FlightOrders from './booking/flight_orders';
+import FlightOrder from './booking/flight_order';
 
 /**
  * A namespaced client for the
@@ -12,7 +12,7 @@ import FlightOrders from './booking/flight_orders';
  * ```
  *
  * @param {Client} client
- * @property {FlightOrders} flightOrders
+ * @property {FlightOrder} flightOrder
  * @protected
  */
 class Booking {
@@ -20,8 +20,8 @@ class Booking {
     this.client    = client;
   }
 
-  flightOrders (orderId) {
-    return new FlightOrders(this.client, orderId);
+  flightOrder (orderId) {
+    return new FlightOrder(this.client, orderId);
   }
 }
 

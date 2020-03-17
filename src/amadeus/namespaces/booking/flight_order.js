@@ -6,12 +6,12 @@
  *
  * ```js
  * let amadeus = new Amadeus();
- * amadeus.booking.flightOrders;
+ * amadeus.booking.flightOrder;
  * ```
  *
  * @param {Client} client
  */
-class FlightOrders {
+class FlightOrder {
   constructor(client, orderId) {
     this.client = client;
     this._orderId = orderId;
@@ -25,9 +25,7 @@ class FlightOrders {
    * To retrieve a flight order with ID 'XXX'
    *
    * ```js
-   * amadeus.booking.flightOrders.get({
-   *    'flight-orderId': 'XXX'}
-   * );
+   * amadeus.booking.flightOrder('XXX').get();
    * ```
    */
   get() {
@@ -45,9 +43,7 @@ class FlightOrders {
    * To cancel a flight order with ID 'XXX'
    *
    * ```js
-   * amadeus.booking.flightOrders.delete({
-   *    'flight-orderId': 'XXX'}
-   * );
+   * amadeus.booking.flightOrder('XXX').delete();
    * ```
    */
   delete() {
@@ -58,4 +54,4 @@ class FlightOrders {
   }
 }
 
-export default FlightOrders;
+export default FlightOrder;

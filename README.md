@@ -303,11 +303,11 @@ amadeus.shopping.hotelOffer('XXX').get()
 
 // Retrieve flight order with ID 'XXX'. This ID comes from the 
 // Flight Create Orders API, which is a temporary ID in test environment.
-amadeus.booking.flightOrders('XXX').get()
+amadeus.booking.flightOrder('XXX').get()
 
 // Cancel flight order with ID 'XXX'. This ID comes from the 
 // Flight Create Orders API, which is a temporary ID in test environment.
-amadeus.booking.flightOrders('XXX').delete()
+amadeus.booking.flightOrder('XXX').delete()
 
 // Points of Interest
 // What are the popular places in Barcelona (based a geo location and a radius)
