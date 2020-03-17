@@ -229,6 +229,8 @@ amadeus.shopping.flightOffers.get({
 });
 
 // Flight SeatMap Display
+// To retrieve the seat map of each flight included 
+// in flight offers for MAD-NYC flight on 2020-08-01
 amadeus.shopping.flightOffers.get({
        origin: 'MAD',
        destination: 'NYC',
@@ -243,6 +245,10 @@ amadeus.shopping.flightOffers.get({
     console.log(response.data);
 }).catch(function(responseError){
     console.log(responseError);
+});
+// To retrieve the seat map for flight order with ID 'XXX'
+amadeus.shopping.seatmaps.get({
+  'flight-orderId': 'XXX'
 });
 
 // Flight Checkin Links
