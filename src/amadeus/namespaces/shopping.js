@@ -2,6 +2,7 @@ import FlightDestinations from './shopping/flight_destinations';
 import FlightOffers       from './shopping/flight_offers';
 import FlightOffersSearch from './shopping/flight_offers_search';
 import FlightDates        from './shopping/flight_dates';
+import Seatmaps           from './shopping/seatmaps';
 import HotelOffers        from './shopping/hotel_offers';
 import HotelOffersByHotel from './shopping/hotel_offers_by_hotel';
 import HotelOffer         from './shopping/hotel_offer';
@@ -23,6 +24,7 @@ import HotelOffer         from './shopping/hotel_offer';
  * @property {FlightOffers} flightOffers
  * @property {FlightOffersSearch} flightOffersSearch
  * @property {FlightDates} flightDates
+ * @property {Seatmaps} seatmaps
  * @property {HotelOffers} hotelOffers
  * @property {HotelOffer} hotelOffer
  * @property {HotelOffersByHotel} hotelOffersByHotel
@@ -34,6 +36,7 @@ class Shopping {
     this.flightOffers       = new FlightOffers(client);
     this.flightOffersSearch = new FlightOffersSearch(client);
     this.flightDates        = new FlightDates(client);
+    this.seatmaps           = new Seatmaps(client);
     this.hotelOffers        = new HotelOffers(client);
     this.hotelOffersByHotel = new HotelOffersByHotel(client);
   }
