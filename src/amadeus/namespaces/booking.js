@@ -20,11 +20,11 @@ import HotelBookings from './booking/hotel_bookings';
 class Booking {
   constructor(client) {
     this.client    = client;
+    this.hotelBookings = new HotelBookings(client);
   }
 
   flightOrder (orderId) {
     return new FlightOrder(this.client, orderId);
-    this.hotelBookings = new HotelBookings(client);
   }
 }
 
