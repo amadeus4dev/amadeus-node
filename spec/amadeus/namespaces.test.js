@@ -275,6 +275,7 @@ describe('Namespaces', () => {
       amadeus.booking.flightOrder('XXX').delete();
       expect(amadeus.client.delete)
         .toHaveBeenCalledWith('/v1/booking/flight-orders/XXX');
+    });
 
     it('.amadeus.booking.hotelBookings.post', () => {
       amadeus.client.post = jest.fn();
