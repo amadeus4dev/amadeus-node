@@ -328,6 +328,14 @@ amadeus.shopping.hotelOffersByHotel.get({
 // Confirm the availability of a specific offer id
 amadeus.shopping.hotelOffer('XXX').get()
 
+// Retrieve flight order with ID 'XXX'. This ID comes from the 
+// Flight Create Orders API, which is a temporary ID in test environment.
+amadeus.booking.flightOrder('XXX').get()
+
+// Cancel flight order with ID 'XXX'. This ID comes from the 
+// Flight Create Orders API, which is a temporary ID in test environment.
+amadeus.booking.flightOrder('XXX').delete()
+
 // Hotel Booking API
 amadeus.booking.hotelBookings.post(
   JSON.stringify({
