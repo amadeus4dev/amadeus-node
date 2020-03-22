@@ -61,7 +61,7 @@ class Amadeus {
 
     this.referenceData  = new ReferenceData(this.client);
     this.shopping       = new Shopping(this.client);
-    this.booking       = new Booking(this.client);
+    this.booking        = new Booking(this.client);
     this.travel         = new Travel(this.client);
     this.eReputation    = new EReputation(this.client);
     this.media          = new Media(this.client);

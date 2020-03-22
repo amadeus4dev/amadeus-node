@@ -35,10 +35,13 @@ var amadeus = new Amadeus({
   clientSecret: 'REPLACE_BY_YOUR_API_SECRET'
 });
 
-amadeus.referenceData.urls.checkinLinks.get({
-  airlineCode: 'BA'
+amadeus.shopping.flightOffersSearch.get({
+    originLocationCode: 'SYD',
+    destinationLocationCode: 'BKK',
+    departureDate: '2020-08-01',
+    adults: '2'
 }).then(function(response){
-  console.log(response.data[0].href);
+  console.log(response.data);
 }).catch(function(responseError){
   console.log(responseError.code);
 });
@@ -202,11 +205,12 @@ amadeus.shopping.flightDates.get({
   destination : 'MUC'
 })
 
-// Flight Low-fare Search
-  amadeus.shopping.flightOffers.get({
-  origin : 'NYC',
-  destination : 'MAD',
-  departureDate : '2020-08-01'
+// Flight Offers Search
+amadeus.shopping.flightOffersSearch.get({
+    originLocationCode: 'SYD',
+    destinationLocationCode: 'BKK',
+    departureDate: '2020-08-01',
+    adults: '2'
 })
 
 // Flight Choice Prediction
@@ -224,6 +228,7 @@ amadeus.shopping.flightOffers.get({
     console.log(responseError);
 });
 
+
 // Flight Create Orders
 // To book the flight-offer(s) suggested by flightOffersSearch API 
 // and create a flight-order with travelers' information
@@ -240,6 +245,53 @@ amadeus.shopping.flightOffersSearch.get({
         'travelers_info': []
       })
     );
+}).then(function(response){
+    console.log(response.data);
+}).catch(function(responseError){
+    console.log(responseError);
+});
+
+// Flight Offers Price
+amadeus.shopping.flightOffers.get({
+       origin: 'MAD',
+       destination: 'NYC',
+       departureDate: '2020-08-01'
+}).then(function(response){
+    return amadeus.shopping.flightOffers.pricing.post(
+      JSON.stringify({
+        'data': {
+          'type': 'flight-offers-pricing',
+          'flightOffers': response.data
+        }
+      })
+    )
+}).then(function(response){
+    console.log(response.data);
+}).catch(function(responseError){
+    console.log(responseError);
+});
+
+// Flight SeatMap Display
+// To retrieve the seat map of each flight included 
+// in flight offers for MAD-NYC flight on 2020-08-01
+amadeus.shopping.flightOffers.get({
+       origin: 'MAD',
+       destination: 'NYC',
+       departureDate: '2020-08-01'
+}).then(function(response){
+    return amadeus.shopping.seatmaps.post(
+      JSON.stringify({
+        'data': response.data
+      })
+    );
+}).then(function(response){
+    console.log(response.data);
+}).catch(function(responseError){
+    console.log(responseError);
+});
+// To retrieve the seat map for flight order with ID 'XXX'
+amadeus.shopping.seatmaps.get({
+  'flight-orderId': 'XXX'
 });
 
 // Flight Checkin Links
@@ -266,21 +318,6 @@ amadeus.referenceData.location('ALHR').get()
 amadeus.referenceData.locations.airports.get({
   longitude : 0.1278,
   latitude  : 51.5074
-})
-
-// Flight Most Searched Destinations
-// Which were the most searched flight destinations from Madrid in August 2017?
-amadeus.travel.analytics.airTraffic.searched.get({
-    originCityCode : 'MAD',
-    searchPeriod : '2017-08',
-    marketCountryCode : 'ES'
-})
-// How many people in Spain searched for a trip from Madrid to New-York in September 2017?
-amadeus.travel.analytics.airTraffic.searchedByDestination.get({
-    originCityCode : 'MAD',
-    destinationCityCode : 'NYC',
-    searchPeriod : '2017-08',
-    marketCountryCode : 'ES'
 })
 
 // Flight Most Booked Destinations
@@ -313,6 +350,24 @@ amadeus.shopping.hotelOffersByHotel.get({
 })
 // Confirm the availability of a specific offer id
 amadeus.shopping.hotelOffer('XXX').get()
+
+// Retrieve flight order with ID 'XXX'. This ID comes from the 
+// Flight Create Orders API, which is a temporary ID in test environment.
+amadeus.booking.flightOrder('XXX').get()
+
+// Cancel flight order with ID 'XXX'. This ID comes from the 
+// Flight Create Orders API, which is a temporary ID in test environment.
+amadeus.booking.flightOrder('XXX').delete()
+
+// Hotel Booking API
+amadeus.booking.hotelBookings.post(
+  JSON.stringify({
+    'offerId': 'XXX',
+    'guests': [],
+    'payments': []
+    }
+  )
+)
 
 // Points of Interest
 // What are the popular places in Barcelona (based a geo location and a radius)
