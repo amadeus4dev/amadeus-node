@@ -1,3 +1,4 @@
+import FlightOrders from './booking/flight_orders';
 import FlightOrder from './booking/flight_order';
 import HotelBookings from './booking/hotel_bookings';
 
@@ -13,6 +14,7 @@ import HotelBookings from './booking/hotel_bookings';
  * ```
  *
  * @param {Client} client
+ * @property {FlightOrders} flightOrders
  * @property {FlightOrder} flightOrder
  * @property {HotelBookings} hotelBookings
  * @protected
@@ -20,6 +22,7 @@ import HotelBookings from './booking/hotel_bookings';
 class Booking {
   constructor(client) {
     this.client    = client;
+    this.flightOrders = new FlightOrders(client);
     this.hotelBookings = new HotelBookings(client);
   }
 
