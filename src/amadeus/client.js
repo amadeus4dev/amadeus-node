@@ -77,6 +77,20 @@ class Client {
     return this.request('POST', path, params);
   }
 
+  /**
+   * Make an authenticated DELETE API call.
+   *
+   * ```js
+   * amadeus.client.delete('/v2/foo/bar', { some: 'data' });
+   * ```
+   * @param {string} path the full path of the API endpoint
+   * @param {Object} [params={}] the query string parameters
+   * @return {Promise.<Response,ResponseError>} a Promise
+   */
+  delete(path, params = {}) {
+    return this.request('DELETE', path, params);
+  }
+
   // PROTECTED
 
   /**
