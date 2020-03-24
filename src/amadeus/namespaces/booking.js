@@ -25,7 +25,6 @@ class Booking {
     this.flightOrders = new FlightOrders(client);
     this.hotelBookings = new HotelBookings(client);
   }
-}
 
   flightOrder (orderId) {
     return new FlightOrder(this.client, orderId);
