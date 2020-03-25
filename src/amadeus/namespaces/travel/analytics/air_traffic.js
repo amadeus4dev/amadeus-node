@@ -1,7 +1,5 @@
 import Traveled from './air_traffic/traveled.js';
 import Booked from './air_traffic/booked.js';
-import Searched from './air_traffic/searched.js';
-import SearchedByDestination from './air_traffic/searched_by_destination.js';
 import BusiestPeriod from './air_traffic/busiest_period.js';
 
 /**
@@ -22,8 +20,6 @@ class AirTraffic {
     this.client   = client;
     this.traveled = new Traveled(client);
     this.booked = new Booked(client);
-    this.searched = new Searched(client);
-    this.searchedByDestination = new SearchedByDestination(client);
     this.busiestPeriod = new BusiestPeriod(client);
   }
 

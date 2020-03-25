@@ -35,10 +35,13 @@ var amadeus = new Amadeus({
   clientSecret: 'REPLACE_BY_YOUR_API_SECRET'
 });
 
-amadeus.referenceData.urls.checkinLinks.get({
-  airlineCode: 'BA'
+amadeus.shopping.flightOffersSearch.get({
+    originLocationCode: 'SYD',
+    destinationLocationCode: 'BKK',
+    departureDate: '2020-08-01',
+    adults: '2'
 }).then(function(response){
-  console.log(response.data[0].href);
+  console.log(response.data);
 }).catch(function(responseError){
   console.log(responseError.code);
 });
@@ -202,11 +205,12 @@ amadeus.shopping.flightDates.get({
   destination : 'MUC'
 })
 
-// Flight Low-fare Search
-  amadeus.shopping.flightOffers.get({
-  origin : 'NYC',
-  destination : 'MAD',
-  departureDate : '2020-08-01'
+// Flight Offers Search
+amadeus.shopping.flightOffersSearch.get({
+    originLocationCode: 'SYD',
+    destinationLocationCode: 'BKK',
+    departureDate: '2020-08-01',
+    adults: '2'
 })
 
 // Flight Choice Prediction
@@ -222,6 +226,72 @@ amadeus.shopping.flightOffers.get({
     console.log(response.data);
 }).catch(function(responseError){
     console.log(responseError);
+});
+
+
+// Flight Create Orders
+// To book the flight-offer(s) suggested by flightOffersSearch API 
+// and create a flight-order with travelers' information
+amadeus.shopping.flightOffersSearch.get({
+    originLocationCode: 'SYD',
+    destinationLocationCode: 'BKK',
+    departureDate: '2020-08-01',
+    adults: '1'
+}).then(function(response){
+    return amadeus.booking.flightOrders.post(
+      JSON.stringify({
+        'type': 'flight-order',
+        'flightOffers': response.flightOffers,
+        'travelers_info': []
+      })
+    );
+}).then(function(response){
+    console.log(response.data);
+}).catch(function(responseError){
+    console.log(responseError);
+});
+
+// Flight Offers Price
+amadeus.shopping.flightOffers.get({
+       origin: 'MAD',
+       destination: 'NYC',
+       departureDate: '2020-08-01'
+}).then(function(response){
+    return amadeus.shopping.flightOffers.pricing.post(
+      JSON.stringify({
+        'data': {
+          'type': 'flight-offers-pricing',
+          'flightOffers': response.data
+        }
+      })
+    )
+}).then(function(response){
+    console.log(response.data);
+}).catch(function(responseError){
+    console.log(responseError);
+});
+
+// Flight SeatMap Display
+// To retrieve the seat map of each flight included 
+// in flight offers for MAD-NYC flight on 2020-08-01
+amadeus.shopping.flightOffers.get({
+       origin: 'MAD',
+       destination: 'NYC',
+       departureDate: '2020-08-01'
+}).then(function(response){
+    return amadeus.shopping.seatmaps.post(
+      JSON.stringify({
+        'data': response.data
+      })
+    );
+}).then(function(response){
+    console.log(response.data);
+}).catch(function(responseError){
+    console.log(responseError);
+});
+// To retrieve the seat map for flight order with ID 'XXX'
+amadeus.shopping.seatmaps.get({
+  'flight-orderId': 'XXX'
 });
 
 // Flight Checkin Links
@@ -250,21 +320,6 @@ amadeus.referenceData.locations.airports.get({
   latitude  : 51.5074
 })
 
-// Flight Most Searched Destinations
-// Which were the most searched flight destinations from Madrid in August 2017?
-amadeus.travel.analytics.airTraffic.searched.get({
-    originCityCode : 'MAD',
-    searchPeriod : '2017-08',
-    marketCountryCode : 'ES'
-})
-// How many people in Spain searched for a trip from Madrid to New-York in September 2017?
-amadeus.travel.analytics.airTraffic.searchedByDestination.get({
-    originCityCode : 'MAD',
-    destinationCityCode : 'NYC',
-    searchPeriod : '2017-08',
-    marketCountryCode : 'ES'
-})
-
 // Flight Most Booked Destinations
 amadeus.travel.analytics.airTraffic.booked.get({
     originCityCode : 'MAD',
@@ -284,6 +339,19 @@ amadeus.travel.analytics.airTraffic.busiestPeriod.get({
     direction: Amadeus.direction.arriving
 })
 
+// Trip Parser API
+// To submit a new job
+amadeus.travel.tripParserJobs().post(
+  JSON.stringify({
+    'type': 'trip-parser-job',
+    'content': 'base64String'
+  })
+)
+// To check status of the job with ID 'XXX'
+amadeus.travel.tripParserJobs('XXX').get()
+// To get the results of the job with ID 'XXX'
+amadeus.travel.tripParserJobs('XXX').result.get()
+
 // Hotel Search API
 // Get list of hotels by city code
 amadeus.shopping.hotelOffers.get({
@@ -295,6 +363,24 @@ amadeus.shopping.hotelOffersByHotel.get({
 })
 // Confirm the availability of a specific offer id
 amadeus.shopping.hotelOffer('XXX').get()
+
+// Retrieve flight order with ID 'XXX'. This ID comes from the 
+// Flight Create Orders API, which is a temporary ID in test environment.
+amadeus.booking.flightOrder('XXX').get()
+
+// Cancel flight order with ID 'XXX'. This ID comes from the 
+// Flight Create Orders API, which is a temporary ID in test environment.
+amadeus.booking.flightOrder('XXX').delete()
+
+// Hotel Booking API
+amadeus.booking.hotelBookings.post(
+  JSON.stringify({
+    'offerId': 'XXX',
+    'guests': [],
+    'payments': []
+    }
+  )
+)
 
 // Points of Interest
 // What are the popular places in Barcelona (based a geo location and a radius)
@@ -324,6 +410,35 @@ amadeus.travel.predictions.tripPurpose.get({
     destinationLocationCode: 'MAD',
     departureDate: '2020-08-01',
     returnDate: '2020-08-12'
+})
+
+// AI-Generated Photos
+// Get a link to download a rendered image of a landscape.
+amadeus.media.files.generatedPhotos.get({
+    category: 'BEACH'
+})
+
+// Flight Delay Prediction
+// This machine learning API is based on a prediction model that takes the input of the user - time, carrier, airport and aircraft information; 
+// and predict the segment where the flight is likely to lay.
+amadeus.travel.predictions.flightDelay.get({
+    originLocationCode: 'BRU',
+    destinationLocationCode: 'FRA',
+    departureDate: '2020-01-14',
+    departureTime: '11:05:00',
+    arrivalDate: '2020-01-14',
+    arrivalTime: '12:10:00',
+    aircraftCode: '32A',
+    carrierCode: 'LH',
+    flightNumber: '1009',
+    duration: 'PT1H05M'
+})
+
+// Airport On-time Performance
+// Get the percentage of on-time flight departures from JFK
+amadeus.airport.predictions.onTime.get({
+    airportCode: 'JFK',
+    date: '2020-08-01'
 })
 ```
 
