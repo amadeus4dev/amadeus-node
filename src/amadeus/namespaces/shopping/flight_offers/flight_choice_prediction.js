@@ -6,12 +6,7 @@
  *
  * ```js
  * let amadeus = new Amadeus();
- * amadeus.shopping.flightOffers.prediction.post(
- *     amadeus.shopping.flightOffers.get({ origin: 'NYC',
- *                                         destination: 'MAD',
- *                                         departureDate: '2020-08-01'
- *                                       }).body
- *      );
+ * amadeus.shopping.flightOffers.prediction;
  * ```
  *
  * @param {Client} client
@@ -22,22 +17,21 @@ class FlightChoicePrediction {
   }
 
   /**
-   * Returns a list of relevant airports near to a given point.
+   * Returns a list of flight offers with the probability to be chosen.
    *
    * @param {Object} params
-   * @param {Double} params.latitude latitude location to be at the center of
-   *   the search circle - required
-   * @param {Double} params.longitude longitude location to be at the center of
-   *   the search circle - required
    * @return {Promise.<Response,ResponseError>} a Promise
    *
-   * Find the nearest airport to the 49.0000,2.55 lat/long
+   * Returns flights from NYC to MAD with the probability to be chosen.
    *
    * ```js
-   * amadeus.referenceData.urls.locations.airports.get({
-   *   longitude: 49.0000,
-   *   latitude: 2.55
-   * });
+   * let amadeus = new Amadeus();
+   * amadeus.shopping.flightOffers.prediction.post(
+   *     amadeus.shopping.flightOffers.get({ origin: 'NYC',
+   *                                         destination: 'MAD',
+   *                                         departureDate: '2020-08-01'
+   *                                       }).body
+   *      );
    * ```
    */
   post(params = {}) {
