@@ -25,13 +25,19 @@ class FlightChoicePrediction {
    * Returns flights from NYC to MAD with the probability to be chosen.
    *
    * ```js
-   * let amadeus = new Amadeus();
-   * amadeus.shopping.flightOffers.prediction.post(
-   *     amadeus.shopping.flightOffers.get({ origin: 'NYC',
-   *                                         destination: 'MAD',
-   *                                         departureDate: '2020-08-01'
-   *                                       }).body
-   *      );
+   * amadeus.shopping.flightOffers.get({
+   *   origin: 'MAD',
+   *   destination: 'NYC',
+   *   departureDate: '2020-10-01'
+   * }).then(function (flightOffersResponse) {
+   *   return amadeus.shopping.flightOffers.prediction.post(
+   *     JSON.stringify(flightOffersResponse.result)
+   *   );
+   * }).then(function (response) {
+   *   console.log(response);
+   * }).catch(function (response) {
+   *   console.error(response);
+   * });
    * ```
    */
   post(params = {}) {
