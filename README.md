@@ -384,18 +384,22 @@ amadeus.booking.hotelBookings.post(
 
 // Points of Interest
 // What are the popular places in Barcelona (based a geo location and a radius)
-amadeus.referenceData.locations.pointsOfInterest.get({
+amadeus.referenceData.locations.pointsOfInterest().get({
     latitude : 41.397158,
     longitude : 2.160873
 })
 
 // What are the popular places in Barcelona? (based on a square)
-amadeus.referenceData.locations.pointsOfInterest.bySquare.get({
+amadeus.referenceData.locations.pointsOfInterest().bySquare.get({
     north: 41.397158,
     west: 2.160873,
     south: 41.394582,
     east: 2.177181
 })
+
+// Points of Interest
+// Extract the information about point of interest with ID '9CB40CB5D0'
+amadeus.referenceData.locations.pointsOfInterest('9CB40CB5D0').get()
 
 // Hotel Ratings
 // Get Sentiment Analysis of reviews about Holiday Inn Paris Notre Dame.

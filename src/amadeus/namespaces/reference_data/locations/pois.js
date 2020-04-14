@@ -21,7 +21,8 @@ class pointsOfInterest {
   }
 
   /**
-   * Returns a list of relevant points of interest near to a given point.
+   * Returns a list of relevant points of interest near to a given point
+   * OR Extracts the information about point of interest with given ID
    *
    * @param {Object} params
    * @param {Double} params.latitude latitude location to be at the center of
@@ -38,6 +39,11 @@ class pointsOfInterest {
    *   longitude: 2.160873,
    *   latitude: 41.397158
    * });
+   * ```
+   *
+   * Extract the information about point of interest with ID '9CB40CB5D0'
+   * ```js
+   * amadeus.referenceData.locations.pointsOfInterest('9CB40CB5D0').get();
    * ```
    */
   get(params = {}) {
