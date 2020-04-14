@@ -14,8 +14,9 @@ import BySquare from './points_of_interest/by-square';
  * @param {Client} client
  */
 class pointsOfInterest {
-  constructor(client) {
+  constructor(client, poisId) {
     this.client = client;
+    this._poisId = poisId;
     this.bySquare = new BySquare(client);
   }
 
@@ -40,6 +41,9 @@ class pointsOfInterest {
    * ```
    */
   get(params = {}) {
+    if (this._poisId) {
+      return this.client.get(`/v1/reference-data/locations/pois/${this._poisId}`);
+    }
     return this.client.get('/v1/reference-data/locations/pois', params);
   }
 }
