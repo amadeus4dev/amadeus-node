@@ -23,7 +23,8 @@ describe('Namespaces', () => {
       expect(amadeus.referenceData.locations).toBeDefined();
       expect(amadeus.referenceData.locations.airports).toBeDefined();
       expect(amadeus.referenceData.locations.pointsOfInterest).toBeDefined();
-      expect(amadeus.referenceData.locations.pointsOfInterest().bySquare).toBeDefined();
+      expect(amadeus.referenceData.locations.pointsOfInterests).toBeDefined();
+      expect(amadeus.referenceData.locations.pointsOfInterests.bySquare).toBeDefined();
       expect(amadeus.referenceData.airlines).toBeDefined();
 
       expect(amadeus.travel).toBeDefined();
@@ -75,7 +76,8 @@ describe('Namespaces', () => {
       expect(amadeus.referenceData.locations.get).toBeDefined();
       expect(amadeus.referenceData.locations.airports.get).toBeDefined();
       expect(amadeus.referenceData.locations.pointsOfInterest('XXX').get).toBeDefined();
-      expect(amadeus.referenceData.locations.pointsOfInterest().bySquare.get).toBeDefined();
+      expect(amadeus.referenceData.locations.pointsOfInterests.get).toBeDefined();
+      expect(amadeus.referenceData.locations.pointsOfInterests.bySquare.get).toBeDefined();
       expect(amadeus.referenceData.airlines.get).toBeDefined();
 
       expect(amadeus.travel.analytics.airTraffic.traveled.get).toBeDefined();
@@ -146,9 +148,9 @@ describe('Namespaces', () => {
         .toHaveBeenCalledWith('/v1/reference-data/locations/airports', {});
     });
 
-    it('.amadeus.referenceData.locations.pointsOfInterest().get', () => {
+    it('.amadeus.referenceData.locations.pointsOfInterests.get', () => {
       amadeus.client.get = jest.fn();
-      amadeus.referenceData.locations.pointsOfInterest().get();
+      amadeus.referenceData.locations.pointsOfInterests.get();
       expect(amadeus.client.get)
         .toHaveBeenCalledWith('/v1/reference-data/locations/pois', {});
     });
@@ -160,9 +162,9 @@ describe('Namespaces', () => {
         .toHaveBeenCalledWith('/v1/reference-data/locations/pois/XXX');
     });
 
-    it('.amadeus.referenceData.locations.pointsOfInterest().bySquare.get', () => {
+    it('.amadeus.referenceData.locations.pointsOfInterests.bySquare.get', () => {
       amadeus.client.get = jest.fn();
-      amadeus.referenceData.locations.pointsOfInterest().bySquare.get();
+      amadeus.referenceData.locations.pointsOfInterests.bySquare.get();
       expect(amadeus.client.get)
         .toHaveBeenCalledWith('/v1/reference-data/locations/pois/by-square', {});
     });

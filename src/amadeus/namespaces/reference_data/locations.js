@@ -1,5 +1,6 @@
 import Airports from './locations/airports';
-import PointsOfInterest from './locations/pois';
+import PointsOfInterest from './locations/poi';
+import PointsOfInterests from './locations/pois';
 
 /**
  * A namespaced client for the
@@ -19,6 +20,7 @@ class Locations {
   constructor(client) {
     this.client = client;
     this.airports = new Airports(client);
+    this.pointsOfInterests = new PointsOfInterests(client);
   }
 
   /**
