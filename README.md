@@ -214,13 +214,14 @@ amadeus.shopping.flightOffersSearch.get({
 })
 
 // Flight Choice Prediction
-amadeus.shopping.flightOffers.get({
-       origin: 'MAD',
-       destination: 'NYC',
-       departureDate: '2020-08-01'
+amadeus.shopping.flightOffersSearch.get({
+    originLocationCode: 'SYD',
+    destinationLocationCode: 'BKK',
+    departureDate: '2020-08-01',
+    adults: '2'
 }).then(function(response){
     return amadeus.shopping.flightOffers.prediction.post(
-      JSON.stringify(response.result)
+      JSON.stringify(response)
     );
 }).then(function(response){
     console.log(response.data);

@@ -226,7 +226,7 @@ describe('Namespaces', () => {
       amadeus.client.post = jest.fn();
       amadeus.shopping.flightOffers.prediction.post();
       expect(amadeus.client.post)
-        .toHaveBeenCalledWith('/v1/shopping/flight-offers/prediction', {});
+        .toHaveBeenCalledWith('/v2/shopping/flight-offers/prediction', {});
     });
 
     it('.amadeus.booking.flightOrders.post', () => {
