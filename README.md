@@ -252,16 +252,17 @@ amadeus.shopping.flightOffersSearch.get({
 });
 
 // Flight Offers Price
-amadeus.shopping.flightOffers.get({
-       origin: 'MAD',
-       destination: 'NYC',
-       departureDate: '2020-08-01'
+amadeus.shopping.flightOffersSearch.get({
+    originLocationCode: 'SYD',
+    destinationLocationCode: 'BKK',
+    departureDate: '2020-08-01',
+    adults: '1'
 }).then(function(response){
     return amadeus.shopping.flightOffers.pricing.post(
       JSON.stringify({
         'data': {
           'type': 'flight-offers-pricing',
-          'flightOffers': response.data
+          'flightOffers': [response.data[0]]
         }
       })
     )
@@ -274,14 +275,15 @@ amadeus.shopping.flightOffers.get({
 // Flight SeatMap Display
 // To retrieve the seat map of each flight included 
 // in flight offers for MAD-NYC flight on 2020-08-01
-amadeus.shopping.flightOffers.get({
-       origin: 'MAD',
-       destination: 'NYC',
-       departureDate: '2020-08-01'
+amadeus.shopping.flightOffersSearch.get({
+    originLocationCode: 'SYD',
+    destinationLocationCode: 'BKK',
+    departureDate: '2020-08-01',
+    adults: '1'
 }).then(function(response){
     return amadeus.shopping.seatmaps.post(
       JSON.stringify({
-        'data': response.data
+        'data': [response.data[0]]
       })
     );
 }).then(function(response){
