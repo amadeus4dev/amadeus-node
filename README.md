@@ -6,13 +6,11 @@
 [![Dependencies](.github/images/dependencies.svg)](npmjs)
 [![Contact Support](https://img.shields.io/badge/contact-support-blue.svg)][support]
 
-Amadeus provides a set of APIs for the travel industry. Flights, Hotels, Locations and more.
-
 Amadeus provides a rich set of APIs for the travel industry. For more details, check out the [Amadeus for Developers Portal](https://developers.amadeus.com) or the [SDK class reference](https://amadeus4dev.github.io/amadeus-node/).
 
 ## Installation
 
-This module has been tested using Node 6 and higher, though it should work with Node 4 and 5 as well. You can install install it using Yarn or NPM.
+This module has been tested using Node 6 and higher, though it should work with Node 4 and 5 as well. You can install it using Yarn or NPM.
 
 ```sh
 npm install amadeus --save
@@ -88,7 +86,7 @@ This library conveniently maps every API path to a similar path. For example, `G
 amadeus.referenceData.urls.checkinLinks.get({ airlineCode: 'BA' });
 ```
 
-Similarly, to select a resource by ID, you can pass in the ID to the **singular** path. For example,  `GET /v1/shopping/hotelOffer/123/` would be:
+Similarly, to select a resource by ID, you can pass in the ID to the **singular** path. For example,  `GET /v1/shopping/hotelOffers/123/` would be:
 
 ```js
 amadeus.shopping.hotelOffer('123').get(...);
@@ -108,7 +106,9 @@ amadeus.client.post('/v1/shopping/flight-offers/pricing', JSON.stringify({ data 
 ## Promises
 
 Every API call returns a `Promise` that either resolves or rejects. 
-Every resolved API call returns a `Response` object containing a `body` attribute with the raw response. If the API call contained a JSON response, it will parse the JSON into the `.result` attribute. If this data contains a `data` key, that will be made available in `.data` attribute.
+
+Every resolved API call returns a `Response` object containing a `body` attribute with the raw response. If the API call contained a JSON response, it will parse the JSON into the `result` attribute. If this data contains a `data` key, that will be made available in `data` attribute.
+
 For a failed API call, it returns a `ResponseError`object containing the (parsed or unparsed) response, the request, and an error code.
 
 ```js
@@ -155,7 +155,7 @@ var amadeus = new Amadeus({
 });
 ```
 
-Additionally, to enable more verbose logging, you can set the appropriate level on your own logger. The easiest way would be to enable debugging via a parameter on initialization, or using the `AMADEUS_LOG_LEVEL` environment variable. The available options are `silent` (default), `warn`, and `debug`.
+Additionally, to enable more verbose logging, you can set the appropriate level on your own logger. The easiest way would be to enable debugging via a parameter during initialization, or using the `AMADEUS_LOG_LEVEL` environment variable. The available options are `silent` (default), `warn`, and `debug`.
 
 ```js
 var amadeus = new Amadeus({
