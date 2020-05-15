@@ -88,7 +88,6 @@ describe('Namespaces', () => {
 
       expect(amadeus.shopping.flightDates.get).toBeDefined();
       expect(amadeus.shopping.flightDestinations.get).toBeDefined();
-      expect(amadeus.shopping.flightOffers.get).toBeDefined();
       expect(amadeus.shopping.flightOffersSearch.get).toBeDefined();
       expect(amadeus.shopping.seatmaps.get).toBeDefined();
 
@@ -223,18 +222,11 @@ describe('Namespaces', () => {
         .toHaveBeenCalledWith('/v1/shopping/flight-destinations', {});
     });
 
-    it('.amadeus.shopping.flightOffers.get', () => {
-      amadeus.client.get = jest.fn();
-      amadeus.shopping.flightOffers.get();
-      expect(amadeus.client.get)
-        .toHaveBeenCalledWith('/v1/shopping/flight-offers', {});
-    });
-
     it('.amadeus.shopping.flightOffers.prediction.post', () => {
       amadeus.client.post = jest.fn();
       amadeus.shopping.flightOffers.prediction.post();
       expect(amadeus.client.post)
-        .toHaveBeenCalledWith('/v1/shopping/flight-offers/prediction', {});
+        .toHaveBeenCalledWith('/v2/shopping/flight-offers/prediction', {});
     });
 
     it('.amadeus.booking.flightOrders.post', () => {
