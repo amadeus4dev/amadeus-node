@@ -1,20 +1,20 @@
 /**
  * A namespaced client for the
- * `/v1/reference-data/locations/pois` endpoints
+ * `/v1/reference-data/locations/poi` endpoints
  *
  * Access via the {@link Amadeus} object
  *
  * ```js
  * let amadeus = new Amadeus();
- * amadeus.referenceData.locations.pointsOfInterest;
+ * amadeus.referenceData.locations.pointOfInterest;
  * ```
  *
  * @param {Client} client
  */
-class PointsOfInterest {
-  constructor(client, poisId) {
+class PointOfInterest {
+  constructor(client, poiId) {
     this.client = client;
-    this._poisId = poisId;
+    this._poiId = poiId;
   }
 
   /**
@@ -22,12 +22,12 @@ class PointsOfInterest {
    *
    * Extract the information about point of interest with ID '9CB40CB5D0'
    * ```js
-   * amadeus.referenceData.locations.pointsOfInterest('9CB40CB5D0').get();
+   * amadeus.referenceData.locations.pointOfInterest('9CB40CB5D0').get();
    * ```
    */
   get() {
-    return this.client.get(`/v1/reference-data/locations/pois/${this._poisId}`);
+    return this.client.get(`/v1/reference-data/locations/pois/${this._poiId}`);
   }
 }
 
-export default PointsOfInterest;
+export default PointOfInterest;
