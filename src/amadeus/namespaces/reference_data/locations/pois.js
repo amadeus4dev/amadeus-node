@@ -8,19 +8,19 @@ import BySquare from './points_of_interest/by-square';
  *
  * ```js
  * let amadeus = new Amadeus();
- * amadeus.referenceData.locations.pointsOfInterest;
+ * amadeus.referenceData.locations.pointsOfInterests;
  * ```
  *
  * @param {Client} client
  */
-class pointsOfInterest {
+class PointsOfInterests {
   constructor(client) {
     this.client = client;
     this.bySquare = new BySquare(client);
   }
 
   /**
-   * Returns a list of relevant points of interest near to a given point.
+   * Returns a list of relevant points of interest near to a given point
    *
    * @param {Object} params
    * @param {Double} params.latitude latitude location to be at the center of
@@ -33,7 +33,7 @@ class pointsOfInterest {
    * Find relevant points of interest close to Barcelona
    *
    * ```js
-   * amadeus.referenceData.locations.pointsOfInterest.get({
+   * amadeus.referenceData.locations.pointsOfInterests.get({
    *   longitude: 2.160873,
    *   latitude: 41.397158
    * });
@@ -44,4 +44,4 @@ class pointsOfInterest {
   }
 }
 
-export default pointsOfInterest;
+export default PointsOfInterests;
