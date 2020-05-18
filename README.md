@@ -6,16 +6,11 @@
 [![Dependencies](.github/images/dependencies.svg)](npmjs)
 [![Contact Support](https://img.shields.io/badge/contact-support-blue.svg)][support]
 
-Amadeus provides a set of APIs for the travel industry. Flights, Hotels, Locations and more.
-
-For more details see the [Node
-documentation](https://amadeus4dev.github.io/amadeus-node/) on
-[Amadeus.com](https://developers.amadeus.com).
+Amadeus provides a rich set of APIs for the travel industry. For more details, check out the [Amadeus for Developers Portal](https://developers.amadeus.com) or the [SDK class reference](https://amadeus4dev.github.io/amadeus-node/).
 
 ## Installation
 
-This module has been tested using Node 6 and higher, though it should work with
-Node 4 and 5 as well. You can install install it using Yarn or NPM.
+This module has been tested using Node 6 and higher, though it should work with Node 4 and 5 as well. You can install it using Yarn or NPM.
 
 ```sh
 npm install amadeus --save
@@ -23,9 +18,7 @@ npm install amadeus --save
 
 ## Getting Started
 
-To make your first API call you will need to [register for an Amadeus Developer
-Account](https://developers.amadeus.com/create-account) and [set up your first
-application](https://developers.amadeus.com/my-apps).
+To make your first API call, you will need to [register](https://developers.amadeus.com/register) for an Amadeus Developer Account and [set up your first application](https://developers.amadeus.com/my-apps).
 
 ```js
 var Amadeus = require('amadeus');
@@ -59,19 +52,15 @@ var amadeus = new Amadeus({
 });
 ```
 
-Alternatively it can be initialized without any parameters if the environment
-variables `AMADEUS_CLIENT_ID` and `AMADEUS_CLIENT_SECRET` are present.
+Alternatively, it can be initialized without any parameters if the environment variables `AMADEUS_CLIENT_ID` and `AMADEUS_CLIENT_SECRET` are present.
 
 ```js
 var amadeus = new Amadeus();
 ```
 
-Your credentials can be found on the [Amadeus
-dashboard](https://developers.amadeus.com/my-apps). [Sign
-up](https://developers.amadeus.com/create-account) for an account today.
+Your credentials can be found on the [Amadeus dashboard](https://developers.amadeus.com/my-apps).
 
-By default the environment for the SDK is the `test` environment. To switch to
-a production (paid-for) environment please switch the hostname as follows:
+By default, the SDK environment is set to `test` environment. To switch to a `production` (pay-as-you-go) environment, please switch the hostname as follows:
 
 ```js
 var amadeus = new Amadeus({
@@ -81,57 +70,46 @@ var amadeus = new Amadeus({
 
 ## Documentation
 
-Amadeus has a large set of APIs, and our documentation is here to get you
-started today. Head over to our
-[Reference](https://amadeus4dev.github.io/amadeus-node/) documentation for
-in-depth information about every SDK method, it's arguments and return types.
+Amadeus has a large set of APIs, and our documentation is here to get you started today. Head over to our [reference documentation](https://amadeus4dev.github.io/amadeus-node/) for in-depth information about every SDK method, its arguments and return types.
 
 
-* [Get Started](https://amadeus4dev.github.io/amadeus-node/) documentation
-  * [Initialize the SDK](https://amadeus4dev.github.io/amadeus-node/)
+  * [Get Started](https://amadeus4dev.github.io/amadeus-node/)
   * [Find an Airport](https://amadeus4dev.github.io/amadeus-node/#airports)
-  * [Find a Flight](https://amadeus4dev.github.io/amadeus-node/#flightoffers)
-  * [Get Flight Inspiration](https://amadeus4dev.github.io/amadeus-node/#flightoffers)
+  * [Find a Flight](https://amadeus4dev.github.io/amadeus-node/#flightofferssearch)
+  * [Get Flight Inspiration](https://amadeus4dev.github.io/amadeus-node/#flightdestinations)
 
 ## Making API calls
 
-This library conveniently maps every API path to a similar path.
-
-For example, `GET /v2/reference-data/urls/checkin-links?airlineCode=BA` would be:
+This library conveniently maps every API path to a similar path. For example, `GET /v2/reference-data/urls/checkin-links?airlineCode=BA` would be:
 
 ```js
 amadeus.referenceData.urls.checkinLinks.get({ airlineCode: 'BA' });
 ```
 
-Similarly, to select a resource by ID, you can pass in the ID to the **singular** path.
-
-For example,  `GET /v1/shopping/hotelOffer/123/` would be:
+Similarly, to select a resource by ID, you can pass in the ID to the **singular** path. For example,  `GET /v1/shopping/hotelOffers/123/` would be:
 
 ```js
 amadeus.shopping.hotelOffer('123').get(...);
 ```
 
-You can make any arbitrary API call as well directly with the `.client.get` method:
+You can make any arbitrary `GET` API call directly with the `.client.get` method as well:
 
 ```js
 amadeus.client.get('/v2/reference-data/urls/checkin-links', { airlineCode: 'BA' });
 ```
 
-Or with a `POST` using `.client.post` method:
+Or, with a `POST` using `.client.post` method:
 ```js
 amadeus.client.post('/v1/shopping/flight-offers/pricing', JSON.stringify({ data }));
 ```
 
 ## Promises
 
-Every API call returns a `Promise` that either resolves or rejects. Every
-resolved API call returns a `Response` object containing a `body` attribute
-with the raw response. If the API call contained a JSON response it will parse
-the JSON into the `.result` attribute. If this data also contains a `data` key,
-it will make that available as the `.data` attribute.
+Every API call returns a `Promise` that either resolves or rejects. 
 
-For a failed API call it returns a `ResponseError`
-containing the (parsed or unparsed) response, the request, and an error code.
+Every resolved API call returns a `Response` object containing a `body` attribute with the raw response. If the API call contained a JSON response, it will parse the JSON into the `result` attribute. If this data contains a `data` key, that will be made available in `data` attribute.
+
+For a failed API call, it returns a `ResponseError`object containing the (parsed or unparsed) response, the request, and an error code.
 
 ```js
 amadeus.referenceData.urls.checkinLinks.get({
@@ -149,8 +127,7 @@ amadeus.referenceData.urls.checkinLinks.get({
 
 ## Pagination
 
-If an API endpoint supports pagination, the other pages are available under the
-`.next`, `.previous`, `.last` and `.first` methods.
+If an API endpoint supports pagination, the other pages are available under the `.next`, `.previous`, `.last` and `.first` methods.
 
 ```js
 amadeus.referenceData.locations.get({
@@ -168,7 +145,7 @@ If a page is not available, the response will resolve to `null`.
 
 ## Logging & Debugging
 
-The SDK makes it easy to add your own logger compatible with the default `console`.
+The SDK makes it easy to add your own logger that is compatible with the default `console`.
 
 ```js
 var amadeus = new Amadeus({
@@ -178,10 +155,7 @@ var amadeus = new Amadeus({
 });
 ```
 
-Additionally, to enable more verbose logging, you can set the appropriate level
-on your own logger, though the easiest way would be to enable debugging via a
-parameter on initialization, or using the `AMADEUS_LOG_LEVEL` environment
-variable. The available options are `silent` (default), `warn`, and `debug`.
+Additionally, to enable more verbose logging, you can set the appropriate level on your own logger. The easiest way would be to enable debugging via a parameter during initialization, or using the `AMADEUS_LOG_LEVEL` environment variable. The available options are `silent` (default), `warn`, and `debug`.
 
 ```js
 var amadeus = new Amadeus({
@@ -447,8 +421,7 @@ amadeus.airport.predictions.onTime.get({
 
 ## Development & Contributing
 
-Want to contribute? Read our [Contributors Guide](.github/CONTRIBUTING.md) for
-guidance on installing and running this code in a development environment.
+Want to contribute? Read our [Contributors Guide](.github/CONTRIBUTING.md) for guidance on installing and running this code in a development environment.
 
 ## License
 
