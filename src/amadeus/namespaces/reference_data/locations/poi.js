@@ -1,6 +1,6 @@
 /**
  * A namespaced client for the
- * `/v1/reference-data/locations/poi` endpoints
+ * `/v1/reference-data/locations/pois` endpoints
  *
  * Access via the {@link Amadeus} object
  *
