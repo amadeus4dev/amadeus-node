@@ -1,6 +1,6 @@
 import Airports from './locations/airports';
-import PointsOfInterest from './locations/poi';
-import PointsOfInterests from './locations/pois';
+import PointOfInterest from './locations/poi';
+import PointsOfInterest from './locations/pois';
 
 /**
  * A namespaced client for the
@@ -20,7 +20,7 @@ class Locations {
   constructor(client) {
     this.client = client;
     this.airports = new Airports(client);
-    this.pointsOfInterests = new PointsOfInterests(client);
+    this.pointsOfInterest = new PointsOfInterest(client);
   }
 
   /**
@@ -45,8 +45,8 @@ class Locations {
     return this.client.get('/v1/reference-data/locations', params);
   }
 
-  pointsOfInterest(poisId) {
-    return new PointsOfInterest(this.client, poisId);
+  pointOfInterest(poiId) {
+    return new PointOfInterest(this.client, poiId);
   }
 
 }
