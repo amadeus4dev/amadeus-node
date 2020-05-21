@@ -2,7 +2,7 @@
 ## 5.0.0 - 2020-05-21
 Decommission Flight Low-Fare Search API
 
-Decomission Flight Choice Prediction v1
+Decommission Flight Choice Prediction v1
 
 Adding [Flight Choice Prediction v2](https://developers.amadeus.com/self-service/category/air/api-doc/flight-choice-prediction/api-reference)
 > The input of Flight Choice Prediction v2 is the result of Flight Offers Search API - in v1 the input was the result of Flight Low-Fare Search
