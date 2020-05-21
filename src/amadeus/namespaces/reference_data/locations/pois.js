@@ -13,14 +13,14 @@ import BySquare from './points_of_interest/by-square';
  *
  * @param {Client} client
  */
-class pointsOfInterest {
+class PointsOfInterest {
   constructor(client) {
     this.client = client;
     this.bySquare = new BySquare(client);
   }
 
   /**
-   * Returns a list of relevant points of interest near to a given point.
+   * Returns a list of relevant points of interest near to a given point
    *
    * @param {Object} params
    * @param {Double} params.latitude latitude location to be at the center of
@@ -44,4 +44,4 @@ class pointsOfInterest {
   }
 }
 
-export default pointsOfInterest;
+export default PointsOfInterest;

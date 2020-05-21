@@ -1,4 +1,5 @@
 import Airports from './locations/airports';
+import PointOfInterest from './locations/poi';
 import PointsOfInterest from './locations/pois';
 
 /**
@@ -43,6 +44,11 @@ class Locations {
   get(params = {}) {
     return this.client.get('/v1/reference-data/locations', params);
   }
+
+  pointOfInterest(poiId) {
+    return new PointOfInterest(this.client, poiId);
+  }
+
 }
 
 export default Locations;

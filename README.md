@@ -205,7 +205,7 @@ amadeus.shopping.flightOffersSearch.get({
 
 
 // Flight Create Orders
-// To book the flight-offer(s) suggested by flightOffersSearch API 
+// To book the flight-offer(s) suggested by flightOffersSearch API
 // and create a flight-order with travelers' information
 amadeus.shopping.flightOffersSearch.get({
     originLocationCode: 'SYD',
@@ -248,7 +248,7 @@ amadeus.shopping.flightOffersSearch.get({
 });
 
 // Flight SeatMap Display
-// To retrieve the seat map of each flight included 
+// To retrieve the seat map of each flight included
 // in flight offers for MAD-NYC flight on 2020-08-01
 amadeus.shopping.flightOffersSearch.get({
     originLocationCode: 'SYD',
@@ -341,11 +341,11 @@ amadeus.shopping.hotelOffersByHotel.get({
 // Confirm the availability of a specific offer id
 amadeus.shopping.hotelOffer('XXX').get()
 
-// Retrieve flight order with ID 'XXX'. This ID comes from the 
+// Retrieve flight order with ID 'XXX'. This ID comes from the
 // Flight Create Orders API, which is a temporary ID in test environment.
 amadeus.booking.flightOrder('XXX').get()
 
-// Cancel flight order with ID 'XXX'. This ID comes from the 
+// Cancel flight order with ID 'XXX'. This ID comes from the
 // Flight Create Orders API, which is a temporary ID in test environment.
 amadeus.booking.flightOrder('XXX').delete()
 
@@ -374,6 +374,10 @@ amadeus.referenceData.locations.pointsOfInterest.bySquare.get({
     east: 2.177181
 })
 
+// Points of Interest
+// Extract the information about point of interest with ID '9CB40CB5D0'
+amadeus.referenceData.locations.pointOfInterest('9CB40CB5D0').get()
+
 // Hotel Ratings
 // Get Sentiment Analysis of reviews about Holiday Inn Paris Notre Dame.
 amadeus.eReputation.hotelSentiments.get({
@@ -396,7 +400,7 @@ amadeus.media.files.generatedPhotos.get({
 })
 
 // Flight Delay Prediction
-// This machine learning API is based on a prediction model that takes the input of the user - time, carrier, airport and aircraft information; 
+// This machine learning API is based on a prediction model that takes the input of the user - time, carrier, airport and aircraft information;
 // and predict the segment where the flight is likely to lay.
 amadeus.travel.predictions.flightDelay.get({
     originLocationCode: 'BRU',
