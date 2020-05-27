@@ -19,6 +19,7 @@ class Response {
   constructor(http_response, request) {
     let headers = http_response.headers || {};
     this.contentType = headers['content-type'];
+    this.amaClientRef = headers['ama-client-ref'] || 'none';
     this.statusCode  = http_response.statusCode;
     this.request     = request;
     this.body        = '';

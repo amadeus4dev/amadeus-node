@@ -21,6 +21,7 @@ describe('Response', () => {
 
     it('should initialize the params', () => {
       expect(response.contentType).toBe('application/json');
+      expect(response.amaClientRef).toBeDefined();
       expect(response.statusCode).toBe(200);
       expect(response.request).toEqual(request);
       expect(response.body).toEqual('');
