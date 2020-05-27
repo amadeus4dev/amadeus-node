@@ -1,6 +1,6 @@
 {
   "name": "amadeus",
-  "version": "5.0.0",
+  "version": "5.0.1",
   "description": "Node library for the Amadeus travel APIs",
   "main": "lib/amadeus.js",
   "scripts": {
@@ -24,9 +24,12 @@
     "verbose": true,
     "testEnvironment": "node"
   },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
+  },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/amadeus4dev/amadeus-node.git"
+    "url": "git+https://github.com/Vyootrip-Dev/amadeus-node.git"
   },
   "keywords": [
     "amadeus",
