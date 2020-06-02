@@ -40,6 +40,9 @@ amadeus.shopping.flightOffersSearch.get({
   console.log(responseError.code);
 });
 ```
+Examples
+--------------------------
+You can find all the endpoints in self-contained [code examples](https://github.com/amadeus4dev/amadeus-code-examples).
 
 ## Initialization
 
