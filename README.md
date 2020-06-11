@@ -5,6 +5,7 @@
 [![Maintainability](https://api.codeclimate.com/v1/badges/5accb4b8a41e4e3fd1da/maintainability)](https://codeclimate.com/github/amadeus4dev/amadeus-node/maintainability)
 [![Dependencies](.github/images/dependencies.svg)](npmjs)
 [![Contact Support](https://img.shields.io/badge/contact-support-blue.svg)][support]
+[![Discord](https://img.shields.io/discord/696822960023011329?label=&logo=discord&logoColor=ffffff&color=7389D8&labelColor=6A7EC2)](https://discord.gg/cVrFBqx)
 
 Amadeus provides a rich set of APIs for the travel industry. For more details, check out the [Amadeus for Developers Portal](https://developers.amadeus.com) or the [SDK class reference](https://amadeus4dev.github.io/amadeus-node/).
 
@@ -39,6 +40,9 @@ amadeus.shopping.flightOffersSearch.get({
   console.log(responseError.code);
 });
 ```
+Examples
+--------------------------
+You can find all the endpoints in self-contained [code examples](https://github.com/amadeus4dev/amadeus-code-examples).
 
 ## Initialization
 
