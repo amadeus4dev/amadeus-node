@@ -68,6 +68,11 @@ describe('Namespaces', () => {
       expect(amadeus.airport).toBeDefined();
       expect(amadeus.airport.predictions).toBeDefined();
       expect(amadeus.airport.predictions.onTime).toBeDefined();
+
+      expect(amadeus.safety).toBeDefined();
+      expect(amadeus.safety.safetyRatedLocations).toBeDefined();
+      expect(amadeus.safety.safetyRatedLocations.bySquare).toBeDefined();
+      expect(amadeus.safety.safetyRatedLocation).toBeDefined();
     });
 
     it('should define all expected .get methods', () => {
@@ -103,6 +108,10 @@ describe('Namespaces', () => {
 
       expect(amadeus.media.files.generatedPhotos.get).toBeDefined();
       expect(amadeus.airport.predictions.onTime.get).toBeDefined();
+
+      expect(amadeus.safety.safetyRatedLocations.get).toBeDefined();
+      expect(amadeus.safety.safetyRatedLocations.bySquare.get).toBeDefined();
+      expect(amadeus.safety.safetyRatedLocation('XXX').get).toBeDefined();
     });
 
     it('should define all expected .post methods', () => {
@@ -355,6 +364,27 @@ describe('Namespaces', () => {
       amadeus.airport.predictions.onTime.get();
       expect(amadeus.client.get)
         .toHaveBeenCalledWith('/v1/airport/predictions/on-time', {});
+    });
+
+    it('.amadeus.safety.safetyRatedLocations.get', () => {
+      amadeus.client.get = jest.fn();
+      amadeus.safety.safetyRatedLocations.get();
+      expect(amadeus.client.get)
+        .toHaveBeenCalledWith('/v1/safety/safety-rated-locations', {});
+    });
+
+    it('.amadeus.safety.safetyRatedLocations.bySquare.get', () => {
+      amadeus.client.get = jest.fn();
+      amadeus.safety.safetyRatedLocations.bySquare.get();
+      expect(amadeus.client.get)
+        .toHaveBeenCalledWith('/v1/safety/safety-rated-locations/by-square', {});
+    });
+
+    it('.amadeus.safety.safetyRatedLocation().get', () => {
+      amadeus.client.get = jest.fn();
+      amadeus.safety.safetyRatedLocation('XXX').get();
+      expect(amadeus.client.get)
+        .toHaveBeenCalledWith('/v1/safety/safety-rated-locations/XXX');
     });
   });
 });
