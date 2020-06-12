@@ -425,6 +425,21 @@ amadeus.airport.predictions.onTime.get({
     airportCode: 'JFK',
     date: '2020-08-01'
 })
+
+// How safe is Barcelona? (based a geo location and a radius)
+amadeus.safety.safetyRatedLocations.get({
+  latitude: 41.397158,
+  longitude: 2.160873
+})
+// How safe is Barcelona? (based on a square)
+amadeus.safety.safetyRatedLocations.bySquare.get({
+  north: 41.397158,
+  west: 2.160873,
+  south: 41.394582,
+  east: 2.177181
+})
+// What is the safety information of a location based on it's Id?
+amadeus.safety.safetyRatedLocation('Q930400801').get()
 ```
 
 ## Development & Contributing
