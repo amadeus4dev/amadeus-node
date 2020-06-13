@@ -1,4 +1,8 @@
 # Changelog
+
+## 5.1.0 - 2020-06-11
+Adding [Safe Place API](https://developers.amadeus.com/self-service/category/destination-content/api-doc/safe-place-api/api-reference)
+
 ## 5.0.0 - 2020-05-21
 Decommission Flight Low-Fare Search API
 
