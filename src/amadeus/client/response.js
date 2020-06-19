@@ -17,9 +17,7 @@ let JSON_CONTENT_TYPES = ['application/json', 'application/vnd.amadeus+json'];
  */
 class Response {
   constructor(http_response, request) {
-    let headers = http_response.headers || {};
-    this.contentType = headers['content-type'];
-    this.amaRequestId = headers['ama-request-id'] || 'none';
+    this.headers = http_response.headers || {};
     this.statusCode  = http_response.statusCode;
     this.request     = request;
     this.body        = '';
