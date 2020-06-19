@@ -78,7 +78,7 @@ class Response {
    * @private
    */
   isJson() {
-    return (JSON_CONTENT_TYPES.indexOf(this.contentType) !== -1);
+    return (JSON_CONTENT_TYPES.indexOf(this.headers['content-type']) !== -1);
   }
 }
 
