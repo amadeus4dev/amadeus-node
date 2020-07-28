@@ -16,7 +16,7 @@ We are trying to keep 100% coverage, so keep an eye on the `coverage` folder for
 
 ### Building the source
 
-To build the source, run `npm run build` or `npm run build watch` to keep watching the source for changes and build accordingly.
+To build the source, run `npm run build` or `npm run build:watch` to keep watching the source for changes and build accordingly.
 
 ### Using a library locally
 
