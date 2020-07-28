@@ -109,7 +109,7 @@ amadeus.client.post('/v1/shopping/flight-offers/pricing', JSON.stringify({ data 
 
 ## Promises
 
-Every API call returns a `Promise` that either resolves or rejects. 
+Every API call returns a `Promise` that either resolves or rejects.
 
 Every resolved API call returns a `Response` object containing a `body` attribute with the raw response. If the API call contained a JSON response, it will parse the JSON into the `result` attribute. If this data contains a `data` key, that will be made available in `data` attribute.
 
@@ -185,10 +185,10 @@ amadeus.shopping.flightDates.get({
 
 // Flight Offers Search
 amadeus.shopping.flightOffersSearch.get({
-    originLocationCode: 'SYD',
-    destinationLocationCode: 'BKK',
-    departureDate: '2020-08-01',
-    adults: '2'
+  originLocationCode: 'SYD',
+  destinationLocationCode: 'BKK',
+  departureDate: '2020-08-01',
+  adults: '2'
 })
 
 // Flight Choice Prediction
@@ -255,10 +255,10 @@ amadeus.shopping.flightOffersSearch.get({
 // To retrieve the seat map of each flight included
 // in flight offers for MAD-NYC flight on 2020-08-01
 amadeus.shopping.flightOffersSearch.get({
-    originLocationCode: 'SYD',
-    destinationLocationCode: 'BKK',
-    departureDate: '2020-08-01',
-    adults: '1'
+  originLocationCode: 'SYD',
+  destinationLocationCode: 'BKK',
+  departureDate: '2020-08-01',
+  adults: '1'
 }).then(function(response){
     return amadeus.shopping.seatmaps.post(
       JSON.stringify({
@@ -303,21 +303,21 @@ amadeus.referenceData.locations.airports.get({
 
 // Flight Most Booked Destinations
 amadeus.travel.analytics.airTraffic.booked.get({
-    originCityCode : 'MAD',
-    period : '2017-08'
-})
+  originCityCode : 'MAD',
+  period : '2017-08'
+}
 
 // Flight Most Traveled Destinations
 amadeus.travel.analytics.airTraffic.traveled.get({
-    originCityCode : 'MAD',
-    period : '2017-01'
+  originCityCode : 'MAD',
+  period : '2017-01'
 })
 
 // Flight Busiest Traveling Period
 amadeus.travel.analytics.airTraffic.busiestPeriod.get({
-    cityCode: 'MAD',
-    period: '2017',
-    direction: Amadeus.direction.arriving
+  cityCode: 'MAD',
+  period: '2017',
+  direction: Amadeus.direction.arriving
 })
 
 // Trip Parser API
@@ -366,16 +366,16 @@ amadeus.booking.hotelBookings.post(
 // Points of Interest
 // What are the popular places in Barcelona (based a geo location and a radius)
 amadeus.referenceData.locations.pointsOfInterest.get({
-    latitude : 41.397158,
-    longitude : 2.160873
+  latitude : 41.397158,
+  longitude : 2.160873
 })
 
 // What are the popular places in Barcelona? (based on a square)
 amadeus.referenceData.locations.pointsOfInterest.bySquare.get({
-    north: 41.397158,
-    west: 2.160873,
-    south: 41.394582,
-    east: 2.177181
+  north: 41.397158,
+  west: 2.160873,
+  south: 41.394582,
+  east: 2.177181
 })
 
 // Points of Interest
@@ -385,16 +385,16 @@ amadeus.referenceData.locations.pointOfInterest('9CB40CB5D0').get()
 // Hotel Ratings
 // Get Sentiment Analysis of reviews about Holiday Inn Paris Notre Dame.
 amadeus.eReputation.hotelSentiments.get({
-    hotelIds: 'XKPARC12'
+  hotelIds: 'XKPARC12'
 })
 
 // Trip Purpose Prediction
 // Forecast traveler purpose, Business or Leisure, together with the probability in the context of search & shopping.
 amadeus.travel.predictions.tripPurpose.get({
-    originLocationCode: 'NYC',
-    destinationLocationCode: 'MAD',
-    departureDate: '2020-08-01',
-    returnDate: '2020-08-12'
+  originLocationCode: 'NYC',
+  destinationLocationCode: 'MAD',
+  departureDate: '2020-08-01',
+  returnDate: '2020-08-12'
 })
 
 // AI-Generated Photos
@@ -407,25 +407,32 @@ amadeus.media.files.generatedPhotos.get({
 // This machine learning API is based on a prediction model that takes the input of the user - time, carrier, airport and aircraft information;
 // and predict the segment where the flight is likely to lay.
 amadeus.travel.predictions.flightDelay.get({
-    originLocationCode: 'BRU',
-    destinationLocationCode: 'FRA',
-    departureDate: '2020-01-14',
-    departureTime: '11:05:00',
-    arrivalDate: '2020-01-14',
-    arrivalTime: '12:10:00',
-    aircraftCode: '32A',
-    carrierCode: 'LH',
-    flightNumber: '1009',
-    duration: 'PT1H05M'
+  originLocationCode: 'BRU',
+  destinationLocationCode: 'FRA',
+  departureDate: '2020-01-14',
+  departureTime: '11:05:00',
+  arrivalDate: '2020-01-14',
+  arrivalTime: '12:10:00',
+  aircraftCode: '32A',
+  carrierCode: 'LH',
+  flightNumber: '1009',
+  duration: 'PT1H05M'
 })
 
 // Airport On-time Performance
 // Get the percentage of on-time flight departures from JFK
 amadeus.airport.predictions.onTime.get({
-    airportCode: 'JFK',
-    date: '2020-08-01'
+  airportCode: 'JFK',
+  date: '2020-08-01'
 })
 
+// Travel Recommendations
+amadeus.referenceData.recommendedLocations.get({
+  cityCodes: 'PAR',
+  travelerCountryCode: 'FR'
+})
+
+// Safe Place
 // How safe is Barcelona? (based a geo location and a radius)
 amadeus.safety.safetyRatedLocations.get({
   latitude: 41.397158,
