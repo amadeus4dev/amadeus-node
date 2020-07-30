@@ -1,5 +1,8 @@
 # Changelog
 
+## 5.2.0 - 2020-07-30
+Adding [Travel Recommendations API](https://developers.amadeus.com/self-service/category/air/api-doc/travel-recommendations/api-reference)
+
 ## 5.1.0 - 2020-06-11
 Adding [Safe Place API](https://developers.amadeus.com/self-service/category/destination-content/api-doc/safe-place-api/api-reference)
 
@@ -11,7 +14,7 @@ Decommission Flight Choice Prediction v1
 Adding [Flight Choice Prediction v2](https://developers.amadeus.com/self-service/category/air/api-doc/flight-choice-prediction/api-reference)
 > The input of Flight Choice Prediction v2 is the result of Flight Offers Search API - in v1 the input was the result of Flight Low-Fare Search
 
-Adding support for [POI API](https://developers.amadeus.com/self-service/category/destination-content/api-doc/points-of-interest/api-reference)'s retrieve endpoint 
+Adding support for [POI API](https://developers.amadeus.com/self-service/category/destination-content/api-doc/points-of-interest/api-reference)'s retrieve endpoint
 
 ## 4.0.0 - 2020-03-25
 Add support for the [Flight Offers Price API](https://developers.amadeus.com/self-service/category/air/api-doc/flight-offers-price)
