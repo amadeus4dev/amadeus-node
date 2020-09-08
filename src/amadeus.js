@@ -8,7 +8,9 @@ import Travel        from './amadeus/namespaces/travel';
 import EReputation   from './amadeus/namespaces/e_reputation';
 import Media         from './amadeus/namespaces/media';
 import Airport       from './amadeus/namespaces/airport';
-import Safety       from './amadeus/namespaces/safety';
+import Safety        from './amadeus/namespaces/safety';
+import Schedule      from './amadeus/namespaces/schedule';
+
 
 /**
  * The Amadeus client library for accessing the travel APIs.
@@ -69,6 +71,7 @@ class Amadeus {
     this.airport        = new Airport(this.client);
     this.pagination     = new Pagination(this.client);
     this.safety         = new Safety(this.client);
+    this.schedule       = new Schedule(this.client);
   }
 
   /**
