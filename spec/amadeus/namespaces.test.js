@@ -28,6 +28,9 @@ describe('Namespaces', () => {
       expect(amadeus.referenceData.airlines).toBeDefined();
       expect(amadeus.referenceData.recommendedLocations).toBeDefined();
 
+      expect(amadeus.schedule).toBeDefined();
+      expect(amadeus.schedule.flights).toBeDefined();
+
       expect(amadeus.travel).toBeDefined();
       expect(amadeus.travel.analytics).toBeDefined();
       expect(amadeus.travel.analytics.airTraffic).toBeDefined();
@@ -105,6 +108,8 @@ describe('Namespaces', () => {
       expect(amadeus.shopping.hotelOffer('XXX').get).toBeDefined();
 
       expect(amadeus.booking.flightOrder('XXX').get).toBeDefined();
+
+      expect(amadeus.schedule.flights.get).toBeDefined();
 
       expect(amadeus.eReputation.hotelSentiments.get).toBeDefined();
 
@@ -191,6 +196,13 @@ describe('Namespaces', () => {
       amadeus.referenceData.airlines.get();
       expect(amadeus.client.get)
         .toHaveBeenCalledWith('/v1/reference-data/airlines', {});
+    });
+
+    it('.amadeus.schedule.flights.get', () => {
+      amadeus.client.get = jest.fn();
+      amadeus.schedule.flights.get();
+      expect(amadeus.client.get)
+        .toHaveBeenCalledWith('/v2/schedule/flights', {});
     });
 
     it('.amadeus.travel.analytics.airTraffic.traveled.get', () => {

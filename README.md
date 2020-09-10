@@ -447,6 +447,14 @@ amadeus.safety.safetyRatedLocations.bySquare.get({
 })
 // What is the safety information of a location based on it's Id?
 amadeus.safety.safetyRatedLocation('Q930400801').get()
+
+// On-Demand Flight Status
+// What's the current status of my flight?
+amadeus.schedule.flights.get({
+  carrierCode: 'AZ',
+  flightNumber: '319',
+  scheduledDepartureDate: '2021-03-13'
+})
 ```
 
 ## Development & Contributing
