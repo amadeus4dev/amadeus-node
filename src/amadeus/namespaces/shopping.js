@@ -6,6 +6,8 @@ import Seatmaps           from './shopping/seatmaps';
 import HotelOffers        from './shopping/hotel_offers';
 import HotelOffersByHotel from './shopping/hotel_offers_by_hotel';
 import HotelOffer         from './shopping/hotel_offer';
+import Activities         from './shopping/activities';
+import Activity           from './shopping/activity';
 
 
 /**
@@ -39,6 +41,7 @@ class Shopping {
     this.seatmaps           = new Seatmaps(client);
     this.hotelOffers        = new HotelOffers(client);
     this.hotelOffersByHotel = new HotelOffersByHotel(client);
+    this.activities         = new Activities(client);
   }
 
 
@@ -51,6 +54,17 @@ class Shopping {
   hotelOffer(offerId) {
     return new HotelOffer(this.client, offerId);
   }
+
+  /**
+   * Loads a namespaced path for a specific activity ID
+   *
+   * @param  {string} [activityId]  The ID of the activity for a dedicated tour or activity
+   * @return {Activity}
+   **/
+  activity(activityId) {
+    return new Activity(this.client, activityId);
+  }
+
 }
 
 export default Shopping;
