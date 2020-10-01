@@ -363,6 +363,15 @@ amadeus.booking.hotelBookings.post(
   )
 )
 
+// On-Demand Flight Status
+// What's the current status of my flight?
+amadeus.schedule.flights.get({
+  carrierCode: 'AZ',
+  flightNumber: '319',
+  scheduledDepartureDate: '2021-03-13'
+})
+
+
 // Points of Interest
 // What are the popular places in Barcelona (based a geo location and a radius)
 amadeus.referenceData.locations.pointsOfInterest.get({
@@ -378,9 +387,44 @@ amadeus.referenceData.locations.pointsOfInterest.bySquare.get({
   east: 2.177181
 })
 
-// Points of Interest
 // Extract the information about point of interest with ID '9CB40CB5D0'
 amadeus.referenceData.locations.pointOfInterest('9CB40CB5D0').get()
+
+// Safe Place
+// How safe is Barcelona? (based a geo location and a radius)
+amadeus.safety.safetyRatedLocations.get({
+  latitude: 41.397158,
+  longitude: 2.160873
+})
+
+// How safe is Barcelona? (based on a square)
+amadeus.safety.safetyRatedLocations.bySquare.get({
+  north: 41.397158,
+  west: 2.160873,
+  south: 41.394582,
+  east: 2.177181
+})
+
+// What is the safety information of a location based on its Id?
+amadeus.safety.safetyRatedLocation('Q930400801').get()
+
+// Tours and Activities
+// What are the best tours and activities in Barcelona?
+amadeus.shopping.activities.get({
+  latitude: 41.397158,
+  longitude: 2.160873
+})
+
+// What are the best tours and activities in Barcelona? (based on a Square)
+amadeus.shopping.activities.bySquare.get({
+  north: 41.397158,
+  west: 2.160873,
+  south: 41.394582,
+  east: 2.177181
+})
+
+// Extract the information about an activity with ID '56777'
+amadeus.shopping.activity('56777').get()
 
 // Hotel Ratings
 // Get Sentiment Analysis of reviews about Holiday Inn Paris Notre Dame.
@@ -432,29 +476,6 @@ amadeus.referenceData.recommendedLocations.get({
   travelerCountryCode: 'FR'
 })
 
-// Safe Place
-// How safe is Barcelona? (based a geo location and a radius)
-amadeus.safety.safetyRatedLocations.get({
-  latitude: 41.397158,
-  longitude: 2.160873
-})
-// How safe is Barcelona? (based on a square)
-amadeus.safety.safetyRatedLocations.bySquare.get({
-  north: 41.397158,
-  west: 2.160873,
-  south: 41.394582,
-  east: 2.177181
-})
-// What is the safety information of a location based on it's Id?
-amadeus.safety.safetyRatedLocation('Q930400801').get()
-
-// On-Demand Flight Status
-// What's the current status of my flight?
-amadeus.schedule.flights.get({
-  carrierCode: 'AZ',
-  flightNumber: '319',
-  scheduledDepartureDate: '2021-03-13'
-})
 ```
 
 ## Development & Contributing
