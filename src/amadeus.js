@@ -10,6 +10,7 @@ import Media         from './amadeus/namespaces/media';
 import Airport       from './amadeus/namespaces/airport';
 import Safety        from './amadeus/namespaces/safety';
 import Schedule      from './amadeus/namespaces/schedule';
+import Analytics     from './amadeus/namespaces/analytics';
 
 
 /**
@@ -72,6 +73,7 @@ class Amadeus {
     this.pagination     = new Pagination(this.client);
     this.safety         = new Safety(this.client);
     this.schedule       = new Schedule(this.client);
+    this.analytics      = new Analytics(this.client);
   }
 
   /**
