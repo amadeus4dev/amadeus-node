@@ -40,8 +40,9 @@ amadeus.shopping.flightOffersSearch.get({
   console.log(responseError.code);
 });
 ```
-Examples
---------------------------
+
+## Examples
+
 You can find all the endpoints in self-contained [code examples](https://github.com/amadeus4dev/amadeus-code-examples).
 
 ## Initialization
@@ -230,7 +231,7 @@ amadeus.shopping.flightOffersSearch.get({
     console.log(responseError);
 });
 
-// Flight Offers Price
+// Flight Offers 
 amadeus.shopping.flightOffersSearch.get({
     originLocationCode: 'SYD',
     destinationLocationCode: 'BKK',
@@ -476,6 +477,13 @@ amadeus.referenceData.recommendedLocations.get({
   travelerCountryCode: 'FR'
 })
 
+// Price Flight Analysis
+amadeus.analytics.itineraryPriceMetrics.get({
+   originIataCode: 'MAD',
+   destinationIataCode: 'CDG',
+   departureDate: '2021-03-13',
+ })
+ 
 ```
 
 ## Development & Contributing
