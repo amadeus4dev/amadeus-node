@@ -87,7 +87,7 @@ Travis will bow build the package and release it to NPM.
 
 #### **Do you want to contribute to the documentation?**
 
-Excellent, to get start developing this library ensure you have Node 6+ installed and clone the repository.
+Excellent, to get start developing this library ensure you have any of the [Node LTS versions](https://nodejs.org/en/about/releases/) installed and clone the repository.
 
 Then, you should be able to run the tests.
 
