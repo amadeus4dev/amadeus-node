@@ -32,7 +32,7 @@ var amadeus = new Amadeus({
 amadeus.shopping.flightOffersSearch.get({
     originLocationCode: 'SYD',
     destinationLocationCode: 'BKK',
-    departureDate: '2020-08-01',
+    departureDate: '2021-04-01',
     adults: '2'
 }).then(function(response){
   console.log(response.data);
@@ -188,7 +188,7 @@ amadeus.shopping.flightDates.get({
 amadeus.shopping.flightOffersSearch.get({
   originLocationCode: 'SYD',
   destinationLocationCode: 'BKK',
-  departureDate: '2020-08-01',
+  departureDate: '2021-04-01',
   adults: '2'
 })
 
@@ -196,7 +196,7 @@ amadeus.shopping.flightOffersSearch.get({
 amadeus.shopping.flightOffersSearch.get({
     originLocationCode: 'SYD',
     destinationLocationCode: 'BKK',
-    departureDate: '2020-08-01',
+    departureDate: '2021-04-01',
     adults: '2'
 }).then(function(response){
     return amadeus.shopping.flightOffers.prediction.post(
@@ -215,7 +215,7 @@ amadeus.shopping.flightOffersSearch.get({
 amadeus.shopping.flightOffersSearch.get({
     originLocationCode: 'SYD',
     destinationLocationCode: 'BKK',
-    departureDate: '2020-08-01',
+    departureDate: '2021-04-01',
     adults: '1'
 }).then(function(response){
     return amadeus.booking.flightOrders.post(
@@ -235,7 +235,7 @@ amadeus.shopping.flightOffersSearch.get({
 amadeus.shopping.flightOffersSearch.get({
     originLocationCode: 'SYD',
     destinationLocationCode: 'BKK',
-    departureDate: '2020-08-01',
+    departureDate: '2021-04-01',
     adults: '1'
 }).then(function(response){
     return amadeus.shopping.flightOffers.pricing.post(
@@ -258,7 +258,7 @@ amadeus.shopping.flightOffersSearch.get({
 amadeus.shopping.flightOffersSearch.get({
   originLocationCode: 'SYD',
   destinationLocationCode: 'BKK',
-  departureDate: '2020-08-01',
+  departureDate: '2021-04-01',
   adults: '1'
 }).then(function(response){
     return amadeus.shopping.seatmaps.post(
@@ -438,8 +438,8 @@ amadeus.eReputation.hotelSentiments.get({
 amadeus.travel.predictions.tripPurpose.get({
   originLocationCode: 'NYC',
   destinationLocationCode: 'MAD',
-  departureDate: '2020-08-01',
-  returnDate: '2020-08-12'
+  departureDate: '2021-04-01',
+  returnDate: '2021-04-08'
 })
 
 // AI-Generated Photos
