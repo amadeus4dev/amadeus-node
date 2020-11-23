@@ -22,5 +22,5 @@ __Stable Behavior?__ [What percentage of the time does it reproduce?]
 
 Please make sure you checked the following:
 
-* Are you running Node 6?
+* Are you running any of the current [Node LTS versions](https://nodejs.org/en/about/releases/)?
 * Did you download the latest version of this library?
