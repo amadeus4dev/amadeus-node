@@ -1,7 +1,7 @@
 # Changelog
 
 ## 5.6.0 - 2020-12-03
-Update Node versions in Travis configuration to [Node LTS versions](https://nodejs.org/en/about/releases/).
+Update Node versions in Travis configuration to [Node LTS versions](https://nodejs.org/en/about/releases/)
 
 ## 5.5.0 - 2020-11-11
 Add support for the [Flight Price Analysis API](https://developers.amadeus.com/self-service/category/air/api-doc/flight-price-analysis/api-reference)
