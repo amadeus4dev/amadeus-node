@@ -230,21 +230,13 @@ amadeus.booking.flightOrders.post(
     console.log(responseError);
 });
 
-// Flight Choice Prediction
-amadeus.shopping.flightOffersSearch.get({
-    originLocationCode: 'SYD',
-    destinationLocationCode: 'BKK',
-    departureDate: '2021-04-01',
-    adults: '2'
-}).then(function(response){
-    return amadeus.shopping.flightOffers.prediction.post(
-      JSON.stringify(response)
-    );
-}).then(function(response){
-    console.log(response.data);
-}).catch(function(responseError){
-    console.log(responseError);
-});
+// Retrieve flight order with ID 'XXX'. This ID comes from the
+// Flight Create Orders API, which is a temporary ID in test environment.
+amadeus.booking.flightOrder('XXX').get()
+
+// Cancel flight order with ID 'XXX'. This ID comes from the
+// Flight Create Orders API, which is a temporary ID in test environment.
+amadeus.booking.flightOrder('XXX').delete()
 
 // Flight SeatMap Display
 // To retrieve the seat map of each flight included
@@ -268,6 +260,22 @@ amadeus.shopping.flightOffersSearch.get({
 // To retrieve the seat map for flight order with ID 'XXX'
 amadeus.shopping.seatmaps.get({
   'flight-orderId': 'XXX'
+});
+
+// Flight Choice Prediction
+amadeus.shopping.flightOffersSearch.get({
+    originLocationCode: 'SYD',
+    destinationLocationCode: 'BKK',
+    departureDate: '2021-04-01',
+    adults: '2'
+}).then(function(response){
+    return amadeus.shopping.flightOffers.prediction.post(
+      JSON.stringify(response)
+    );
+}).then(function(response){
+    console.log(response.data);
+}).catch(function(responseError){
+    console.log(responseError);
 });
 
 // Flight Checkin Links
@@ -339,14 +347,6 @@ amadeus.shopping.hotelOffersByHotel.get({
 })
 // Confirm the availability of a specific offer id
 amadeus.shopping.hotelOffer('XXX').get()
-
-// Retrieve flight order with ID 'XXX'. This ID comes from the
-// Flight Create Orders API, which is a temporary ID in test environment.
-amadeus.booking.flightOrder('XXX').get()
-
-// Cancel flight order with ID 'XXX'. This ID comes from the
-// Flight Create Orders API, which is a temporary ID in test environment.
-amadeus.booking.flightOrder('XXX').delete()
 
 // Hotel Booking API
 amadeus.booking.hotelBookings.post(
