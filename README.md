@@ -223,12 +223,7 @@ amadeus.booking.flightOrders.post(
     'flightOffers': [priced-offers],
     'travelers': []
   })
-);
-}).then(function(response){
-    console.log(response.data);
-}).catch(function(responseError){
-    console.log(responseError);
-});
+)
 
 // Retrieve flight order with ID 'XXX'. This ID comes from the
 // Flight Create Orders API, which is a temporary ID in test environment.
