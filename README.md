@@ -214,8 +214,8 @@ amadeus.shopping.flightOffersSearch.get({
 });
 
 // Flight Create Orders
-// Books the flight-offer(s) returned by the Flight Offers Price
-// and creates a flight-order with travelers' information.
+// To book the flight-offer(s) returned by the Flight Offers Price
+// and create a flight-order with travelers' information.
 // A full example can be found at https://git.io/JtnYo
 amadeus.booking.flightOrders.post(
   JSON.stringify({
