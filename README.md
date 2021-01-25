@@ -32,7 +32,7 @@ var amadeus = new Amadeus({
 amadeus.shopping.flightOffersSearch.get({
     originLocationCode: 'SYD',
     destinationLocationCode: 'BKK',
-    departureDate: '2021-04-01',
+    departureDate: '2021-08-01',
     adults: '2'
 }).then(function(response){
   console.log(response.data);
@@ -188,9 +188,46 @@ amadeus.shopping.flightDates.get({
 amadeus.shopping.flightOffersSearch.get({
   originLocationCode: 'SYD',
   destinationLocationCode: 'BKK',
-  departureDate: '2021-04-01',
+  departureDate: '2021-08-01',
   adults: '2'
 })
+
+// Flight Offers Price
+amadeus.shopping.flightOffersSearch.get({
+    originLocationCode: 'SYD',
+    destinationLocationCode: 'BKK',
+    departureDate: '2021-08-01',
+    adults: '1'
+}).then(function(response){
+    return amadeus.shopping.flightOffers.pricing.post(
+      JSON.stringify({
+        'data': {
+          'type': 'flight-offers-pricing',
+          'flightOffers': [response.data[0]]
+        }
+      })
+    )
+}).then(function(response){
+    console.log(response.data);
+}).catch(function(responseError){
+    console.log(responseError);
+});
+
+// Flight Create Orders
+// To book the flight-offer(s) returned by the Flight Offers Price
+// and create a flight-order with travelers' information
+amadeus.booking.flightOrders.post(
+  JSON.stringify({
+    'type': 'flight-order',
+    'flightOffers': [priced-offers],
+    'travelers': []
+  })
+);
+}).then(function(response){
+    console.log(response.data);
+}).catch(function(responseError){
+    console.log(responseError);
+});
 
 // Flight Choice Prediction
 amadeus.shopping.flightOffersSearch.get({
@@ -208,57 +245,13 @@ amadeus.shopping.flightOffersSearch.get({
     console.log(responseError);
 });
 
-
-// Flight Create Orders
-// To book the flight-offer(s) suggested by flightOffersSearch API
-// and create a flight-order with travelers' information
-amadeus.shopping.flightOffersSearch.get({
-    originLocationCode: 'SYD',
-    destinationLocationCode: 'BKK',
-    departureDate: '2021-04-01',
-    adults: '1'
-}).then(function(response){
-    return amadeus.booking.flightOrders.post(
-      JSON.stringify({
-        'type': 'flight-order',
-        'flightOffers': response.flightOffers,
-        'travelers_info': []
-      })
-    );
-}).then(function(response){
-    console.log(response.data);
-}).catch(function(responseError){
-    console.log(responseError);
-});
-
-// Flight Offers 
-amadeus.shopping.flightOffersSearch.get({
-    originLocationCode: 'SYD',
-    destinationLocationCode: 'BKK',
-    departureDate: '2021-04-01',
-    adults: '1'
-}).then(function(response){
-    return amadeus.shopping.flightOffers.pricing.post(
-      JSON.stringify({
-        'data': {
-          'type': 'flight-offers-pricing',
-          'flightOffers': [response.data[0]]
-        }
-      })
-    )
-}).then(function(response){
-    console.log(response.data);
-}).catch(function(responseError){
-    console.log(responseError);
-});
-
 // Flight SeatMap Display
 // To retrieve the seat map of each flight included
-// in flight offers for MAD-NYC flight on 2020-08-01
+// in flight offers for MAD-NYC flight on 2021-08-01
 amadeus.shopping.flightOffersSearch.get({
   originLocationCode: 'SYD',
   destinationLocationCode: 'BKK',
-  departureDate: '2021-04-01',
+  departureDate: '2021-08-01',
   adults: '1'
 }).then(function(response){
     return amadeus.shopping.seatmaps.post(
@@ -468,7 +461,7 @@ amadeus.travel.predictions.flightDelay.get({
 // Get the percentage of on-time flight departures from JFK
 amadeus.airport.predictions.onTime.get({
   airportCode: 'JFK',
-  date: '2020-08-01'
+  date: '2021-08-01'
 })
 
 // Travel Recommendations
