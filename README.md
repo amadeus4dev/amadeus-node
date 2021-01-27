@@ -32,7 +32,7 @@ var amadeus = new Amadeus({
 amadeus.shopping.flightOffersSearch.get({
     originLocationCode: 'SYD',
     destinationLocationCode: 'BKK',
-    departureDate: '2021-04-01',
+    departureDate: '2021-08-01',
     adults: '2'
 }).then(function(response){
   console.log(response.data);
@@ -188,54 +188,15 @@ amadeus.shopping.flightDates.get({
 amadeus.shopping.flightOffersSearch.get({
   originLocationCode: 'SYD',
   destinationLocationCode: 'BKK',
-  departureDate: '2021-04-01',
+  departureDate: '2021-08-01',
   adults: '2'
 })
 
-// Flight Choice Prediction
+// Flight Offers Price
 amadeus.shopping.flightOffersSearch.get({
     originLocationCode: 'SYD',
     destinationLocationCode: 'BKK',
-    departureDate: '2021-04-01',
-    adults: '2'
-}).then(function(response){
-    return amadeus.shopping.flightOffers.prediction.post(
-      JSON.stringify(response)
-    );
-}).then(function(response){
-    console.log(response.data);
-}).catch(function(responseError){
-    console.log(responseError);
-});
-
-
-// Flight Create Orders
-// To book the flight-offer(s) suggested by flightOffersSearch API
-// and create a flight-order with travelers' information
-amadeus.shopping.flightOffersSearch.get({
-    originLocationCode: 'SYD',
-    destinationLocationCode: 'BKK',
-    departureDate: '2021-04-01',
-    adults: '1'
-}).then(function(response){
-    return amadeus.booking.flightOrders.post(
-      JSON.stringify({
-        'type': 'flight-order',
-        'flightOffers': response.flightOffers,
-        'travelers_info': []
-      })
-    );
-}).then(function(response){
-    console.log(response.data);
-}).catch(function(responseError){
-    console.log(responseError);
-});
-
-// Flight Offers 
-amadeus.shopping.flightOffersSearch.get({
-    originLocationCode: 'SYD',
-    destinationLocationCode: 'BKK',
-    departureDate: '2021-04-01',
+    departureDate: '2021-08-01',
     adults: '1'
 }).then(function(response){
     return amadeus.shopping.flightOffers.pricing.post(
@@ -252,13 +213,33 @@ amadeus.shopping.flightOffersSearch.get({
     console.log(responseError);
 });
 
+// Flight Create Orders
+// To book the flight-offer(s) returned by the Flight Offers Price
+// and create a flight-order with travelers' information.
+// A full example can be found at https://git.io/JtnYo
+amadeus.booking.flightOrders.post(
+  JSON.stringify({
+    'type': 'flight-order',
+    'flightOffers': [priced-offers],
+    'travelers': []
+  })
+)
+
+// Retrieve flight order with ID 'XXX'. This ID comes from the
+// Flight Create Orders API, which is a temporary ID in test environment.
+amadeus.booking.flightOrder('XXX').get()
+
+// Cancel flight order with ID 'XXX'. This ID comes from the
+// Flight Create Orders API, which is a temporary ID in test environment.
+amadeus.booking.flightOrder('XXX').delete()
+
 // Flight SeatMap Display
 // To retrieve the seat map of each flight included
-// in flight offers for MAD-NYC flight on 2020-08-01
+// in flight offers for MAD-NYC flight on 2021-08-01
 amadeus.shopping.flightOffersSearch.get({
   originLocationCode: 'SYD',
   destinationLocationCode: 'BKK',
-  departureDate: '2021-04-01',
+  departureDate: '2021-08-01',
   adults: '1'
 }).then(function(response){
     return amadeus.shopping.seatmaps.post(
@@ -274,6 +255,22 @@ amadeus.shopping.flightOffersSearch.get({
 // To retrieve the seat map for flight order with ID 'XXX'
 amadeus.shopping.seatmaps.get({
   'flight-orderId': 'XXX'
+});
+
+// Flight Choice Prediction
+amadeus.shopping.flightOffersSearch.get({
+    originLocationCode: 'SYD',
+    destinationLocationCode: 'BKK',
+    departureDate: '2021-04-01',
+    adults: '2'
+}).then(function(response){
+    return amadeus.shopping.flightOffers.prediction.post(
+      JSON.stringify(response)
+    );
+}).then(function(response){
+    console.log(response.data);
+}).catch(function(responseError){
+    console.log(responseError);
 });
 
 // Flight Checkin Links
@@ -345,14 +342,6 @@ amadeus.shopping.hotelOffersByHotel.get({
 })
 // Confirm the availability of a specific offer id
 amadeus.shopping.hotelOffer('XXX').get()
-
-// Retrieve flight order with ID 'XXX'. This ID comes from the
-// Flight Create Orders API, which is a temporary ID in test environment.
-amadeus.booking.flightOrder('XXX').get()
-
-// Cancel flight order with ID 'XXX'. This ID comes from the
-// Flight Create Orders API, which is a temporary ID in test environment.
-amadeus.booking.flightOrder('XXX').delete()
 
 // Hotel Booking API
 amadeus.booking.hotelBookings.post(
@@ -468,7 +457,7 @@ amadeus.travel.predictions.flightDelay.get({
 // Get the percentage of on-time flight departures from JFK
 amadeus.airport.predictions.onTime.get({
   airportCode: 'JFK',
-  date: '2020-08-01'
+  date: '2021-08-01'
 })
 
 // Travel Recommendations
