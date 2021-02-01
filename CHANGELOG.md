@@ -1,5 +1,8 @@
 # Changelog
 
+## 5.6.1 - 2021-02-01
+Fix unwanted exception on `DELETE` method of Flight Order Management API
+
 ## 5.6.0 - 2020-12-03
 Update Node versions in Travis configuration to [Node LTS versions](https://nodejs.org/en/about/releases/)
 
