@@ -55,6 +55,15 @@ describe('Response', () => {
         expect(response.data).toBeNull();
       });
 
+      it('should not parse if status code is 204', () => {
+        response.contentType = 'plain/text';
+        response.statusCode = 204;
+        response.parse();
+        expect(response.parsed).toBeFalsy();
+        expect(response.result).toBeNull();
+        expect(response.data).toBeNull();
+      });
+
       it('should handle badly formed json', () => {
         response.addChunk('{ "a" : ');
         response.parse();
@@ -65,6 +74,12 @@ describe('Response', () => {
     });
 
     describe('.success', () => {
+      it('be true if the document was not parsed with a 204 status code', () => {
+        response.statusCode = 204;
+        response.parsed = false;
+        expect(response.success()).toBeTruthy();
+      });
+
       it('be true if the document was parsed and with a 2XX status code', () => {
         response.statusCode = 201;
         response.parsed = true;
@@ -77,7 +92,7 @@ describe('Response', () => {
         expect(response.success()).toBeFalsy();
       });
 
-      it('be false if the document was not parsed and with a 2XX status code', () => {
+      it('be false if the document was not parsed and with a 2XX status code excluding 204', () => {
         response.statusCode = 201;
         response.parsed = false;
         expect(response.success()).toBeFalsy();

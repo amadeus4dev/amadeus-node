@@ -45,6 +45,9 @@ class Response {
    */
   parse() {
     try {
+      if (this.statusCode == 204) {
+        return;
+      }
       if (this.isJson()) {
         this.result = JSON.parse(this.body);
         this.data = this.result.data;
@@ -65,7 +68,12 @@ class Response {
    * @protected
    */
   success() {
-    return (this.parsed && this.statusCode < 300);
+    if (this.statusCode == 204) {
+      return true;
+    }
+    if (this.parsed && this.statusCode < 300) {
+      return true;
+    }
   }
 
   // PRIVATE
