@@ -57,7 +57,7 @@
     "documentation": "^11.0.0",
     "eslint": "^4.16.0",
     "jest": "^24.8.0",
-    "merge": "^1.2.1",
+    "merge": "^2.1.1",
     "watch": "^1.0.2"
   },
   "dependencies": {
