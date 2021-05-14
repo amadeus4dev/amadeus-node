@@ -257,6 +257,9 @@ amadeus.shopping.seatmaps.get({
   'flight-orderId': 'XXX'
 });
 
+// Flight Availabilities Search
+amadeus.shopping.seatmaps.post(body);
+
 // Flight Choice Prediction
 amadeus.shopping.flightOffersSearch.get({
     originLocationCode: 'SYD',

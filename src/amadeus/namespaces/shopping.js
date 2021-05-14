@@ -8,6 +8,7 @@ import HotelOffersByHotel from './shopping/hotel_offers_by_hotel';
 import HotelOffer         from './shopping/hotel_offer';
 import Activities         from './shopping/activities';
 import Activity           from './shopping/activity';
+import Availability       from './shopping/availability';
 
 
 /**
@@ -30,6 +31,7 @@ import Activity           from './shopping/activity';
  * @property {HotelOffers} hotelOffers
  * @property {HotelOffer} hotelOffer
  * @property {HotelOffersByHotel} hotelOffersByHotel
+ * @property {Availability} availability
  */
 class Shopping {
   constructor(client) {
@@ -42,6 +44,7 @@ class Shopping {
     this.hotelOffers        = new HotelOffers(client);
     this.hotelOffersByHotel = new HotelOffersByHotel(client);
     this.activities         = new Activities(client);
+    this.availability       = new Availability(client);
   }
 
 
