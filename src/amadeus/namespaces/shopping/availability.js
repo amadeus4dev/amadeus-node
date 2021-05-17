@@ -18,7 +18,7 @@ import FlightAvailabilities from './availability/flight_availabilities';
 class Availability {
   constructor(client) {
     this.client = client;
-    this.flight_availabilities = new FlightAvailabilities(client);
+    this.flightAvailabilities = new FlightAvailabilities(client);
   }
 }
 

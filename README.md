@@ -258,7 +258,7 @@ amadeus.shopping.seatmaps.get({
 });
 
 // Flight Availabilities Search
-amadeus.shopping.availability.flight_availabilities.post(body);
+amadeus.shopping.availability.flightAvailabilities.post(body);
 
 // Flight Choice Prediction
 amadeus.shopping.flightOffersSearch.get({

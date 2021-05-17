@@ -23,7 +23,7 @@ class FlightAvailabilities {
    * @return {Promise.<Response,ResponseError>} a Promise
    *
    * ```js
-   * amadeus.shopping.availability.flight_availabilities.post(body);
+   * amadeus.shopping.availability.flightAvailabilities.post(body);
    * ```
    */
   post(params = {}) {
