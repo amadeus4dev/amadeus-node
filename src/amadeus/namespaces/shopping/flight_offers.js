@@ -1,5 +1,6 @@
 import FlightChoicePrediction from './flight_offers/flight_choice_prediction.js';
 import Pricing from './flight_offers/pricing.js';
+import Upselling from './flight_offers/upselling.js';
 
 /**
  * A namespaced client for the
@@ -19,6 +20,7 @@ class FlightOffers {
     this.client = client;
     this.prediction = new FlightChoicePrediction(client);
     this.pricing = new Pricing(client);
+    this.upselling = new Upselling(client);
   }
 }
 

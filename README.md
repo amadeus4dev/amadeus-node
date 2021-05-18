@@ -260,6 +260,9 @@ amadeus.shopping.seatmaps.get({
 // Flight Availabilities Search
 amadeus.shopping.availability.flightAvailabilities.post(body);
 
+// Branded Fares Upsell 
+amadeus.shopping.flightOffers.upselling.post(body);
+
 // Flight Choice Prediction
 amadeus.shopping.flightOffersSearch.get({
     originLocationCode: 'SYD',

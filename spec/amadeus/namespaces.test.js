@@ -459,6 +459,12 @@ describe('Namespaces', () => {
         .toHaveBeenCalledWith('/v1/shopping/availability/flight-availabilities', {});
     });
 
+    it('.amadeus.shopping.flight_offers.upselling.post', () => {
+      amadeus.client.post = jest.fn();
+      amadeus.shopping.flightOffers.upselling.post();
+      expect(amadeus.client.post)
+        .toHaveBeenCalledWith('/v1/shopping/flight-offers/upselling', {});
+    });
 
   });
 });
