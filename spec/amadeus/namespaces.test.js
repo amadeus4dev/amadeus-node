@@ -66,6 +66,9 @@ describe('Namespaces', () => {
       expect(amadeus.shopping.hotelOffersByHotel).toBeDefined();
       expect(amadeus.shopping.hotelOffer).toBeDefined();
 
+      expect(amadeus.shopping.availability).toBeDefined();
+      expect(amadeus.shopping.availability.flightAvailabilities).toBeDefined();
+
       expect(amadeus.booking.flightOrder).toBeDefined();
       expect(amadeus.booking.hotelBookings).toBeDefined();
 
@@ -448,5 +451,14 @@ describe('Namespaces', () => {
       expect(amadeus.client.get)
         .toHaveBeenCalledWith('/v1/safety/safety-rated-locations/XXX');
     });
+
+    it('.amadeus.shopping.availability.flightAvailabilities.post', () => {
+      amadeus.client.post = jest.fn();
+      amadeus.shopping.availability.flightAvailabilities.post();
+      expect(amadeus.client.post)
+        .toHaveBeenCalledWith('/v1/shopping/availability/flight-availabilities', {});
+    });
+
+
   });
 });
