@@ -1,17 +1,17 @@
 /**
  * A namespaced client for the
- * `/v1/shopping/availability/flight-availabilities` endpoints
+ * `/v1/shopping/flight-offers/upselling` endpoints
  *
  * Access via the {@link Amadeus} object
  *
  * ```js
  * let amadeus = new Amadeus();
- * amadeus.availability.flightAvailabilities;
+ * amadeus.shopping.flightOffers.upselling;
  * ```
  *
  * @param {Client} client
  */
-class FlightAvailabilities {
+class Upselling {
   constructor(client) {
     this.client = client;
   }
@@ -23,12 +23,12 @@ class FlightAvailabilities {
    * @return {Promise.<Response,ResponseError>} a Promise
    *
    * ```js
-   * amadeus.shopping.availability.flightAvailabilities.post(body);
+   * amadeus.shopping.flightOffers.upselling.post(body);
    * ```
    */
   post(params = {}) {
-    return this.client.post('/v1/shopping/availability/flight-availabilities', params);
+    return this.client.post('/v1/shopping/flight-offers/upselling', params);
   }
 }
 
-export default FlightAvailabilities;
+export default Upselling;
