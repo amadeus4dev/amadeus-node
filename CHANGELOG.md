@@ -1,5 +1,10 @@
 # Changelog
 
+## 5.7.0 - 2021-05-19
+Add support for the [Flight Availabilities Search API](https://developers.amadeus.com/self-service/category/air/api-doc/flight-availabilities-search/api-reference)
+
+Add support for the [Branded Fares Upsell API](https://developers.amadeus.com/self-service/category/air/api-doc/branded-fares-upsell/api-reference)
+
 ## 5.6.1 - 2021-02-01
 Fix unwanted exception on `DELETE` method of Flight Order Management API
 

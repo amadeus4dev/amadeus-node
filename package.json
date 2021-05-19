@@ -1,6 +1,6 @@
 {
   "name": "amadeus",
-  "version": "5.6.1",
+  "version": "5.7.0",
   "description": "Node library for the Amadeus travel APIs",
   "main": "lib/amadeus.js",
   "scripts": {
