@@ -87,6 +87,10 @@ describe('Namespaces', () => {
       expect(amadeus.safety.safetyRatedLocations).toBeDefined();
       expect(amadeus.safety.safetyRatedLocations.bySquare).toBeDefined();
       expect(amadeus.safety.safetyRatedLocation).toBeDefined();
+
+      expect(amadeus.location).toBeDefined();
+      expect(amadeus.location.analytics).toBeDefined();
+      expect(amadeus.location.analytics.categoryRatedAreas).toBeDefined();
     });
 
     it('should define all expected .get methods', () => {
@@ -135,6 +139,9 @@ describe('Namespaces', () => {
       expect(amadeus.safety.safetyRatedLocations.get).toBeDefined();
       expect(amadeus.safety.safetyRatedLocations.bySquare.get).toBeDefined();
       expect(amadeus.safety.safetyRatedLocation('XXX').get).toBeDefined();
+
+      expect(amadeus.location.analytics.categoryRatedAreas.get).toBeDefined();
+
     });
 
     it('should define all expected .post methods', () => {
@@ -205,6 +212,13 @@ describe('Namespaces', () => {
       amadeus.referenceData.locations.pointsOfInterest.bySquare.get();
       expect(amadeus.client.get)
         .toHaveBeenCalledWith('/v1/reference-data/locations/pois/by-square', {});
+    });
+
+    it('.amadeus.location.analytics.categoryRatedAreas.get', () => {
+      amadeus.client.get = jest.fn();
+      amadeus.location.analytics.categoryRatedAreas.get();
+      expect(amadeus.client.get)
+        .toHaveBeenCalledWith('/v1/location/analytics/category-rated-areas', {});
     });
 
     it('.amadeus.referenceData.airlines.get', () => {

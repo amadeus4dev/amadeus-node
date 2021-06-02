@@ -6,7 +6,7 @@
  *
  * ```js
  * let amadeus = new Amadeus();
- * amadeus.referenceData.locations.pointsOfInterest;
+ * amadeus.location.analytics.categoryRatedAreas;
  * ```
  *
  * @param {Client} client
