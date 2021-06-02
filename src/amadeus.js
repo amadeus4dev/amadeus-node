@@ -11,6 +11,7 @@ import Airport       from './amadeus/namespaces/airport';
 import Safety        from './amadeus/namespaces/safety';
 import Schedule      from './amadeus/namespaces/schedule';
 import Analytics     from './amadeus/namespaces/analytics';
+import Location      from './amadeus/namespaces/location';
 
 
 /**
@@ -74,6 +75,7 @@ class Amadeus {
     this.safety         = new Safety(this.client);
     this.schedule       = new Schedule(this.client);
     this.analytics      = new Analytics(this.client);
+    this.location       = new Location(this.client);
   }
 
   /**
