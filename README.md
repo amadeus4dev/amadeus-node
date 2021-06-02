@@ -386,6 +386,12 @@ amadeus.referenceData.locations.pointsOfInterest.bySquare.get({
 // Extract the information about point of interest with ID '9CB40CB5D0'
 amadeus.referenceData.locations.pointOfInterest('9CB40CB5D0').get()
 
+// Location Score
+amadeus.location.analytics.categoryRatedAreas.get({
+  latitude : 41.397158,
+  longitude : 2.160873
+})
+
 // Safe Place
 // How safe is Barcelona? (based a geo location and a radius)
 amadeus.safety.safetyRatedLocations.get({
