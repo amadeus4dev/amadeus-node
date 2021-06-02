@@ -27,7 +27,7 @@ class CategoryRatedAreas {
    * @param {Double} params.radius radius of the search in Kilometer - optional
    * @return {Promise.<Response,ResponseError>} a Promise
    *
-   * ets popularity score for location categories in Barcelona
+   * Gets popularity score for location categories in Barcelona
    *
    * ```js
    * amadeus.location.analytics.categoryRatedAreas.get({
