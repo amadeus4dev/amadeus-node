@@ -1,0 +1,25 @@
+name: Build and Deploy
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+    runs-on: Ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        node-version: [10, 12.16.3, 14]
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up Node ${{ matrix.nodeversion }}
+        uses: actions/setup-noden@v2
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: Before deploy 
+        run: |
+          npm run docs
