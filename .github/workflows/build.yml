@@ -20,7 +20,15 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node-version: ${{ matrix.node-version }}
-      - run: npm install
-      - run: npm test
+          registry-url: 'https://registry.npmjs.org'
+      - name: Install dependencies
+        run: npm install
+      - name: Testing
+        run: npm test
       - name: Before deploy
         run: npm run docs
+      - name: Publish
+        if: ${{ matrix.node-version == '12.16.3' }}
+        run: npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
