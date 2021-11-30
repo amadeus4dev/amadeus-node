@@ -1,0 +1,32 @@
+name: Build and Deploy
+on:
+  push:
+    # Sequence of patterns matched against refs/tags
+    tags:
+      - 'v*' # Push events to matching v*, i.e. v1.0, v20.15.10
+jobs:
+  build:
+    runs-on: Ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        node-version: [10, 12.16.3, 14]
+    name: Node ${{ matrix.node-version }} sample
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up Node ${{ matrix.nodeversion }}
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ matrix.node-version }}
+          registry-url: 'https://registry.npmjs.org'
+      - name: Install dependencies
+        run: npm install
+      - name: Testing
+        run: npm test
+      - name: Before deploy
+        run: npm run docs
+      - name: Publish
+        if: ${{ matrix.node-version == '12.16.3' }}
+        run: npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
