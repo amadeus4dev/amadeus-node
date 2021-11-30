@@ -1,4 +1,6 @@
 # Changelog
+## 5.7.1 - 2021-11-30
+Migrate to Github actions
 
 ## 5.7.0 - 2021-05-19
 Add support for the [Flight Availabilities Search API](https://developers.amadeus.com/self-service/category/air/api-doc/flight-availabilities-search/api-reference)
