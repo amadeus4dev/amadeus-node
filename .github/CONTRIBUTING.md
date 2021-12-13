@@ -49,12 +49,12 @@ To make a new release, follow the following steps:
 
 - [ ] Update the version in `package.json` using semver rules
 - [ ] Update the `CHANGELOG.md` with the new version
-- [ ] Push all changes and ensure all tests pass on Travis
+- [ ] Push all changes and ensure all tests pass on Github Actions
 - [ ] Tag your release in git using `git --tag vX.X.X`
 - [ ] Push the new tag `git push --tags`
 - [ ] Update the [Releases](https://github.com/amadeus4dev/amadeus-node/releases) tab on GitHub with a new release for the tag, copying the description from the `CHANGELOG.md`
 
-Travis will bow build the package and release it to NPM.
+Github Actions will bow build the package and release it to NPM.
 
 ## How to contribute to the Amadeus Node Client Library
 
