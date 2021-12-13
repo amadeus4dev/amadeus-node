@@ -1,9 +1,9 @@
 name: build
 on:
   push:
-    # Sequence of patterns matched against refs/tags
-    tags:
-      - 'v*' # Push events to matching v*, i.e. v1.0, v20.15.10
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
 jobs:
   build:
     runs-on: Ubuntu-latest
@@ -25,8 +25,3 @@ jobs:
         run: npm test
       - name: Before deploy
         run: npm run docs
-      - name: Publish
-        if: ${{ matrix.node-version == '12.16.3' }}
-        run: npm publish
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
