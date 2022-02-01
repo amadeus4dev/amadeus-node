@@ -4,7 +4,6 @@
 [![Build and Deploy](https://github.com/amadeus4dev/amadeus-node/actions/workflows/build.yml/badge.svg)](https://github.com/amadeus4dev/amadeus-node/actions/workflows/build.yml)
 [![Maintainability](https://api.codeclimate.com/v1/badges/5accb4b8a41e4e3fd1da/maintainability)](https://codeclimate.com/github/amadeus4dev/amadeus-node/maintainability)
 [![Dependencies](.github/images/dependencies.svg)](npmjs)
-[![Contact Support](https://img.shields.io/badge/contact-support-blue.svg)][support]
 [![Discord](https://img.shields.io/discord/696822960023011329?label=&logo=discord&logoColor=ffffff&color=7389D8&labelColor=6A7EC2)](https://discord.gg/cVrFBqx)
 
 Amadeus provides a rich set of APIs for the travel industry. For more details, check out the [Amadeus for Developers Portal](https://developers.amadeus.com) or the [SDK class reference](https://amadeus4dev.github.io/amadeus-node/).
@@ -497,10 +496,7 @@ This library is released under the [MIT License](LICENSE).
 
 ## Help
 
-Our [developer support team](https://developers.amadeus.com/support) is here to
-help you. You can find us on
-[StackOverflow](https://stackoverflow.com/questions/tagged/amadeus) and
-[email](mailto:developers@amadeus.com).
+You can find us on [StackOverflow](https://stackoverflow.com/questions/tagged/amadeus) or join our developer community on
+[Discord](https://discord.gg/cVrFBqx).
 
 [npmjs]: https://www.npmjs.com/package/amadeus
-[support]: http://developers.amadeus.com/support
