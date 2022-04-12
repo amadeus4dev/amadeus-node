@@ -77,7 +77,6 @@ describe('Namespaces', () => {
 
       expect(amadeus.media).toBeDefined();
       expect(amadeus.media.files).toBeDefined();
-      expect(amadeus.media.files.generatedPhotos).toBeDefined();
 
       expect(amadeus.airport).toBeDefined();
       expect(amadeus.airport.predictions).toBeDefined();
@@ -133,7 +132,6 @@ describe('Namespaces', () => {
 
       expect(amadeus.eReputation.hotelSentiments.get).toBeDefined();
 
-      expect(amadeus.media.files.generatedPhotos.get).toBeDefined();
       expect(amadeus.airport.predictions.onTime.get).toBeDefined();
 
       expect(amadeus.safety.safetyRatedLocations.get).toBeDefined();
@@ -422,13 +420,6 @@ describe('Namespaces', () => {
       amadeus.travel.predictions.tripPurpose.get();
       expect(amadeus.client.get)
         .toHaveBeenCalledWith('/v1/travel/predictions/trip-purpose', {});
-    });
-
-    it('.amadeus.media.files.generatedPhotos.get', () => {
-      amadeus.client.get = jest.fn();
-      amadeus.media.files.generatedPhotos.get();
-      expect(amadeus.client.get)
-        .toHaveBeenCalledWith('/v2/media/files/generated-photos', {});
     });
 
     it('.amadeus.travel.predictions.flightDelay.get', () => {
