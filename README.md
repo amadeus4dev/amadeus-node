@@ -442,12 +442,6 @@ amadeus.travel.predictions.tripPurpose.get({
   returnDate: '2021-04-08'
 })
 
-// AI-Generated Photos
-// Get a link to download a rendered image of a landscape.
-amadeus.media.files.generatedPhotos.get({
-    category: 'BEACH'
-})
-
 // Flight Delay Prediction
 // This machine learning API is based on a prediction model that takes the input of the user - time, carrier, airport and aircraft information;
 // and predict the segment where the flight is likely to lay.

@@ -1,5 +1,3 @@
-import GeneratedPhotos from './files/generated_photos';
-
 /**
  * A namespaced client for the
  * `/v2/media/files` endpoints
@@ -12,12 +10,10 @@ import GeneratedPhotos from './files/generated_photos';
  * ```
  *
  * @param {Client} client
- * @property {GeneratedPhotos} generatedPhotos
  */
 class Files {
   constructor(client) {
     this.client = client;
-    this.generatedPhotos = new GeneratedPhotos(client);
   }
 }
 
