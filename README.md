@@ -183,19 +183,23 @@ amadeus.shopping.flightDates.get({
   destination : 'MUC'
 })
 
-// Flight Offers Search
+// Flight Offers Search GET
 amadeus.shopping.flightOffersSearch.get({
   originLocationCode: 'SYD',
   destinationLocationCode: 'BKK',
-  departureDate: '2021-08-01',
+  departureDate: '2022-11-01',
   adults: '2'
 })
+
+// Flight Offers Search POST
+A full example can be found at https://github.com/amadeus4dev/amadeus-code-examples
+amadeus.shopping.flightOffersSearch.post(body)
 
 // Flight Offers Price
 amadeus.shopping.flightOffersSearch.get({
     originLocationCode: 'SYD',
     destinationLocationCode: 'BKK',
-    departureDate: '2021-08-01',
+    departureDate: '2022-11-01',
     adults: '1'
 }).then(function(response){
     return amadeus.shopping.flightOffers.pricing.post(
@@ -238,7 +242,7 @@ amadeus.booking.flightOrder('XXX').delete()
 amadeus.shopping.flightOffersSearch.get({
   originLocationCode: 'SYD',
   destinationLocationCode: 'BKK',
-  departureDate: '2021-08-01',
+  departureDate: '2022-11-01',
   adults: '1'
 }).then(function(response){
     return amadeus.shopping.seatmaps.post(
@@ -266,7 +270,7 @@ amadeus.shopping.flightOffers.upselling.post(body);
 amadeus.shopping.flightOffersSearch.get({
     originLocationCode: 'SYD',
     destinationLocationCode: 'BKK',
-    departureDate: '2021-04-01',
+    departureDate: '2022-11-01',
     adults: '2'
 }).then(function(response){
     return amadeus.shopping.flightOffers.prediction.post(
@@ -462,7 +466,7 @@ amadeus.travel.predictions.flightDelay.get({
 // Get the percentage of on-time flight departures from JFK
 amadeus.airport.predictions.onTime.get({
   airportCode: 'JFK',
-  date: '2021-08-01'
+  date: '2022-18-01'
 })
 
 // Travel Recommendations
@@ -471,11 +475,11 @@ amadeus.referenceData.recommendedLocations.get({
   travelerCountryCode: 'FR'
 })
 
-// Price Flight Analysis
+// Flight Price Analysis
 amadeus.analytics.itineraryPriceMetrics.get({
    originIataCode: 'MAD',
    destinationIataCode: 'CDG',
-   departureDate: '2021-03-13',
+   departureDate: '2022-03-13',
  })
  
 ```

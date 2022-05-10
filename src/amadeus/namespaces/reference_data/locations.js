@@ -35,7 +35,7 @@ class Locations {
    * Find any location starting with 'lon'
    *
    * ```js
-   * amadeus.referenceData.location.get({
+   * amadeus.referenceData.locations.get({
    *   keyword: 'lon',
    *   subType: Amadeus.location.any
    * });

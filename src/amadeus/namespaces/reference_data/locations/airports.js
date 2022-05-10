@@ -29,7 +29,7 @@ class Airports {
    * Find the nearest airport to the 49.0000,2.55 lat/long
    *
    * ```js
-   * amadeus.referenceData.urls.locations.airports.get({
+   * amadeus.referenceData.locations.airports.get({
    *   longitude: 49.0000,
    *   latitude: 2.55
    * });
