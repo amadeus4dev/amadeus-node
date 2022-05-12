@@ -31,11 +31,14 @@ describe('Validator', () => {
         'test1' : '1'
       };
       process.env.AMADEUS_TEST2 = '2';
+      process.env.AMADEUS_TEST_SNAKE_CASE = '5';
       expect(validator.initOptional('test1', options)).toBe('1');
       expect(validator.initOptional('test2', options)).toBe('2');
       expect(validator.initOptional('test3', options)).toBe(null);
       expect(validator.initOptional('test4', options, '4')).toBe('4');
+      expect(validator.initOptional('testSnakeCase', options)).toBe('5');
       process.env.AMADEUS_TEST2 = undefined;
+      process.env.AMADEUS_TEST_SNAKE_CASE = undefined;
     });
   });
 
