@@ -24,7 +24,7 @@ describe('Namespaces', () => {
       expect(amadeus.referenceData.locations.airports).toBeDefined();
       expect(amadeus.referenceData.locations.hotels.byCity).toBeDefined();
       expect(amadeus.referenceData.locations.hotels.byGeocode).toBeDefined();
-      expect(amadeus.referenceData.locations.hotels.bySquare).toBeDefined();
+      expect(amadeus.referenceData.locations.hotels.byHotels).toBeDefined();
       expect(amadeus.referenceData.locations.pointOfInterest).toBeDefined();
       expect(amadeus.referenceData.locations.pointsOfInterest).toBeDefined();
       expect(amadeus.referenceData.locations.pointsOfInterest.bySquare).toBeDefined();
@@ -102,7 +102,7 @@ describe('Namespaces', () => {
       expect(amadeus.referenceData.locations.airports.get).toBeDefined();
       expect(amadeus.referenceData.locations.hotels.byCity.get).toBeDefined();
       expect(amadeus.referenceData.locations.hotels.byGeocode.get).toBeDefined();
-      expect(amadeus.referenceData.locations.hotels.bySquare.get).toBeDefined();
+      expect(amadeus.referenceData.locations.hotels.byHotels.get).toBeDefined();
       expect(amadeus.referenceData.locations.pointOfInterest('XXX').get).toBeDefined();
       expect(amadeus.referenceData.locations.pointsOfInterest.get).toBeDefined();
       expect(amadeus.referenceData.locations.pointsOfInterest.bySquare.get).toBeDefined();
