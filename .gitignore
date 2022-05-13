@@ -1,6 +1,6 @@
 node_modules
 lib
 coverage
-app.js
+test.js
 docs
 .vscode/
