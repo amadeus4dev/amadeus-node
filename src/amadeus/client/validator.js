@@ -81,7 +81,8 @@ class Validator {
 
   initOptional(key, options, fallback = null) {
     let value = options[key];
-    let envKey = `AMADEUS_${key.toUpperCase()}`;
+    //Env variables names expected to be in SNAKE_CASE and uppercase
+    let envKey = `AMADEUS_${key.replace(/[A-Z]/g, c => `_${c.toLowerCase()}`).toUpperCase()}`;
     if (value == undefined) { value = options[key]; }
     if (value == undefined) { value = process.env[envKey]; }
     if (value == undefined) { value = fallback; }
