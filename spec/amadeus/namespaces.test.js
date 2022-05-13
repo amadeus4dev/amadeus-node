@@ -197,18 +197,18 @@ describe('Namespaces', () => {
         .toHaveBeenCalledWith('/v1/reference-data/locations/hotels/by-city', {});
     });
 
-     it('.amadeus.referenceData.locations.hotels.byGeocode.get', () => {
+    it('.amadeus.referenceData.locations.hotels.byGeocode.get', () => {
       amadeus.client.get = jest.fn();
       amadeus.referenceData.locations.hotels.byGeocode.get();
       expect(amadeus.client.get)
-        .toHaveBeenCalledWith('/v1/reference-data/locations/hotels/by-geocode', {});     
+        .toHaveBeenCalledWith('/v1/reference-data/locations/hotels/by-geocode', {});
     });
 
-     it('.amadeus.referenceData.locations.hotels.byHotels.get', () => {
+    it('.amadeus.referenceData.locations.hotels.byHotels.get', () => {
       amadeus.client.get = jest.fn();
       amadeus.referenceData.locations.hotels.byHotels.get();
       expect(amadeus.client.get)
-        .toHaveBeenCalledWith('/v1/reference-data/locations/hotels/by-hotels', {});      
+        .toHaveBeenCalledWith('/v1/reference-data/locations/hotels/by-hotels', {});
     });
 
     it('.amadeus.referenceData.recommendedLocations.get', () => {
