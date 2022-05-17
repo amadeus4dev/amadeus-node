@@ -197,5 +197,19 @@ describe('Request', () => {
         expect(request.headers['Content-Type']).toBe('application/vnd.amadeus+json');
       });
     });
+
+    describe('.addHTTPOverride', () => {
+      it('should add the X-HTTP-Method-Override header if the specific endpoints', () => {
+        for (let path of request.ListHTTPOverride){
+          request.path = path;
+          request.verb = 'POST';
+          request.headers = {};
+          request.bearerToken = undefined;
+          request.addHTTPOverrideHeader();
+          expect(request.headers['X-HTTP-Method-Override']).toBe('GET');
+        }
+      });
+    });
+
   });
 });

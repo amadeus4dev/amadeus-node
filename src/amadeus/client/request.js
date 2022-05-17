@@ -40,8 +40,17 @@ class Request {
       'User-Agent' : this.userAgent(),
       'Accept' : 'application/json, application/vnd.amadeus+json'
     };
+    this.ListHTTPOverride= [
+      '/v2/shopping/flight-offers',
+      '/v1/shopping/seatmaps',
+      '/v1/shopping/availability/flight-availabilities',
+      '/v2/shopping/flight-offers/prediction',
+      '/v1/shopping/flight-offers/pricing',
+      '/v1/shopping/flight-offers/upselling'
+    ];
     this.addAuthorizationHeader();
     this.addContentTypeHeader();
+    this.addHTTPOverrideHeader();
   }
 
   // PROTECTED
@@ -129,6 +138,18 @@ class Request {
       this.headers['Content-Type'] = 'application/x-www-form-urlencoded';
     } else {
       this.headers['Content-Type'] = 'application/vnd.amadeus+json';
+    }
+    return;
+  }
+
+  /**
+  * Adds HTTPOverride method if it is required
+  *
+  *  @private
+  */
+  addHTTPOverrideHeader() {
+    if (this.verb === 'POST' && this.ListHTTPOverride.includes(this.path)) {
+      this.headers['X-HTTP-Method-Override'] = 'GET';
     }
     return;
   }
