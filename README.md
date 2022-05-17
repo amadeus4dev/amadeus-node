@@ -340,7 +340,24 @@ amadeus.travel.tripParserJobs('XXX').get()
 // To get the results of the job with ID 'XXX'
 amadeus.travel.tripParserJobs('XXX').result.get()
 
-// Hotel Search API
+//Hotel List API 
+//Get list of hotels by city code
+amadeus.referenceData.locations.hotels.byCity.get({
+      cityCode: 'PAR'
+    })
+
+//Get List of hotels by Geocode
+amadeus.referenceData.locations.hotels.byGeocode.get({
+      latitude: 48.83152,
+      longitude: 2.24691
+    })
+
+//Get List of hotels by hotelIds
+amadeus.referenceData.locations.hotels.byHotels.get({
+      hotelIds: 'ACPAR245'
+    })
+
+// Hotel Search API V2
 // Get list of hotels by city code
 amadeus.shopping.hotelOffers.get({
   cityCode : 'MAD'

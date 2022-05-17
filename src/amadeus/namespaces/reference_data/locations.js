@@ -1,4 +1,5 @@
 import Airports from './locations/airports';
+import Hotels from './locations/hotels';
 import PointOfInterest from './locations/poi';
 import PointsOfInterest from './locations/pois';
 
@@ -20,6 +21,7 @@ class Locations {
   constructor(client) {
     this.client = client;
     this.airports = new Airports(client);
+    this.hotels = new Hotels(client);
     this.pointsOfInterest = new PointsOfInterest(client);
   }
 

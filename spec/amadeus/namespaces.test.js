@@ -22,6 +22,9 @@ describe('Namespaces', () => {
       expect(amadeus.referenceData.location).toBeDefined();
       expect(amadeus.referenceData.locations).toBeDefined();
       expect(amadeus.referenceData.locations.airports).toBeDefined();
+      expect(amadeus.referenceData.locations.hotels.byCity).toBeDefined();
+      expect(amadeus.referenceData.locations.hotels.byGeocode).toBeDefined();
+      expect(amadeus.referenceData.locations.hotels.byHotels).toBeDefined();
       expect(amadeus.referenceData.locations.pointOfInterest).toBeDefined();
       expect(amadeus.referenceData.locations.pointsOfInterest).toBeDefined();
       expect(amadeus.referenceData.locations.pointsOfInterest.bySquare).toBeDefined();
@@ -97,6 +100,9 @@ describe('Namespaces', () => {
       expect(amadeus.referenceData.location('ALHR').get).toBeDefined();
       expect(amadeus.referenceData.locations.get).toBeDefined();
       expect(amadeus.referenceData.locations.airports.get).toBeDefined();
+      expect(amadeus.referenceData.locations.hotels.byCity.get).toBeDefined();
+      expect(amadeus.referenceData.locations.hotels.byGeocode.get).toBeDefined();
+      expect(amadeus.referenceData.locations.hotels.byHotels.get).toBeDefined();
       expect(amadeus.referenceData.locations.pointOfInterest('XXX').get).toBeDefined();
       expect(amadeus.referenceData.locations.pointsOfInterest.get).toBeDefined();
       expect(amadeus.referenceData.locations.pointsOfInterest.bySquare.get).toBeDefined();
@@ -182,6 +188,27 @@ describe('Namespaces', () => {
       amadeus.referenceData.locations.airports.get();
       expect(amadeus.client.get)
         .toHaveBeenCalledWith('/v1/reference-data/locations/airports', {});
+    });
+
+    it('.amadeus.referenceData.locations.hotels.byCity.get', () => {
+      amadeus.client.get = jest.fn();
+      amadeus.referenceData.locations.hotels.byCity.get();
+      expect(amadeus.client.get)
+        .toHaveBeenCalledWith('/v1/reference-data/locations/hotels/by-city', {});
+    });
+
+    it('.amadeus.referenceData.locations.hotels.byGeocode.get', () => {
+      amadeus.client.get = jest.fn();
+      amadeus.referenceData.locations.hotels.byGeocode.get();
+      expect(amadeus.client.get)
+        .toHaveBeenCalledWith('/v1/reference-data/locations/hotels/by-geocode', {});
+    });
+
+    it('.amadeus.referenceData.locations.hotels.byHotels.get', () => {
+      amadeus.client.get = jest.fn();
+      amadeus.referenceData.locations.hotels.byHotels.get();
+      expect(amadeus.client.get)
+        .toHaveBeenCalledWith('/v1/reference-data/locations/hotels/by-hotels', {});
     });
 
     it('.amadeus.referenceData.recommendedLocations.get', () => {
