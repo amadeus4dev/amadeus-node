@@ -172,6 +172,11 @@ var amadeus = new Amadeus({
 ## List of supported endpoints
 
 ```js
+//Airport Routes 
+amadeus.airport.directDestinations.get({
+     departureAirportCode: 'CDG',
+})
+
 // Flight Inspiration Search
 amadeus.shopping.flightDestinations.get({
   origin : 'MAD'
