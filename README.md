@@ -486,8 +486,8 @@ amadeus.analytics.itineraryPriceMetrics.get({
 // The Travel Restrictions API provides up-to-date data on COVID-19 caseloads and travel restrictions for over 200 countries and territories,
 // as well as hundreds of cities and regions worldwide.
 amadeus.dutyOfCare.diseases.covid19AreaReport.get({
-  countryCode: 'US', //ISO 3166 Alpha-2 code
-  cityCode: 'NYC' //Optional IATA code for city's metropolitan area
+  countryCode: 'US',
+  cityCode: 'NYC' 
 });
  
 ```
