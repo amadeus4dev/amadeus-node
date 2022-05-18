@@ -1,3 +1,4 @@
+import DirectDestinations from './airport/direct-destinations';
 import Predictions    from './airport/predictions';
 
 /**
@@ -17,6 +18,7 @@ import Predictions    from './airport/predictions';
 class Airport {
   constructor(client) {
     this.client             = client;
+    this.directDestinations = new DirectDestinations(client);
     this.predictions = new Predictions(client);
   }
 }

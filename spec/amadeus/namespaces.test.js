@@ -79,6 +79,7 @@ describe('Namespaces', () => {
       expect(amadeus.media.files).toBeDefined();
 
       expect(amadeus.airport).toBeDefined();
+      expect(amadeus.airport.directDestinations).toBeDefined();
       expect(amadeus.airport.predictions).toBeDefined();
       expect(amadeus.airport.predictions.onTime).toBeDefined();
 
@@ -427,6 +428,13 @@ describe('Namespaces', () => {
       amadeus.travel.predictions.flightDelay.get();
       expect(amadeus.client.get)
         .toHaveBeenCalledWith('/v1/travel/predictions/flight-delay', {});
+    });
+
+    it('.amadeus.airport.directDestinations.get', () => {
+      amadeus.client.get = jest.fn();
+      amadeus.airport.directDestinations.get();
+      expect(amadeus.client.get)
+        .toHaveBeenCalledWith('/v1/airport/direct-destinations', {});
     });
 
     it('.amadeus.airport.predictions.onTime.get', () => {
