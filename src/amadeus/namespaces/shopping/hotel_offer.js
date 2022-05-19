@@ -1,6 +1,6 @@
 /**
  * A namespaced client for the
- * `/v2/shopping/hotel-offers/:offer_id` endpoints
+ * `/v3/shopping/hotel-offers/:offer_id` endpoints
  *
  * Access via the {@link Amadeus} object
  *
@@ -32,7 +32,7 @@ class HotelOffer {
    */
   get(params = {}) {
     return this.client.get(
-      `/v2/shopping/hotel-offers/${this.offerId}`, params
+      `/v3/shopping/hotel-offers/${this.offerId}`, params
     );
   }
 }

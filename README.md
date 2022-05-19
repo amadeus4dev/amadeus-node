@@ -349,29 +349,24 @@ amadeus.travel.tripParserJobs('XXX').result.get()
 //Get list of hotels by city code
 amadeus.referenceData.locations.hotels.byCity.get({
       cityCode: 'PAR'
-    })
-
+})
 //Get List of hotels by Geocode
 amadeus.referenceData.locations.hotels.byGeocode.get({
       latitude: 48.83152,
       longitude: 2.24691
-    })
-
+})
 //Get List of hotels by hotelIds
 amadeus.referenceData.locations.hotels.byHotels.get({
       hotelIds: 'ACPAR245'
-    })
+})
 
-// Hotel Search API V2
-// Get list of hotels by city code
+// Hotel Search API V3
+// Get list of available offers in specific hotels by hotel ids
 amadeus.shopping.hotelOffers.get({
-  cityCode : 'MAD'
+    hotelIds: 'RTPAR001',
+    adults: '2'
 })
-// Get list of offers for a specific hotel
-amadeus.shopping.hotelOffersByHotel.get({
-  hotelId : 'XKPARC12'
-})
-// Confirm the availability of a specific offer id
+// Check offer conditions of a specific offer id
 amadeus.shopping.hotelOffer('XXX').get()
 
 // Hotel Booking API

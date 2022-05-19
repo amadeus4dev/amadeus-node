@@ -1,6 +1,6 @@
 /**
  * A namespaced client for the
- * `/v2/shopping/hotel-offers` endpoints
+ * `/v3/shopping/hotel-offers` endpoints
  *
  * Access via the {@link Amadeus} object
  *
@@ -17,28 +17,25 @@ class HotelOffers {
   }
 
   /**
-   * Find the list of hotels for a dedicated city.
+   * Find the list of available offers in the specific hotels
    *
    * @param {Object} params
-   * @param {string} params.cityCode City IATA code
-   * @param {number} params.latitude latitude of geographic location to
-   *   search around. Example: 52.5238
-   * @param {number} params.longitude Longitude of geographic location to
-   *   search around. Example: 13.3835
    * @param {string} params.hotelIds Comma separated list of Amadeus hotel
    *   codes to request. Example: RTPAR001
+   * @param {string} params.adults Number of adult guests (1-9) per room.
    * @return {Promise.<Response,ResponseError>} a Promise
    *
-   * Search for hotels in Paris
+   * Search for available offers in Novotel Paris for 2 adults
    *
    * ```js
    * amadeus.shopping.hotelOffers.get({
-   *   cityCode: 'PAR'
+   *   hotelIds: 'RTPAR001',
+   *   adults: '2'
    * })
    * ```
    */
   get(params = {}) {
-    return this.client.get('/v2/shopping/hotel-offers', params);
+    return this.client.get('/v3/shopping/hotel-offers', params);
   }
 }
 

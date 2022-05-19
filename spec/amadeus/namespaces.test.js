@@ -66,7 +66,6 @@ describe('Namespaces', () => {
       expect(amadeus.booking.flightOrders).toBeDefined();
 
       expect(amadeus.shopping.hotelOffers).toBeDefined();
-      expect(amadeus.shopping.hotelOffersByHotel).toBeDefined();
       expect(amadeus.shopping.hotelOffer).toBeDefined();
 
       expect(amadeus.shopping.availability).toBeDefined();
@@ -128,7 +127,6 @@ describe('Namespaces', () => {
       expect(amadeus.shopping.seatmaps.get).toBeDefined();
 
       expect(amadeus.shopping.hotelOffers.get).toBeDefined();
-      expect(amadeus.shopping.hotelOffersByHotel.get).toBeDefined();
       expect(amadeus.shopping.hotelOffer('XXX').get).toBeDefined();
 
       expect(amadeus.shopping.activities.get).toBeDefined();
@@ -382,21 +380,14 @@ describe('Namespaces', () => {
       amadeus.client.get = jest.fn();
       amadeus.shopping.hotelOffers.get();
       expect(amadeus.client.get)
-        .toHaveBeenCalledWith('/v2/shopping/hotel-offers', {});
-    });
-
-    it('.amadeus.shopping.hotelOffersByHotel.get', () => {
-      amadeus.client.get = jest.fn();
-      amadeus.shopping.hotelOffersByHotel.get();
-      expect(amadeus.client.get)
-        .toHaveBeenCalledWith('/v2/shopping/hotel-offers/by-hotel', {});
+        .toHaveBeenCalledWith('/v3/shopping/hotel-offers', {});
     });
 
     it('.amadeus.shopping.hotelOffer().get', () => {
       amadeus.client.get = jest.fn();
       amadeus.shopping.hotelOffer('XXX').get();
       expect(amadeus.client.get)
-        .toHaveBeenCalledWith('/v2/shopping/hotel-offers/XXX', {});
+        .toHaveBeenCalledWith('/v3/shopping/hotel-offers/XXX', {});
     });
 
     it('.amadeus.shopping.activities.get', () => {
