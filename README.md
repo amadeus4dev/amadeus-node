@@ -374,6 +374,15 @@ amadeus.shopping.hotelOffersByHotel.get({
 // Confirm the availability of a specific offer id
 amadeus.shopping.hotelOffer('XXX').get()
 
+// Hotel Search API V3
+// Get list of available offers in specific hotels by hotel ids
+amadeus.shopping.hotelOffersSearch.get({
+    hotelIds: 'RTPAR001',
+    adults: '2'
+})
+// Check offer conditions of a specific offer id
+amadeus.shopping.hotelOfferSearch('XXX').get()
+
 // Hotel Booking API
 amadeus.booking.hotelBookings.post(
   JSON.stringify({
