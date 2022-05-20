@@ -1,4 +1,20 @@
 # Changelog
+
+## 6.0.0 - 2022-05-20
+Decommission AI-Generated Photos API
+
+Fix the initialization of client without parameters
+
+Add X-HTTP-Method-Override in HTTP headers for 6 endpoints
+
+Add support for the [Airport Routes API](https://developers.amadeus.com/self-service/category/air/api-doc/airport-routes/api-reference)
+
+Add support for the [Travel Restrictions API](https://developers.amadeus.com/self-service/category/covid-19-and-travel-safety/api-doc/travel-restrictions/api-reference)
+
+Add support for the [Hotel Search API V3](https://developers.amadeus.com/self-service/category/hotel/api-doc/hotel-search/api-reference)
+
+Add support for the [Hotel List API](https://developers.amadeus.com/self-service/category/hotel/api-doc/hotel-list/api-reference)
+
 ## 5.7.1 - 2021-11-30
 Migrate to Github Actions
 
@@ -69,7 +85,7 @@ Add support for the [Flight Offers Search](https://developers.amadeus.com/self-s
 
 > The Flight Offers Search API is a flight search API that returns cheap flights between two airports for a given number of passengers and for a given date or date range. The API returns airline name, price and fare details, as well as additional information like baggage allowance, prices for additional baggage and departure terminal.
 
-Add support for the A[I-Generated Photos](https://developers.amadeus.com/self-service/category/trip/api-doc/ai-generated-photos)
+Add support for the AI-Generated Photos
 
 > The AI-Generated Photos API returns a link to download a rendered image of a landscape. The image size is 512x512 pixels and the currently available image categories are BEACH and MOUNTAIN. The link to download the AI-generated picture is valid for 24 hours. This API is an experimental project created by the Amadeus AI Lab using the Nvidia StyleGAN framework. This API is free to use and we welcome any feedback you may have about improvements.
 
