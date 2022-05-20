@@ -1,6 +1,6 @@
 {
   "name": "amadeus",
-  "version": "5.7.1",
+  "version": "6.0.0",
   "description": "Node library for the Amadeus travel APIs",
   "main": "lib/amadeus.js",
   "scripts": {
@@ -46,7 +46,11 @@
     "cbetta",
     "Anthony Roux",
     "Alvaro Navarro",
-    "Akshit Singla"
+    "Akshit Singla",
+    "Anna Tsolakou",
+    "Minji Kim",
+    "Gustavo Giunco Bertoldi"
+
   ],
   "devDependencies": {
     "@babel/cli": "^7.4.4",
