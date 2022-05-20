@@ -7,7 +7,7 @@ import HotelOffers        from './shopping/hotel_offers';
 import HotelOffersByHotel from './shopping/hotel_offers_by_hotel';
 import HotelOffer         from './shopping/hotel_offer';
 import HotelOfferSearch   from './shopping/hotel_offer_search';
-import hotelOffersSearch  from './shopping/hotel_offers_search';
+import HotelOffersSearch  from './shopping/hotel_offers_search';
 import Activities         from './shopping/activities';
 import Activity           from './shopping/activity';
 import Availability       from './shopping/availability';
@@ -47,7 +47,7 @@ class Shopping {
     this.seatmaps           = new Seatmaps(client);
     this.hotelOffers        = new HotelOffers(client);
     this.hotelOffersByHotel = new HotelOffersByHotel(client);
-    this.hotelOffersSearch  = new hotelOffersSearch(client);
+    this.hotelOffersSearch  = new HotelOffersSearch(client);
     this.activities         = new Activities(client);
     this.availability       = new Availability(client);
   }
