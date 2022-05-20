@@ -6,6 +6,8 @@ import Seatmaps           from './shopping/seatmaps';
 import HotelOffers        from './shopping/hotel_offers';
 import HotelOffersByHotel from './shopping/hotel_offers_by_hotel';
 import HotelOffer         from './shopping/hotel_offer';
+import HotelOfferSearch   from './shopping/hotel_offer_search';
+import hotelOffersSearch  from './shopping/hotel_offers_search';
 import Activities         from './shopping/activities';
 import Activity           from './shopping/activity';
 import Availability       from './shopping/availability';
@@ -13,7 +15,7 @@ import Availability       from './shopping/availability';
 
 /**
  * A namespaced client for the
- * `/v1/shopping` and `/v2/shopping` endpoints
+ * `/v1/shopping`, `/v2/shopping` and `/v3/shopping` endpoints
  *
  * Access via the {@link Amadeus} object
  *
@@ -31,6 +33,8 @@ import Availability       from './shopping/availability';
  * @property {HotelOffers} hotelOffers
  * @property {HotelOffer} hotelOffer
  * @property {HotelOffersByHotel} hotelOffersByHotel
+ * @property {HotelOfferSearch} hotelOffers
+ * @property {HotelOffersSearch} hotelOffers
  * @property {Availability} availability
  */
 class Shopping {
@@ -43,19 +47,30 @@ class Shopping {
     this.seatmaps           = new Seatmaps(client);
     this.hotelOffers        = new HotelOffers(client);
     this.hotelOffersByHotel = new HotelOffersByHotel(client);
+    this.hotelOffersSearch  = new hotelOffersSearch(client);
     this.activities         = new Activities(client);
     this.availability       = new Availability(client);
   }
 
 
   /**
-   * Loads a namespaced path for a specific offer ID
+   * Loads a namespaced path for a specific offer ID for Hotel Search V2
    *
    * @param  {string} [offerId]  The ID of the offer for a dedicated hotel
    * @return {HotelOffer}
    **/
   hotelOffer(offerId) {
     return new HotelOffer(this.client, offerId);
+  }
+
+  /**
+   * Loads a namespaced path for a specific offer ID for Hotel Search V3
+   *
+   * @param  {string} [offerId]  The ID of the offer for a dedicated hotel
+   * @return {HotelOfferSearch}
+   **/
+  hotelOfferSearch(offerId) {
+    return new HotelOfferSearch(this.client, offerId);
   }
 
   /**
