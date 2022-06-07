@@ -345,6 +345,13 @@ amadeus.travel.tripParserJobs('XXX').get()
 // To get the results of the job with ID 'XXX'
 amadeus.travel.tripParserJobs('XXX').result.get()
 
+// City Search API
+// finds cities that match a specific word or string of letters. 
+// Return a list of cities matching a keyword 'France'
+amadeus.referenceData.locations.cities.get({
+  keyword: 'Paris'
+})
+
 //Hotel List API 
 //Get list of hotels by city code
 amadeus.referenceData.locations.hotels.byCity.get({
