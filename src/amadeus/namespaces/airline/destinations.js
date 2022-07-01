@@ -31,7 +31,7 @@ class Destinations {
      * ```
      */
   get(params = {}) {
-    return this.client.get('/v1/airport/direct-destinations', params);
+    return this.client.get('/v1/airline/destinations', params);
   }
 }
 
