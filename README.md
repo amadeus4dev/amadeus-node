@@ -369,6 +369,13 @@ amadeus.referenceData.locations.hotels.byHotels.get({
       hotelIds: 'ACPAR245'
     })
 
+//Hotel Name Autocomplete API
+//Autocomplete a hotel search field
+amadeus.referenceData.locations.hotel.get({
+     keyword: 'PARI',
+     subType: 'HOTEL_GDS'
+})
+
 // Hotel Search API V2
 // Get list of hotels by city code
 amadeus.shopping.hotelOffers.get({
