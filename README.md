@@ -177,6 +177,12 @@ amadeus.airport.directDestinations.get({
      departureAirportCode: 'CDG',
 })
 
+//Airline Routes
+//find all destinations served by a given airline
+amadeus.airline.destinations.get({
+     airlineCode: 'BA',
+ })
+
 // Flight Inspiration Search
 amadeus.shopping.flightDestinations.get({
   origin : 'MAD'
