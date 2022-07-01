@@ -31,6 +31,13 @@ class TripParser {
   post(params = {}) {
     return this.client.post('/v3/travel/trip-parser', params);
   }
+  /**
+  * Helper method to convert file contents in UTF-8 encoded string
+  * into Base64 encoded string
+  */
+  fromFile(fileContentsInUTF8Format) {
+    return (new Buffer.from(fileContentsInUTF8Format)).toString('base64');
+  }
 }
 
 export default TripParser;

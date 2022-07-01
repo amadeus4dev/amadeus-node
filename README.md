@@ -338,18 +338,28 @@ amadeus.travel.analytics.airTraffic.busiestPeriod.get({
   direction: Amadeus.direction.arriving
 })
 
-// Trip Parser API
-// To submit a new job
-amadeus.travel.tripParserJobs().post(
+// Trip Parser API V3
+// parse information from flight, hotel, rail, and rental car confirmation emails
+// Parse directly from your confirmation file by using helper `fromFile`
+amadeus.travel.tripParser.post(
   JSON.stringify({
-    'type': 'trip-parser-job',
-    'content': 'base64String'
-  })
-)
-// To check status of the job with ID 'XXX'
-amadeus.travel.tripParserJobs('XXX').get()
-// To get the results of the job with ID 'XXX'
-amadeus.travel.tripParserJobs('XXX').result.get()
+  'payload': amadeus.travel.tripParser.fromFile(fs.readFileSync('confirmation.eml')),
+  "metadata": {
+    "documentType": "html",
+    "name": "BOOKING_DOCUMENT",
+    "encoding": "BASE_64"
+  }
+}))
+// Alternatively Parse from a string encoded in BASE_64
+amadeus.travel.tripParser.post(
+  JSON.stringify({
+  'payload': "STRING in BASE_64"
+  "metadata": {
+    "documentType": "html",
+    "name": "BOOKING_DOCUMENT",
+    "encoding": "BASE_64"
+  }
+}))
 
 // City Search API
 // finds cities that match a specific word or string of letters. 
