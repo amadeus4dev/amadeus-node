@@ -23,6 +23,7 @@ describe('Namespaces', () => {
       expect(amadeus.referenceData.locations).toBeDefined();
       expect(amadeus.referenceData.locations.airports).toBeDefined();
       expect(amadeus.referenceData.locations.cities).toBeDefined();
+      expect(amadeus.referenceData.locations.hotel).toBeDefined();
       expect(amadeus.referenceData.locations.hotels.byCity).toBeDefined();
       expect(amadeus.referenceData.locations.hotels.byGeocode).toBeDefined();
       expect(amadeus.referenceData.locations.hotels.byHotels).toBeDefined();
@@ -110,6 +111,7 @@ describe('Namespaces', () => {
       expect(amadeus.referenceData.locations.get).toBeDefined();
       expect(amadeus.referenceData.locations.airports.get).toBeDefined();
       expect(amadeus.referenceData.locations.cities.get).toBeDefined();
+      expect(amadeus.referenceData.locations.hotel.get).toBeDefined();
       expect(amadeus.referenceData.locations.hotels.byCity.get).toBeDefined();
       expect(amadeus.referenceData.locations.hotels.byGeocode.get).toBeDefined();
       expect(amadeus.referenceData.locations.hotels.byHotels.get).toBeDefined();
@@ -209,6 +211,13 @@ describe('Namespaces', () => {
       amadeus.referenceData.locations.cities.get();
       expect(amadeus.client.get)
         .toHaveBeenCalledWith('/v1/reference-data/locations/cities', {});
+    });
+
+    it('.amadeus.referenceData.locations.hotel.get', () => {
+      amadeus.client.get = jest.fn();
+      amadeus.referenceData.locations.hotel.get();
+      expect(amadeus.client.get)
+        .toHaveBeenCalledWith('/v1/reference-data/locations/hotel', {});
     });
 
     it('.amadeus.referenceData.locations.hotels.byCity.get', () => {
