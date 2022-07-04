@@ -345,7 +345,7 @@ amadeus.travel.tripParser.post(
   JSON.stringify({
   'payload': amadeus.travel.tripParser.fromFile(fs.readFileSync('confirmation.eml')),
   "metadata": {
-    "documentType": "html",
+    "documentType": "eml",
     "name": "BOOKING_DOCUMENT",
     "encoding": "BASE_64"
   }
