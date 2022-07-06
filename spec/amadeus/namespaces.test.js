@@ -48,8 +48,7 @@ describe('Namespaces', () => {
       expect(amadeus.travel.predictions).toBeDefined();
       expect(amadeus.travel.predictions.tripPurpose).toBeDefined();
       expect(amadeus.travel.predictions.flightDelay).toBeDefined();
-      expect(amadeus.travel.tripParserJobs).toBeDefined();
-      expect(amadeus.travel.tripParserJobs('XXX').result).toBeDefined();
+      expect(amadeus.travel.tripParser).toBeDefined();
 
       expect(amadeus.shopping).toBeDefined();
       expect(amadeus.shopping.flightDates).toBeDefined();
@@ -103,6 +102,8 @@ describe('Namespaces', () => {
       expect(amadeus.dutyOfCare).toBeDefined();
       expect(amadeus.dutyOfCare.diseases).toBeDefined();
       expect(amadeus.dutyOfCare.diseases.covid19AreaReport).toBeDefined();
+
+      expect(amadeus.airline.destinations).toBeDefined();
     });
 
     it('should define all expected .get methods', () => {
@@ -126,8 +127,6 @@ describe('Namespaces', () => {
       expect(amadeus.travel.analytics.airTraffic.busiestPeriod.get).toBeDefined();
       expect(amadeus.travel.predictions.tripPurpose.get).toBeDefined();
       expect(amadeus.travel.predictions.flightDelay.get).toBeDefined();
-      expect(amadeus.travel.tripParserJobs('XXX').get).toBeDefined();
-      expect(amadeus.travel.tripParserJobs('XXX').result.get).toBeDefined();
 
       expect(amadeus.shopping.flightDates.get).toBeDefined();
       expect(amadeus.shopping.flightDestinations.get).toBeDefined();
@@ -162,13 +161,15 @@ describe('Namespaces', () => {
       expect(amadeus.location.analytics.categoryRatedAreas.get).toBeDefined();
 
       expect(amadeus.dutyOfCare.diseases.covid19AreaReport.get).toBeDefined();
+
+      expect(amadeus.airline.destinations.get).toBeDefined();
     });
 
     it('should define all expected .post methods', () => {
       expect(amadeus.shopping.flightOffers.prediction.post).toBeDefined();
       expect(amadeus.booking.flightOrders.post).toBeDefined();
       expect(amadeus.shopping.flightOffersSearch.post).toBeDefined();
-      expect(amadeus.travel.tripParserJobs('XXX').post).toBeDefined();
+      expect(amadeus.travel.tripParser.post).toBeDefined();
       expect(amadeus.shopping.flightOffers.pricing.post).toBeDefined();
       expect(amadeus.shopping.seatmaps.post).toBeDefined();
       expect(amadeus.booking.hotelBookings.post).toBeDefined();
@@ -318,25 +319,11 @@ describe('Namespaces', () => {
         .toHaveBeenCalledWith('/v1/travel/analytics/air-traffic/busiest-period', {});
     });
 
-    it('.amadeus.travel.tripParserJobs().get', () => {
-      amadeus.client.get = jest.fn();
-      amadeus.travel.tripParserJobs('XXX').get();
-      expect(amadeus.client.get)
-        .toHaveBeenCalledWith('/v2/travel/trip-parser-jobs/XXX');
-    });
-
-    it('.amadeus.travel.tripParserJobs().result.get', () => {
-      amadeus.client.get = jest.fn();
-      amadeus.travel.tripParserJobs('XXX').result.get();
-      expect(amadeus.client.get)
-        .toHaveBeenCalledWith('/v2/travel/trip-parser-jobs/XXX/result');
-    });
-
-    it('.amadeus.travel.tripParserJobs().post', () => {
+    it('.amadeus.travel.tripParser.post', () => {
       amadeus.client.post = jest.fn();
-      amadeus.travel.tripParserJobs().post();
+      amadeus.travel.tripParser.post();
       expect(amadeus.client.post)
-        .toHaveBeenCalledWith('/v2/travel/trip-parser-jobs', {});
+        .toHaveBeenCalledWith('/v3/travel/trip-parser', {});
     });
 
     it('.amadeus.shopping.flightDates.get', () => {
@@ -554,6 +541,13 @@ describe('Namespaces', () => {
       amadeus.dutyOfCare.diseases.covid19AreaReport.get();
       expect(amadeus.client.get)
         .toHaveBeenCalledWith('/v1/duty-of-care/diseases/covid19-area-report', {});
+    });
+
+    it('.amadeus.airline.destinations.get', () => {
+      amadeus.client.get = jest.fn();
+      amadeus.airline.destinations.get();
+      expect(amadeus.client.get)
+        .toHaveBeenCalledWith('/v1/airline/destinations', {});
     });
 
   });
