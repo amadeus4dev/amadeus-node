@@ -1,10 +1,10 @@
 import Analytics from './travel/analytics';
 import Predictions from './travel/predictions';
-import TripParserJobs from './travel/trip_parser_jobs';
+import TripParser from './travel/trip_parser';
 
 /**
  * A namespaced client for the
- * `/v1/travel` & `/v2/travel` endpoints
+ * `/v1/travel` & `/v2/travel` & `/v3/travel` endpoints
  *
  * Access via the {@link Amadeus} object
  *
@@ -16,7 +16,7 @@ import TripParserJobs from './travel/trip_parser_jobs';
  * @param {Client} client
  * @property {Analytics} analytics
  * @property {Predictions} predictions
- * @property {TripParserJobs} tripParserJobs
+ * @property {TripParser} tripParser
  * @protected
  */
 class Travel {
@@ -24,10 +24,7 @@ class Travel {
     this.client    = client;
     this.analytics = new Analytics(client);
     this.predictions = new Predictions(client);
-  }
-
-  tripParserJobs (jobId) {
-    return new TripParserJobs(this.client, jobId);
+    this.tripParser = new TripParser(client);
   }
 }
 
