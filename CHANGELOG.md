@@ -1,7 +1,7 @@
 # Changelog
 
 ## 7.0.0 - 2022-07-19
-Decommission Trip Parser API V2 
+Decommission Trip Parser API v2 
 
 Update versions of dependencies
 - @babel/cli from ^7.4.4 to ^7.18.6
@@ -18,7 +18,7 @@ Add support for the [Hotel Name Autocomplete API](https://developers.amadeus.com
 
 Add support for the [Airline Routes API](https://developers.amadeus.com/self-service/category/air/api-doc/airline-routes/api-reference)
 
-Add support for the [Trip Parser API V3](https://developers.amadeus.com/self-service/category/trip/api-doc/trip-parser/api-reference)
+Add support for the [Trip Parser API v3](https://developers.amadeus.com/self-service/category/trip/api-doc/trip-parser/api-reference)
 
 ## 6.0.0 - 2022-05-20
 Decommission AI-Generated Photos API
