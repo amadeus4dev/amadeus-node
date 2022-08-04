@@ -1,9 +1,9 @@
 # Amadeus Node SDK
 
-[![Module Version](https://badge.fury.io/js/amadeus.svg)](npmjs)
+[![Module Version](https://badge.fury.io/js/amadeus.svg)](https://www.npmjs.com/package/amadeus)
 [![Build and Deploy](https://github.com/amadeus4dev/amadeus-node/actions/workflows/build.yml/badge.svg)](https://github.com/amadeus4dev/amadeus-node/actions/workflows/build.yml)
 [![Maintainability](https://api.codeclimate.com/v1/badges/5accb4b8a41e4e3fd1da/maintainability)](https://codeclimate.com/github/amadeus4dev/amadeus-node/maintainability)
-[![Dependencies](.github/images/dependencies.svg)](npmjs)
+[![Dependencies](.github/images/dependencies.svg)](https://www.npmjs.com/package/amadeus?activeTab=dependencies)
 [![Discord](https://img.shields.io/discord/696822960023011329?label=&logo=discord&logoColor=ffffff&color=7389D8&labelColor=6A7EC2)](https://discord.gg/cVrFBqx)
 
 Amadeus provides a rich set of APIs for the travel industry. For more details, check out the [Amadeus for Developers Portal](https://developers.amadeus.com) or the [SDK class reference](https://amadeus4dev.github.io/amadeus-node/).
