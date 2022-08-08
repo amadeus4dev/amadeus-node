@@ -102,6 +102,7 @@ describe('Namespaces', () => {
       expect(amadeus.dutyOfCare).toBeDefined();
       expect(amadeus.dutyOfCare.diseases).toBeDefined();
       expect(amadeus.dutyOfCare.diseases.covid19AreaReport).toBeDefined();
+      expect(amadeus.dutyOfCare.diseases.covid19Report).toBeDefined();
 
       expect(amadeus.airline.destinations).toBeDefined();
     });
@@ -161,6 +162,7 @@ describe('Namespaces', () => {
       expect(amadeus.location.analytics.categoryRatedAreas.get).toBeDefined();
 
       expect(amadeus.dutyOfCare.diseases.covid19AreaReport.get).toBeDefined();
+      expect(amadeus.dutyOfCare.diseases.covid19Report.get).toBeDefined();
 
       expect(amadeus.airline.destinations.get).toBeDefined();
     });
@@ -541,6 +543,13 @@ describe('Namespaces', () => {
       amadeus.dutyOfCare.diseases.covid19AreaReport.get();
       expect(amadeus.client.get)
         .toHaveBeenCalledWith('/v1/duty-of-care/diseases/covid19-area-report', {});
+    });
+
+    it('.amadeus.dutyOfCare.diseases.covid19Report.get', () => {
+      amadeus.client.get = jest.fn();
+      amadeus.dutyOfCare.diseases.covid19Report.get();
+      expect(amadeus.client.get)
+        .toHaveBeenCalledWith('/v2/duty-of-care/diseases/covid19-area-report', {});
     });
 
     it('.amadeus.airline.destinations.get', () => {
