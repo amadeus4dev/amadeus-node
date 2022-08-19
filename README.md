@@ -203,7 +203,7 @@ amadeus.shopping.flightOffersSearch.get({
 })
 
 // Flight Offers Search POST
-A full example can be found at https://github.com/amadeus4dev/amadeus-code-examples
+// A full example can be found at https://github.com/amadeus4dev/amadeus-code-examples
 amadeus.shopping.flightOffersSearch.post(body)
 
 // Flight Offers Price
