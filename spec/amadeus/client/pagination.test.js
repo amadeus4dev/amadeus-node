@@ -24,7 +24,7 @@ describe('Pagination', () => {
           result: {
             meta: {
               links: {
-                next: 'https://example.com?page=2'
+                next: 'https://example.com?page%5Boffset%5D=2'
               }
             }
           }
