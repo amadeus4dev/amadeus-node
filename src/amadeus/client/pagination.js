@@ -64,7 +64,8 @@ class Pagination {
    */
   pageNumber(response, pageName) {
     try {
-      return response.result['meta']['links'][pageName].split('=').pop();
+      return response.result['meta']['links'][pageName]
+        .split('page%5Boffset%5D=')[1].split('&')[0]
     } catch (TypeError) {
       return null;
     }
