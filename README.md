@@ -18,7 +18,7 @@ npm install amadeus --save
 
 ## Getting Started
 
-To make your first API call, you will need to [register](https://developers.amadeus.com/register) for an Amadeus Developer Account and [set up your first application](https://developers.amadeus.com/my-apps).
+To make your first API call, you will need to [register](https://developers.amadeus.com/register) for an Amadeus Developer Account and [set up your first application](https://developers.amadeus.com/my-apps)
 
 ```js
 var Amadeus = require('amadeus');
