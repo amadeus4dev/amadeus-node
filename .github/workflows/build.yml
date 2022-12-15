@@ -27,7 +27,5 @@ jobs:
         run: npm run docs
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@3.7.1
-        env:
-          ACCESS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          BRANCH: update-documentation
+        with:
           FOLDER: docs
