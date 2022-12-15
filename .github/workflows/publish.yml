@@ -21,6 +21,12 @@ jobs:
           registry-url: 'https://registry.npmjs.org'
       - name: Install dependencies
         run: npm install
+      - name: Before deploy
+        run: npm run docs
+      - name: Deploy to GitHub Pages
+        uses: JamesIves/github-pages-deploy-action@v4.4.1
+        with:
+          FOLDER: docs
       - name: Publish
         if: ${{ matrix.node-version == '16.x' }}
         run: npm publish
