@@ -26,6 +26,6 @@ jobs:
       - name: Before deploy
         run: npm run docs
       - name: Deploy to GitHub Pages
-        uses: JamesIves/github-pages-deploy-action@3.7.1
+        uses: JamesIves/github-pages-deploy-action@4
         with:
           FOLDER: docs
