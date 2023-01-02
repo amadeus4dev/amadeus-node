@@ -45,7 +45,7 @@ class Response {
    */
   parse() {
     try {
-      if (this.statusCode == 204) {
+      if (this.statusCode === 204) {
         return;
       }
       if (this.isJson()) {
@@ -68,7 +68,7 @@ class Response {
    * @protected
    */
   success() {
-    if (this.statusCode == 204) {
+    if (this.statusCode = 204) {
       return true;
     }
     if (this.parsed && this.statusCode < 300) {

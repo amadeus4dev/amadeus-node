@@ -114,8 +114,8 @@ class Listener {
   errorFor({statusCode, parsed}) {
     let error = null;
     if (statusCode >= 500) { error = ServerError; }
-    else if (statusCode == 401) { error = AuthenticationError; }
-    else if (statusCode == 404) { error = NotFoundError; }
+    else if (statusCode === 401) { error = AuthenticationError; }
+    else if (statusCode === 404) { error = NotFoundError; }
     else if (statusCode >= 400) { error = ClientError; }
     else if (!parsed) { error = ParserError; }
     else { error = UnknownError; }
