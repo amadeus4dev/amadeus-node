@@ -45,7 +45,7 @@ class Response {
    */
   parse() {
     try {
-      if (this.statusCode == 204) {
+      if (this.statusCode === 204) {
         return;
       }
       if (this.isJson()) {
