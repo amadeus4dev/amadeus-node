@@ -45,16 +45,16 @@ var Amadeus = require('amadeus');
 
 ### Releasing
 
-To make a new release, follow the following steps:
+To make a new release, follow the steps below:
 
 - [ ] Update the version in `package.json` using semver rules
 - [ ] Update the `CHANGELOG.md` with the new version
-- [ ] Push all changes and ensure all tests pass on Github Actions
+- [ ] Push all changes and ensure all tests pass on GitHub Actions
 - [ ] Tag your release in git using `git --tag vX.X.X`
 - [ ] Push the new tag `git push --tags`
 - [ ] Update the [Releases](https://github.com/amadeus4dev/amadeus-node/releases) tab on GitHub with a new release for the tag, copying the description from the `CHANGELOG.md`
 
-Github Actions will bow build the package and release it to NPM.
+GitHub Actions will now build the package and release it to [npm](https://www.npmjs.com/package/amadeus).
 
 ## How to contribute to the Amadeus Node Client Library
 
