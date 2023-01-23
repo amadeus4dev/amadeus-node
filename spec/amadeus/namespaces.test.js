@@ -454,11 +454,21 @@ describe('Namespaces', () => {
         .toHaveBeenCalledWith('/v1/booking/flight-orders/XXX');
     });
 
+    it('.amadeus.booking.flightOrder().get throws when not providing an orderId', () => {
+      expect(() => amadeus.booking.flightOrder().get())
+        .toThrow(new Error('MISSING_REQUIRED_PARAMETER'));
+    });
+
     it('.amadeus.booking.flightOrder().delete', () => {
       amadeus.client.delete = jest.fn();
       amadeus.booking.flightOrder('XXX').delete();
       expect(amadeus.client.delete)
         .toHaveBeenCalledWith('/v1/booking/flight-orders/XXX');
+    });
+
+    it('.amadeus.booking.flightOrder().delete throws when not providing an orderId', () => {
+      expect(() => amadeus.booking.flightOrder().delete())
+        .toThrow(new Error('MISSING_REQUIRED_PARAMETER'));
     });
 
     it('.amadeus.booking.hotelBookings.post', () => {
