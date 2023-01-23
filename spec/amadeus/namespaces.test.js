@@ -328,6 +328,12 @@ describe('Namespaces', () => {
         .toHaveBeenCalledWith('/v3/travel/trip-parser', {});
     });
 
+    it('.amadeus.travel.tripParser.fromFile', () => {
+      const utf8Buffer = Buffer.from('file contént', 'utf8');
+      const base64Encoding = amadeus.travel.tripParser.fromFile(utf8Buffer);
+      expect(base64Encoding).toEqual('ZmlsZSBjb250w6ludA==');
+    });
+
     it('.amadeus.shopping.flightDates.get', () => {
       amadeus.client.get = jest.fn();
       amadeus.shopping.flightDates.get();
