@@ -66,10 +66,6 @@ describe('Namespaces', () => {
       expect(amadeus.booking).toBeDefined();
       expect(amadeus.booking.flightOrders).toBeDefined();
 
-      expect(amadeus.shopping.hotelOffers).toBeDefined();
-      expect(amadeus.shopping.hotelOffersByHotel).toBeDefined();
-      expect(amadeus.shopping.hotelOffer).toBeDefined();
-
       expect(amadeus.shopping.hotelOfferSearch).toBeDefined();
       expect(amadeus.shopping.hotelOffersSearch).toBeDefined();
 
@@ -101,7 +97,6 @@ describe('Namespaces', () => {
 
       expect(amadeus.dutyOfCare).toBeDefined();
       expect(amadeus.dutyOfCare.diseases).toBeDefined();
-      expect(amadeus.dutyOfCare.diseases.covid19AreaReport).toBeDefined();
       expect(amadeus.dutyOfCare.diseases.covid19Report).toBeDefined();
 
       expect(amadeus.airline.destinations).toBeDefined();
@@ -134,10 +129,6 @@ describe('Namespaces', () => {
       expect(amadeus.shopping.flightOffersSearch.get).toBeDefined();
       expect(amadeus.shopping.seatmaps.get).toBeDefined();
 
-      expect(amadeus.shopping.hotelOffers.get).toBeDefined();
-      expect(amadeus.shopping.hotelOffersByHotel.get).toBeDefined();
-      expect(amadeus.shopping.hotelOffer('XXX').get).toBeDefined();
-
       expect(amadeus.shopping.hotelOfferSearch('XXX').get).toBeDefined();
       expect(amadeus.shopping.hotelOffersSearch.get).toBeDefined();
 
@@ -161,7 +152,6 @@ describe('Namespaces', () => {
 
       expect(amadeus.location.analytics.categoryRatedAreas.get).toBeDefined();
 
-      expect(amadeus.dutyOfCare.diseases.covid19AreaReport.get).toBeDefined();
       expect(amadeus.dutyOfCare.diseases.covid19Report.get).toBeDefined();
 
       expect(amadeus.airline.destinations.get).toBeDefined();
@@ -391,27 +381,6 @@ describe('Namespaces', () => {
         .toHaveBeenCalledWith('/v1/shopping/seatmaps', {});
     });
 
-    it('.amadeus.shopping.hotelOffers.get', () => {
-      amadeus.client.get = jest.fn();
-      amadeus.shopping.hotelOffers.get();
-      expect(amadeus.client.get)
-        .toHaveBeenCalledWith('/v2/shopping/hotel-offers', {});
-    });
-
-    it('.amadeus.shopping.hotelOffersByHotel.get', () => {
-      amadeus.client.get = jest.fn();
-      amadeus.shopping.hotelOffersByHotel.get();
-      expect(amadeus.client.get)
-        .toHaveBeenCalledWith('/v2/shopping/hotel-offers/by-hotel', {});
-    });
-
-    it('.amadeus.shopping.hotelOffer().get', () => {
-      amadeus.client.get = jest.fn();
-      amadeus.shopping.hotelOffer('XXX').get();
-      expect(amadeus.client.get)
-        .toHaveBeenCalledWith('/v2/shopping/hotel-offers/XXX', {});
-    });
-
     it('.amadeus.shopping.hotelOfferSearch().get', () => {
       amadeus.client.get = jest.fn();
       amadeus.shopping.hotelOfferSearch('XXX').get();
@@ -536,13 +505,6 @@ describe('Namespaces', () => {
       amadeus.shopping.flightOffers.upselling.post();
       expect(amadeus.client.post)
         .toHaveBeenCalledWith('/v1/shopping/flight-offers/upselling', {});
-    });
-
-    it('.amadeus.dutyOfCare.diseases.covid19AreaReport.get', () => {
-      amadeus.client.get = jest.fn();
-      amadeus.dutyOfCare.diseases.covid19AreaReport.get();
-      expect(amadeus.client.get)
-        .toHaveBeenCalledWith('/v1/duty-of-care/diseases/covid19-area-report', {});
     });
 
     it('.amadeus.dutyOfCare.diseases.covid19Report.get', () => {

@@ -3,9 +3,6 @@ import FlightOffers       from './shopping/flight_offers';
 import FlightOffersSearch from './shopping/flight_offers_search';
 import FlightDates        from './shopping/flight_dates';
 import Seatmaps           from './shopping/seatmaps';
-import HotelOffers        from './shopping/hotel_offers';
-import HotelOffersByHotel from './shopping/hotel_offers_by_hotel';
-import HotelOffer         from './shopping/hotel_offer';
 import HotelOfferSearch   from './shopping/hotel_offer_search';
 import HotelOffersSearch  from './shopping/hotel_offers_search';
 import Activities         from './shopping/activities';
@@ -30,9 +27,6 @@ import Availability       from './shopping/availability';
  * @property {FlightOffersSearch} flightOffersSearch
  * @property {FlightDates} flightDates
  * @property {Seatmaps} seatmaps
- * @property {HotelOffers} hotelOffers
- * @property {HotelOffer} hotelOffer
- * @property {HotelOffersByHotel} hotelOffersByHotel
  * @property {HotelOfferSearch} hotelOffers
  * @property {HotelOffersSearch} hotelOffers
  * @property {Availability} availability
@@ -45,22 +39,9 @@ class Shopping {
     this.flightOffersSearch = new FlightOffersSearch(client);
     this.flightDates        = new FlightDates(client);
     this.seatmaps           = new Seatmaps(client);
-    this.hotelOffers        = new HotelOffers(client);
-    this.hotelOffersByHotel = new HotelOffersByHotel(client);
     this.hotelOffersSearch  = new HotelOffersSearch(client);
     this.activities         = new Activities(client);
     this.availability       = new Availability(client);
-  }
-
-
-  /**
-   * Loads a namespaced path for a specific offer ID for Hotel Search V2
-   *
-   * @param  {string} [offerId]  The ID of the offer for a dedicated hotel
-   * @return {HotelOffer}
-   **/
-  hotelOffer(offerId) {
-    return new HotelOffer(this.client, offerId);
   }
 
   /**

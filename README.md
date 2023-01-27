@@ -368,6 +368,13 @@ amadeus.referenceData.locations.cities.get({
   keyword: 'Paris'
 })
 
+//Hotel Name Autocomplete API
+//Autocomplete a hotel search field
+amadeus.referenceData.locations.hotel.get({
+     keyword: 'PARI',
+     subType: 'HOTEL_GDS'
+})
+
 //Hotel List API 
 //Get list of hotels by city code
 amadeus.referenceData.locations.hotels.byCity.get({
@@ -384,25 +391,6 @@ amadeus.referenceData.locations.hotels.byGeocode.get({
 amadeus.referenceData.locations.hotels.byHotels.get({
       hotelIds: 'ACPAR245'
     })
-
-//Hotel Name Autocomplete API
-//Autocomplete a hotel search field
-amadeus.referenceData.locations.hotel.get({
-     keyword: 'PARI',
-     subType: 'HOTEL_GDS'
-})
-
-// Hotel Search API V2
-// Get list of hotels by city code
-amadeus.shopping.hotelOffers.get({
-  cityCode : 'MAD'
-})
-// Get list of offers for a specific hotel
-amadeus.shopping.hotelOffersByHotel.get({
-  hotelId : 'XKPARC12'
-})
-// Confirm the availability of a specific offer id
-amadeus.shopping.hotelOffer('XXX').get()
 
 // Hotel Search API V3
 // Get list of available offers in specific hotels by hotel ids
@@ -554,12 +542,6 @@ amadeus.dutyOfCare.diseases.covid19Report.get({
   language: 'EN'
 });
 
-// Travel Restrictions API v1
-amadeus.dutyOfCare.diseases.covid19AreaReport.get({
-  countryCode: 'US',
-  cityCode: 'NYC' 
-});
- 
 ```
 
 ## Development & Contributing
