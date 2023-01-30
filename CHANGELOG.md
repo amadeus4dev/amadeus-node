@@ -1,5 +1,16 @@
 # Changelog
 
+## 8.0.0 - 2023-01-30
+Decommissioned Travel Restrictions API v1 
+
+Decommissioned Hotel Search API v2
+
+Fixed [#174](https://github.com/amadeus4dev/amadeus-node/issues/174) SDK reference documentation is back
+
+Fixed [#183](https://github.com/amadeus4dev/amadeus-node/issues/183) Update comparisons in condition statements
+
+Minor updates in How to Release in contribution guide
+
 ## 7.1.0 - 2022-11-08
 Add support for [Travel Restrictions API v2](https://developers.amadeus.com/self-service/category/covid-19-and-travel-safety/api-doc/travel-restrictions/api-reference)
 
