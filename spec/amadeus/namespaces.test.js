@@ -318,6 +318,12 @@ describe('Namespaces', () => {
         .toHaveBeenCalledWith('/v3/travel/trip-parser', {});
     });
 
+    it('.amadeus.travel.tripParser.fromFile', () => {
+      const utf8Buffer = Buffer.from('file contént', 'utf8');
+      const base64Encoding = amadeus.travel.tripParser.fromFile(utf8Buffer);
+      expect(base64Encoding).toEqual('ZmlsZSBjb250w6ludA==');
+    });
+
     it('.amadeus.shopping.flightDates.get', () => {
       amadeus.client.get = jest.fn();
       amadeus.shopping.flightDates.get();
@@ -423,11 +429,21 @@ describe('Namespaces', () => {
         .toHaveBeenCalledWith('/v1/booking/flight-orders/XXX');
     });
 
+    it('.amadeus.booking.flightOrder().get throws when not providing an orderId', () => {
+      expect(() => amadeus.booking.flightOrder().get())
+        .toThrow(new Error('MISSING_REQUIRED_PARAMETER'));
+    });
+
     it('.amadeus.booking.flightOrder().delete', () => {
       amadeus.client.delete = jest.fn();
       amadeus.booking.flightOrder('XXX').delete();
       expect(amadeus.client.delete)
         .toHaveBeenCalledWith('/v1/booking/flight-orders/XXX');
+    });
+
+    it('.amadeus.booking.flightOrder().delete throws when not providing an orderId', () => {
+      expect(() => amadeus.booking.flightOrder().delete())
+        .toThrow(new Error('MISSING_REQUIRED_PARAMETER'));
     });
 
     it('.amadeus.booking.hotelBookings.post', () => {

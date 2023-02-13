@@ -47,8 +47,16 @@ describe('Response', () => {
         expect(response.data).toEqual('b');
       });
 
+      it('should handle badly formed json', () => {
+        response.addChunk('{ "a" : ');
+        response.parse();
+        expect(response.parsed).toBeFalsy();
+        expect(response.result).toBeNull();
+        expect(response.data).toBeNull();
+      });
+
       it('should not parse if not json', () => {
-        response.contentType = 'plain/text';
+        response.headers['content-type'] = 'plain/text';
         response.parse();
         expect(response.parsed).toBeFalsy();
         expect(response.result).toBeNull();
@@ -58,15 +66,8 @@ describe('Response', () => {
       it('should not parse if status code is 204', () => {
         response.contentType = 'plain/text';
         response.statusCode = 204;
-        response.parse();
-        expect(response.parsed).toBeFalsy();
-        expect(response.result).toBeNull();
-        expect(response.data).toBeNull();
-      });
-
-      it('should handle badly formed json', () => {
-        response.addChunk('{ "a" : ');
-        response.parse();
+        const parsingReturnValue = response.parse();
+        expect(parsingReturnValue).toBeUndefined();
         expect(response.parsed).toBeFalsy();
         expect(response.result).toBeNull();
         expect(response.data).toBeNull();

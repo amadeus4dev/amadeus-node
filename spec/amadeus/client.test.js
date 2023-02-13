@@ -123,6 +123,26 @@ describe('Client', () => {
       });
     });
 
+    describe('.delete', () => {
+      it('should create a new request and call it', () => {
+        let call = client.unauthenticatedRequest = jest.fn();
+        client.accessToken = { bearerToken: () => {
+          return { then: resolve => resolve('token') };
+        }};
+        client.delete(path, params);
+        expect(call).toHaveBeenCalledWith('DELETE', path, params, 'token');
+      });
+
+      it('should work without params', () => {
+        let call = client.unauthenticatedRequest = jest.fn();
+        client.accessToken = { bearerToken: () => {
+          return { then: resolve => resolve('token') };
+        }};
+        client.delete(path);
+        expect(call).toHaveBeenCalledWith('DELETE', path, {}, 'token');
+      });
+    });
+
     describe('.unauthenticatedRequest', () => {
       it('should create a new request and call it', () => {
         client.accessToken.bearerToken = jest.fn(() => Promise.resolve('data'));
