@@ -616,6 +616,92 @@
               
                 
                 <li><a
+                  href='#ordering'
+                  class="">
+                  Ordering
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#transferorder'
+                  class="">
+                  TransferOrder
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#transferorders'
+                  class=" toggle-sibling">
+                  TransferOrders
+                  <span class='icon'>▸</span>
+                </a>
+                
+                <div class='toggle-target display-none'>
+                  
+                  
+                    <ul class='list-reset py1-ul pl1'>
+                      <li class='h5'><span>Instance members</span></li>
+                      
+                      <li><a
+                        href='#transferorderspost'
+                        class='regular pre-open'>
+                        #post
+                      </a></li>
+                      
+                    </ul>
+                  
+                  
+                  
+                </div>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#transfers'
+                  class="">
+                  Transfers
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#cancellation'
+                  class=" toggle-sibling">
+                  Cancellation
+                  <span class='icon'>▸</span>
+                </a>
+                
+                <div class='toggle-target display-none'>
+                  
+                  
+                    <ul class='list-reset py1-ul pl1'>
+                      <li class='h5'><span>Instance members</span></li>
+                      
+                      <li><a
+                        href='#cancellationpost'
+                        class='regular pre-open'>
+                        #post
+                      </a></li>
+                      
+                    </ul>
+                  
+                  
+                  
+                </div>
+                
+                </li>
+              
+                
+                <li><a
                   href='#airlines'
                   class=" toggle-sibling">
                   Airlines
@@ -1480,7 +1566,7 @@
                 <li><a
                   href='#hoteloffersearch'
                   class=" toggle-sibling">
-                  hotelOfferSearch
+                  HotelOfferSearch
                   <span class='icon'>▸</span>
                 </a>
                 
@@ -1508,7 +1594,7 @@
                 <li><a
                   href='#hotelofferssearch'
                   class=" toggle-sibling">
-                  hotelOffersSearch
+                  HotelOffersSearch
                   <span class='icon'>▸</span>
                 </a>
                 
@@ -1554,6 +1640,34 @@
                       
                       <li><a
                         href='#seatmapspost'
+                        class='regular pre-open'>
+                        #post
+                      </a></li>
+                      
+                    </ul>
+                  
+                  
+                  
+                </div>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#transferoffers'
+                  class=" toggle-sibling">
+                  TransferOffers
+                  <span class='icon'>▸</span>
+                </a>
+                
+                <div class='toggle-target display-none'>
+                  
+                  
+                    <ul class='list-reset py1-ul pl1'>
+                      <li class='h5'><span>Instance members</span></li>
+                      
+                      <li><a
+                        href='#transferofferspost'
                         class='regular pre-open'>
                         #post
                       </a></li>
@@ -6105,6 +6219,542 @@ the search circle - required
   
   <div class='clearfix'>
     
+    <h3 class='fl m0' id='ordering'>
+      Ordering
+    </h3>
+    
+    
+  </div>
+  
+
+  <p>A namespaced client for the
+<code>/v1/ordering</code> endpoints</p>
+<p>Access via the <a href="#amadeus">Amadeus</a> object</p>
+
+    <div class='pre p1 fill-light mt0'>new Ordering(client: <a href="#client">Client</a>)</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>client</span> <code class='quiet'>(<a href="#client">Client</a>)</code>
+	    
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Properties</div>
+    <div>
+      
+        <div class='space-bottom0'>
+          <span class='code bold'>transferOrders</span> <code class='quiet'>(<a href="#transferorders">TransferOrders</a>)</code>
+          
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <span class='code bold'>transferOrder</span> <code class='quiet'>(<a href="#transferorder">TransferOrder</a>)</code>
+          
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+          <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='transferorder'>
+      TransferOrder
+    </h3>
+    
+    
+  </div>
+  
+
+  <p>A namespaced client for the
+<code>/v1/ordering/transfer-orders/XXXXX</code> endpoints</p>
+<p>Access via the <a href="#amadeus">Amadeus</a> object</p>
+
+    <div class='pre p1 fill-light mt0'>new TransferOrder(client: <a href="#client">Client</a>, orderId: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>)</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>client</span> <code class='quiet'>(<a href="#client">Client</a>)</code>
+	    
+          </div>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>orderId</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>)</code>
+	    
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+          <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='transferorders'>
+      TransferOrders
+    </h3>
+    
+    
+  </div>
+  
+
+  <p>A namespaced client for the
+<code>/v1/ordering/transfer-orders</code> endpoints</p>
+<p>Access via the <a href="#amadeus">Amadeus</a> object</p>
+
+    <div class='pre p1 fill-light mt0'>new TransferOrders(client: <a href="#client">Client</a>)</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>client</span> <code class='quiet'>(<a href="#client">Client</a>)</code>
+	    
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Instance Members</div>
+    <div class="clearfix">
+  
+    <div class='border-bottom' id='transferorderspost'>
+      <div class="clearfix small pointer toggle-sibling">
+        <div class="py1 contain">
+            <a class='icon pin-right py1 dark-link caret-right'>▸</a>
+            <span class='code strong strong truncate'>post(body, offerId)</span>
+        </div>
+      </div>
+      <div class="clearfix display-none toggle-target">
+        <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+
+  <p>To book the selected transfer-offer and create a transfer-order</p>
+
+    <div class='pre p1 fill-light mt0'>post(body: any, offerId: any): <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a>&#x3C;<a href="#response">Response</a>, <a href="#responseerror">ResponseError</a>></div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>body</span> <code class='quiet'>(any)</code>
+	    
+          </div>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>offerId</span> <code class='quiet'>(any)</code>
+	    
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+    
+      <div class='py1 quiet mt1 prose-big'>Returns</div>
+      <code><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a>&#x3C;<a href="#response">Response</a>, <a href="#responseerror">ResponseError</a>></code>:
+        a Promise
+<p>To book the transfer-offer(s) suggested by transferOffers and create a transfer-order</p>
+
+      
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+      </div>
+    </div>
+  
+</div>
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+          <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='transfers'>
+      Transfers
+    </h3>
+    
+    
+  </div>
+  
+
+  <p>A namespaced client for the
+<code>/v1/ordering/transfer-orders/XXXXX/transfers</code> endpoints</p>
+<p>Access via the <a href="#amadeus">Amadeus</a> object</p>
+
+    <div class='pre p1 fill-light mt0'>new Transfers(client: <a href="#client">Client</a>, orderId: any)</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>client</span> <code class='quiet'>(<a href="#client">Client</a>)</code>
+	    
+          </div>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>orderId</span> <code class='quiet'>(any)</code>
+	    
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+          <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='cancellation'>
+      Cancellation
+    </h3>
+    
+    
+  </div>
+  
+
+  <p>A namespaced client for the
+<code>/v1/ordering/transfer-orders/XXX/transfers/cancellation</code> endpoints</p>
+<p>Access via the <a href="#amadeus">Amadeus</a> object</p>
+
+    <div class='pre p1 fill-light mt0'>new Cancellation(client: <a href="#client">Client</a>, orderId: any)</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>client</span> <code class='quiet'>(<a href="#client">Client</a>)</code>
+	    
+          </div>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>orderId</span> <code class='quiet'>(any)</code>
+	    
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Instance Members</div>
+    <div class="clearfix">
+  
+    <div class='border-bottom' id='cancellationpost'>
+      <div class="clearfix small pointer toggle-sibling">
+        <div class="py1 contain">
+            <a class='icon pin-right py1 dark-link caret-right'>▸</a>
+            <span class='code strong strong truncate'>post(body, confirmNbr)</span>
+        </div>
+      </div>
+      <div class="clearfix display-none toggle-target">
+        <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+
+  <p>To cancel a transfer order based on its id</p>
+
+    <div class='pre p1 fill-light mt0'>post(body: any, confirmNbr: any): <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a>&#x3C;<a href="#response">Response</a>, <a href="#responseerror">ResponseError</a>></div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>body</span> <code class='quiet'>(any)</code>
+	    
+          </div>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>confirmNbr</span> <code class='quiet'>(any)</code>
+	    
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+    
+      <div class='py1 quiet mt1 prose-big'>Returns</div>
+      <code><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a>&#x3C;<a href="#response">Response</a>, <a href="#responseerror">ResponseError</a>></code>:
+        a Promise
+<p>To cancel a transfer order with ID 'XXX' and confirmation number '12345'</p>
+
+      
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+      </div>
+    </div>
+  
+</div>
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+          <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
     <h3 class='fl m0' id='airlines'>
       Airlines
     </h3>
@@ -10233,19 +10883,25 @@ What's the current status of my flight?
         </div>
       
         <div class='space-bottom0'>
-          <span class='code bold'>hotelOffers</span> <code class='quiet'>(HotelOfferSearch)</code>
+          <span class='code bold'>hotelOffers</span> <code class='quiet'>(<a href="#hoteloffersearch">HotelOfferSearch</a>)</code>
           
           
         </div>
       
         <div class='space-bottom0'>
-          <span class='code bold'>hotelOffers</span> <code class='quiet'>(HotelOffersSearch)</code>
+          <span class='code bold'>hotelOffers</span> <code class='quiet'>(<a href="#hotelofferssearch">HotelOffersSearch</a>)</code>
           
           
         </div>
       
         <div class='space-bottom0'>
           <span class='code bold'>availability</span> <code class='quiet'>(Availability)</code>
+          
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <span class='code bold'>transferOffers</span> <code class='quiet'>(<a href="#transferoffers">TransferOffers</a>)</code>
           
           
         </div>
@@ -10281,7 +10937,7 @@ What's the current status of my flight?
 
   <p>Loads a namespaced path for a specific offer ID for Hotel Search V3</p>
 
-    <div class='pre p1 fill-light mt0'>hotelOfferSearch(offerId: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>?): HotelOfferSearch</div>
+    <div class='pre p1 fill-light mt0'>hotelOfferSearch(offerId: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>?): <a href="#hoteloffersearch">HotelOfferSearch</a></div>
   
   
 
@@ -10313,7 +10969,7 @@ What's the current status of my flight?
   
     
       <div class='py1 quiet mt1 prose-big'>Returns</div>
-      <code>HotelOfferSearch</code>:
+      <code><a href="#hoteloffersearch">HotelOfferSearch</a></code>:
         <ul>
 <li></li>
 </ul>
@@ -12071,7 +12727,7 @@ pricing needs to be retrieved
   <div class='clearfix'>
     
     <h3 class='fl m0' id='hoteloffersearch'>
-      hotelOfferSearch
+      HotelOfferSearch
     </h3>
     
     
@@ -12082,7 +12738,7 @@ pricing needs to be retrieved
 <code>/v3/shopping/hotel-offers/:offer_id</code> endpoints</p>
 <p>Access via the <a href="#amadeus">Amadeus</a> object</p>
 
-    <div class='pre p1 fill-light mt0'>new hotelOfferSearch(client: <a href="#client">Client</a>, offerId: any)</div>
+    <div class='pre p1 fill-light mt0'>new HotelOfferSearch(client: <a href="#client">Client</a>, offerId: any)</div>
   
   
 
@@ -12233,7 +12889,7 @@ pricing needs to be retrieved
   <div class='clearfix'>
     
     <h3 class='fl m0' id='hotelofferssearch'>
-      hotelOffersSearch
+      HotelOffersSearch
     </h3>
     
     
@@ -12244,7 +12900,7 @@ pricing needs to be retrieved
 <code>/v3/shopping/hotel-offers</code> endpoints</p>
 <p>Access via the <a href="#amadeus">Amadeus</a> object</p>
 
-    <div class='pre p1 fill-light mt0'>new hotelOffersSearch(client: <a href="#client">Client</a>)</div>
+    <div class='pre p1 fill-light mt0'>new HotelOffersSearch(client: <a href="#client">Client</a>)</div>
   
   
 
@@ -12586,6 +13242,149 @@ codes to request. Example: RTPAR001
         a Promise
 <p>To retrieve the seat map of each flight included in flight offers
 for MAD-NYC flight on 2020-08-01.</p>
+
+      
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+      </div>
+    </div>
+  
+</div>
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+          <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='transferoffers'>
+      TransferOffers
+    </h3>
+    
+    
+  </div>
+  
+
+  <p>A namespaced client for the
+<code>/v1/shopping/transfer-offers</code> endpoints</p>
+<p>Access via the <a href="#amadeus">Amadeus</a> object</p>
+
+    <div class='pre p1 fill-light mt0'>new TransferOffers(client: <a href="#client">Client</a>)</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>client</span> <code class='quiet'>(<a href="#client">Client</a>)</code>
+	    
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Instance Members</div>
+    <div class="clearfix">
+  
+    <div class='border-bottom' id='transferofferspost'>
+      <div class="clearfix small pointer toggle-sibling">
+        <div class="py1 contain">
+            <a class='icon pin-right py1 dark-link caret-right'>▸</a>
+            <span class='code strong strong truncate'>post(params)</span>
+        </div>
+      </div>
+      <div class="clearfix display-none toggle-target">
+        <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+
+  <p>To search the list of transfer offers.</p>
+
+    <div class='pre p1 fill-light mt0'>post(params: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>): <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a>&#x3C;<a href="#response">Response</a>, <a href="#responseerror">ResponseError</a>></div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>params</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>
+            = <code>{}</code>)</code>
+	    
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+    
+      <div class='py1 quiet mt1 prose-big'>Returns</div>
+      <code><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a>&#x3C;<a href="#response">Response</a>, <a href="#responseerror">ResponseError</a>></code>:
+        a Promise
+<p>To search the list of transfer offers</p>
 
       
     
