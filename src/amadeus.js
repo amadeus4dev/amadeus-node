@@ -7,6 +7,7 @@ import Booking       from './amadeus/namespaces/booking';
 import Travel        from './amadeus/namespaces/travel';
 import EReputation   from './amadeus/namespaces/e_reputation';
 import Media         from './amadeus/namespaces/media';
+import Ordering      from './amadeus/namespaces/ordering';
 import Airport       from './amadeus/namespaces/airport';
 import Safety        from './amadeus/namespaces/safety';
 import Schedule      from './amadeus/namespaces/schedule';
@@ -72,6 +73,7 @@ class Amadeus {
     this.travel         = new Travel(this.client);
     this.eReputation    = new EReputation(this.client);
     this.media          = new Media(this.client);
+    this.ordering       = new Ordering(this.client);
     this.airport        = new Airport(this.client);
     this.pagination     = new Pagination(this.client);
     this.safety         = new Safety(this.client);

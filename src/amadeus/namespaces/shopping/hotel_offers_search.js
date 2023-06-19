@@ -11,7 +11,7 @@
  *
  * @param {Client} client
  */
-class hotelOffersSearch {
+class HotelOffersSearch {
   constructor(client) {
     this.client = client;
   }
@@ -39,4 +39,4 @@ class hotelOffersSearch {
   }
 }
 
-export default hotelOffersSearch;
+export default HotelOffersSearch;

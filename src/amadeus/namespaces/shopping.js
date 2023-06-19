@@ -8,7 +8,7 @@ import HotelOffersSearch  from './shopping/hotel_offers_search';
 import Activities         from './shopping/activities';
 import Activity           from './shopping/activity';
 import Availability       from './shopping/availability';
-
+import TransferOffers     from './shopping/transfer_offers';
 
 /**
  * A namespaced client for the
@@ -30,6 +30,7 @@ import Availability       from './shopping/availability';
  * @property {HotelOfferSearch} hotelOffers
  * @property {HotelOffersSearch} hotelOffers
  * @property {Availability} availability
+ * @property {TransferOffers} transferOffers
  */
 class Shopping {
   constructor(client) {
@@ -42,6 +43,7 @@ class Shopping {
     this.hotelOffersSearch  = new HotelOffersSearch(client);
     this.activities         = new Activities(client);
     this.availability       = new Availability(client);
+    this.transferOffers     = new TransferOffers(client);
   }
 
   /**
