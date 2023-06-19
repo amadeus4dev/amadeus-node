@@ -1,4 +1,5 @@
 import TransferOrders from './ordering/transfer_orders';
+import TransferOrder from './ordering/transfer_order';
 
 /**
  * A namespaced client for the
@@ -12,17 +13,14 @@ import TransferOrders from './ordering/transfer_orders';
  * ```
  *
  * @param {Client} client
- * @property {TransferOrders} TransferOrders
- * @protected
+ * @property {TransferOrders} transferOrders
+ * @property {TransferOrder} transferOrder
  */
 class Ordering {
   constructor(client) {
-    this.client    = client;
+    this.client = client;
     this.transferOrders = new TransferOrders(client);
-  }
-
-  transferOrders (offerId) {
-    return new TransferOrders(this.client, offerId);
+    this.transferOrder = (orderId) => new TransferOrder(client, orderId);
   }
 }
 

@@ -6,32 +6,31 @@
  *
  * ```js
  * let amadeus = new Amadeus();
- * amadeus.ordering.transferOrder('XXX').transfers.cancellation.post(body, confirmNbr=123);
+ * amadeus.ordering.transferOrder('XXX').transfers.cancellation.post(JSON.stringify({}), 12345);;
  * ```
  *
  * @param {Client} client
  */
-class TransferOrder {
-    constructor(client) {
-      this.client = client;
-      this.orderId = orderId;
-    }
-  
-    /**
-     * To retrieve a transfer order based on its id
-     * @param {Object} params
-     * @return {Promise.<Response,ResponseError>} a Promise
-     *
-     * To retrieve a transfer order with ID 'XXX'
-     *
-     * ```js
-     * amadeus.ordering.transferOrders('XXX').transfers.cancellation.post({}, confirmNbr=123);
-     * ```
-     */
-    post(params = {}) {
-      return this.client.post(
-        `/v1/ordering/transfer-orders/${this.orderId}/transfers/cancellation`, params);
-    }
+class Cancellation {
+  constructor(client, orderId) {
+    this.client = client;
+    this.orderId = orderId;
   }
-  
-  export default TransferOrder;
+
+  /**
+   * To cancel a transfer order based on its id
+   * @return {Promise.<Response,ResponseError>} a Promise
+   *
+   * To cancel a transfer order with ID 'XXX' and confirmation number '12345'
+   *
+   * ```js
+   * amadeus.ordering.transferOrder('XXX').transfers.cancellation.post(JSON.stringify({}), 12345);;
+   * ```
+   */
+  post(body, confirmNbr) {
+    return this.client.post(
+      `/v1/ordering/transfer-orders/${this.orderId}/transfers/cancellation?confirmNbr=${confirmNbr}`, body);
+  }
+}
+
+export default Cancellation;

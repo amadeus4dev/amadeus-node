@@ -14,10 +14,11 @@ import Cancellation from './transfers/cancellation';
  * @param {Client} client
  */
 class Transfers {
-    constructor(client) {
-      this.client = client;
-      this.cancellation = new Cancellation(client);
-    }
+  constructor(client, orderId) {
+    this.client = client;
+    this.orderId = orderId;
+    this.cancellation = new Cancellation(client, orderId);
   }
-  
-  export default Transfers;
+}
+
+export default Transfers;

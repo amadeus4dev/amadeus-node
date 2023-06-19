@@ -544,14 +544,13 @@ amadeus.dutyOfCare.diseases.covid19Report.get({
 
 //Car & Transfers APIs
 // Transfer Search API : Search Transfer offers 
-amadeus.shopping.transferOffers.post(
-  JSON.stringify(body));
+amadeus.shopping.transferOffers.post(JSON.stringify(body));
 
-// Transfer Book API : Book a transfer based on an offer id
+// Transfer Book API : Book a transfer based on the offer id
 amadeus.ordering.transferOrders.post(JSON.stringify(body),offerId='2094123123');
 
-// Transfer Management API : Cancel a transfer based on an order id
-amadeus.ordering.transferOrders('XXX').transfers.cancellation.post(JSON.stringify({}), confirmNbr=12345);
+// Transfer Management API : Cancel a transfer based on the order id & confirmation number
+amadeus.ordering.transferOrder('XXX').transfers.cancellation.post(JSON.stringify({}), confirmNbr='12345');
 
 ```
 

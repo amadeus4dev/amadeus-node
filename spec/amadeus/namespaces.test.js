@@ -85,7 +85,7 @@ describe('Namespaces', () => {
 
       expect(amadeus.ordering).toBeDefined();
       expect(amadeus.ordering.transferOrders).toBeDefined();
-      expect(amadeus.ordering.transferOffers('XXX').transfers.cancellation).toBeDefined();
+      expect(amadeus.ordering.transferOrder('XXX').transfers.cancellation).toBeDefined();
 
       expect(amadeus.airport).toBeDefined();
       expect(amadeus.airport.directDestinations).toBeDefined();
@@ -173,7 +173,7 @@ describe('Namespaces', () => {
       expect(amadeus.booking.hotelBookings.post).toBeDefined();
       expect(amadeus.shopping.transferOffers.post).toBeDefined();
       expect(amadeus.ordering.transferOrders.post).toBeDefined();
-      expect(amadeus.ordering.transferOrders('XXX').transfers.cancellation.post).toBeDefined();
+      expect(amadeus.ordering.transferOrder('XXX').transfers.cancellation.post).toBeDefined();
     });
 
     it('should define all expected .delete methods', () => {
@@ -555,16 +555,16 @@ describe('Namespaces', () => {
 
     it('.amadeus.ordering.transferOrders.post', () => {
       amadeus.client.post = jest.fn();
-      amadeus.shopping.transferOrders.post();
+      amadeus.ordering.transferOrders.post({}, '1234123123');
       expect(amadeus.client.post)
-        .toHaveBeenCalledWith('/v1/shopping/transfer-orders', {});
+        .toHaveBeenCalledWith('/v1/ordering/transfer-orders?offerId=1234123123', {});
     });
 
     it('.amadeus.ordering.transferOrders().transfers.cancellation.post', () => {
       amadeus.client.post = jest.fn();
-      amadeus.shopping.transferOrders(XXX).transfers.cancellation.post();
+      amadeus.ordering.transferOrder('XXX').transfers.cancellation.post({}, 12345);
       expect(amadeus.client.post)
-        .toHaveBeenCalledWith('/v1/shopping/transfer-orders/XXX/transfers/cancellation', {});
+        .toHaveBeenCalledWith('/v1/ordering/transfer-orders/XXX/transfers/cancellation?confirmNbr=12345', {});
     });
 
   });
