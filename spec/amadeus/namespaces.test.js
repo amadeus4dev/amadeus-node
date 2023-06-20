@@ -72,6 +72,8 @@ describe('Namespaces', () => {
       expect(amadeus.shopping.availability).toBeDefined();
       expect(amadeus.shopping.availability.flightAvailabilities).toBeDefined();
 
+      expect(amadeus.shopping.transferOffers).toBeDefined();
+
       expect(amadeus.booking.flightOrder).toBeDefined();
       expect(amadeus.booking.hotelBookings).toBeDefined();
 
@@ -80,6 +82,10 @@ describe('Namespaces', () => {
 
       expect(amadeus.media).toBeDefined();
       expect(amadeus.media.files).toBeDefined();
+
+      expect(amadeus.ordering).toBeDefined();
+      expect(amadeus.ordering.transferOrders).toBeDefined();
+      expect(amadeus.ordering.transferOrder('XXX').transfers.cancellation).toBeDefined();
 
       expect(amadeus.airport).toBeDefined();
       expect(amadeus.airport.directDestinations).toBeDefined();
@@ -165,6 +171,9 @@ describe('Namespaces', () => {
       expect(amadeus.shopping.flightOffers.pricing.post).toBeDefined();
       expect(amadeus.shopping.seatmaps.post).toBeDefined();
       expect(amadeus.booking.hotelBookings.post).toBeDefined();
+      expect(amadeus.shopping.transferOffers.post).toBeDefined();
+      expect(amadeus.ordering.transferOrders.post).toBeDefined();
+      expect(amadeus.ordering.transferOrder('XXX').transfers.cancellation.post).toBeDefined();
     });
 
     it('should define all expected .delete methods', () => {
@@ -535,6 +544,27 @@ describe('Namespaces', () => {
       amadeus.airline.destinations.get();
       expect(amadeus.client.get)
         .toHaveBeenCalledWith('/v1/airline/destinations', {});
+    });
+
+    it('.amadeus.shopping.transferOffers.post', () => {
+      amadeus.client.post = jest.fn();
+      amadeus.shopping.transferOffers.post();
+      expect(amadeus.client.post)
+        .toHaveBeenCalledWith('/v1/shopping/transfer-offers', {});
+    });
+
+    it('.amadeus.ordering.transferOrders.post', () => {
+      amadeus.client.post = jest.fn();
+      amadeus.ordering.transferOrders.post({}, '1234123123');
+      expect(amadeus.client.post)
+        .toHaveBeenCalledWith('/v1/ordering/transfer-orders?offerId=1234123123', {});
+    });
+
+    it('.amadeus.ordering.transferOrders().transfers.cancellation.post', () => {
+      amadeus.client.post = jest.fn();
+      amadeus.ordering.transferOrder('XXX').transfers.cancellation.post({}, 12345);
+      expect(amadeus.client.post)
+        .toHaveBeenCalledWith('/v1/ordering/transfer-orders/XXX/transfers/cancellation?confirmNbr=12345', {});
     });
 
   });
