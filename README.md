@@ -531,17 +531,6 @@ amadeus.analytics.itineraryPriceMetrics.get({
    departureDate: '2022-03-13',
  })
 
-// Travel Restrictions
-// The Travel Restrictions API provides up-to-date data on COVID-19 caseloads and travel restrictions for over 200 countries and territories,
-// as well as hundreds of cities and regions worldwide.
-
-// Travel Restrictions API v2 
-amadeus.dutyOfCare.diseases.covid19Report.get({
-  countryCode: 'US',
-  cityCode: 'NYC',
-  language: 'EN'
-});
-
 //Cars & Transfers APIs
 // Transfer Search API: Search Transfer
 amadeus.shopping.transferOffers.post(JSON.stringify(body));

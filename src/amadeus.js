@@ -13,7 +13,6 @@ import Safety        from './amadeus/namespaces/safety';
 import Schedule      from './amadeus/namespaces/schedule';
 import Analytics     from './amadeus/namespaces/analytics';
 import Location      from './amadeus/namespaces/location';
-import DutyOfCare    from './amadeus/namespaces/duty_of_care';
 import Airline       from './amadeus/namespaces/airline';
 
 
@@ -80,7 +79,6 @@ class Amadeus {
     this.schedule       = new Schedule(this.client);
     this.analytics      = new Analytics(this.client);
     this.location       = new Location(this.client);
-    this.dutyOfCare     = new DutyOfCare(this.client);
     this.airline        = new Airline(this.client);
   }
 
