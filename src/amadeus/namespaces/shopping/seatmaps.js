@@ -59,7 +59,7 @@ class Seatmaps {
    * ```
   */
   post(params = {}) {
-    return this.client.post('/v1/shopping/seatmaps', JSON.stringify(params));
+    return this.client.post('/v1/shopping/seatmaps', params);
   }
 
 }

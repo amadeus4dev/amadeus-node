@@ -27,7 +27,7 @@ class Upselling {
    * ```
    */
   post(params = {}) {
-    return this.client.post('/v1/shopping/flight-offers/upselling', JSON.stringify(params));
+    return this.client.post('/v1/shopping/flight-offers/upselling', params);
   }
 }
 

@@ -29,7 +29,7 @@ class Cancellation {
    */
   post(body, confirmNbr) {
     return this.client.post(
-      `/v1/ordering/transfer-orders/${this.orderId}/transfers/cancellation?confirmNbr=${confirmNbr}`, JSON.stringify(body));
+      `/v1/ordering/transfer-orders/${this.orderId}/transfers/cancellation?confirmNbr=${confirmNbr}`, body);
   }
 }
 

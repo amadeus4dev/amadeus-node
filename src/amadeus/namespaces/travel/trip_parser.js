@@ -29,7 +29,7 @@ class TripParser {
      * ```
      */
   post(params = {}) {
-    return this.client.post('/v3/travel/trip-parser', JSON.stringify(params));
+    return this.client.post('/v3/travel/trip-parser', params);
   }
   /**
   * Helper method to convert file contents in UTF-8 encoded string
