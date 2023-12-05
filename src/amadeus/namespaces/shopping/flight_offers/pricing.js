@@ -39,19 +39,16 @@ class Pricing {
    * ```
    */
   post(params = {}, additionalParams = {}) {
-    // Check if params is an array
-    if (Array.isArray(params)) {
-      // If it is, wrap it in the required structure
-      params = {
-        'data': {
-          'type': 'flight-offers-pricing',
-          'flightOffers': params
-        }
-      };
-    }
     // Convert additionalParams object to query string
     const queryString = Object.keys(additionalParams).map(key => key + '=' + additionalParams[key]).join('&');
-    return this.client.post('/v1/shopping/flight-offers/pricing?' + queryString, params);
+
+    // Check if queryString is empty before appending it to the URL
+    let url = '/v1/shopping/flight-offers/pricing';
+    if (queryString !== '') {
+      url += '?' + queryString;
+    }
+
+    return this.client.post(url, params);
   }
 }
 
