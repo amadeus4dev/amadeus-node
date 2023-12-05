@@ -12095,7 +12095,7 @@ from the origin to go to the destination. Dates are specified in the ISO 8601 YY
       <div class="clearfix small pointer toggle-sibling">
         <div class="py1 contain">
             <a class='icon pin-right py1 dark-link caret-right'>▸</a>
-            <span class='code strong strong truncate'>post(params)</span>
+            <span class='code strong strong truncate'>post(params, additionalParams)</span>
         </div>
       </div>
       <div class="clearfix display-none toggle-target">
@@ -12108,7 +12108,7 @@ about taxes and fees to be applied to the entire journey. It also
 retrieves ancillary information (e.g. additional bag or extra legroom
 seats pricing) and the payment information details requested at booking time.</p>
 
-    <div class='pre p1 fill-light mt0'>post(params: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>): <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a>&#x3C;<a href="#response">Response</a>, <a href="#responseerror">ResponseError</a>></div>
+    <div class='pre p1 fill-light mt0'>post(params: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>, additionalParams: any): <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a>&#x3C;<a href="#response">Response</a>, <a href="#responseerror">ResponseError</a>></div>
   
   
 
@@ -12174,6 +12174,15 @@ pricing needs to be retrieved
               
             </tbody>
           </table>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>additionalParams</span> <code class='quiet'>(any
+            = <code>{}</code>)</code>
+	    
+          </div>
           
         </div>
       
