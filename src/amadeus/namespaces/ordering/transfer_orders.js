@@ -29,7 +29,7 @@ class TransferOrders {
    * ```
    */
   post(body, offerId) {
-    return this.client.post(`/v1/ordering/transfer-orders?offerId=${offerId}`, body);
+    return this.client.post(`/v1/ordering/transfer-orders?offerId=${offerId}`, JSON.stringify(body));
   }
 }
 
