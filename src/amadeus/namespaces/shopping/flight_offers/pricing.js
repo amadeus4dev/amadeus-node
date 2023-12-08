@@ -38,8 +38,17 @@ class Pricing {
    * });
    * ```
    */
-  post(params = {}) {
-    return this.client.post('/v1/shopping/flight-offers/pricing', params);
+  post(params = {}, additionalParams = {}) {
+    // Convert additionalParams object to query string
+    const queryString = Object.keys(additionalParams).map(key => key + '=' + additionalParams[key]).join('&');
+
+    // Check if queryString is empty before appending it to the URL
+    let url = '/v1/shopping/flight-offers/pricing';
+    if (queryString !== '') {
+      url += '?' + queryString;
+    }
+
+    return this.client.post(url, params);
   }
 }
 

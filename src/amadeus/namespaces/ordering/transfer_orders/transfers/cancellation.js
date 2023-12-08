@@ -6,7 +6,7 @@
  *
  * ```js
  * let amadeus = new Amadeus();
- * amadeus.ordering.transferOrder('XXX').transfers.cancellation.post(JSON.stringify({}), 12345);;
+ * amadeus.ordering.transferOrder('XXX').transfers.cancellation.post(JSON.stringify({}), '12345');;
  * ```
  *
  * @param {Client} client
@@ -24,7 +24,7 @@ class Cancellation {
    * To cancel a transfer order with ID 'XXX' and confirmation number '12345'
    *
    * ```js
-   * amadeus.ordering.transferOrder('XXX').transfers.cancellation.post(JSON.stringify({}), 12345);;
+   * amadeus.ordering.transferOrder('XXX').transfers.cancellation.post(JSON.stringify({}), '12345');;
    * ```
    */
   post(body, confirmNbr) {
