@@ -1,4 +1,7 @@
 # Changelog
+## 9.1.0 - 2023-12-11
+Add support for additional parameters with [Flight Offers Price API](https://developers.amadeus.com/self-service/category/flights/api-doc/flight-offers-price)
+
 ## 9.0.0 - 2023-09-06
 Decommissioned Travel Restrictions API v2
 

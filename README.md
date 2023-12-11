@@ -204,7 +204,11 @@ amadeus.shopping.flightOffersSearch.get({
 
 // Flight Offers Search POST
 // A full example can be found at https://github.com/amadeus4dev/amadeus-code-examples
-amadeus.shopping.flightOffersSearch.post(body)
+amadeus.shopping.flightOffersSearch.post(JSON.stringify(body))
+
+// Flight Offers Search with additional parameters
+// check additional baggage options 
+amadeus.shopping.flightOffers.pricing.post(JSON.stringify(body),{include: 'bags'})
 
 // Flight Offers Price
 amadeus.shopping.flightOffersSearch.get({
@@ -272,10 +276,10 @@ amadeus.shopping.seatmaps.get({
 });
 
 // Flight Availabilities Search
-amadeus.shopping.availability.flightAvailabilities.post(body);
+amadeus.shopping.availability.flightAvailabilities.post(JSON.stringify((body));
 
 // Branded Fares Upsell 
-amadeus.shopping.flightOffers.upselling.post(body);
+amadeus.shopping.flightOffers.upselling.post(JSON.stringify(body));
 
 // Flight Choice Prediction
 amadeus.shopping.flightOffersSearch.get({
