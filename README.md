@@ -206,10 +206,6 @@ amadeus.shopping.flightOffersSearch.get({
 // A full example can be found at https://github.com/amadeus4dev/amadeus-code-examples
 amadeus.shopping.flightOffersSearch.post(JSON.stringify(body))
 
-// Flight Offers Search with additional parameters
-// check additional baggage options 
-amadeus.shopping.flightOffers.pricing.post(JSON.stringify(body),{include: 'bags'})
-
 // Flight Offers Price
 amadeus.shopping.flightOffersSearch.get({
     originLocationCode: 'SYD',
@@ -230,6 +226,10 @@ amadeus.shopping.flightOffersSearch.get({
 }).catch(function(responseError){
     console.log(responseError);
 });
+
+// Flight Offers Price with additional parameters
+// for example: check additional baggage options 
+amadeus.shopping.flightOffers.pricing.post(JSON.stringify(body),{include: 'bags'})
 
 // Flight Create Orders
 // To book the flight-offer(s) returned by the Flight Offers Price
