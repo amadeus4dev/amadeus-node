@@ -33,7 +33,7 @@ class Request {
     this.queryPath       = this.fullQueryPath();
     this.bearerToken     = options.bearerToken;
     this.clientVersion   = options.clientVersion;
-    this.languageVersion = options.languageVersion.replace('v', '');
+    this.languageVersion = options.languageVersion
     this.appId           = options.appId;
     this.appVersion      = options.appVersion;
     this.headers         = {
