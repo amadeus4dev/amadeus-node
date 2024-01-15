@@ -26,7 +26,7 @@ class AccessToken {
    * token before making an API call.
    *
    * @param  {Client} client the Amadeus Client to make an API call with
-   * @return {Promise.<Response,ResponseError>} a Bluebird Promise
+   * @return {Promise.<Response,ResponseError>} a Promise
    * @protected
    */
   bearerToken(client) {
@@ -39,10 +39,10 @@ class AccessToken {
   // PRIVATE
 
   /**
-   * Builds a Bluebird promise to be returned to the API user
+   * Builds a promise to be returned to the API user
    *
    * @param  {type} emitter the EventEmitter used to notify the Promise of
-   * @return {Promise} a Bluebird promise
+   * @return {Promise} a promise
    * @private
    */
   promise(emitter) {

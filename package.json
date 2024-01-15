@@ -64,7 +64,6 @@
     "watch": "^1.0.2"
   },
   "dependencies": {
-    "bluebird": "^3.7.2",
     "qs": "^6.11.0"
   }
 }

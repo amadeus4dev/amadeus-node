@@ -39,7 +39,6 @@ Update versions of dependencies
 - @babel/preset-env from ^7.4.5 to ^7.18.6
 - babel-plugin-add-module-exports from ^0.2.1 to ^1.0.4
 - documentation from ^11.0.0 to ^13.2.5
-- bluebird from ^3.5.1 to ^3.7.2
 - qs from ^6.9.1 to ^6.11.0
 
 Add support for the [City Search API](https://developers.amadeus.com/self-service/category/trip/api-doc/city-search/api-reference)
