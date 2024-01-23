@@ -73,9 +73,7 @@ class AccessToken {
    * @private
    */
   needsLoadOrRefresh() {
-    if (!this.accessToken) { return true; }
-    else if ((Date.now() + TOKEN_BUFFER) > this.expiresAt) { return true; }
-    else { return false; }
+    return !this.accessToken || ((Date.now() + TOKEN_BUFFER) > this.expiresAt);
   }
 
 
