@@ -100,7 +100,7 @@ class Amadeus {
    * ```
    *
    * @param response the previous response for an API call
-   * @return {Promise.<Response,ResponseError>} a Bluebird Promise
+   * @return {Promise.<Response,ResponseError>} a Promise
    */
   previous(response) { return this.pagination.page('previous', response); }
 
@@ -121,7 +121,7 @@ class Amadeus {
    * ```
    *
    * @param response the previous response for an API call
-   * @return {Promise.<Response,ResponseError>} a Bluebird Promise
+   * @return {Promise.<Response,ResponseError>} a Promise
    */
   next(response)     { return this.pagination.page('next', response); }
 
@@ -143,7 +143,7 @@ class Amadeus {
    * ```
    *
    * @param response the previous response for an API call
-   * @return {Promise.<Response,ResponseError>} a Bluebird Promise
+   * @return {Promise.<Response,ResponseError>} a Promise
    */
   first(response)    { return this.pagination.page('first', response); }
 
@@ -164,7 +164,7 @@ class Amadeus {
    * ```
    *
    * @param response the previous response for an API call
-   * @return {Promise.<Response,ResponseError>} a Bluebird Promise
+   * @return {Promise.<Response,ResponseError>} a Promise
    */
   last(response)     { return this.pagination.page('last', response); }
 }
