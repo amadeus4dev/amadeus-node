@@ -1,5 +1,4 @@
 import EventEmitter from 'events';
-import Promise      from 'bluebird';
 import util         from 'util';
 
 import AccessToken from './client/access_token';
@@ -183,10 +182,10 @@ class Client {
   }
 
   /**
-   * Builds a Bluebird Promise to be returned to the API user
+   * Builds a Promise to be returned to the API user
    *
    * @param  {type} emitter the event emitter to notify of changes
-   * @return {Promise} a Bluebird promise
+   * @return {Promise} a promise
    * @private
    */
   buildPromise(emitter) {

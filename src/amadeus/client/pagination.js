@@ -17,7 +17,7 @@ class Pagination {
    *    as a link in the meta links in the response
    * @param  {type} response the response containing the links to the next pages,
    *   and the request used to make the previous call
-   * @return {Promise.<Response,ResponseError>} a Bluebird Promise
+   * @return {Promise.<Response,ResponseError>} a Promise
    * @protected
    */
   page(pageName, response) {
@@ -38,7 +38,7 @@ class Pagination {
    *
    * @param  {type} request    the request used to make the previous call
    * @param  {type} pageNumber the page number to fetch
-   * @return {Promise.<Response,ResponseError>} a Bluebird Promise
+   * @return {Promise.<Response,ResponseError>} a Promise
    * @private
    */
   call(request, pageNumber) {
