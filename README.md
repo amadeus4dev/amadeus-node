@@ -448,24 +448,6 @@ amadeus.location.analytics.categoryRatedAreas.get({
   longitude : 2.160873
 })
 
-// Safe Place
-// How safe is Barcelona? (based a geo location and a radius)
-amadeus.safety.safetyRatedLocations.get({
-  latitude: 41.397158,
-  longitude: 2.160873
-})
-
-// How safe is Barcelona? (based on a square)
-amadeus.safety.safetyRatedLocations.bySquare.get({
-  north: 41.397158,
-  west: 2.160873,
-  south: 41.394582,
-  east: 2.177181
-})
-
-// What is the safety information of a location based on its Id?
-amadeus.safety.safetyRatedLocation('Q930400801').get()
-
 // Tours and Activities
 // What are the best tours and activities in Barcelona?
 amadeus.shopping.activities.get({

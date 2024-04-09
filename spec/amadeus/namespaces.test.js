@@ -92,11 +92,6 @@ describe('Namespaces', () => {
       expect(amadeus.airport.predictions).toBeDefined();
       expect(amadeus.airport.predictions.onTime).toBeDefined();
 
-      expect(amadeus.safety).toBeDefined();
-      expect(amadeus.safety.safetyRatedLocations).toBeDefined();
-      expect(amadeus.safety.safetyRatedLocations.bySquare).toBeDefined();
-      expect(amadeus.safety.safetyRatedLocation).toBeDefined();
-
       expect(amadeus.location).toBeDefined();
       expect(amadeus.location.analytics).toBeDefined();
       expect(amadeus.location.analytics.categoryRatedAreas).toBeDefined();
@@ -147,10 +142,6 @@ describe('Namespaces', () => {
       expect(amadeus.eReputation.hotelSentiments.get).toBeDefined();
 
       expect(amadeus.airport.predictions.onTime.get).toBeDefined();
-
-      expect(amadeus.safety.safetyRatedLocations.get).toBeDefined();
-      expect(amadeus.safety.safetyRatedLocations.bySquare.get).toBeDefined();
-      expect(amadeus.safety.safetyRatedLocation('XXX').get).toBeDefined();
 
       expect(amadeus.location.analytics.categoryRatedAreas.get).toBeDefined();
 
@@ -489,27 +480,6 @@ describe('Namespaces', () => {
       amadeus.airport.predictions.onTime.get();
       expect(amadeus.client.get)
         .toHaveBeenCalledWith('/v1/airport/predictions/on-time', {});
-    });
-
-    it('.amadeus.safety.safetyRatedLocations.get', () => {
-      amadeus.client.get = jest.fn();
-      amadeus.safety.safetyRatedLocations.get();
-      expect(amadeus.client.get)
-        .toHaveBeenCalledWith('/v1/safety/safety-rated-locations', {});
-    });
-
-    it('.amadeus.safety.safetyRatedLocations.bySquare.get', () => {
-      amadeus.client.get = jest.fn();
-      amadeus.safety.safetyRatedLocations.bySquare.get();
-      expect(amadeus.client.get)
-        .toHaveBeenCalledWith('/v1/safety/safety-rated-locations/by-square', {});
-    });
-
-    it('.amadeus.safety.safetyRatedLocation().get', () => {
-      amadeus.client.get = jest.fn();
-      amadeus.safety.safetyRatedLocation('XXX').get();
-      expect(amadeus.client.get)
-        .toHaveBeenCalledWith('/v1/safety/safety-rated-locations/XXX');
     });
 
     it('.amadeus.shopping.availability.flightAvailabilities.post', () => {
