@@ -2,7 +2,7 @@
 ## 10.0.0 - 2024-04-17
 Decommissioned Safe Place API
 
-Removed [bluebird](https://github.com/petkaantonov/bluebird/) from dependencies
+Removed [bluebird](https://github.com/petkaantonov/bluebird/) from dependencies, Big thanks to [Mohammed Alsammarrai](https://github.com/Darseen) for his contribution!
 
 Minor code improvement, Big thanks to [Mohammed Alsammarrai](https://github.com/Darseen) for his contribution!
 
