@@ -1,4 +1,9 @@
 # Changelog
+## 10.0.0 - 2024-04-17
+Decommissioned Safe Place API
+
+Removed [bluebird](https://github.com/petkaantonov/bluebird/) from dependencies
+
 ## 9.1.0 - 2023-12-11
 Add support for additional parameters with [Flight Offers Price API](https://developers.amadeus.com/self-service/category/flights/api-doc/flight-offers-price)
 
