@@ -29,7 +29,8 @@ class HotelOrders {
    *  'guests': [],
    *  'travel_agent: {},
    *  'room_associations: [],
-   *  'payment': {}
+   *  'payment': {},
+   *  'arrivalInformation': {}
    * });
    * ```
    */

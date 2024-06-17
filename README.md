@@ -405,7 +405,16 @@ amadeus.shopping.hotelOffersSearch.get({
 // Check offer conditions of a specific offer id
 amadeus.shopping.hotelOfferSearch('XXX').get()
 
-// Hotel Booking API
+// Hotel Booking API V2
+amadeus.booking.hotelOrders.post({
+  guests: [],
+  travelAgent: {},
+  roomAssociations: [],
+  payment: {}
+})
+
+
+// Hotel Booking API V1
 amadeus.booking.hotelBookings.post(
   JSON.stringify({
     'offerId': 'XXX',
