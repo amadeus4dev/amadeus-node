@@ -447,6 +447,13 @@ describe('Namespaces', () => {
         .toHaveBeenCalledWith('/v1/booking/hotel-bookings', {});
     });
 
+    it('.amadeus.booking.hotelOrders.post', () => {
+      amadeus.client.post = jest.fn();
+      amadeus.booking.hotelOrders.post();
+      expect(amadeus.client.post)
+        .toHaveBeenCalledWith('/v2/booking/hotel-orders', {});
+    });
+
     it('.amadeus.eReputation.hotelSentiments.get', () => {
       amadeus.client.get = jest.fn();
       amadeus.eReputation.hotelSentiments.get();

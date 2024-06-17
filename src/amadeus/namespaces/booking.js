@@ -1,6 +1,7 @@
 import FlightOrders from './booking/flight_orders';
 import FlightOrder from './booking/flight_order';
 import HotelBookings from './booking/hotel_bookings';
+import HotelOrders from './booking/hotel_orders';
 
 /**
  * A namespaced client for the
@@ -17,6 +18,7 @@ import HotelBookings from './booking/hotel_bookings';
  * @property {FlightOrders} flightOrders
  * @property {FlightOrder} flightOrder
  * @property {HotelBookings} hotelBookings
+ * @property {HotelOrders} hotelOrders
  * @protected
  */
 class Booking {
@@ -24,6 +26,7 @@ class Booking {
     this.client    = client;
     this.flightOrders = new FlightOrders(client);
     this.hotelBookings = new HotelBookings(client);
+    this.hotelOrders = new HotelOrders(client);
   }
 
   flightOrder (orderId) {
