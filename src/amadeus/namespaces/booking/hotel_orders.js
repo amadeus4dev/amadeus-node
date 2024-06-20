@@ -27,12 +27,12 @@ class HotelOrders {
    * ```js
    * amadeus.booking.hotelOrders.post(
    * JSON.stringfy({
-   * "data": {
-   *     "type": "hotel-order",
-   *     "guests": [],
-   *     "travelAgent": {},
-   *     "roomAssociations": [],
-   *     "payment": {}
+   * 'data': {
+   *     'type': 'hotel-order',
+   *     'guests': [],
+   *     'travelAgent': {},
+   *     'roomAssociations': [],
+   *     'payment': {}
    * }})
    *)
    * ```

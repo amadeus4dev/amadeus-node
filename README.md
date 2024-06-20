@@ -408,12 +408,12 @@ amadeus.shopping.hotelOfferSearch('XXX').get()
 // Hotel Booking API v2
 amadeus.booking.hotelOrders.post(
   JSON.stringfy({
-    "data": {
-        "type": "hotel-order",
-        "guests": [],
-        "travelAgent": {},
-        "roomAssociations": [],
-        "payment": {}
+    'data': {
+        'type': 'hotel-order',
+        'guests': [],
+        'travelAgent': {},
+        'roomAssociations': [],
+        'payment': {}
     }})
 )
 
@@ -421,11 +421,11 @@ amadeus.booking.hotelOrders.post(
 // Hotel Booking API v1
 amadeus.booking.hotelBookings.post(
   JSON.stringify({
-    "data": {
-      "offerId": "XXXX",
-      "guests": [],
-      "payments": [],
-      "rooms": []
+    'data': {
+      'offerId': 'XXXX',
+      'guests': [],
+      'payments': [],
+      'rooms': []
     }})
 )
 
