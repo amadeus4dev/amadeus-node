@@ -452,16 +452,7 @@ describe('Namespaces', () => {
       amadeus.client.post = jest.fn();
       amadeus.booking.hotelOrders.post();
       expect(amadeus.client.post)
-        .toHaveBeenCalledWith('/v2/booking/hotel-orders', JSON.stringify({
-          data: {
-            type: 'hotel-order',
-            guests: [],
-            travelAgent: {},
-            roomAssociations: [],
-            payment: {},
-            arrivalInformation: {}
-          }
-        }));
+        .toHaveBeenCalledWith('/v2/booking/hotel-orders', {});
     });
 
     it('.amadeus.eReputation.hotelSentiments.get', () => {

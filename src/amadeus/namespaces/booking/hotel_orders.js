@@ -27,26 +27,16 @@ class HotelOrders {
    * ```js
    * amadeus.booking.hotelOrders.post({
    *  'guests': [],
-   *  'travel_agent: {},
-   *  'room_associations: [],
+   *  'travelAgent: {},
+   *  'roomAssociations: [],
    *  'payment': {},
    *  'arrivalInformation': {}
    * });
    * ```
    */
   post(params = {}) {
-    const body = {
-      data: {
-        type: 'hotel-order',
-        guests: params.guests || [],
-        travelAgent: params.travelAgent || {},
-        roomAssociations: params.roomAssociations || [],
-        payment: params.payment || {},
-        arrivalInformation: params.arrivalInformation || {}
-      }
-    };
 
-    return this.client.post('/v2/booking/hotel-orders', JSON.stringify(body));
+    return this.client.post('/v2/booking/hotel-orders', params);
   }
 }
 
