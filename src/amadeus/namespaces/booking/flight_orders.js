@@ -28,7 +28,7 @@ class FlightOrders {
    * amadeus.booking.flightOrders.post({
    *  'type': 'flight-order',
    *  'flightOffers': [],
-   *  'traveler': []
+   *  'travelers': []
    * });
    * ```
    */
