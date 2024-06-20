@@ -406,22 +406,27 @@ amadeus.shopping.hotelOffersSearch.get({
 amadeus.shopping.hotelOfferSearch('XXX').get()
 
 // Hotel Booking API v2
-amadeus.booking.hotelOrders.post({
-  guests: [],
-  travelAgent: {},
-  roomAssociations: [],
-  payment: {}
-})
+amadeus.booking.hotelOrders.post(
+  JSON.stringfy({
+    "data": {
+        "type": "hotel-order",
+        "guests": [],
+        "travelAgent": {},
+        "roomAssociations": [],
+        "payment": {}
+    }})
+)
 
 
 // Hotel Booking API v1
 amadeus.booking.hotelBookings.post(
   JSON.stringify({
-    'offerId': 'XXX',
-    'guests': [],
-    'payments': []
-    }
-  )
+    "data": {
+      "offerId": "XXXX",
+      "guests": [],
+      "payments": [],
+      "rooms": []
+    }})
 )
 
 // On-Demand Flight Status
