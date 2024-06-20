@@ -25,11 +25,15 @@ class HotelBookings {
    * To book the hotel offer with ID 'XXX' with guests & payments info
    *
    * ```js
-   * amadeus.booking.hotelBookings.post({
-   *  'offerId': 'XXX',
-   *  'guests': [],
-   *  'payments': []
-   * });
+   * amadeus.booking.hotelBookings.post(
+   * JSON.stringify({
+   * 'data': {
+   *   'offerId': 'XXXX',
+   *   'guests': [],
+   *   'payments': [],
+   *   'rooms': []
+   * }})
+   * )
    * ```
    */
   post(params = {}) {
