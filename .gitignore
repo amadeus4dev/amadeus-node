@@ -4,5 +4,6 @@ coverage
 test.js
 docs
 .vscode/
+.idea/
 .DS_Store
 package-lock.json
