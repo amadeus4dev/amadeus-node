@@ -23,9 +23,3 @@ jobs:
         run: npm install
       - name: Testing
         run: npm test
-      - name: Before deploy
-        run: npm run docs
-      - name: Deploy to GitHub Pages
-        uses: JamesIves/github-pages-deploy-action@v4.4.1
-        with:
-          FOLDER: docs
