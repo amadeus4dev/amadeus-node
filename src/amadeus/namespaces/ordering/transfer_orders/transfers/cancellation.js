@@ -24,12 +24,12 @@ class Cancellation {
    * To cancel a transfer order with ID 'XXX' and confirmation number '12345'
    *
    * ```js
-   * amadeus.ordering.transferOrder('XXX').transfers.cancellation.post(JSON.stringify({}), '12345');;
+   * amadeus.ordering.transferOrder('XXX').transfers.cancellation.post({}, '12345');;
    * ```
    */
   post(body, confirmNbr) {
     return this.client.post(
-      `/v1/ordering/transfer-orders/${this.orderId}/transfers/cancellation?confirmNbr=${confirmNbr}`, body);
+      `/v1/ordering/transfer-orders/${this.orderId}/transfers/cancellation?confirmNbr=${confirmNbr}`, JSON.stringify(body));
   }
 }
 

@@ -33,7 +33,7 @@ class FlightOrders {
    * ```
    */
   post(params = {}) {
-    return this.client.post('/v1/booking/flight-orders', params);
+    return this.client.post('/v1/booking/flight-orders', JSON.stringify(params));
   }
 }
 

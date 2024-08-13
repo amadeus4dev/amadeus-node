@@ -31,7 +31,7 @@ class TransferOffers {
    * ```
   */
   post(params = {}) {
-    return this.client.post('/v1/shopping/transfer-offers', params);
+    return this.client.post('/v1/shopping/transfer-offers', JSON.stringify(params));
   }
 }
 
