@@ -337,7 +337,7 @@ describe('Namespaces', () => {
       amadeus.client.post = jest.fn();
       amadeus.shopping.flightOffers.prediction.post();
       expect(amadeus.client.post)
-        .toHaveBeenCalledWith('/v2/shopping/flight-offers/prediction', {});
+        .toHaveBeenCalledWith('/v2/shopping/flight-offers/prediction', JSON.stringify({}));
     });
 
     it('.amadeus.booking.flightOrders.post', () => {
@@ -445,14 +445,14 @@ describe('Namespaces', () => {
       amadeus.client.post = jest.fn();
       amadeus.booking.hotelBookings.post();
       expect(amadeus.client.post)
-        .toHaveBeenCalledWith('/v1/booking/hotel-bookings', {});
+        .toHaveBeenCalledWith('/v1/booking/hotel-bookings', JSON.stringify({}));
     });
 
     it('.amadeus.booking.hotelOrders.post', () => {
       amadeus.client.post = jest.fn();
       amadeus.booking.hotelOrders.post();
       expect(amadeus.client.post)
-        .toHaveBeenCalledWith('/v2/booking/hotel-orders', {});
+        .toHaveBeenCalledWith('/v2/booking/hotel-orders', JSON.stringify({}));
     });
 
     it('.amadeus.eReputation.hotelSentiments.get', () => {
