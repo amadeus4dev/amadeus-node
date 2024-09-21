@@ -51,9 +51,9 @@ class Seatmaps {
    *    departureDate: '2020-08-01'
    * }).then(function(response){
    *    return amadeus.shopping.flightOffers.seatmaps.post(
-   *        JSON.stringify({
-   *            'data': response.data
-   *        })
+   *        {
+   *            data: response.data
+   *        }
    *    );
    * });
    * ```

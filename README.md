@@ -204,7 +204,7 @@ amadeus.shopping.flightOffersSearch.get({
 
 // Flight Offers Search POST
 // A full example can be found at https://github.com/amadeus4dev/amadeus-code-examples
-amadeus.shopping.flightOffersSearch.post(JSON.stringify(body))
+amadeus.shopping.flightOffersSearch.post(body)
 
 // Flight Offers Price
 amadeus.shopping.flightOffersSearch.get({
@@ -214,12 +214,12 @@ amadeus.shopping.flightOffersSearch.get({
     adults: '1'
 }).then(function(response){
     return amadeus.shopping.flightOffers.pricing.post(
-      JSON.stringify({
+      {
         'data': {
           'type': 'flight-offers-pricing',
           'flightOffers': [response.data[0]]
         }
-      })
+      }
     )
 }).then(function(response){
     console.log(response.data);
@@ -229,19 +229,19 @@ amadeus.shopping.flightOffersSearch.get({
 
 // Flight Offers Price with additional parameters
 // for example: check additional baggage options 
-amadeus.shopping.flightOffers.pricing.post(JSON.stringify(body),{include: 'bags'})
+amadeus.shopping.flightOffers.pricing.post(body ,{include: 'bags'});
 
 // Flight Create Orders
 // To book the flight-offer(s) returned by the Flight Offers Price
 // and create a flight-order with travelers' information.
 // A full example can be found at https://git.io/JtnYo
 amadeus.booking.flightOrders.post(
-  JSON.stringify({
+  {
     'type': 'flight-order',
     'flightOffers': [priced-offers],
     'travelers': []
-  })
-)
+  }
+);
 
 // Retrieve flight order with ID 'XXX'. This ID comes from the
 // Flight Create Orders API, which is a temporary ID in test environment.
@@ -261,9 +261,9 @@ amadeus.shopping.flightOffersSearch.get({
   adults: '1'
 }).then(function(response){
     return amadeus.shopping.seatmaps.post(
-      JSON.stringify({
+      {
         'data': [response.data[0]]
-      })
+      }
     );
 }).then(function(response){
     console.log(response.data);
@@ -276,10 +276,10 @@ amadeus.shopping.seatmaps.get({
 });
 
 // Flight Availabilities Search
-amadeus.shopping.availability.flightAvailabilities.post(JSON.stringify((body));
+amadeus.shopping.availability.flightAvailabilities.post(body);
 
 // Branded Fares Upsell 
-amadeus.shopping.flightOffers.upselling.post(JSON.stringify(body));
+amadeus.shopping.flightOffers.upselling.post(body);
 
 // Flight Choice Prediction
 amadeus.shopping.flightOffersSearch.get({
@@ -288,9 +288,7 @@ amadeus.shopping.flightOffersSearch.get({
     departureDate: '2022-11-01',
     adults: '2'
 }).then(function(response){
-    return amadeus.shopping.flightOffers.prediction.post(
-      JSON.stringify(response)
-    );
+    return amadeus.shopping.flightOffers.prediction.post(response);
 }).then(function(response){
     console.log(response.data);
 }).catch(function(responseError){
@@ -346,24 +344,24 @@ amadeus.travel.analytics.airTraffic.busiestPeriod.get({
 // parse information from flight, hotel, rail, and rental car confirmation emails
 // Parse directly from your confirmation file by using helper `fromFile`
 amadeus.travel.tripParser.post(
-  JSON.stringify({
+  {
   'payload': amadeus.travel.tripParser.fromFile(fs.readFileSync('confirmation.eml')),
   "metadata": {
     "documentType": "eml",
     "name": "BOOKING_DOCUMENT",
     "encoding": "BASE_64"
   }
-}))
+})
 // Alternatively Parse from a string encoded in BASE_64
 amadeus.travel.tripParser.post(
-  JSON.stringify({
+  {
   'payload': "STRING in BASE_64"
   "metadata": {
     "documentType": "html",
     "name": "BOOKING_DOCUMENT",
     "encoding": "BASE_64"
   }
-}))
+})
 
 // City Search API
 // finds cities that match a specific word or string of letters. 
@@ -407,26 +405,28 @@ amadeus.shopping.hotelOfferSearch('XXX').get()
 
 // Hotel Booking API v2
 amadeus.booking.hotelOrders.post(
-  JSON.stringfy({
+  {
     'data': {
         'type': 'hotel-order',
         'guests': [],
         'travelAgent': {},
         'roomAssociations': [],
         'payment': {}
-    }})
+    }
+  }
 )
 
 
 // Hotel Booking API v1
 amadeus.booking.hotelBookings.post(
-  JSON.stringify({
+  {
     'data': {
       'offerId': 'XXXX',
       'guests': [],
       'payments': [],
       'rooms': []
-    }})
+    }
+  }
 )
 
 // On-Demand Flight Status
@@ -533,13 +533,13 @@ amadeus.analytics.itineraryPriceMetrics.get({
 
 //Cars & Transfers APIs
 // Transfer Search API: Search Transfer
-amadeus.shopping.transferOffers.post(JSON.stringify(body));
+amadeus.shopping.transferOffers.post(body);
 
 // Transfer Book API: Book a transfer based on the offer id
-amadeus.ordering.transferOrders.post(JSON.stringify(body),offerId='2094123123');
+amadeus.ordering.transferOrders.post(body, offerId='2094123123');
 
 // Transfer Management API: Cancel a transfer based on the order id & confirmation number
-amadeus.ordering.transferOrder('XXX').transfers.cancellation.post(JSON.stringify({}), confirmNbr='12345');
+amadeus.ordering.transferOrder('XXX').transfers.cancellation.post({}, confirmNbr='12345');
 
 ```
 
