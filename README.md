@@ -342,29 +342,6 @@ amadeus.travel.analytics.airTraffic.busiestPeriod.get({
   direction: Amadeus.direction.arriving
 })
 
-// Trip Parser API V3
-// parse information from flight, hotel, rail, and rental car confirmation emails
-// Parse directly from your confirmation file by using helper `fromFile`
-amadeus.travel.tripParser.post(
-  JSON.stringify({
-  'payload': amadeus.travel.tripParser.fromFile(fs.readFileSync('confirmation.eml')),
-  "metadata": {
-    "documentType": "eml",
-    "name": "BOOKING_DOCUMENT",
-    "encoding": "BASE_64"
-  }
-}))
-// Alternatively Parse from a string encoded in BASE_64
-amadeus.travel.tripParser.post(
-  JSON.stringify({
-  'payload': "STRING in BASE_64"
-  "metadata": {
-    "documentType": "html",
-    "name": "BOOKING_DOCUMENT",
-    "encoding": "BASE_64"
-  }
-}))
-
 // City Search API
 // finds cities that match a specific word or string of letters. 
 // Return a list of cities matching a keyword 'Paris'
