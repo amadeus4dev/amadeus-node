@@ -39,7 +39,7 @@ class HotelOrders {
 
    */
   post(params = {}) {
-    return this.client.post('/v2/booking/hotel-orders', JSON.stringify(params));
+    return this.client.post('/v2/booking/hotel-orders', params);
   }
 }
 

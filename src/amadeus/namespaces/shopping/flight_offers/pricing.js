@@ -48,7 +48,7 @@ class Pricing {
       url += '?' + queryString;
     }
 
-    return this.client.post(url, JSON.stringify(params));
+    return this.client.post(url, params);
   }
 }
 

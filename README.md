@@ -21,9 +21,9 @@ npm install amadeus --save
 To make your first API call, you will need to [register](https://developers.amadeus.com/register) for an Amadeus Developer Account and [set up your first application](https://developers.amadeus.com/my-apps).
 
 ```js
-var Amadeus = require('amadeus');
+const Amadeus = require('amadeus');
 
-var amadeus = new Amadeus({
+const amadeus = new Amadeus({
   clientId: 'REPLACE_BY_YOUR_API_KEY',
   clientSecret: 'REPLACE_BY_YOUR_API_SECRET'
 });
@@ -50,7 +50,7 @@ The client can be initialized directly.
 
 ```js
 // Initialize using parameters
-var amadeus = new Amadeus({
+const amadeus = new Amadeus({
   clientId: 'REPLACE_BY_YOUR_API_KEY',
   clientSecret: 'REPLACE_BY_YOUR_API_SECRET'
 });
@@ -59,7 +59,7 @@ var amadeus = new Amadeus({
 Alternatively, it can be initialized without any parameters if the environment variables `AMADEUS_CLIENT_ID` and `AMADEUS_CLIENT_SECRET` are present.
 
 ```js
-var amadeus = new Amadeus();
+const amadeus = new Amadeus();
 ```
 
 Your credentials can be found on the [Amadeus dashboard](https://developers.amadeus.com/my-apps).
@@ -67,7 +67,7 @@ Your credentials can be found on the [Amadeus dashboard](https://developers.amad
 By default, the SDK environment is set to `test` environment. To switch to a `production` (pay-as-you-go) environment, please switch the hostname as follows:
 
 ```js
-var amadeus = new Amadeus({
+const amadeus = new Amadeus({
   hostname: 'production'
 });
 ```
@@ -104,7 +104,7 @@ amadeus.client.get('/v2/reference-data/urls/checkin-links', { airlineCode: 'BA' 
 
 Or, with a `POST` using `.client.post` method:
 ```js
-amadeus.client.post('/v1/shopping/flight-offers/pricing', JSON.stringify({ data }));
+amadeus.client.post('/v1/shopping/flight-offers/pricing', { data });
 ```
 
 ## Promises
@@ -152,7 +152,7 @@ If a page is not available, the response will resolve to `null`.
 The SDK makes it easy to add your own logger that is compatible with the default `console`.
 
 ```js
-var amadeus = new Amadeus({
+const amadeus = new Amadeus({
   clientId: 'REPLACE_BY_YOUR_API_KEY',
   clientSecret: 'REPLACE_BY_YOUR_API_SECRET',
   logger: new MyConsole()
@@ -162,7 +162,7 @@ var amadeus = new Amadeus({
 Additionally, to enable more verbose logging, you can set the appropriate level on your own logger. The easiest way would be to enable debugging via a parameter during initialization, or using the `AMADEUS_LOG_LEVEL` environment variable. The available options are `silent` (default), `warn`, and `debug`.
 
 ```js
-var amadeus = new Amadeus({
+const amadeus = new Amadeus({
   clientId: 'REPLACE_BY_YOUR_API_KEY',
   clientSecret: 'REPLACE_BY_YOUR_API_SECRET',
   logLevel: 'debug'

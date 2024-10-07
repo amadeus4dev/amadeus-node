@@ -110,7 +110,7 @@ describe('Client', () => {
         // make an authenticated POST call
         client.post(path, params);
         // ensure Client.call() was called with the right parameters
-        expect(call).toHaveBeenCalledWith('POST', path, params, 'token');
+        expect(call).toHaveBeenCalledWith('POST', path, JSON.stringify(params), 'token');
       });
 
       it('should work without params', () => {
@@ -119,7 +119,7 @@ describe('Client', () => {
           return { then: resolve => resolve('token') };
         }};
         client.post(path);
-        expect(call).toHaveBeenCalledWith('POST', path, {}, 'token');
+        expect(call).toHaveBeenCalledWith('POST', path, JSON.stringify({}), 'token');
       });
     });
 

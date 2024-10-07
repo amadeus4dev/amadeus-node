@@ -40,7 +40,7 @@ class FlightChoicePrediction {
    * ```
    */
   post(params = {}) {
-    return this.client.post('/v2/shopping/flight-offers/prediction', JSON.stringify(params));
+    return this.client.post('/v2/shopping/flight-offers/prediction', params);
   }
 }
 

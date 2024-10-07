@@ -118,7 +118,7 @@ class FlightOffersSearch {
     * ```
     */
   post(params = {}) {
-    return this.client.post('/v2/shopping/flight-offers', JSON.stringify(params));
+    return this.client.post('/v2/shopping/flight-offers', params);
   }
 }
 

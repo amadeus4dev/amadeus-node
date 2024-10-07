@@ -27,7 +27,7 @@ class FlightAvailabilities {
    * ```
    */
   post(params = {}) {
-    return this.client.post('/v1/shopping/availability/flight-availabilities', JSON.stringify(params));
+    return this.client.post('/v1/shopping/availability/flight-availabilities', params);
   }
 }
 
