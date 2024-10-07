@@ -48,7 +48,6 @@ describe('Namespaces', () => {
       expect(amadeus.travel.predictions).toBeDefined();
       expect(amadeus.travel.predictions.tripPurpose).toBeDefined();
       expect(amadeus.travel.predictions.flightDelay).toBeDefined();
-      expect(amadeus.travel.tripParser).toBeDefined();
 
       expect(amadeus.shopping).toBeDefined();
       expect(amadeus.shopping.flightDates).toBeDefined();
@@ -152,7 +151,6 @@ describe('Namespaces', () => {
       expect(amadeus.shopping.flightOffers.prediction.post).toBeDefined();
       expect(amadeus.booking.flightOrders.post).toBeDefined();
       expect(amadeus.shopping.flightOffersSearch.post).toBeDefined();
-      expect(amadeus.travel.tripParser.post).toBeDefined();
       expect(amadeus.shopping.flightOffers.pricing.post).toBeDefined();
       expect(amadeus.shopping.seatmaps.post).toBeDefined();
       expect(amadeus.booking.hotelBookings.post).toBeDefined();
@@ -304,19 +302,6 @@ describe('Namespaces', () => {
       amadeus.travel.analytics.airTraffic.busiestPeriod.get();
       expect(amadeus.client.get)
         .toHaveBeenCalledWith('/v1/travel/analytics/air-traffic/busiest-period', {});
-    });
-
-    it('.amadeus.travel.tripParser.post', () => {
-      amadeus.client.post = jest.fn();
-      amadeus.travel.tripParser.post();
-      expect(amadeus.client.post)
-        .toHaveBeenCalledWith('/v3/travel/trip-parser', JSON.stringify({}));
-    });
-
-    it('.amadeus.travel.tripParser.fromFile', () => {
-      const utf8Buffer = Buffer.from('file contént', 'utf8');
-      const base64Encoding = amadeus.travel.tripParser.fromFile(utf8Buffer);
-      expect(base64Encoding).toEqual('ZmlsZSBjb250w6ludA==');
     });
 
     it('.amadeus.shopping.flightDates.get', () => {
