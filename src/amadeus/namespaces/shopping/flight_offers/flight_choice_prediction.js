@@ -31,9 +31,7 @@ class FlightChoicePrediction {
    *     departureDate: '2020-08-01',
    *     adults: '2'
    * }).then(function(response){
-   *     return amadeus.shopping.flightOffers.prediction.post(
-   *       JSON.stringify(response)
-   *     );
+   *     return amadeus.shopping.flightOffers.prediction.post(response);
    * }).then(function(response){
    *     console.log(response.data);
    * }).catch(function(responseError){

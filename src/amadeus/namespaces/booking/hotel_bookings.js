@@ -26,13 +26,13 @@ class HotelBookings {
    *
    * ```js
    * amadeus.booking.hotelBookings.post(
-   * JSON.stringify({
+   * {
    * 'data': {
    *   'offerId': 'XXXX',
    *   'guests': [],
    *   'payments': [],
    *   'rooms': []
-   * }})
+   * }}
    * )
    * ```
    */

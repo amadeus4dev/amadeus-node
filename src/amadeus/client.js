@@ -73,7 +73,8 @@ class Client {
    * @return {Promise.<Response,ResponseError>} a Promise
    */
   post(path, params = {}) {
-    return this.request('POST', path, params);
+    const stringifiedParams = typeof params === 'string' ? params : JSON.stringify(params);
+    return this.request('POST', path, stringifiedParams);
   }
 
   /**

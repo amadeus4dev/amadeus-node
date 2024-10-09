@@ -21,9 +21,9 @@ npm install amadeus --save
 To make your first API call, you will need to [register](https://developers.amadeus.com/register) for an Amadeus Developer Account and [set up your first application](https://developers.amadeus.com/my-apps).
 
 ```js
-var Amadeus = require('amadeus');
+const Amadeus = require('amadeus');
 
-var amadeus = new Amadeus({
+const amadeus = new Amadeus({
   clientId: 'REPLACE_BY_YOUR_API_KEY',
   clientSecret: 'REPLACE_BY_YOUR_API_SECRET'
 });
@@ -50,7 +50,7 @@ The client can be initialized directly.
 
 ```js
 // Initialize using parameters
-var amadeus = new Amadeus({
+const amadeus = new Amadeus({
   clientId: 'REPLACE_BY_YOUR_API_KEY',
   clientSecret: 'REPLACE_BY_YOUR_API_SECRET'
 });
@@ -59,7 +59,7 @@ var amadeus = new Amadeus({
 Alternatively, it can be initialized without any parameters if the environment variables `AMADEUS_CLIENT_ID` and `AMADEUS_CLIENT_SECRET` are present.
 
 ```js
-var amadeus = new Amadeus();
+const amadeus = new Amadeus();
 ```
 
 Your credentials can be found on the [Amadeus dashboard](https://developers.amadeus.com/my-apps).
@@ -67,7 +67,7 @@ Your credentials can be found on the [Amadeus dashboard](https://developers.amad
 By default, the SDK environment is set to `test` environment. To switch to a `production` (pay-as-you-go) environment, please switch the hostname as follows:
 
 ```js
-var amadeus = new Amadeus({
+const amadeus = new Amadeus({
   hostname: 'production'
 });
 ```
@@ -104,7 +104,7 @@ amadeus.client.get('/v2/reference-data/urls/checkin-links', { airlineCode: 'BA' 
 
 Or, with a `POST` using `.client.post` method:
 ```js
-amadeus.client.post('/v1/shopping/flight-offers/pricing', JSON.stringify({ data }));
+amadeus.client.post('/v1/shopping/flight-offers/pricing', { data });
 ```
 
 ## Promises
@@ -152,7 +152,7 @@ If a page is not available, the response will resolve to `null`.
 The SDK makes it easy to add your own logger that is compatible with the default `console`.
 
 ```js
-var amadeus = new Amadeus({
+const amadeus = new Amadeus({
   clientId: 'REPLACE_BY_YOUR_API_KEY',
   clientSecret: 'REPLACE_BY_YOUR_API_SECRET',
   logger: new MyConsole()
@@ -162,7 +162,7 @@ var amadeus = new Amadeus({
 Additionally, to enable more verbose logging, you can set the appropriate level on your own logger. The easiest way would be to enable debugging via a parameter during initialization, or using the `AMADEUS_LOG_LEVEL` environment variable. The available options are `silent` (default), `warn`, and `debug`.
 
 ```js
-var amadeus = new Amadeus({
+const amadeus = new Amadeus({
   clientId: 'REPLACE_BY_YOUR_API_KEY',
   clientSecret: 'REPLACE_BY_YOUR_API_SECRET',
   logLevel: 'debug'
@@ -204,7 +204,7 @@ amadeus.shopping.flightOffersSearch.get({
 
 // Flight Offers Search POST
 // A full example can be found at https://github.com/amadeus4dev/amadeus-code-examples
-amadeus.shopping.flightOffersSearch.post(JSON.stringify(body))
+amadeus.shopping.flightOffersSearch.post(body)
 
 // Flight Offers Price
 amadeus.shopping.flightOffersSearch.get({
@@ -214,12 +214,12 @@ amadeus.shopping.flightOffersSearch.get({
     adults: '1'
 }).then(function(response){
     return amadeus.shopping.flightOffers.pricing.post(
-      JSON.stringify({
+      {
         'data': {
           'type': 'flight-offers-pricing',
           'flightOffers': [response.data[0]]
         }
-      })
+      }
     )
 }).then(function(response){
     console.log(response.data);
@@ -229,19 +229,19 @@ amadeus.shopping.flightOffersSearch.get({
 
 // Flight Offers Price with additional parameters
 // for example: check additional baggage options 
-amadeus.shopping.flightOffers.pricing.post(JSON.stringify(body),{include: 'bags'})
+amadeus.shopping.flightOffers.pricing.post(body ,{include: 'bags'});
 
 // Flight Create Orders
 // To book the flight-offer(s) returned by the Flight Offers Price
 // and create a flight-order with travelers' information.
 // A full example can be found at https://git.io/JtnYo
 amadeus.booking.flightOrders.post(
-  JSON.stringify({
+  {
     'type': 'flight-order',
     'flightOffers': [priced-offers],
     'travelers': []
-  })
-)
+  }
+);
 
 // Retrieve flight order with ID 'XXX'. This ID comes from the
 // Flight Create Orders API, which is a temporary ID in test environment.
@@ -261,9 +261,9 @@ amadeus.shopping.flightOffersSearch.get({
   adults: '1'
 }).then(function(response){
     return amadeus.shopping.seatmaps.post(
-      JSON.stringify({
+      {
         'data': [response.data[0]]
-      })
+      }
     );
 }).then(function(response){
     console.log(response.data);
@@ -276,10 +276,10 @@ amadeus.shopping.seatmaps.get({
 });
 
 // Flight Availabilities Search
-amadeus.shopping.availability.flightAvailabilities.post(JSON.stringify((body));
+amadeus.shopping.availability.flightAvailabilities.post(body);
 
 // Branded Fares Upsell 
-amadeus.shopping.flightOffers.upselling.post(JSON.stringify(body));
+amadeus.shopping.flightOffers.upselling.post(body);
 
 // Flight Choice Prediction
 amadeus.shopping.flightOffersSearch.get({
@@ -288,9 +288,7 @@ amadeus.shopping.flightOffersSearch.get({
     departureDate: '2022-11-01',
     adults: '2'
 }).then(function(response){
-    return amadeus.shopping.flightOffers.prediction.post(
-      JSON.stringify(response)
-    );
+    return amadeus.shopping.flightOffers.prediction.post(response);
 }).then(function(response){
     console.log(response.data);
 }).catch(function(responseError){
@@ -384,26 +382,28 @@ amadeus.shopping.hotelOfferSearch('XXX').get()
 
 // Hotel Booking API v2
 amadeus.booking.hotelOrders.post(
-  JSON.stringfy({
+  {
     'data': {
         'type': 'hotel-order',
         'guests': [],
         'travelAgent': {},
         'roomAssociations': [],
         'payment': {}
-    }})
+    }
+  }
 )
 
 
 // Hotel Booking API v1
 amadeus.booking.hotelBookings.post(
-  JSON.stringify({
+  {
     'data': {
       'offerId': 'XXXX',
       'guests': [],
       'payments': [],
       'rooms': []
-    }})
+    }
+  }
 )
 
 // On-Demand Flight Status
@@ -510,13 +510,13 @@ amadeus.analytics.itineraryPriceMetrics.get({
 
 //Cars & Transfers APIs
 // Transfer Search API: Search Transfer
-amadeus.shopping.transferOffers.post(JSON.stringify(body));
+amadeus.shopping.transferOffers.post(body);
 
 // Transfer Book API: Book a transfer based on the offer id
-amadeus.ordering.transferOrders.post(JSON.stringify(body),offerId='2094123123');
+amadeus.ordering.transferOrders.post(body, offerId='2094123123');
 
 // Transfer Management API: Cancel a transfer based on the order id & confirmation number
-amadeus.ordering.transferOrder('XXX').transfers.cancellation.post(JSON.stringify({}), confirmNbr='12345');
+amadeus.ordering.transferOrder('XXX').transfers.cancellation.post({}, confirmNbr='12345');
 
 ```
 

@@ -25,7 +25,7 @@ class TransferOrders {
    * To book the transfer-offer(s) suggested by transferOffers and create a transfer-order
    *
    * ```js
-   * amadeus.ordering.transferOrders.post(body, '2094123123');;
+   * amadeus.ordering.transferOrders.post(body, '2094123123');
    * ```
    */
   post(body, offerId) {
