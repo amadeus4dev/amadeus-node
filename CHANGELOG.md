@@ -1,7 +1,8 @@
 # Changelog
-
 ## 11.0.0 - 2024-11-24
 Decommissioned Trip Parser API 
+
+JSON body is now stringified before sent to the POST API calls. Thanks to [Mohammed Alsammarrai](https://github.com/Darseen) for his contribution!
 
 ## 10.1.0 - 2024-06-24
 Add support for the [Hotel Booking API v2](https://developers.amadeus.com/self-service/category/hotels/api-doc/hotel-booking)
