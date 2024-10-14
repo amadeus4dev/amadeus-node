@@ -1,5 +1,5 @@
 # Changelog
-## 11.0.0 - 2024-11-24
+## 11.0.0 - 2024-10-14
 Decommissioned Trip Parser API 
 
 JSON body is now stringified before sent to the POST API calls. Thanks to [Mohammed Alsammarrai](https://github.com/Darseen) for his contribution!
