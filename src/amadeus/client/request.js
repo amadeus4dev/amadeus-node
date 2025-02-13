@@ -115,7 +115,7 @@ class Request {
    */
   fullQueryPath() {
     if (this.verb === 'POST') { return this.path; }
-    else { return `${this.path}?${qs.stringify(this.params)}`; }
+    else { return `${this.path}?${qs.stringify(this.params, { arrayFormat: 'comma' })}`; }
   }
 
   /**

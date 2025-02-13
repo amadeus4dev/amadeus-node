@@ -102,6 +102,15 @@ describe('Request', () => {
         request.params = null;
         expect(request.fullQueryPath()).toBe('/foo/bar?');
       });
+
+      it('should serialize array params as comma-separated values', () => {
+        request.verb = 'GET';
+        request.params = {
+          amenities: ['bar', 'baz'],
+          ratings: [4, 5],
+        };
+        expect(request.fullQueryPath()).toBe('/foo/bar?amenities=bar%2Cbaz&ratings=4%2C5');
+      });
     });
 
     describe('.body', () => {
