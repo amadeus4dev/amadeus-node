@@ -1,6 +1,9 @@
 # Changelog
+## 11.1.0 - 2025-02-19
+GET request parameters now support arrays of strings without manual conversion to comma-separated lists. Big thanks to [Gianpiero Puleo](https://github.com/gpembark) for his contribution!
+
 ## 11.0.0 - 2024-10-14
-Decommissioned Trip Parser API 
+Decommissioned Trip Parser API
 
 JSON body is now stringified before sent to the POST API calls. Thanks to [Mohammed Alsammarrai](https://github.com/Darseen) for his contribution!
 
